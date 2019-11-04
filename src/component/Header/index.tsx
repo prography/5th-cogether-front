@@ -1,7 +1,12 @@
 import React from "react";
+import HeaderContainer from "./HeaderContainer";
 
 const Header: React.SFC<IProps> = props => {
-    return <div>header!!!</div>;
+    return (
+        <div>
+            <HeaderContainer></HeaderContainer>
+        </div>
+    );
 };
 
 type IProps = {};
