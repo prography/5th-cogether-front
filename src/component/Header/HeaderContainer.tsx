@@ -5,7 +5,7 @@ const HeaderContainer: React.SFC<IProps> = props => {
     return (
         <div className="header">
             <div className="image" >
-                <div className="logo"></div>
+                <a href="#"><div className="logo"></div></a>
             </div>
             <div className="menu">
                 <span className="txt">동아리</span>
@@ -24,14 +24,12 @@ const HeaderContainer: React.SFC<IProps> = props => {
                 <a href="#" className="search-btn">
                 </a>
             </div>
-            
             <div className="menu-account">
                 <span className="txt">로그인</span>
             </div>
             <div className="menu-account">
                 <span className="txt">회원가입</span>
             </div>
-             
         </div>
     );
 };
