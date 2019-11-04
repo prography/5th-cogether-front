@@ -21,8 +21,7 @@ const HeaderContainer: React.SFC<IProps> = props => {
             </div>
             <div className="search-menu">
                 <input type="text" className="search-txt"></input>
-                <a href="#" className="search-btn">
-                </a>
+                <a href="#" className="search-btn"></a>
             </div>
             
             <div className="menu-account">
