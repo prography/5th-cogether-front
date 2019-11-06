@@ -1,0 +1,52 @@
+.wrap {
+    min-width: 1280px;
+    max-width: 1920px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .page {
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        overflow-y: scroll;
+
+        .intro {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 500px;
+            border: 1px solid black;
+        }
+        .club {
+            @extend .intro;
+            .title {
+            }
+            .itembox {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                .item {
+                    width: 300px;
+                    height: 300px;
+                    border: 1px solid black;
+                }
+            }
+        }
+        .education {
+            @extend .intro;
+        }
+        .conference {
+            @extend .intro;
+        }
+    }
+
+    .footer {
+
+        
+        width: 100%;
+        background: orange;
+    }
+}

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Header: React.SFC<IProps> = props => {
-    return <div>header!!!</div>;
+    return <div className="header">header!!!</div>;
 };
 
 type IProps = {};
