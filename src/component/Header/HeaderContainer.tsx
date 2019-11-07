@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import "./Header.scss";
 
 const HeaderContainer: React.SFC<IProps> = props => {
@@ -8,7 +9,6 @@ const HeaderContainer: React.SFC<IProps> = props => {
                 <a href="#"><div className="logo"></div></a>
             </div>
             <div className="menu">
-                
                 <span className="txt">동아리</span>
             </div>
             <div className="menu">
@@ -22,8 +22,7 @@ const HeaderContainer: React.SFC<IProps> = props => {
             </div>
             <div className="search-menu">
                 <input type="text" className="search-txt"></input>
-                <a href="#" className="search-btn">
-                </a>
+                <a href="#" className="search-btn"></a>
             </div>
             <div className="menu-account">
                 <span className="txt">로그인</span>

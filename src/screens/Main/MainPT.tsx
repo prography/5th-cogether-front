@@ -14,7 +14,7 @@ const MainPT: React.SFC<IProps> = props => {
 
     return (
         <div className="wrap">
-            <Header></Header>
+            {/*<Header></Header>*/}
             <div className="page">
                 <div className="intro">intro</div>
                 <div className="club">
