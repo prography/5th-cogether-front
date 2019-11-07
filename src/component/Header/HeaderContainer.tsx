@@ -8,6 +8,7 @@ const HeaderContainer: React.SFC<IProps> = props => {
                 <a href="#"><div className="logo"></div></a>
             </div>
             <div className="menu">
+                
                 <span className="txt">동아리</span>
             </div>
             <div className="menu">
