@@ -6,29 +6,29 @@ const HeaderContainer: React.SFC<IProps> = props => {
     return (
         <div className="header">
             <div className="image" >
-                <a href="#"><div className="logo"></div></a>
+                <Link to="/"><div className="logo"></div></Link>
             </div>
             <div className="menu">
-                <span className="txt">동아리</span>
+                <Link to="/club" className="txt">동아리</Link>
             </div>
             <div className="menu">
-                <span className="txt">교육</span>
+                <Link to="/education" className="txt">교육</Link>
             </div>
             <div className="menu">
-                <span className="txt">컨퍼런스</span>
+                <Link to="/conference" className="txt">컨퍼런스</Link>
             </div>
             <div className="menu">
-                <span className="txt">게시/수정요청</span>
+                <Link to="/userRequest" className="txt">게시/수정요청</Link>
             </div>
             <div className="search-menu">
                 <input type="text" className="search-txt"></input>
-                <a href="#" className="search-btn"></a>
+                <Link to="/"><div className="search-btn"></div></Link>
             </div>
             <div className="menu-account">
-                <span className="txt">로그인</span>
+                <Link to="/login" className="txt">로그인</Link>
             </div>
             <div className="menu-account">
-                <span className="txt">회원가입</span>
+                <Link to="/join" className="txt">회원가입</Link>
             </div>
         </div>
     );
