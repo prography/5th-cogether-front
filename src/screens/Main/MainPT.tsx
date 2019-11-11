@@ -4,6 +4,7 @@ import "./Main.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { clubInfo } from "module/clubModule";
 
 const MainPT: React.SFC<IProps> = props => {
     var settings = {
@@ -12,6 +13,7 @@ const MainPT: React.SFC<IProps> = props => {
         slidesToScroll: 1
     };
 
+    console.log("info: ", props.clubInfo);
     return (
         <div className="wrap">
             {/*<Header></Header>*/}
@@ -21,12 +23,20 @@ const MainPT: React.SFC<IProps> = props => {
                     <div className="title">동아리</div>
                     <div className="itemlist">
                         <Slider {...settings}>
-                            <div className="item">item1</div>
-                            <div className="item">item2</div>
-                            <div className="item">item3</div>
-                            <div className="item">item4</div>
-                            <div className="item">item5</div>
-                            <div className="item">item6</div>
+                            {props.clubInfo.map(club => {
+                                return (
+                                    <div className="item">
+                                        <div className="title">{club.title}</div>
+                                        <div className="tag">
+                                            {club.tag &&
+                                                club.tag.map(tag => {
+                                                    return <div>{tag.name}</div>;
+                                                })}
+                                        </div>
+                                        <div className="image">{club.image}</div>
+                                    </div>
+                                );
+                            })}
                         </Slider>
                     </div>
                 </div>
@@ -62,6 +72,8 @@ const MainPT: React.SFC<IProps> = props => {
     );
 };
 
-type IProps = {};
+type IProps = {
+    clubInfo: [clubInfo];
+};
 
 export default MainPT;
