@@ -19,6 +19,10 @@
         flex: 1;
         margin: 1.4% 1% 1% 0%;
 
+        .txt{
+            text-decoration: none;
+            color:black;
+        }
         .txt:hover {
             color: #4c5e71;
         }
@@ -54,6 +58,10 @@
     .menu-account {
         flex: 0.5;
         margin: 1.2% 1% 1% 0%;
+        .txt{
+            text-decoration: none;
+            color:black;
+        }
         .txt:hover {
             color: #4c5e71;
         }
