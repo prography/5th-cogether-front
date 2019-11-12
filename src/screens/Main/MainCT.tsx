@@ -1,17 +1,20 @@
 import React from "react";
 import MainPT from "./MainPT";
 import { clubInfo } from "module/clubModule";
-import { async } from "q";
+import { eduInfo } from "module/eduModule";
+import { confInfo } from "module/confModule";
+
 // import { mapStateToProps, mapDispatchToProps } from "./index";
 // import { returntypeof } from "react-redux-typescript";
 
 const MainCT: React.SFC<IProps> = props => {
     React.useEffect(() => {
         props.getClub();
-        console.log("clubinfo: ", props.clubInfo);
+        props.getEdu();
+        props.getConf();
     }, []);
 
-    return <MainPT clubInfo={props.clubInfo}></MainPT>;
+    return <MainPT clubInfo={props.clubInfo} eduInfo={props.eduInfo} confInfo={props.confInfo}></MainPT>;
 };
 
 // const statePropTypes = returntypeof(mapStateToProps);
@@ -22,5 +25,11 @@ const MainCT: React.SFC<IProps> = props => {
 type IProps = {
     clubInfo: [clubInfo];
     getClub: () => void;
+
+    eduInfo: [eduInfo];
+    getEdu: () => void;
+
+    confInfo: [confInfo];
+    getConf: () => void;
 };
 export default MainCT;
