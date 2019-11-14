@@ -3,19 +3,18 @@ import ReactDOM from "react-dom";
 
 // router
 import { Provider } from "react-redux";
-import { ConnectedRouter } from "connected-react-router";
-import store, { history } from "module/configureStore";
+import configure from "./store/configure";
 
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+const store=configure();
+
 ReactDOM.render(
     <Provider store={store}>
-        <ConnectedRouter history={history}>
             <App />
             {/* <Login /> */}
-        </ConnectedRouter>
     </Provider>,
     document.getElementById("root")
 );
