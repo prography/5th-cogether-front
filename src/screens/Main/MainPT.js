@@ -1,31 +1,42 @@
-import React, { Fragment } from "react";
-import Header from "component/Header";
+import React, { useEffect } from "react";
 import "./Main.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import { clubInfo } from "module/clubModule";
-import { eduInfo } from "module/eduModule";
-import { confInfo } from "module/confModule";
 
-const MainPT: React.SFC<IProps> = props => {
+import { useSelector, useDispatch } from "react-redux";
+import { requestClub } from "../../store/actions/club";
+import { requestConference } from "../../store/actions/conference";
+import { requestEducation } from "../../store/actions/education";
+
+
+const MainPT  = () => {
+    const dispatch = useDispatch();
+    const clubs = useSelector(state => state.clubReducer.clubInfo);  //mapStateToProps
+    const conferences = useSelector(state => state.conferenceReducer.conferenceInfo);
+    const educations = useSelector(state => state.educationReducer.educationInfo);
+
+    useEffect(()=>{    //mapDispatchToProps
+        dispatch(requestClub());
+        dispatch(requestConference());
+        dispatch(requestEducation());
+    },[])
+
     var settings = {
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 1
     };
 
-    console.log("info: ", props.clubInfo);
     return (
         <div className="wrap">
-            {/*<Header></Header>*/}
             <div className="page">
                 <div className="intro">intro</div>
                 <div className="club">
                     <div className="title">동아리</div>
                     <div className="itemlist">
                         <Slider {...settings}>
-                            {props.clubInfo.map(club => {
+                            {clubs.map(club => {
                                 return (
                                     <div className="item">
                                         <div className="title">{club.title}</div>
@@ -40,7 +51,7 @@ const MainPT: React.SFC<IProps> = props => {
                     <div className="title">교육</div>
                     <div className="itemlist">
                         <Slider {...settings}>
-                            {props.eduInfo.map(edu => {
+                            {educations.map(edu => {
                                 return (
                                     <div className="item">
                                         <div className="title">{edu.title}</div>
@@ -55,7 +66,7 @@ const MainPT: React.SFC<IProps> = props => {
                     <div className="title">컨퍼런스</div>
                     <div className="itemlist">
                         <Slider {...settings}>
-                            {props.confInfo.map(conf => {
+                            {conferences.map(conf => {
                                 return (
                                     <div className="item">
                                         <div className="title">{conf.title}</div>
@@ -70,12 +81,6 @@ const MainPT: React.SFC<IProps> = props => {
             {/* <div className="footer">footer</div> */}
         </div>
     );
-};
-
-type IProps = {
-    clubInfo: [clubInfo];
-    eduInfo: [eduInfo];
-    confInfo: [confInfo];
 };
 
 export default MainPT;
