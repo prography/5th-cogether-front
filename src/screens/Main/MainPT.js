@@ -5,22 +5,20 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 
 import { useSelector, useDispatch } from "react-redux";
-import { requestClub } from "../../store/actions/club";
-import { requestConference } from "../../store/actions/conference";
-import { requestEducation } from "../../store/actions/education";
+import { requestClub, requestConference, requestEducation } from "store/actions/getInfo";
 
-
-const MainPT  = () => {
+const MainPT = () => {
     const dispatch = useDispatch();
-    const clubs = useSelector(state => state.clubReducer.clubInfo);  //mapStateToProps
-    const conferences = useSelector(state => state.conferenceReducer.conferenceInfo);
-    const educations = useSelector(state => state.educationReducer.educationInfo);
+    const clubs = useSelector(state => state.clubReducer.clubInfo, []); //mapStateToProps
+    const conferences = useSelector(state => state.conferenceReducer.conferenceInfo, []);
+    const educations = useSelector(state => state.educationReducer.educationInfo, []);
 
-    useEffect(()=>{    //mapDispatchToProps
+    useEffect(() => {
+        //mapDispatchToProps
         dispatch(requestClub());
         dispatch(requestConference());
         dispatch(requestEducation());
-    },[])
+    }, []);
 
     var settings = {
         infinite: true,
@@ -36,14 +34,15 @@ const MainPT  = () => {
                     <div className="title">동아리</div>
                     <div className="itemlist">
                         <Slider {...settings}>
-                            {clubs.map(club => {
-                                return (
-                                    <div className="item">
-                                        <div className="title">{club.title}</div>
-                                        <div className="image">{club.image}</div>
-                                    </div>
-                                );
-                            })}
+                            {clubs.results &&
+                                clubs.results.map(club => {
+                                    return (
+                                        <div className="item">
+                                            <div className="title">{club.title}</div>
+                                            <div className="image">{club.image}</div>
+                                        </div>
+                                    );
+                                })}
                         </Slider>
                     </div>
                 </div>
@@ -51,14 +50,15 @@ const MainPT  = () => {
                     <div className="title">교육</div>
                     <div className="itemlist">
                         <Slider {...settings}>
-                            {educations.map(edu => {
-                                return (
-                                    <div className="item">
-                                        <div className="title">{edu.title}</div>
-                                        <div className="image">{edu.image}</div>
-                                    </div>
-                                );
-                            })}
+                            {educations.results &&
+                                educations.results.map(edu => {
+                                    return (
+                                        <div className="item">
+                                            <div className="title">{edu.title}</div>
+                                            <div className="image">{edu.image}</div>
+                                        </div>
+                                    );
+                                })}
                         </Slider>
                     </div>
                 </div>
@@ -66,14 +66,15 @@ const MainPT  = () => {
                     <div className="title">컨퍼런스</div>
                     <div className="itemlist">
                         <Slider {...settings}>
-                            {conferences.map(conf => {
-                                return (
-                                    <div className="item">
-                                        <div className="title">{conf.title}</div>
-                                        <div className="image">{conf.image}</div>
-                                    </div>
-                                );
-                            })}
+                            {conferences.results &&
+                                conferences.results.map(conf => {
+                                    return (
+                                        <div className="item">
+                                            <div className="title">{conf.title}</div>
+                                            <div className="image">{conf.image}</div>
+                                        </div>
+                                    );
+                                })}
                         </Slider>
                     </div>
                 </div>

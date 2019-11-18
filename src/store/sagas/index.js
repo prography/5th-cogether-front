@@ -1,14 +1,8 @@
-import { all, fork } from 'redux-saga/effects';
-import watchClubApiList from './clubApi';
-import watchEducationApiList from './educationApi';
-import watchConferenceApiList from './conferenceApi';
+import { all, fork } from "redux-saga/effects";
+import watchApiList from "./getInfoAPI";
 
 function* rootSaga() {
-  yield all([
-      fork(watchClubApiList),
-      fork(watchConferenceApiList),
-      fork(watchEducationApiList)
-    ]);
+    yield all([fork(watchApiList)]);
 }
 
 export default rootSaga;
