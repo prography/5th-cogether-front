@@ -5,6 +5,8 @@ import Main from "screens/Main";
 import Clubs from "screens/Club/Clubs";
 import Educations from "screens/Education/Educations";
 import Conferences from "screens/Conference/Conferences";
+import Login from "screens/Account/Login";
+import Join from "screens/Account/Join";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -17,6 +19,8 @@ const App: React.FC = () => {
                     <Route path="/club" component={Clubs} />
                     <Route path="/education" component={Educations} />
                     <Route path="/conference" component={Conferences} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/join" component={Join} />
                 </Switch>
             </Router>
         </div>
