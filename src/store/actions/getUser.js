@@ -11,8 +11,9 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 
 //join
-export const joinRequestAction =()=> ({
+export const joinRequestAction =(data)=> ({
     type:JOIN_REQUEST,
+    payload:data
 })
 export const joinSuccessAction =(data)=> ({
     type:JOIN_SUCCESS,
@@ -39,9 +40,8 @@ export const loginFailAction =()=> ({
 export const logoutRequestAction =()=> ({
     type:LOGOUT_REQUEST,
 })
-export const logoutSuccessAction =(data)=> ({
+export const logoutSuccessAction =()=> ({
     type:LOGOUT_SUCCESS,
-    payload:data
 })
 export const logoutFailAction =()=> ({
     type:LOGOUT_FAIL

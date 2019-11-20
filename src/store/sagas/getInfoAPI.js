@@ -1,4 +1,4 @@
-import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { GETCLUB_REQUEST, successClub, failClub } from "store/actions/getInfo";
 import { GETDETAIL_REQUEST, successDetail, failDetail } from "store/actions/getInfo";
 import { GETEDUCATION_REQUEST, successEducation, failEducation } from "store/actions/getInfo";
@@ -10,7 +10,7 @@ function* getClubApiData() {
         // do api call
         const data = yield call(fetchClubData);
         yield put(successClub(data));
-        console.log(data);
+        //console.log(data);
     } catch (e) {
         yield put(failClub());
         console.log(e);

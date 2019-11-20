@@ -20,7 +20,7 @@ const userReducer = (state=initialState, action) =>{
         case 'JOIN_SUCCESS': 
             return{
                 ...state,
-                joinInfo : action.payload,
+                userInfo : action.payload,
                 isJoined:true,
                 isJoining:false
             };
@@ -34,14 +34,13 @@ const userReducer = (state=initialState, action) =>{
         case 'LOGIN_REQUEST': 
             return{
                 ...state,
-                token : action.payload, //사용자가 입력한 id와 password값 
                 isLoggedIn:false,
                 isLoggingIn:true,
             };
         case 'LOGIN_SUCCESS': 
             return{
                 ...state,
-                userInfo : action.payload,
+                userInfo : action.payload,  
                 isLoggedIn:true,
                 isLoggingIn:false,
             };

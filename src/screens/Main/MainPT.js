@@ -9,12 +9,11 @@ import { requestClub, requestConference, requestEducation } from "store/actions/
 
 const MainPT = () => {
     const dispatch = useDispatch();
-    const clubs = useSelector(state => state.clubReducer.clubInfo, []); //mapStateToProps
+    const clubs = useSelector(state => state.clubReducer.clubInfo, []); 
     const conferences = useSelector(state => state.conferenceReducer.conferenceInfo, []);
     const educations = useSelector(state => state.educationReducer.educationInfo, []);
-
+    console.log(clubs);
     useEffect(() => {
-        //mapDispatchToProps
         dispatch(requestClub());
         dispatch(requestConference());
         dispatch(requestEducation());
