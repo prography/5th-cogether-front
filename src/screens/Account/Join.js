@@ -2,7 +2,6 @@ import React, {useState, useCallback} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { joinRequestAction } from "../../store/actions/getUser";
 import { Redirect } from'react-router-dom';
-import HeaderContainer from "component/Header/HeaderContainer";
 
 const Join = () =>{
 

@@ -1,13 +1,15 @@
-import React, { useState, useCallback} from "react";
+import React, { useState, useCallback } from "react";
 import { Link } from 'react-router-dom';
 import "./Header.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutRequestAction } from "../../store/actions/getUser";
+import { Redirect } from'react-router-dom';
 
-const HeaderContainer: React.SFC<IProps> = props => {
+const HeaderContainer= () => {
 
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
     const [username, setUsername] = useState(localStorage.getItem("username"));
+    const me = useSelector(state=> state.userReducer.userInfo);
 
     const onLogout = useCallback(( e )=> {
         e.preventDefault();
@@ -36,13 +38,13 @@ const HeaderContainer: React.SFC<IProps> = props => {
                 <input type="text" className="search-txt"></input>
                 <Link to="/"><div className="search-btn"></div></Link>
             </div>
-            {username ? 
+            {username||me ? 
                 <div className="account">
                     <div className="menu-account">
                         <Link to="/mypage" className="txt">마이페이지</Link>
                     </div>
                     <div className="menu-account">
-                        <Link onClick={onLogout} to="/" className="txt">로그아웃</Link>
+                        <Link to="/" onClick={onLogout} className="txt">로그아웃</Link>
                     </div>
                 </div>
                 : 
@@ -60,6 +62,6 @@ const HeaderContainer: React.SFC<IProps> = props => {
     );
 };
 
-type IProps = {};
+
 
 export default HeaderContainer;

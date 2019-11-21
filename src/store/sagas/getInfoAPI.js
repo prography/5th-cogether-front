@@ -10,7 +10,6 @@ function* getClubApiData() {
         // do api call
         const data = yield call(fetchClubData);
         yield put(successClub(data));
-        //console.log(data);
     } catch (e) {
         yield put(failClub());
         console.log(e);

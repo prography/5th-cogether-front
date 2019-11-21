@@ -12,7 +12,7 @@ const MainPT = () => {
     const clubs = useSelector(state => state.clubReducer.clubInfo, []); 
     const conferences = useSelector(state => state.conferenceReducer.conferenceInfo, []);
     const educations = useSelector(state => state.educationReducer.educationInfo, []);
-    console.log(clubs);
+    
     useEffect(() => {
         dispatch(requestClub());
         dispatch(requestConference());
