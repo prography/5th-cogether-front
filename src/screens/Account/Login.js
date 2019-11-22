@@ -2,6 +2,7 @@ import React, {useState, useCallback} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginRequestAction } from "../../store/actions/getUser";
 import { Redirect } from'react-router-dom';
+import "./Login.scss";
 
 const Login = () => {
 
@@ -23,17 +24,22 @@ const Login = () => {
     },[username, password]);
 
     return(
-        <div>
-            {me && <Redirect to='/'></Redirect>}
-            <form onSubmit={onSubmit}>
-                <h2>Username</h2>
-                <input type="text" value={username} onChange={onChangeUsername}></input>
-                <h2>Password</h2>
-                <input type="password" value={password} onChange={onChangePassword}></input>
-                <br/>
-                <button>Login!</button>
-            </form>
-
+        <div className="login">
+            <div className="in"> 
+                {me && <Redirect to='/'></Redirect>}
+                <form onSubmit={onSubmit}>
+                    <div className="form">
+                        <div className="text">Username</div>
+                        <input className="loginInput" type="text" value={username} onChange={onChangeUsername}></input>
+                    </div>
+                    <div className="form">
+                        <div className="text">Password</div>
+                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}></input>
+                    </div>
+                    <br/>
+                    <button className="loginButton">Login!</button>
+                </form>
+            </div>
         </div>
     );
 }

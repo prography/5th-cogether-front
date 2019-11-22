@@ -42,12 +42,12 @@ const HeaderContainer= () => {
             </div>
             {username||me ? 
                 <div className="account">
-                    <div className="menu-account">
+                    {/*<div className="menu-account">*/}
                         <Link to="/mypage" className="txt">마이페이지</Link>
-                    </div>
-                    <div className="menu-account">
+                    {/*</div>*/}
+                    {/*<div className="menu-account">*/}
                         <Link to="/" onClick={onLogout} className="txt">로그아웃</Link>
-                    </div>
+                    {/*</div>*/}
                 </div>
                 : 
                 <div className="account">

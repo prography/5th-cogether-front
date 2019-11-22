@@ -2,6 +2,7 @@ import React, {useState, useCallback} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { joinRequestAction } from "../../store/actions/getUser";
 import { Redirect } from'react-router-dom';
+import "./Join.scss";
 
 const Join = () =>{
 
@@ -28,19 +29,26 @@ const Join = () =>{
     });
 
     return(
-        <div>
-            {me && <Redirect to ='/'></Redirect>}
-            <form onSubmit={onSubmit}>
-                <h2>Username</h2>
-                <input type="text" value={username} onChange={onChangeUsername}></input>
-                <h2>Password1</h2>
-                <input type="password" value={p1} onChange={onChangeP1}></input>
-                <h2>Password2</h2>
-                <input type="password" value={p2} onChange={onChangeP2}></input>
-                <br/>
-                <button>Register!</button>
-            </form>
-
+        <div className="join">
+            <div className="in"> 
+                {me && <Redirect to ='/'></Redirect>}
+                <form onSubmit={onSubmit}>
+                    <div className="form">
+                        <div className="text">Username</div>
+                        <input className="joinInput" type="text" value={username} onChange={onChangeUsername}></input>
+                    </div>
+                    <div className="form">
+                        <div className="text">Password1</div>
+                        <input className="joinInput" type="password" value={p1} onChange={onChangeP1}></input>
+                    </div>
+                    <div className="form">
+                        <div className="text">Password2</div>
+                        <input className="joinInput" type="password" value={p2} onChange={onChangeP2}></input>
+                    </div>
+                    <br/>
+                    <button className="joinButton">Register!</button>
+                </form>
+            </div>
         </div>
     );
 }

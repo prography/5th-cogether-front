@@ -12,11 +12,12 @@ const ClubDetail = ({ match }) => {
     }, []);
 
     return (
-        <div>
-            ClubDetail
-            <div>{details.title}</div>
-            <div>{details.content}</div>
-            <div>{details.location}</div>
+        <div> 
+            <div className="detailBox">
+                <div className="box">{details.title}</div>
+                <div className="box">{details.content}</div>
+                <div className="box">{details.location}</div>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from'react-router-dom';
+import "./Mypage.scss";
 
 const Mypage = () =>{
 
@@ -10,12 +11,18 @@ const Mypage = () =>{
     useEffect(() => {
         setUsername(localStorage.getItem("username"));
     }, [localStorage.getItem("username")]);
+
     return(
-        <div>
-            <h1>mypage</h1>
-            
-            {username||me ? <h2>{username}님, 환영합니다</h2>:
-            <Redirect to='/'></Redirect>}
+        <div className="mypage">
+            <div className="in">
+                
+                <div>mypage</div>
+                
+                {username||me ? <div className ="welcome">{username}님, 환영합니다</div>:
+                <Redirect to='/'></Redirect>}
+                
+                
+            </div>
         </div>
     );
 }
