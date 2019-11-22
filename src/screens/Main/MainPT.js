@@ -28,7 +28,22 @@ const MainPT = () => {
     return (
         <div className="wrap">
             <div className="page">
-                <div className="intro">intro</div>
+                <div className="intro">
+                    <div className="service-upper-blank">
+
+                    </div>
+                    <div className="service-slogan">
+                        할만한 개발모임 어디 없을까?
+                    </div>
+                    <div className="service-explanation">
+                        Co.gether에서는 개발자들을 위한 모임과 컨퍼런스 정보를 제공합니다.<br/>
+                        쉽고 빠르게 원하는 개발 모임을 찾고, 컨퍼런스에 참가해 보아요!
+                    </div>
+                    <div className="chevron-down">
+                        <img src={require('../../assets/big_chevron_down.png')} alt="scroll down"/>
+                    </div>
+
+                </div>
                 <div className="club">
                     <div className="title">동아리</div>
                     <div className="itemlist">
