@@ -20,7 +20,9 @@ const HeaderContainer= () => {
     return (
         <div className="header">
             <div className="image" >
-                <Link to="/"><div className="logo"></div></Link>
+                <Link to="/">
+                  <img className="logo" src={require("../../assets/cogether_logo@3x.png")} alt="logo"/>
+                </Link>
             </div>
             <div className="menu">
                 <Link to="/club" className="txt">동아리</Link>
@@ -35,8 +37,8 @@ const HeaderContainer= () => {
                 <Link to="/userRequest" className="txt">게시/수정요청</Link>
             </div>
             <div className="search-menu">
-                <input type="text" className="search-txt"></input>
-                <Link to="/"><div className="search-btn"></div></Link>
+                <input type="text" className="search-txt" placeholder="검색 (ex. 우아한 테크코스)" />
+                <Link to="/"><img className="search-btn" src={require("../../assets/SearchButton.png")}/></Link>
             </div>
             {username||me ? 
                 <div className="account">
@@ -49,12 +51,12 @@ const HeaderContainer= () => {
                 </div>
                 : 
                 <div className="account">
-                    <div className="menu-account">
+                    {/*<div className="menu-account">*/}
                         <Link to="/login" className="txt">로그인</Link>
-                    </div>
-                    <div className="menu-account">
+                    {/*</div>*/}
+                    {/*<div className="menu-account">*/}
                         <Link to="/join" className="txt">회원가입</Link>
-                    </div>
+                    {/*</div>*/}
                 </div>
             }
             
