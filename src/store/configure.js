@@ -10,11 +10,10 @@ const env = process.env.NODE_ENV;
 const history = createBrowserHistory();
 const logger = createLogger();
 
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();   // saga 미들웨어를 생성
 const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
 // 스토어에 mount
-// saga 미들웨어를 생성
 const configure = () => {
     const store = createStore(
         rootReducer,

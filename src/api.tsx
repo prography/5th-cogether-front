@@ -1,6 +1,6 @@
 export const fetchClubData = async () => {
     try {
-        const response = await fetch("https://cogether.azurewebsites.net/events/?category=circle");
+        const response = await fetch("https://cogether.azurewebsites.net/event/?category=circle");
         const data = await response.json();
         return data;
     } catch (e) {
@@ -9,7 +9,7 @@ export const fetchClubData = async () => {
 };
 export const fetchEducationData = async () => {
     try {
-        const response = await fetch("https://cogether.azurewebsites.net/events/?category=education");
+        const response = await fetch("https://cogether.azurewebsites.net/event/?category=education");
         const data = await response.json();
         return data;
     } catch (e) {
@@ -18,7 +18,7 @@ export const fetchEducationData = async () => {
 };
 export const fetchConferenceData = async () => {
     try {
-        const response = await fetch("https://cogether.azurewebsites.net/events/?category=conference");
+        const response = await fetch("https://cogether.azurewebsites.net/event/?category=conference");
         const data = await response.json();
         return data;
     } catch (e) {
@@ -27,7 +27,7 @@ export const fetchConferenceData = async () => {
 };
 export const fetchDetail = async (id: number) => {
     try {
-        const response = await fetch(`https://cogether.azurewebsites.net/events/${id}`);
+        const response = await fetch(`https://cogether.azurewebsites.net/event/${id}`);
         const data = await response.json();
         return data;
     } catch (e) {
