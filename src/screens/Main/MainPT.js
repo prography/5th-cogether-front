@@ -33,10 +33,10 @@ const MainPT = () => {
 
                     </div>
                     <div className="service-slogan">
-                        할만한 개발모임 어디 없을까?
+                        국내 개발 행사 한번에 볼 수 없을까?
                     </div>
                     <div className="service-explanation">
-                        Co.gether에서는 개발자들을 위한 모임과 컨퍼런스 정보를 제공합니다.<br/>
+                        Co.gether에서는 개발자들을 위한 동아리 교육 컨퍼런스 정보를 제공합니다.<br/>
                         쉽고 빠르게 원하는 개발 모임을 찾고, 컨퍼런스에 참가해 보아요!
                     </div>
                     <div className="chevron-down">

@@ -15,7 +15,7 @@
         overflow-y: scroll;
 
         .intro {
-            background-image: url('../../assets/index_filtered_2.png');
+            background-image: url('../../assets/rachel-french-unsplash.jpg');
             background-size: cover;
 
             -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
@@ -38,17 +38,17 @@
                 flex: none;
                 text-align: center;
                 font-size: 32px;
-                color: #ffffff;
+                color: #000000;
                 font-weight: 600;
             }
             .service-explanation{
                 flex: none;
                 text-align: center;
                 padding: 20px;
-                width: 540px;
+                width: 600px;
                 margin: 0 auto;
                 font-size: 16px;
-                color: #e9e9e9;
+                color: #000000;
             }
             .chevron-down{
                 flex: 1;
