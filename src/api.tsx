@@ -16,6 +16,7 @@ export const fetchEducationData = async () => {
         console.log(e);
     }
 };
+
 export const fetchConferenceData = async () => {
     try {
         const response = await fetch("https://cogether.azurewebsites.net/event/?category=conference");
