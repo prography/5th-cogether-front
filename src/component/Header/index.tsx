@@ -1,14 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import HeaderContainer from "./HeaderContainer";
-
 const Header: React.SFC<IProps> = props => {
     return (
-        <div>
+        <Fragment>
             <HeaderContainer></HeaderContainer>
-        </div>
+        </Fragment>
     );
 };
-
 type IProps = {};
-
 export default Header;

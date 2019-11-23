@@ -1,10 +1,16 @@
 import React from "react";
 import MainPT from "./MainPT";
 
-const MainCT: React.SFC<IProps> = props => {
+
+const MainCT = () => {
+    
+
     return <MainPT></MainPT>;
 };
 
-type IProps = {};
+// const statePropTypes = returntypeof(mapStateToProps);
+// const actionPropTypes = returntypeof(mapDispatchToProps);
+
+// type IProps = typeof statePropTypes & typeof actionPropTypes & {};
 
 export default MainCT;

@@ -1,0 +1,18 @@
+.mypage{
+    text-align: center;
+    margin:100px;
+   
+    .in{
+        padding:30px;
+        width:600px;
+        max-width:1000px;
+        height:300px;
+        display: inline-block;
+        border: 1px solid #c2c0b3;
+        border-radius: 8px;
+        .welcome{
+            padding:20px;
+        }
+    }
+    
+}
