@@ -28,9 +28,9 @@
         align-content: center;
         justify-content: center;
 
-        .txt{
+        .txt {
             text-decoration: none;
-            color:black;
+            color: black;
             font-weight: 600;
         }
         .txt:hover {
@@ -47,7 +47,6 @@
         margin: 12px;
 
         display: flex;
-
 
         border: 2px solid rgb(236, 150, 64);
         //border-color: rgb(236, 150, 64);
@@ -81,14 +80,14 @@
             //justify-content: center;
         }
     }
-    .account{
-        display:flex;
+    .account {
+        display: flex;
         flex: none;
         padding: 0 20px 0 10px;
         //flex:1.8;
         //margin: 1.8% 1% 1% 1%;
 
-        .txt{
+        .txt {
             flex: 1;
             display: flex;
             align-items: center;
@@ -100,19 +99,17 @@
             color: #000000;
             text-decoration: none;
         }
-        .txt:hover{
+        .txt:hover {
             color: #4c5e71;
-
         }
         .menu-account {
             flex: none;
             min-width: 100px;
             text-align: center;
 
-
             margin: 0% 1% 1% 2%;
-            .txt{
-                color:black;
+            .txt {
+                color: black;
                 font-weight: 500;
             }
             .txt:hover {
@@ -120,5 +117,4 @@
             }
         }
     }
-    
 }
