@@ -7,5 +7,6 @@ const Header: React.SFC<IProps> = props => {
         </Fragment>
     );
 };
+
 type IProps = {};
 export default Header;
