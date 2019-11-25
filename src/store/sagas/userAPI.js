@@ -25,6 +25,7 @@ function* getLoginData({payload}) {
     } catch (e) {
       console.log(e);
       yield put({ type:LOGIN_FAIL });
+      alert("일치하는 회원 정보가 없습니다");
     }
 }
 function* watchLoginList() {
@@ -55,7 +56,7 @@ function* getJoinData({payload}) {
             username:payload.username,
             password1:payload.p1,
             password2:payload.p2,
-        }
+        };
         
         const responseBody = yield call(
             [axios, "post"],

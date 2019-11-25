@@ -13,36 +13,36 @@ export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 //join
 export const joinRequestAction =(data)=> ({
     type:JOIN_REQUEST,
-    payload:data
-})
+    payload:data,
+});
 export const joinSuccessAction =(data)=> ({
     type:JOIN_SUCCESS,
-    payload:data
-})
+    payload:data,
+});
 export const joinFailAction =()=> ({
-    type:JOIN_FAIL
-})
+    type:JOIN_FAIL,
+});
 
 //login
 export const loginRequestAction =(data)=> ({
     type:LOGIN_REQUEST,
-    payload:data
-})
+    payload:data,
+});
 export const loginSuccessAction =(data)=> ({
     type:LOGIN_SUCCESS,
-    payload:data
-})
+    payload:data,
+});
 export const loginFailAction =()=> ({
-    type:LOGIN_FAIL
-})
+    type:LOGIN_FAIL,
+});
 
 //logout
 export const logoutRequestAction =()=> ({
     type:LOGOUT_REQUEST,
-})
+});
 export const logoutSuccessAction =()=> ({
     type:LOGOUT_SUCCESS,
-})
+});
 export const logoutFailAction =()=> ({
-    type:LOGOUT_FAIL
-})
+    type:LOGOUT_FAIL,
+});

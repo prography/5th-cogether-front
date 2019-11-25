@@ -6,30 +6,30 @@ const educationReducer = (state = initialState, action) => {
     switch (action.type) {
         case "GETEDUCATION_REQUEST":
             return {
-                ...state
+                ...state,
             };
 
         case "GETEDUCATION_SUCCESS":
             return {
                 ...state,
-                educationInfo: action.payload
+                educationInfo: action.payload,
             };
         case "GETEDUCATION_FAIL":
             return {
-                ...state
+                ...state,
             };
         case "GETDETAIL_REQUEST":
             return {
-                ...state
+                ...state,
             };
         case "GETDETAIL_SUCCESS":
             return {
                 ...state,
-                detail: action.payload
+                detail: action.payload,
             };
         case "GETDETAIL_FAIL":
             return {
-                ...state
+                ...state,
             };
         default:
             return state;
