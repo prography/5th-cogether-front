@@ -90,40 +90,41 @@
             }
 
             .itemlist {
-                border: 1px solid black;
                 margin-top: 16px;
-            }
-            .slick-prev {
-                //크기는 이미지 따로 찾아서
-                width: 48px;
-                height: 48px;
-                left: -5% !important;
-                background-color: #cbcecf;
-                z-index: 1;
-            }
-            .slick-next {
-                width: 48px;
-                height: 48px;
-                right: -5% !important;
-                background-color: #cbcecf;
-                z-index: 1;
-            }
-            .title {
-                width: 328px;
-                height: 29px;
-                font-size: 20px;
-                font-weight: bold;
-                text-align: left;
-                color: #2d2d4b;
-            }
-            .item {
-                width: 360px;
-                height: 365px;
-                border-radius: 3px;
-                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
-                background-color: #ffffff;
-                display: flex;
-                flex-direction: column;
+                .slick-prev {
+                    //크기는 이미지 따로 찾아서
+                    width: 48px;
+                    height: 48px;
+                    left: -5% !important;
+                    background-color: #cbcecf;
+                    z-index: 1;
+                }
+                .slick-next {
+                    width: 48px;
+                    height: 48px;
+                    right: -5% !important;
+                    background-color: #cbcecf;
+                    z-index: 1;
+                }
+                .title {
+                    width: 328px;
+                    height: 29px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    text-align: left;
+                    color: #2d2d4b;
+                }
+                .item {
+                    width: 360px;
+                    height: 365px;
+                    border-radius: 3px;
+                    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
+                    background-color: #ffffff;
+                    display: flex;
+                    flex-direction: column;
+                    border: 1px solid black;
+                    margin: 0 16px;
+                }
             }
         }
         .education {

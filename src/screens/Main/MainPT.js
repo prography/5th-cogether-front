@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import scroll_down from "assets/scroll-down.svg";
+import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
 import { requestClub, requestConference, requestEducation } from "store/actions/getInfo";
@@ -23,7 +24,9 @@ const MainPT = () => {
     var settings = {
         infinite: true,
         slidesToShow: 3,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        variableWidth: true,
+        centerMode: true
     };
 
     return (
@@ -44,14 +47,16 @@ const MainPT = () => {
                 <div className="club">
                     <div className="title-box">
                         <div className="title">동아리</div>
-                        <button className="all">전체보기</button>
+                        <Link to="/club" className="txt">
+                            <button className="all">전체보기</button>
+                        </Link>
                     </div>
                     <div className="itemlist">
                         <Slider {...settings}>
                             {clubs.results &&
                                 clubs.results.map(club => {
                                     return (
-                                        <div className="item">
+                                        <div className="item" style={{ width: 300, marginLeft: 16 }}>
                                             <div className="title">{club.title}</div>
                                             <div className="image">{club.image}</div>
                                         </div>
@@ -63,7 +68,9 @@ const MainPT = () => {
                 <div className="education">
                     <div className="title-box">
                         <div className="title">교육</div>
-                        <button className="all">전체보기</button>
+                        <Link to="/club" className="txt">
+                            <button className="all">전체보기</button>
+                        </Link>
                     </div>
                     <div className="itemlist">
                         <Slider {...settings}>
@@ -82,7 +89,9 @@ const MainPT = () => {
                 <div className="conference">
                     <div className="title-box">
                         <div className="title">컨퍼런스</div>
-                        <button className="all">전체보기</button>
+                        <Link to="/club" className="txt">
+                            <button className="all">전체보기</button>
+                        </Link>
                     </div>
                     <div className="itemlist">
                         <Slider {...settings}>
