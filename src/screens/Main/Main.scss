@@ -2,7 +2,7 @@
     width: 100%;
     //height: 100%;
 
-    height: calc(100vh - 64px);
+    height: calc(100vh - 86px);
 
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
         overflow-y: scroll;
 
         .intro {
-            background-image: url('../../assets/rachel-french-unsplash.jpg');
+            background-image: url("../../assets/rachel-french-unsplash.jpg");
             background-size: cover;
 
             -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
@@ -28,20 +28,21 @@
             flex-direction: column;
             justify-content: center;
             width: 100%;
-            height: calc(100vh - 64px);
+            height: 994px;
+            //height: calc(100vh - 64px);
             border-bottom: 1px solid black;
-            .service-upper-blank{
+            .service-upper-blank {
                 flex: 1;
             }
 
-            .service-slogan{
+            .service-slogan {
                 flex: none;
                 text-align: center;
                 font-size: 32px;
                 color: #000000;
                 font-weight: 600;
             }
-            .service-explanation{
+            .service-explanation {
                 flex: none;
                 text-align: center;
                 padding: 20px;
@@ -50,51 +51,79 @@
                 font-size: 16px;
                 color: #000000;
             }
-            .chevron-down{
+            .chevron-down {
                 flex: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
                 align-items: center;
                 align-content: center;
-                img{
+                img {
                     width: 48px;
                     margin: 20px;
                 }
             }
         }
         .club {
-
-            @extend .intro;
-            background: skyblue;
-            overflow: hidden;
-
-            width: 80%;
             max-width: 1024px;
             margin: 0 auto;
+            margin-top: 64px;
+
+            .title-box {
+                display: flex;
+                flex-direction: row;
+                .title {
+                    flex: 1;
+                    width: 55px;
+                    height: 29px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #2d2d4b;
+                }
+                .all {
+                    width: 92px;
+                    height: 40px;
+                    border-radius: 3px;
+                    border: solid 1px #cbcecf;
+                    background-color: #fafafa;
+                }
+            }
 
             .itemlist {
-                width: 80%;
-                margin: 10px auto auto;
-                //margin-top: 10px;
+                border: 1px solid black;
+                margin-top: 16px;
             }
             .slick-prev {
                 //크기는 이미지 따로 찾아서
-                // left: 3% !important;
+                width: 48px;
+                height: 48px;
+                left: -5% !important;
+                background-color: #cbcecf;
                 z-index: 1;
             }
             .slick-next {
-                // right: 3% !important;
+                width: 48px;
+                height: 48px;
+                right: -5% !important;
+                background-color: #cbcecf;
                 z-index: 1;
             }
             .title {
-                margin-top: 10px;
+                width: 328px;
+                height: 29px;
                 font-size: 20px;
+                font-weight: bold;
+                text-align: left;
+                color: #2d2d4b;
             }
             .item {
-                height: 200px;
-                border: 1px solid black;
-                background: orange;
+                width: 360px;
+                height: 365px;
+                border-radius: 3px;
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
+                background-color: #ffffff;
+                display: flex;
+                flex-direction: column;
             }
         }
         .education {
@@ -160,4 +189,3 @@
         opacity: 1;
     }
 }
-
