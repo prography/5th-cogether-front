@@ -1,44 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# cogether
+> 국내 개발 행사를 소개하는 프로젝트
 
-## Available Scripts
+해당 링크로 이동하여 웹 서비스를 이용하실 수 있습니다. [cogether](https://clever-minsky-ddfb53.netlify.com/)
+![](../header.png)
 
-In the project directory, you can run:
+## :book: 개요
 
-### `yarn start`
+- 국내 개발 행사를 소개하는 웹 서비스 `cogether`입니다.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. 행사 목록은 국내 커뮤니티에서 크롤링한 데이터로 제공됩니다.
+2. 본 사이트에 없지만 게시 요청을 원하는 경우 `기여 방법`을 확인하여 기여할 수 있습니다.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+## :wrench: 업데이트 내역
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* 0.0.1
+    * 작업 진행 중
 
-### `yarn build`
+## :family: 정보
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+황희연 - [@깃허브 주소](https://github.com/gmldus) - [@블로그 주소]() – [@이메일 주소](gmldus0407@gmail.com)
+ 
+민지호 - [@깃허브 주소](https://github.com/minjyo) - [@블로그 주소]() – [@이메일 주소](minjyo8823@gmail.com)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## :pray: 기여 방법
 
-### `yarn eject`
+- 등록되지 않은 행사는 [github-issue](https://github.com/prography/5th-cogether-back/issues)에 게시할 경우 검토 후 게시합니다.
+- 또는 사이트의 `게시 요청`을 이용할 수 있습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 실행 환경
+```bash
+git clone https://github.com/prography/5th-cogether-front.git
+cd 5th-cogether-front
+npm run start
+```
