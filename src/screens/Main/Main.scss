@@ -28,8 +28,7 @@
             flex-direction: column;
             justify-content: center;
             width: 100%;
-            height: 994px;
-            //height: calc(100vh - 64px);
+            height: calc(100vh - 86px);
             border-bottom: 1px solid black;
             .service-upper-blank {
                 flex: 1;
@@ -87,43 +86,29 @@
                     border: solid 1px #cbcecf;
                     background-color: #fafafa;
                 }
+                .all:hover {
+                    background-color: #eaeaea;
+                }
             }
 
             .itemlist {
                 margin-top: 16px;
-                .slick-prev {
-                    //크기는 이미지 따로 찾아서
-                    width: 48px;
-                    height: 48px;
-                    left: -5% !important;
-                    background-color: #cbcecf;
-                    z-index: 1;
-                }
-                .slick-next {
-                    width: 48px;
-                    height: 48px;
-                    right: -5% !important;
-                    background-color: #cbcecf;
-                    z-index: 1;
-                }
-                .title {
-                    width: 328px;
-                    height: 29px;
-                    font-size: 20px;
-                    font-weight: bold;
-                    text-align: left;
-                    color: #2d2d4b;
-                }
+
                 .item {
-                    width: 360px;
-                    height: 365px;
-                    border-radius: 3px;
-                    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.21);
-                    background-color: #ffffff;
-                    display: flex;
-                    flex-direction: column;
-                    border: 1px solid black;
-                    margin: 0 16px;
+                    img {
+                        width: 330px;
+                        height: 244px;
+                        border-radius: 3;
+                    }
+                    .title {
+                        height: 29px;
+                        font-size: 20px;
+                        font-weight: bold;
+                        text-align: left;
+                        color: #2d2d4b;
+                        margin: 0 16px;
+                        margin-top: 20px;
+                    }
                 }
             }
         }
@@ -133,11 +118,6 @@
         .conference {
             @extend .club;
         }
-    }
-
-    .footer {
-        width: 100%;
-        background: orange;
     }
 }
 

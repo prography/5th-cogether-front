@@ -7,6 +7,7 @@
     align-items: center;
 
     .image {
+        flex: 1;
         height: 51px;
         margin-left: 32px;
         .logo {
@@ -35,11 +36,11 @@
         }
     }
     .search-menu {
+        flex: none;
         width: 264px;
         height: 40px;
         border-radius: 3px;
         border: solid 1px #878d91;
-        margin-left: 27%;
         display: flex;
         align-items: center;
 
@@ -63,10 +64,12 @@
         margin-left: 16px;
     }
     .account {
+        flex: none;
         margin-left: 16px;
         width: 140px;
         height: 27px;
         display: flex;
+        margin-right: 32px;
 
         .login-btn {
             width: 50px;
