@@ -30,7 +30,7 @@ const Login = () => {
                 <form onSubmit={onSubmit}>
                     <div className="form">
                         <div className="text">Username</div>
-                        <input className="loginInput" type="text" value={username} onChange={onChangeUsername}></input>
+                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}></input>
                     </div>
                     <div className="form">
                         <div className="text">Password</div>

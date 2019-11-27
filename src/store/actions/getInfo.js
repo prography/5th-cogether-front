@@ -16,53 +16,49 @@ export const GETDETAIL_FAIL = "GETDETAIL_FAIL";
 
 //club info
 export const requestClub = () => ({
-    type: "GETCLUB_REQUEST"
+    type: "GETCLUB_REQUEST",
 });
 export const successClub = data => ({
     type: "GETCLUB_SUCCESS",
-    payload: data
+    payload: data,
 });
 export const failClub = () => ({
-    type: "GETCLUB_FAIL"
+    type: "GETCLUB_FAIL",
 });
 
 //conference info
 export const requestConference = () => ({
-    type: 'GETCONFERENCE_REQUEST'
-
+    type: 'GETCONFERENCE_REQUEST',
 });
 export const successConference = (data) => ({
     type: 'GETCONFERENCE_SUCCESS',
-    payload:data
+    payload:data,
 });
 export const failConference = () => ({
-    type: 'GETCONFERENCE_FAIL'
-    
+    type: 'GETCONFERENCE_FAIL',
 });
 
 //education info
 export const requestEducation = () => ({
-    type: 'GETEDUCATION_REQUEST'
-
+    type: 'GETEDUCATION_REQUEST',
 });
 export const successEducation = (data) => ({
     type: 'GETEDUCATION_SUCCESS',
-    payload:data
+    payload:data,
 });
 export const failEducation = () => ({
-    type: 'GETEDUCATION_FAIL'
-    
+    type: 'GETEDUCATION_FAIL',
 });
 
 //detail
 export const requestDetail = id => ({
     type: "GETDETAIL_REQUEST",
-    payload: id
+    payload: id,
 });
 export const successDetail = data => ({
     type: "GETDETAIL_SUCCESS",
-    payload: data
+    payload: data,
 });
 export const failDetail = () => ({
-    type: "GETDETAIL_FAIL"
+    type: "GETDETAIL_FAIL",
 });

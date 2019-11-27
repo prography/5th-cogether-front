@@ -5,7 +5,7 @@ import userSaga from "./userAPI";
 function* rootSaga() {
     yield all([
         fork(watchApiList),
-        fork(userSaga)
+        fork(userSaga),
     ]);
 }
 

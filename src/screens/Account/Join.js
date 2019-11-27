@@ -24,7 +24,10 @@ const Join = () =>{
     });
     const onSubmit = useCallback(( e )=> {
         e.preventDefault();
-        if(p1 !== p2) return;
+        if(p1 !== p2) {
+            alert("비밀번호가 일치하지 않습니다");
+            return;
+        }
         dispatch(joinRequestAction({username, p1, p2}));
     });
 
@@ -35,7 +38,7 @@ const Join = () =>{
                 <form onSubmit={onSubmit}>
                     <div className="form">
                         <div className="text">Username</div>
-                        <input className="joinInput" type="text" value={username} onChange={onChangeUsername}></input>
+                        <input className="joinInput" type="email" value={username} onChange={onChangeUsername}></input>
                     </div>
                     <div className="form">
                         <div className="text">Password1</div>

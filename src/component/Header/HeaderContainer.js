@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutRequestAction } from "../../store/actions/getUser";
-import { Redirect } from "react-router-dom";
-import search from "assets/search.svg";
-import bar from "assets/bar.svg";
+
+const HeaderContainer= () => {
 
 const HeaderContainer = () => {
     const dispatch = useDispatch();
