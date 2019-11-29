@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   clubReducer,
   conferenceReducer,
   educationReducer,
-  userReducer
+  userReducer,
 });
 
 export default rootReducer;

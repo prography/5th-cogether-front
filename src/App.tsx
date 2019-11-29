@@ -8,6 +8,7 @@ import Conferences from "screens/Conference/Conferences";
 import Login from "screens/Account/Login";
 import Join from "screens/Account/Join";
 import Mypage from "screens/Account/Mypage";
+import Request from "screens/Request/Request";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -23,6 +24,7 @@ const App: React.FC = () => {
                     <Route path="/login" component={Login} />
                     <Route path="/join" component={Join} />
                     <Route path="/mypage" component={Mypage} />
+                    <Route path="/userRequest" component={Request} />
                 </Switch>
             </Router>
         </div>

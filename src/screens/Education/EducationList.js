@@ -31,7 +31,12 @@ const EducationList = ({ match }) => {
             height: 150
         },
         text: {
-            height: 120
+            height: 70
+        },
+        text_size:{
+            fontSize:18,
+            textDecoration:'none',
+            color:'black'
         }
     });
 
@@ -39,6 +44,9 @@ const EducationList = ({ match }) => {
 
     return (
         <div>
+            <div className="navPic">
+                <div className="slogan">Co.gether와 함께<br/>원하는 목표를 성취해보세요</div>
+            </div>
             <Container>
                 <Row>
                     {educations.results &&
@@ -47,16 +55,18 @@ const EducationList = ({ match }) => {
                                 <Col md={4}>
                                     <div className="block">
                                         <Card className={classes.card}>
-                                            <CardActionArea>
-                                                <CardMedia className={classes.media} />
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                        {edu.title}
-                                                    </Typography>
-                                                    {/*<Typography variant="body2" color="textSecondary" component="p">
-                        </Typography>*/}
-                                                </CardContent>
-                                            </CardActionArea>
+                                            <Link to={`${match.url}/${edu.id}`}>
+                                                <CardActionArea>
+                                                    <CardMedia className={classes.media} />
+                                                    <CardContent>
+                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                        <div className={classes.text_size}>{edu.title}</div>
+                                                        </Typography>
+                                                        {/*<Typography variant="body2" color="textSecondary" component="p">
+                            </Typography>*/}
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Link>
                                             <CardActions>
                                                 <Button size="small" color="primary">
                                                     Share

@@ -1,0 +1,26 @@
+.next-arrow {
+    width: 48px;
+    height: 48px;
+    border: solid 1px #cbcecf;
+    background-color: #fafafa;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 24px;
+
+    .img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.next-arrow:hover {
+    background-color: #eaeaea;
+}
+
+.prev-arrow {
+    @extend .next-arrow;
+    margin-left: 0px;
+    margin-right: 24px;
+}
