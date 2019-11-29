@@ -17,10 +17,10 @@ const ClubDetail = ({ match }) => {
             
             <Card>
                 <div className="detailBox">
-                    <div className="box"><img className="image" src={details.photo}></img></div>
-                    <div className="box">{details.title}</div>
-                    <div className="box">{details.content}</div>
-                    <div className="box">{details.location}</div>
+                    {details.photo? <div className="box"><img className="image" src={details.photo}></img></div> : null}
+                    {details.title? <div className="box">{details.title}</div> : null}
+                    {details.content? <div className="box">{details.content}</div> : null}
+                    {details.location?<div className="box">{details.location}</div> : null}
                 </div>
             </Card>
            
