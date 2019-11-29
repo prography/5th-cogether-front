@@ -1,18 +1,24 @@
 .detailBox{
     text-align: center;
-    margin:50px 200px 100px 200px;
+    //margin:50px 200px 100px 200px;
+    margin:50px auto 100px;
     border: 1px solid #c2c0b3;
     border-radius: 8px;
-    
+    max-width:900px;
     
     .box{
         padding:20px;
-        margin:10px;
-        display: inline-block;
+        margin:10px auto;
+        //display: inline-block;
         border: 1px solid #c2c0b3;
         border-radius: 8px;
-        width:700px;
-        max-width:1200px;
+        //width:700px;
+        max-width:768px;
         word-break: break-all;
+
+        .image{
+            max-width:700px;
+            max-height: 400px;
+        }
     }
 }

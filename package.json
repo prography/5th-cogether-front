@@ -13,6 +13,7 @@
         "@types/react-slick": "^0.23.4",
         "@types/redux-actions": "^2.6.1",
         "@types/redux-saga": "^0.10.5",
+        "antd": "^3.25.3",
         "axios": "^0.19.0",
         "connected-react-router": "^6.5.2",
         "cross-env": "^6.0.3",
@@ -38,8 +39,8 @@
         "typescript": "^3.7.2"
     },
     "scripts": {
-        "start": "NODE_PATH=src/ react-scripts start",
-        "build": "NODE_PATH=src/ react-scripts build",
+        "start": "cross-env NODE_PATH=src/ react-scripts start",
+        "build": "cross-env NODE_PATH=src/ react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
