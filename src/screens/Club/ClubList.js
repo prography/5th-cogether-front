@@ -24,18 +24,19 @@ const ClubList = ({ match }) => {
 
     const useStyles = makeStyles({
         card: {
-            maxWidth: 300
+            maxWidth: 300,
         },
         media: {
-            height: 150
+            height: 150,
+            backgroundColor:"#000000",
         },
         text: {
-            height: 70
+            height: 60,
         },
         text_size:{
             fontSize:18,
             textDecoration:'none',
-            color:'black'
+            color:'black',
         }
     });
 
@@ -56,7 +57,7 @@ const ClubList = ({ match }) => {
                                         <Card className={classes.card}>
                                             <Link to={`${match.url}/${club.id}`}>
                                                 <CardActionArea>
-                                                    <CardMedia className={classes.media} />
+                                                    <CardMedia className={classes.media} image={club.photo?club.photo:require("assets/placeholder.png")}/>
                                                     <CardContent>
                                                         <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                                             <div className={classes.text_size}>{club.title}</div>
