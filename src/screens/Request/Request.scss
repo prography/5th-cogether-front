@@ -1,0 +1,44 @@
+.wrap {
+    width: 100%;
+    height: calc(100vh - 86px);
+
+    .request-box {
+        margin: auto;
+        border: 1px solid #c2c0b3;
+        border-radius: 8px;
+        width: 50%;
+
+        .form {
+            display: flex;
+            flex-direction: column;
+
+            .text {
+                font-size: 15px;
+                max-width: 200px;
+                margin: 15px;
+            }
+            .title {
+                border: 1px solid #c2c0b3;
+                outline: none;
+                margin: 10px;
+            }
+            .content {
+                @extend .title;
+
+                height: 300px;
+            }
+        }
+        button {
+            border-radius: 3px;
+            border: solid 1px #cbcecf;
+            background-color: #fafafa;
+            outline: none;
+            cursor: pointer;
+            margin: 10px 50%;
+            width: 50px;
+        }
+        button:hover {
+            background-color: #eaeaea;
+        }
+    }
+}

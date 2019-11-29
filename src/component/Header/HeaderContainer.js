@@ -5,10 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutRequestAction } from "../../store/actions/getUser";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
+import user from "assets/user.svg";
 
 const HeaderContainer = () => {
     const dispatch = useDispatch();
+
     const [username, setUsername] = useState(localStorage.getItem("username"));
+    const [showMenu, setShowMenu] = useState(false);
+
     const me = useSelector(state => state.userReducer.userInfo);
 
     const onLogout = useCallback(e => {
@@ -16,6 +20,10 @@ const HeaderContainer = () => {
         dispatch(logoutRequestAction());
         setUsername(localStorage.getItem("username"));
     }, []);
+
+    const showDropdownMenu = () => {
+        setShowMenu(!showMenu);
+    };
 
     return (
         <div className="header">
@@ -53,16 +61,31 @@ const HeaderContainer = () => {
             <img className="bar" src={bar} />
             {username || me ? (
                 <div className="account">
-                    {/*<div className="menu-account">*/}
-                    <Link to="/mypage" className="txt">
-                        마이페이지
-                    </Link>
-                    {/*</div>*/}
-                    {/*<div className="menu-account">*/}
-                    <Link to="/" onClick={onLogout} className="txt">
-                        로그아웃
-                    </Link>
-                    {/*</div>*/}
+                    <div className="username">
+                        {
+                            localStorage
+                                .getItem("username")
+                                .split('"')[1]
+                                .split("@")[0]
+                        }
+                    </div>
+                    {/* {username} */}
+                    <div className="usericon" onClick={showDropdownMenu}>
+                        <img src={user}></img>
+                    </div>
+                    <span className="dropdown">
+                        {showMenu ? (
+                            <ul>
+                                <Link to="/mypage">
+                                    <ol className="list">마이페이지</ol>
+                                </Link>
+
+                                <Link to="/" onClick={onLogout}>
+                                    <ol className="list">로그아웃</ol>
+                                </Link>
+                            </ul>
+                        ) : null}
+                    </span>
                 </div>
             ) : (
                 <div className="account">

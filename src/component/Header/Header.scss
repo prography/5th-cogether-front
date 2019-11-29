@@ -1,4 +1,6 @@
 .header {
+    min-width: 1200px;
+    max-width: 1920px;
     height: 86px;
     display: flex;
     flex-direction: row;
@@ -51,6 +53,7 @@
             color: #cbcecf;
             border: none;
             margin-left: 10px;
+            outline: none;
         }
         .search-btn {
             flex: none;
@@ -58,6 +61,13 @@
             height: 24px;
         }
     }
+    .search-menu:focus-within {
+        border: solid 1px #fd8c3e;
+        .search-txt {
+            color: black;
+        }
+    }
+
     .bar {
         width: 24px;
         height: 24px;
@@ -70,6 +80,9 @@
         height: 27px;
         display: flex;
         margin-right: 32px;
+        text-decoration: none;
+        cursor: pointer;
+        align-items: center;
 
         .login-btn {
             width: 50px;
@@ -83,6 +96,49 @@
             font-size: 18px;
             color: #fd8c3e;
             margin-left: 24px;
+        }
+
+        .username {
+            flex: 1;
+        }
+        .usericon {
+            flex: 1;
+            width: 48px;
+            height: 48px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            z-index: 3;
+
+            a {
+                text-decoration: none;
+            }
+            ul {
+                list-style-type: none;
+                right: 0px;
+                top: 40px;
+                background-color: white;
+                position: absolute;
+                padding-inline-start: 0px;
+                width: 168px;
+                height: 88px;
+                border-radius: 3px;
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.48);
+                background-color: #ffffff;
+
+                .list {
+                    height: 44px;
+                    text-align: left;
+                    color: #878d91;
+                    font-size: 16px;
+                    padding-inline-start: 0px;
+                    padding: 10px;
+                }
+                .list:hover {
+                    color: #fd8c3e;
+                }
+            }
         }
     }
 }

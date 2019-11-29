@@ -80,19 +80,22 @@ const MainPT = () => {
                             {clubs.results &&
                                 clubs.results.map(club => {
                                     return (
-                                        <div
-                                            className="item"
-                                            style={{
-                                                height: 365,
-                                                borderRadius: 3,
-                                                boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
-                                                backgroundColor: "#ffffff",
-                                                marginBottom: 2
-                                            }}
-                                        >
-                                            <img src={require("assets/placeholder.png")} alt="logo" />
-                                            <div className="title">{club.title}</div>
-                                        </div>
+                                        <Link to={`/club/${club.id}`}>
+                                            <div
+                                                className="item"
+                                                style={{
+                                                    height: 365,
+                                                    borderRadius: 3,
+                                                    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
+                                                    backgroundColor: "#ffffff",
+                                                    marginBottom: 2
+                                                }}
+                                            >
+                                                <img src={club.photo ? club.photo : require("assets/placeholder.png")} alt="logo" />
+                                                <div className="host">{club.host}</div>
+                                                <div className="title">{club.title}</div>
+                                            </div>
+                                        </Link>
                                     );
                                 })}
                         </ItemsCarousel>
@@ -125,19 +128,22 @@ const MainPT = () => {
                             {educations.results &&
                                 educations.results.map(edu => {
                                     return (
-                                        <div
-                                            className="item"
-                                            style={{
-                                                height: 365,
-                                                borderRadius: 3,
-                                                boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
-                                                backgroundColor: "#ffffff",
-                                                marginBottom: 2
-                                            }}
-                                        >
-                                            <img src={require("assets/placeholder.png")} alt="logo" />
-                                            <div className="title">{edu.title}</div>
-                                        </div>
+                                        <Link to={`/club/${edu.id}`}>
+                                            <div
+                                                className="item"
+                                                style={{
+                                                    height: 365,
+                                                    borderRadius: 3,
+                                                    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
+                                                    backgroundColor: "#ffffff",
+                                                    marginBottom: 2
+                                                }}
+                                            >
+                                                <img src={edu.photo ? edu.photo : require("assets/placeholder.png")} alt="logo" />
+                                                <div className="host">{edu.host}</div>
+                                                <div className="title">{edu.title}</div>
+                                            </div>
+                                        </Link>
                                     );
                                 })}
                         </ItemsCarousel>
@@ -170,19 +176,22 @@ const MainPT = () => {
                             {conferences.results &&
                                 conferences.results.map(conf => {
                                     return (
-                                        <div
-                                            className="item"
-                                            style={{
-                                                height: 365,
-                                                borderRadius: 3,
-                                                boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
-                                                backgroundColor: "#ffffff",
-                                                marginBottom: 2
-                                            }}
-                                        >
-                                            <img src={require("assets/placeholder.png")} alt="logo" />
-                                            <div className="title">{conf.title}</div>
-                                        </div>
+                                        <Link to={`/club/${conf.id}`}>
+                                            <div
+                                                className="item"
+                                                style={{
+                                                    height: 365,
+                                                    borderRadius: 3,
+                                                    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
+                                                    backgroundColor: "#ffffff",
+                                                    marginBottom: 2
+                                                }}
+                                            >
+                                                <img src={conf.photo ? conf.photo : require("assets/placeholder.png")} alt="logo" />
+                                                <div className="host">{conf.host}</div>
+                                                <div className="title">{conf.title}</div>
+                                            </div>
+                                        </Link>
                                     );
                                 })}
                         </ItemsCarousel>
