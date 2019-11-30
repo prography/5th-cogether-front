@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { joinRequestAction } from "../../store/actions/getUser";
 import { Redirect } from'react-router-dom';
 import "./Join.scss";
-import { Form, Button, Input } from 'antd';
 
 const Join = () =>{
 
@@ -36,22 +35,22 @@ const Join = () =>{
         <div className="join">
             <div className="in"> 
                 {me && <Redirect to ='/'></Redirect>}
-                <Form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit}>
                     <div className="form">
                         <div className="text">Username</div>
-                        <Input className="joinInput" type="email" value={username} onChange={onChangeUsername}/>
+                        <input className="joinInput" type="email" value={username} onChange={onChangeUsername}/>
                     </div>
                     <div className="form">
                         <div className="text">Password1</div>
-                        <Input className="joinInput" type="password" value={p1} onChange={onChangeP1}/>
+                        <input className="joinInput" type="password" value={p1} onChange={onChangeP1}/>
                     </div>
                     <div className="form">
                         <div className="text">Password2</div>
-                        <Input className="joinInput" type="password" value={p2} onChange={onChangeP2}/>
+                        <input className="joinInput" type="password" value={p2} onChange={onChangeP2}/>
                     </div>
                     <br/>
-                    <Button className="joinButton">Register!</Button>
-                </Form>
+                    <button className="joinButton">Register!</button>
+                </form>
             </div>
         </div>
     );

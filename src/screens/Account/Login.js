@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginRequestAction } from "../../store/actions/getUser";
 import { Redirect } from'react-router-dom';
 import "./Login.scss";
-import { Form, Button, Input } from 'antd';
 
 const Login = () => {
 
@@ -24,22 +23,23 @@ const Login = () => {
         dispatch(loginRequestAction({username,password}));
     },[username, password]);
 
+    
     return(
         <div className="login">
             <div className="in"> 
                 {me && <Redirect to='/'></Redirect>}
-                <Form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit}>
                     <div className="form">
                         <div className="text">Username</div>
-                        <Input className="loginInput" type="email" value={username} onChange={onChangeUsername}/>
+                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}/>
                     </div>
                     <div className="form">
                         <div className="text">Password</div>
-                        <Input className="loginInput" type="password" value={password} onChange={onChangePassword}/>
+                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}/>
                     </div>
                     <br/>
-                    <Button className="loginButton">Login!</Button>
-                </Form>
+                    <button className="loginButton">Login!</button>
+                </form>
             </div>
         </div>
     );
