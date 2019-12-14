@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestClub, requestConference, requestEducation } from "store/actions/getInfo";
 import PrevArrow from "component/Arrow/PrevArrow";
 import NextArrow from "component/Arrow/NextArrow";
+import { Layout } from "antd";
+import Header from "component/Header";
 
 const MainPT = () => {
     const dispatch = useDispatch();

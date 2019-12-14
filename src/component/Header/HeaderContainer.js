@@ -69,7 +69,6 @@ const HeaderContainer = () => {
                                 .split("@")[0]
                         }
                     </div>
-                    {/* {username} */}
                     <div className="usericon" onClick={showDropdownMenu}>
                         <img src={user}></img>
                     </div>
@@ -89,16 +88,12 @@ const HeaderContainer = () => {
                 </div>
             ) : (
                 <div className="account">
-                    {/*<div className="menu-account">*/}
                     <Link to="/login" className="login-btn">
                         로그인
                     </Link>
-                    {/*</div>*/}
-                    {/*<div className="menu-account">*/}
                     <Link to="/join" className="sign-btn">
                         회원가입
                     </Link>
-                    {/*</div>*/}
                 </div>
             )}
         </div>
