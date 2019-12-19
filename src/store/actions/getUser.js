@@ -10,6 +10,10 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_FAIL = 'LOGOUT_FAIL';
 
+export const GITHUB_LOGIN_REQUEST = 'GITHUB_LOGIN_REQUEST';
+export const GITHUB_LOGIN_SUCCESS = 'GITHUB_LOGIN_SUCCESS';
+export const GITHUB_LOGIN_FAIL = 'GITHUB_LOGIN_FAIL';
+
 //join
 export const joinRequestAction =(data)=> ({
     type:JOIN_REQUEST,
@@ -45,4 +49,17 @@ export const logoutSuccessAction =()=> ({
 });
 export const logoutFailAction =()=> ({
     type:LOGOUT_FAIL,
+});
+
+//github login
+export const githubLoginRequestAction =(data)=> ({
+    type:GITHUB_LOGIN_REQUEST,
+    payload:data,
+});
+export const githubLoginSuccessAction =(data)=> ({
+    type:GITHUB_LOGIN_SUCCESS,
+    payload:data,
+});
+export const githubLoginFailAction =()=> ({
+    type:GITHUB_LOGIN_FAIL,
 });

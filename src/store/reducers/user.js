@@ -7,7 +7,6 @@ const initialState={
     isLoggingIn:false,
     isLoggingout:false,
     userInfo:null,
-    token:''
 };
 
 const userReducer = handleActions({
@@ -53,6 +52,27 @@ const userReducer = handleActions({
             isLoggingIn:false,
         };
     },
+    'GITHUB_LOGIN_REQUEST': (state, action) =>{
+        return{
+            ...state,
+            isLoggedIn:false,
+            isLoggingIn:true,
+        };
+    },
+    'GITHUB_LOGIN_SUCCESS': (state, action) =>{
+        return{
+            ...state,
+            userInfo : action.payload,  
+            isLoggedIn:true,
+            isLoggingIn:false,
+        };
+    },
+    'GITHUB_LOGIN_FAIL': (state, action) =>{
+        return{
+            ...state,
+            isLoggingIn:false,
+        };
+    },
     'LOGOUT_REQUEST': (state, action) =>{
         return{
             ...state,
@@ -72,6 +92,7 @@ const userReducer = handleActions({
             isLoggingout:false,
         };
     },
+    
 
 },initialState);
 

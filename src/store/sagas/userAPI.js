@@ -4,12 +4,16 @@ import {
     LOGIN_REQUEST,
     LOGIN_FAIL,
     loginSuccessAction,
+    GITHUB_LOGIN_REQUEST,
+    GITHUB_LOGIN_FAIL,
+    githubLoginSuccessAction,
     LOGOUT_REQUEST,
     LOGOUT_FAIL,
     logoutSuccessAction,
     JOIN_REQUEST,
     JOIN_FAIL,
-    joinSuccessAction
+    joinSuccessAction,
+
 } from "../actions/getUser";
 
 //login
@@ -20,11 +24,11 @@ function* getLoginData({ payload }) {
             password: payload.password
         };
 
-        const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api-token-auth/", json);
+        const responseBody = yield call(
+            [axios, "post"], "https://cogether.azurewebsites.net/account/api-token-auth/", json);
+            console.log(responseBody);
 
         if (responseBody.data.token) {
-            //console.log(responseBody.data);
-            //console.log("json ", json);
             localStorage.setItem("token", responseBody.data.token);
             localStorage.setItem("username", JSON.stringify(json.username));
             yield put(loginSuccessAction(responseBody));
@@ -35,9 +39,27 @@ function* getLoginData({ payload }) {
         alert("일치하는 회원 정보가 없습니다");
     }
 }
-function* watchLoginList() {
+function* watchLogin() {
     yield takeLatest(LOGIN_REQUEST, getLoginData);
 }
+
+
+//github login
+/*function* getGithubLoginData({ payload }){
+    try{
+        const json={};
+        const responseBody = yield call(
+            [axios, "post"], "https://cogether.azurewebsites.net/account/login/github/", json);
+
+    }catch(e){
+        console.log(e);
+        yield put({ type: GITHUB_LOGIN_FAIL });
+    }
+}
+function* watchGithubLogin() {
+    yield takeLatest(GITHUB_LOGIN_REQUEST, getGithubLoginData);
+}*/
+
 
 //logout
 function* getLogoutData() {
@@ -50,9 +72,10 @@ function* getLogoutData() {
         yield put({ type: LOGOUT_FAIL });
     }
 }
-function* watchLogoutList() {
+function* watchLogout() {
     yield takeLatest(LOGOUT_REQUEST, getLogoutData);
 }
+
 
 //signup
 function* getJoinData({ payload }) {
@@ -63,7 +86,8 @@ function* getJoinData({ payload }) {
             password2: payload.p2
         };
 
-        const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
+        const responseBody = yield call(
+            [axios, "post"], "https://cogether.azurewebsites.net/account/", json);
 
         if (responseBody.data) {
             localStorage.setItem("username", JSON.stringify(json.username));
@@ -74,10 +98,17 @@ function* getJoinData({ payload }) {
         yield put({ type: JOIN_FAIL });
     }
 }
-function* watchJoinList() {
+function* watchJoin() {
     yield takeLatest(JOIN_REQUEST, getJoinData);
 }
 
+
+
 export default function* userSaga() {
-    yield all([fork(watchLoginList), fork(watchLogoutList), fork(watchJoinList)]);
+    yield all([
+        fork(watchLogin), 
+        //fork(watchGithubLogin),
+        fork(watchLogout), 
+        fork(watchJoin),
+    ]);
 }
