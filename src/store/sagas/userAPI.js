@@ -43,6 +43,7 @@ function* getLoginData({ payload }) {
             };
             const getNewToken = yield call(
                 [axios, "post"], "https://cogether.azurewebsites.net/account/api/refresh/", Token2);
+                
             accessToken = getNewToken.data.access;
         }
      
@@ -106,7 +107,7 @@ function* getJoinData({ payload }) {
 
         const responseBody = yield call(
             [axios, "post"], "https://cogether.azurewebsites.net/account/", json);
-
+            console.log(responseBody);
         if (responseBody.data) {
             localStorage.setItem("username", JSON.stringify(json.username));
             yield put(joinSuccessAction(responseBody));
@@ -114,6 +115,7 @@ function* getJoinData({ payload }) {
     } catch (e) {
         console.log(e);
         yield put({ type: JOIN_FAIL });
+        alert("이미 존재하는 이메일 입니다.");
     }
 }
 function* watchJoin() {
