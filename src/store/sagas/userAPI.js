@@ -25,11 +25,10 @@ function* getLoginData({ payload }) {
         };
 
         const responseBody = yield call(
-            [axios, "post"], "https://cogether.azurewebsites.net/account/api-token-auth/", json);
-            console.log(responseBody);
+            [axios, "post"], "https://cogether.azurewebsites.net/account/api/token/", json);
 
-        if (responseBody.data.token) {
-            localStorage.setItem("token", responseBody.data.token);
+        if (responseBody.data.access) {
+            localStorage.setItem("token", responseBody.data.access);
             localStorage.setItem("username", JSON.stringify(json.username));
             yield put(loginSuccessAction(responseBody));
         }
