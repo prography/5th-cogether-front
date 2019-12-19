@@ -27,8 +27,27 @@ function* getLoginData({ payload }) {
         const responseBody = yield call(
             [axios, "post"], "https://cogether.azurewebsites.net/account/api/token/", json);
 
-        if (responseBody.data.access) {
-            localStorage.setItem("token", responseBody.data.access);
+        const accessToken = responseBody.data.access;
+        const refreshToken = responseBody.data.refresh;
+
+        const Token1={
+            token: accessToken,
+        };
+        const isExpired = yield call(
+            [axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", Token1);
+        
+        
+        if(isExpired.data.code){ //access token 만료 시 재요청
+            const Token2={
+                refresh: refreshToken,
+            };
+            const getNewToken = yield call(
+                [axios, "post"], "https://cogether.azurewebsites.net/account/api/refresh/", Token2);
+            accessToken = getNewToken.data.access;
+        }
+     
+        if (accessToken) {
+            localStorage.setItem("token", accessToken);
             localStorage.setItem("username", JSON.stringify(json.username));
             yield put(loginSuccessAction(responseBody));
         }
