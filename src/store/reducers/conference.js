@@ -1,38 +1,43 @@
+import { handleActions } from "redux-actions";
+
 const initialState = {
     conferenceInfo: [],
-    detail: {}
+    detail: {},
 };
-const conferenceReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "GETCONFERENCE_REQUEST":
-            return {
-                ...state,
-            };
 
-        case "GETCONFERENCE_SUCCESS":
-            return {
-                ...state,
-                conferenceInfo: action.payload,
-            };
-        case "GETCONFERENCE_FAIL":
-            return {
-                ...state,
-            };
-        case "GETDETAIL_REQUEST":
-            return {
-                ...state,
-            };
-        case "GETDETAIL_SUCCESS":
-            return {
-                ...state,
-                detail: action.payload,
-            };
-        case "GETDETAIL_FAIL":
-            return {
-                ...state,
-            };
-        default:
-            return state;
-    }
-};
+const conferenceReducer =  handleActions({
+    'GETCONFERENCE_REQUEST': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+    'GETCONFERENCE_SUCCESS': (state, action) => {
+        return {
+            ...state,
+            conferenceInfo: action.payload,
+        };
+    },
+    'GETCONFERENCE_FAIL': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+    'GETDETAIL_REQUEST': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+    'GETDETAIL_SUCCESS': (state, action) => {
+        return {
+            ...state,
+            detail: action.payload,
+        };
+    },
+    'GETDETAIL_FAIL': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+}, initialState);
+
 export default conferenceReducer;

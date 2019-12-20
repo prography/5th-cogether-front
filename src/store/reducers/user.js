@@ -94,6 +94,6 @@ const userReducer = handleActions({
     },
     
 
-},initialState);
+}, initialState);
 
 export default userReducer;

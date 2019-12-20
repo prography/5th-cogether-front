@@ -107,7 +107,7 @@ function* getJoinData({ payload }) {
 
         const responseBody = yield call(
             [axios, "post"], "https://cogether.azurewebsites.net/account/", json);
-            console.log(responseBody);
+            
         if (responseBody.data) {
             localStorage.setItem("username", JSON.stringify(json.username));
             yield put(joinSuccessAction(responseBody));
