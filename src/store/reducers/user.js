@@ -7,7 +7,7 @@ const initialState={
     isLoggingIn:false,
     isLoggingout:false,
     userInfo:null,
-    token:''
+    signedUp:null,
 };
 
 const userReducer = handleActions({
@@ -21,7 +21,7 @@ const userReducer = handleActions({
     'JOIN_SUCCESS': (state, action) => {
         return{
             ...state,
-            userInfo : action.payload,
+            signedUp: action.payload,
             isJoined:true,
             isJoining:false,
         };
@@ -42,7 +42,7 @@ const userReducer = handleActions({
     'LOGIN_SUCCESS': (state, action) =>{
         return{
             ...state,
-            userInfo : action.payload,  
+            userInfo: action.payload,  
             isLoggedIn:true,
             isLoggingIn:false,
         };
@@ -62,7 +62,7 @@ const userReducer = handleActions({
     'LOGOUT_SUCCESS': (state, action) =>{
         return{
             ...state,
-            userInfo : null,
+            userInfo: null,
             isLoggedIn:false,
         };
     },

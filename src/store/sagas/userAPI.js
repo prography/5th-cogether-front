@@ -23,8 +23,6 @@ function* getLoginData({ payload }) {
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api-token-auth/", json);
 
         if (responseBody.data.token) {
-            //console.log(responseBody.data);
-            //console.log("json ", json);
             localStorage.setItem("token", responseBody.data.token);
             localStorage.setItem("username", JSON.stringify(json.username));
             yield put(loginSuccessAction(responseBody));
