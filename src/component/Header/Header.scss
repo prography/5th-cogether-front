@@ -6,6 +6,10 @@
     width: 100%;
     box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
     align-items: center;
+    position: fixed;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
 
     .image {
         flex: 1;

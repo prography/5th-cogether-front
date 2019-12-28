@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { requestDetail } from "store/actions/getInfo";
+import { requestDetail } from "store/actions/Info";
 import "./ClubDetail.scss";
 import { Card } from 'antd';
 

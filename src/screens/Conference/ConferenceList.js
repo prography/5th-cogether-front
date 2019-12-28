@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import { Row, Col, Container } from "react-bootstrap";
 
 import { useSelector, useDispatch } from "react-redux";
-import { requestConference } from "store/actions/getInfo";
+import { requestConference } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./ConferenceList.scss";
 

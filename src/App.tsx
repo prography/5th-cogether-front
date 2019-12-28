@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Header from "component/Header";
+import Footer from "component/Footer";
 import Main from "screens/Main";
 import Clubs from "screens/Club/Clubs";
 import Educations from "screens/Education/Educations";
@@ -8,8 +9,9 @@ import Conferences from "screens/Conference/Conferences";
 import Login from "screens/Account/Login";
 import Join from "screens/Account/Join";
 import Mypage from "screens/Account/Mypage";
-import Request from "screens/Request/Request";
+import Request from "screens/Service/Service";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App: React.FC = () => {
     return (
@@ -26,6 +28,7 @@ const App: React.FC = () => {
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/userRequest" component={Request} />
                 </Switch>
+                <Footer></Footer>
             </Router>
         </div>
     );
