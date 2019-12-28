@@ -9,8 +9,10 @@ import {
     logoutSuccessAction,
     JOIN_REQUEST,
     JOIN_FAIL,
-    joinSuccessAction
+    joinSuccessAction,
+    
 } from "../actions/getUser";
+import { meRequestAction } from "../actions/getAuth";
 
 //login
 function* getLoginData({ payload }) {
@@ -28,8 +30,9 @@ function* getLoginData({ payload }) {
         if (accessToken) {
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
-            localStorage.setItem("username", JSON.stringify(json.username));
-            yield put(loginSuccessAction(responseBody));
+            yield put(loginSuccessAction(JSON.stringify(json.username)));
+            yield put(meRequestAction());
+            //yield put(loginSuccessAction());
         }
     } catch (e) {
         console.log(e);
@@ -46,7 +49,6 @@ function* getLogoutData() {
     try {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        localStorage.removeItem("username");
         yield put(logoutSuccessAction());
     } catch (e) {
         console.log(e);

@@ -31,6 +31,7 @@ const userReducer = handleActions({
             ...state,
             isJoining:false,
         };
+        
     },
     'LOGIN_REQUEST': (state, action) =>{
         return{

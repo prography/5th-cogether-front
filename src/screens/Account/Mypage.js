@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from'react-router-dom';
 import "./Mypage.scss";
+import {meRequestAction} from '../../store/actions/getAuth';
 
 const Mypage = () =>{
 
-    const [username, setUsername] = useState(localStorage.getItem("username"));
-    const me = useSelector(state=> state.userReducer.userInfo);
-    
-    useEffect(() => {
-        setUsername(localStorage.getItem("username"));
-    }, [localStorage.getItem("username")]);
+    const [token, setToken] = useState(localStorage.getItem("accessToken"));
+    const me = useSelector(state=> state.meReducer.meInfo);
+
+    useEffect(()=>{
+        setToken(localStorage.getItem("accessToken"));
+    }, [localStorage.getItem("accessToken")]);
 
     return(
         <div className="mypage">
@@ -18,7 +19,7 @@ const Mypage = () =>{
                 
                 <div>mypage</div>
                 
-                {username||me ? <div className ="welcome">{username}님, 환영합니다</div>:
+                { token ? <div className ="welcome">{me}님, 환영합니다</div>:
                 <Redirect to='/'></Redirect>}
                 
                 

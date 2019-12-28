@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import Header from "component/Header";
 import Main from "screens/Main";
@@ -11,8 +12,20 @@ import LoginDirect from "screens/Account/LoginDirect";
 import Mypage from "screens/Account/Mypage";
 import Request from "screens/Request/Request";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { meRequestAction } from "store/actions/getAuth";
 
 const App = () => {
+
+    const dispatch = useDispatch();
+    const isAuthenticating = useSelector(state=> state.userReducer.userInfo);
+
+    useEffect(()=>{
+        isAuthenticating ?
+        console.log(isAuthenticating) 
+        :
+        dispatch(meRequestAction());
+    });
+    
     return (
         <div className="App">
             <Router>
