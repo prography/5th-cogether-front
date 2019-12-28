@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { GETCLUB_REQUEST, successClub, failClub } from "store/actions/getInfo";
-import { GETDETAIL_REQUEST, successDetail, failDetail } from "store/actions/getInfo";
-import { GETEDUCATION_REQUEST, successEducation, failEducation } from "store/actions/getInfo";
-import { GETCONFERENCE_REQUEST, successConference, failConference } from "store/actions/getInfo";
+import { GETCLUB_REQUEST, successClub, failClub } from "store/actions/Info";
+import { GETDETAIL_REQUEST, successDetail, failDetail } from "store/actions/Info";
+import { GETEDUCATION_REQUEST, successEducation, failEducation } from "store/actions/Info";
+import { GETCONFERENCE_REQUEST, successConference, failConference } from "store/actions/Info";
 import { fetchClubData, fetchDetail, fetchConferenceData, fetchEducationData } from "api";
 
 function* getClubApiData() {

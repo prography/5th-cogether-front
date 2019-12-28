@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutRequestAction } from "../../store/actions/getUser";
+import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
@@ -49,7 +49,7 @@ const HeaderContainer = () => {
             </div>
             <div className="menu">
                 <Link to="/userRequest" className="txt">
-                    게시/수정요청
+                    고객센터
                 </Link>
             </div>
             <div className="search-menu">
@@ -69,7 +69,6 @@ const HeaderContainer = () => {
                                 .split("@")[0]
                         }
                     </div>
-                    {/* {username} */}
                     <div className="usericon" onClick={showDropdownMenu}>
                         <img src={user}></img>
                     </div>
@@ -89,16 +88,12 @@ const HeaderContainer = () => {
                 </div>
             ) : (
                 <div className="account">
-                    {/*<div className="menu-account">*/}
                     <Link to="/login" className="login-btn">
                         로그인
                     </Link>
-                    {/*</div>*/}
-                    {/*<div className="menu-account">*/}
                     <Link to="/join" className="sign-btn">
                         회원가입
                     </Link>
-                    {/*</div>*/}
                 </div>
             )}
         </div>

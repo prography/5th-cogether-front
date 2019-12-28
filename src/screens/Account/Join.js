@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { joinRequestAction } from "../../store/actions/getUser";
+import { joinRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Join.scss";
 

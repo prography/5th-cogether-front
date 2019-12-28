@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loginRequestAction } from "../../store/actions/getUser";
+import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Login.scss";
 
