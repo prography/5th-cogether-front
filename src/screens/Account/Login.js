@@ -23,6 +23,7 @@ const Login = () => {
         dispatch(loginRequestAction({username,password}));
     },[username, password]);
 
+    
     return(
         <div className="login">
             <div className="in"> 
@@ -30,11 +31,11 @@ const Login = () => {
                 <form onSubmit={onSubmit}>
                     <div className="form">
                         <div className="text">Username</div>
-                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}></input>
+                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}/>
                     </div>
                     <div className="form">
                         <div className="text">Password</div>
-                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}></input>
+                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}/>
                     </div>
                     <br/>
                     <button className="loginButton">Login!</button>

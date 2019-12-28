@@ -38,15 +38,15 @@ const Join = () =>{
                 <form onSubmit={onSubmit}>
                     <div className="form">
                         <div className="text">Username</div>
-                        <input className="joinInput" type="email" value={username} onChange={onChangeUsername}></input>
+                        <input className="joinInput" type="email" value={username} onChange={onChangeUsername}/>
                     </div>
                     <div className="form">
                         <div className="text">Password1</div>
-                        <input className="joinInput" type="password" value={p1} onChange={onChangeP1}></input>
+                        <input className="joinInput" type="password" value={p1} onChange={onChangeP1}/>
                     </div>
                     <div className="form">
                         <div className="text">Password2</div>
-                        <input className="joinInput" type="password" value={p2} onChange={onChangeP2}></input>
+                        <input className="joinInput" type="password" value={p2} onChange={onChangeP2}/>
                     </div>
                     <br/>
                     <button className="joinButton">Register!</button>
