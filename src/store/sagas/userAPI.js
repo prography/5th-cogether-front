@@ -11,8 +11,8 @@ import {
     JOIN_FAIL,
     joinSuccessAction,
     
-} from "../actions/getUser";
-import { meRequestAction } from "../actions/getAuth";
+} from "../actions/User";
+import { meRequestAction } from "../actions/Auth";
 
 //login
 function* getLoginData({ payload }) {
@@ -32,7 +32,6 @@ function* getLoginData({ payload }) {
             localStorage.setItem("refreshToken", refreshToken);
             yield put(loginSuccessAction(JSON.stringify(json.username)));
             yield put(meRequestAction());
-            //yield put(loginSuccessAction());
         }
     } catch (e) {
         console.log(e);
@@ -50,6 +49,7 @@ function* getLogoutData() {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         yield put(logoutSuccessAction());
+        yield put(meRequestAction());
     } catch (e) {
         console.log(e);
         yield put({ type: LOGOUT_FAIL });

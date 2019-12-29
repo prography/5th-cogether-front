@@ -1,9 +1,9 @@
 import React, {useState, useCallback, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { loginRequestAction } from "../../store/actions/getUser";
+import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Login.scss";
-import {meRequestAction} from '../../store/actions/getAuth';
+import { meRequestAction } from '../../store/actions/Auth';
 
 const Login = () => {
 

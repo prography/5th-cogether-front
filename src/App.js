@@ -12,19 +12,19 @@ import LoginDirect from "screens/Account/LoginDirect";
 import Mypage from "screens/Account/Mypage";
 import Request from "screens/Request/Request";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { meRequestAction } from "store/actions/getAuth";
+import { meRequestAction } from "store/actions/Auth";
 
 const App = () => {
 
     const dispatch = useDispatch();
-    const isAuthenticating = useSelector(state=> state.userReducer.userInfo);
+    const isAuthenticating = useSelector(state=> state.meReducer.meInfo);
 
-    useEffect(()=>{
+    /*useEffect(()=>{
         isAuthenticating ?
         console.log(isAuthenticating) 
         :
         dispatch(meRequestAction());
-    });
+    });*/
     
     return (
         <div className="App">

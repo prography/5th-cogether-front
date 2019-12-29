@@ -2,11 +2,11 @@ import React, { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutRequestAction } from "../../store/actions/getUser";
+import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
-import {meRequestAction} from '../../store/actions/getAuth';
+import { meRequestAction } from '../../store/actions/Auth';
 
 const HeaderContainer = () => {
     const dispatch = useDispatch();
@@ -68,7 +68,7 @@ const HeaderContainer = () => {
                 </Link>
             </div>
             <img className="bar" src={bar} />
-            {token || me ? (
+            {token && me ? (
                 <div className="account">
                     <div className="username">
                         {   me

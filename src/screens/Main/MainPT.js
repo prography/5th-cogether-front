@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Footer from "component/Footer";
 import ItemsCarousel from "react-items-carousel";
 import { useSelector, useDispatch } from "react-redux";
-import { requestClub, requestConference, requestEducation } from "store/actions/getInfo";
+import { requestClub, requestConference, requestEducation } from "store/actions/Info";
 import PrevArrow from "component/Arrow/PrevArrow";
 import NextArrow from "component/Arrow/NextArrow";
 
