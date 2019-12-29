@@ -33,16 +33,20 @@ const Login = () => {
             <div className="in"> 
                 {me && <Redirect to='/'></Redirect>}
                 <form onSubmit={onSubmit}>
+                    <div className="loginText">로그인</div>
+                    <br/><br/>
                     <div className="form">
-                        <div className="text">Username</div>
-                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}/>
+                        <div className="text">이메일</div>
+                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}
+                        placeholder="이메일 입력"/>
                     </div>
                     <div className="form">
-                        <div className="text">Password</div>
-                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}/>
+                        <div className="text">비밀번호</div>
+                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}
+                        placeholder="비밀번호 입력"/>
                     </div>
                     <br/>
-                    <button className="loginButton">Login!</button>
+                    <button className="loginButton">로그인</button>
                 </form>
             </div>
         </div>
