@@ -58,7 +58,7 @@ const HeaderContainer = () => {
             </div>
             <div className="menu">
                 <Link to="/userRequest" className="txt">
-                    게시/수정요청
+                    고객센터
                 </Link>
             </div>
             <div className="search-menu">

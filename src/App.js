@@ -11,7 +11,7 @@ import Login from "screens/Account/Login";
 import Join from "screens/Account/Join";
 import LoginDirect from "screens/Account/LoginDirect";
 import Mypage from "screens/Account/Mypage";
-import Request from "screens/Request/Request";
+import Request from "screens/Service/Service";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { meRequestAction } from "store/actions/Auth";

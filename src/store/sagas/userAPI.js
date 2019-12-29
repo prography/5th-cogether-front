@@ -86,6 +86,40 @@ function* watchJoinList() {
     yield takeLatest(JOIN_REQUEST, getJoinData);
 }
 
+//service
+function* requestService({ payload }) {
+    try {
+        switch (payload.type) {
+            case "help":
+                const json = {
+                    username: payload.username,
+                    title: payload.title,
+                    content: payload.content,
+                    source: payload.type
+                };
+                break;
+            case "post":
+                break;
+            case "modify":
+                break;
+            case "list":
+                break;
+            default:
+                break;
+        }
+
+        // const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
+
+        // if (responseBody.data) {
+        //     localStorage.setItem("username", JSON.stringify(json.username));
+        //     yield put(joinSuccessAction(responseBody));
+        // }
+    } catch (e) {
+        console.log(e);
+        yield put({ type: JOIN_FAIL });
+    }
+}
+
 export default function* userSaga() {
     yield all([
         fork(watchLoginList), 
