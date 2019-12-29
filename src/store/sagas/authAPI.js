@@ -8,11 +8,14 @@ function* getMeData() {
         const json = {
             token: localStorage.getItem("accessToken"),
         };
-        const aaa = 'hi'; //임시
+        
         const isExpired = yield call(
             [axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
+
+        const jwt = require("jsonwebtoken");
+        const decoded = jwt.decode(localStorage.getItem("accessToken"));
         
-        yield put(meSuccessAction(aaa)); //isExpired로 username(이메일주소)받아오기
+        yield put(meSuccessAction(JSON.stringify(decoded.username))); 
     } catch (e) {
         console.log(e);
         yield put({ type: ME_FAIL });

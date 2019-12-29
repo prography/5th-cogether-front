@@ -19,12 +19,12 @@ const App = () => {
     const dispatch = useDispatch();
     const isAuthenticating = useSelector(state=> state.meReducer.meInfo);
 
-    /*useEffect(()=>{
+    useEffect(()=>{
         isAuthenticating ?
         console.log(isAuthenticating) 
         :
         dispatch(meRequestAction());
-    });*/
+    });
     
     return (
         <div className="App">

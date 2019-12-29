@@ -72,8 +72,8 @@ const HeaderContainer = () => {
                 <div className="account">
                     <div className="username">
                         {   me
-                            /*.split('"')[1]
-                            .split("@")[0]*/
+                            .split('"')[1]
+                            .split("@")[0]
                         }
                     </div>
                     <div className="usericon" onClick={showDropdownMenu}>
