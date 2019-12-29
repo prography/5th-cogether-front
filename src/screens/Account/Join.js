@@ -36,17 +36,22 @@ const Join = () =>{
             <div className="in"> 
                 {me && <Redirect to ='/loginDirect'></Redirect>}
                 <form onSubmit={onSubmit}>
+                    <div className="joinText">Cogether에 가입하여<br/>국내 개발 행사들을 한눈에 확인해보세요</div>
+                    <br/>
                     <div className="form">
-                        <div className="text">Username</div>
-                        <input className="joinInput" type="email" value={username} onChange={onChangeUsername}/>
+                        <div className="text">이메일</div>
+                        <input className="joinInput" type="email" value={username} onChange={onChangeUsername}
+                        placeholder="이메일 입력"/>
                     </div>
                     <div className="form">
-                        <div className="text">Password1</div>
-                        <input className="joinInput" type="password" value={p1} onChange={onChangeP1}/>
+                        <div className="text">비밀번호</div>
+                        <input className="joinInput" type="password" value={p1} onChange={onChangeP1}
+                        placeholder="비밀번호 입력"/>
                     </div>
                     <div className="form">
-                        <div className="text">Password2</div>
-                        <input className="joinInput" type="password" value={p2} onChange={onChangeP2}/>
+                        <div className="text">비밀번호 확인</div>
+                        <input className="joinInput" type="password" value={p2} onChange={onChangeP2}
+                        placeholder="비밀번호 입력"/>
                     </div>
                     <br/>
                     <button className="joinButton">Register!</button>
