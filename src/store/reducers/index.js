@@ -6,11 +6,11 @@ import userReducer from './user';
 import meReducer from './auth';
 
 const rootReducer = combineReducers({
-  clubReducer,
-  conferenceReducer,
-  educationReducer,
-  userReducer,
-  meReducer,
+    clubReducer,
+    conferenceReducer,
+    educationReducer,
+    userReducer,
+    meReducer,
 });
 
 export default rootReducer;

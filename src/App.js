@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import Header from "component/Header";
+import Footer from "component/Footer";
 import Main from "screens/Main";
 import Clubs from "screens/Club/Clubs";
 import Educations from "screens/Education/Educations";
@@ -12,7 +13,9 @@ import LoginDirect from "screens/Account/LoginDirect";
 import Mypage from "screens/Account/Mypage";
 import Request from "screens/Request/Request";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { meRequestAction } from "store/actions/Auth";
+
 
 const App = () => {
 
@@ -41,6 +44,7 @@ const App = () => {
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/userRequest" component={Request} />
                 </Switch>
+                <Footer></Footer>
             </Router>
         </div>
     );

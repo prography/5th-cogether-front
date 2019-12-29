@@ -7,10 +7,13 @@ const initialState={
     isLoggingIn:false,
     isLoggingout:false,
     userInfo:null,
+    token: "",
+    list: {},
     signedUp:null,
 };
 
 const userReducer = handleActions({
+
     'JOIN_REQUEST': (state, action) => {
         return{
             ...state,
@@ -73,7 +76,23 @@ const userReducer = handleActions({
             isLoggingout:false,
         };
     },
+    'SERVICE_REQUEST': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+    'SERVICE_SUCCESS': (state, action) => {
+        return {
+            ...state,
+            list: action.payload,
+        };
+    },
+    'SERVICE_FAIL': (state, action) => {
+        return {
+            ...state,
+        };
+    }
 
-},initialState);
+}, initialState);
 
 export default userReducer;

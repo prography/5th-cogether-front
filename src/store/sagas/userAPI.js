@@ -10,7 +10,9 @@ import {
     JOIN_REQUEST,
     JOIN_FAIL,
     joinSuccessAction,
-    
+    SERVICE_REQUEST,
+    SERVICE_FAIL,
+    serviceSuccessAction,  
 } from "../actions/User";
 import { meRequestAction } from "../actions/Auth";
 
