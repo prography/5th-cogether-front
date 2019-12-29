@@ -12,25 +12,28 @@ import {
     joinSuccessAction,
     SERVICE_REQUEST,
     SERVICE_FAIL,
-    serviceSuccessAction
+    serviceSuccessAction,  
 } from "../actions/User";
+import { meRequestAction } from "../actions/Auth";
 
 //login
 function* getLoginData({ payload }) {
     try {
         const json = {
             username: payload.username,
-            password: payload.password
+            password: payload.password,
         };
 
-        const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api-token-auth/", json);
+        const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/", json);
 
-        if (responseBody.data.token) {
-            //console.log(responseBody.data);
-            //console.log("json ", json);
-            localStorage.setItem("token", responseBody.data.token);
-            localStorage.setItem("username", JSON.stringify(json.username));
-            yield put(loginSuccessAction(responseBody));
+        const accessToken = responseBody.data.access;
+        const refreshToken = responseBody.data.refresh;
+
+        if (accessToken) {
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            yield put(loginSuccessAction(JSON.stringify(json.username)));
+            yield put(meRequestAction());
         }
     } catch (e) {
         console.log(e);
@@ -45,9 +48,10 @@ function* watchLoginList() {
 //logout
 function* getLogoutData() {
     try {
-        localStorage.removeItem("token");
-        localStorage.removeItem("username");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
         yield put(logoutSuccessAction());
+        yield put(meRequestAction());
     } catch (e) {
         console.log(e);
         yield put({ type: LOGOUT_FAIL });
@@ -63,18 +67,19 @@ function* getJoinData({ payload }) {
         const json = {
             username: payload.username,
             password1: payload.p1,
-            password2: payload.p2
+            password2: payload.p2,
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
 
         if (responseBody.data) {
-            localStorage.setItem("username", JSON.stringify(json.username));
-            yield put(joinSuccessAction(responseBody));
+            yield put(joinSuccessAction(responseBody.data));
         }
+        
     } catch (e) {
         console.log(e);
         yield put({ type: JOIN_FAIL });
+        alert("이미 존재하는 이메일 입니다.");
     }
 }
 function* watchJoinList() {
@@ -116,5 +121,9 @@ function* requestService({ payload }) {
 }
 
 export default function* userSaga() {
-    yield all([fork(watchLoginList), fork(watchLogoutList), fork(watchJoinList)]);
+    yield all([
+        fork(watchLoginList), 
+        fork(watchLogoutList), 
+        fork(watchJoinList),
+    ]);
 }

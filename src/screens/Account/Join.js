@@ -7,7 +7,7 @@ import "./Join.scss";
 const Join = () =>{
 
     const dispatch = useDispatch();
-    const me = useSelector( state => state.userReducer.userInfo);
+    const me = useSelector( state => state.userReducer.signedUp);
 
     const [username, setUsername] = useState('');
     const [p1, setP1] = useState('');
@@ -34,7 +34,7 @@ const Join = () =>{
     return(
         <div className="join">
             <div className="in"> 
-                {me && <Redirect to ='/'></Redirect>}
+                {me && <Redirect to ='/loginDirect'></Redirect>}
                 <form onSubmit={onSubmit}>
                     <div className="form">
                         <div className="text">Username</div>

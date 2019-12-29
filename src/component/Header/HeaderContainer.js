@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,24 +6,33 @@ import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
+import { meRequestAction } from '../../store/actions/Auth';
 
 const HeaderContainer = () => {
     const dispatch = useDispatch();
 
-    const [username, setUsername] = useState(localStorage.getItem("username"));
+    const [token, setToken] = useState(localStorage.getItem("accessToken"));
     const [showMenu, setShowMenu] = useState(false);
 
-    const me = useSelector(state => state.userReducer.userInfo);
+    const me = useSelector(state => state.meReducer.meInfo);
 
     const onLogout = useCallback(e => {
         e.preventDefault();
         dispatch(logoutRequestAction());
-        setUsername(localStorage.getItem("username"));
+        setToken(localStorage.getItem("accessToken"));
     }, []);
 
     const showDropdownMenu = () => {
         setShowMenu(!showMenu);
     };
+
+    useEffect(()=>{
+        dispatch(meRequestAction());
+    }, []);
+
+    useEffect(()=>{
+        setToken(localStorage.getItem("accessToken"));
+    }, [localStorage.getItem("accessToken")]);
 
     return (
         <div className="header">
@@ -59,14 +68,12 @@ const HeaderContainer = () => {
                 </Link>
             </div>
             <img className="bar" src={bar} />
-            {username || me ? (
+            {token && me ? (
                 <div className="account">
                     <div className="username">
-                        {
-                            localStorage
-                                .getItem("username")
-                                .split('"')[1]
-                                .split("@")[0]
+                        {   me
+                            .split('"')[1]
+                            .split("@")[0]
                         }
                     </div>
                     <div className="usericon" onClick={showDropdownMenu}>

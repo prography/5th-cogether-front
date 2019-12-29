@@ -1,13 +1,14 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Login.scss";
+import { meRequestAction } from '../../store/actions/Auth';
 
 const Login = () => {
 
     const dispatch = useDispatch();
-    const me = useSelector( state => state.userReducer.userInfo);
+    const me = useSelector( state => state.meReducer.meInfo);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -23,6 +24,9 @@ const Login = () => {
         dispatch(loginRequestAction({username,password}));
     },[username, password]);
 
+    useEffect(()=>{
+        dispatch(meRequestAction());
+    } ,[]);
     
     return(
         <div className="login">

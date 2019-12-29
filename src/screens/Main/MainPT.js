@@ -22,6 +22,7 @@ const MainPT = () => {
     const [eduIndex, setEduIndex] = useState(0);
     const [confIndex, setConfIndex] = useState(0);
 
+
     //const createChildren = useCallback(() => {}, [clubs]);
 
     useEffect(() => {
