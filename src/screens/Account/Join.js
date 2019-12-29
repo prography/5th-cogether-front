@@ -54,7 +54,7 @@ const Join = () =>{
                         placeholder="비밀번호 입력"/>
                     </div>
                     <br/>
-                    <button className="joinButton">Register!</button>
+                    <button className="joinButton">가입하기</button>
                 </form>
             </div>
         </div>
