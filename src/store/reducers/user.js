@@ -91,7 +91,27 @@ const userReducer = handleActions({
         return {
             ...state,
         };
-    }
+    },
+    'GITHUB_LOGIN_REQUEST': (state, action) =>{
+        return{
+            ...state,
+            isLoggedIn:false,
+            isLoggingIn:true,
+        };
+    },
+    'GITHUB_LOGIN_SUCCESS': (state, action) =>{
+        return{
+            ...state, 
+            isLoggedIn:true,
+            isLoggingIn:false,
+        };
+    },
+    'GITHUB_LOGIN_FAIL': (state, action) =>{
+        return{
+            ...state,
+            isLoggingIn:false,
+        };
+    },
 
 }, initialState);
 

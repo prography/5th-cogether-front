@@ -19,7 +19,7 @@ const middlewares = [sagaMiddleware, routerMiddleware(history)];
 const configure = () => {
     const composeEnhancers =
     (window).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-    const middlewares = applyMiddleware(sagaMiddleware, logger);
+    const middlewares = applyMiddleware(sagaMiddleware/*, logger*/);
     const store = createStore(
         rootReducer,
         // redux의 미들웨어로 sagaMiddleware를 사용

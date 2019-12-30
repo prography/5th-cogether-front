@@ -6,7 +6,7 @@ export const ME_FAIL = "ME_FAIL";
 export const meRequestAction =()=> ({
     type:ME_REQUEST,
 });
-export const meSuccessAction =(data)=> ({
+export const meSuccessAction = data => ({
     type:ME_SUCCESS,
     payload:data,
 });

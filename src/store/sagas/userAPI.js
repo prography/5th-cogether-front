@@ -13,8 +13,12 @@ import {
     SERVICE_REQUEST,
     SERVICE_FAIL,
     serviceSuccessAction,  
+    GITHUB_LOGIN_REQUEST,
+    GITHUB_LOGIN_FAIL,
+    githubLoginSuccessAction,
 } from "../actions/User";
 import { meRequestAction } from "../actions/Auth";
+import swal from 'sweetalert';
 
 //login
 function* getLoginData({ payload }) {
@@ -28,7 +32,6 @@ function* getLoginData({ payload }) {
 
         const accessToken = responseBody.data.access;
         const refreshToken = responseBody.data.refresh;
-
         if (accessToken) {
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
@@ -38,7 +41,7 @@ function* getLoginData({ payload }) {
     } catch (e) {
         console.log(e);
         yield put({ type: LOGIN_FAIL });
-        alert("일치하는 회원 정보가 없습니다");
+        swal("일치하는 회원 정보가 없습니다");
     }
 }
 function* watchLoginList() {
@@ -71,15 +74,13 @@ function* getJoinData({ payload }) {
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
-
         if (responseBody.data) {
             yield put(joinSuccessAction(responseBody.data));
         }
-        
     } catch (e) {
         console.log(e);
         yield put({ type: JOIN_FAIL });
-        alert("이미 존재하는 이메일 입니다.");
+        swal("이미 존재하는 이메일 입니다.");
     }
 }
 function* watchJoinList() {
@@ -120,10 +121,33 @@ function* requestService({ payload }) {
     }
 }
 
+//github login
+function* getGithubLoginData({ payload }) {
+    try {
+        const responseBody = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/login/github/callback/?code=".concat(payload));
+        
+        const accessToken = responseBody.data.access;
+        const refreshToken = responseBody.data.refresh;
+        if (accessToken) {
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            yield put(githubLoginSuccessAction());
+            yield put(meRequestAction());
+        }
+    } catch (e) {
+        console.log(e);
+        yield put({ type: GITHUB_LOGIN_FAIL });
+        swal("일치하는 회원 정보가 없습니다");
+    }
+}
+function* watchGithubLoginList() {
+    yield takeLatest(GITHUB_LOGIN_REQUEST, getGithubLoginData);
+}
 export default function* userSaga() {
     yield all([
         fork(watchLoginList), 
         fork(watchLogoutList), 
         fork(watchJoinList),
+        fork(watchGithubLoginList),
     ]);
 }

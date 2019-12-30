@@ -35,7 +35,7 @@ const Login = () => {
     },[username, password]);
 
     const onGithub = () =>{
-        
+        window.location.href="https://cogether.azurewebsites.net/account/login/github/";
     };
 
     useEffect(()=>{

@@ -14,6 +14,10 @@ export const SERVICE_REQUEST = "SERVICE_REQUEST";
 export const SERVICE_SUCCESS = "SERVICE_SUCCESS";
 export const SERVICE_FAIL = "SERVICE_FAIL";
 
+export const GITHUB_LOGIN_REQUEST = "GITHUB_LOGIN_REQUEST";
+export const GITHUB_LOGIN_SUCCESS = "GITHUB_LOGIN_SUCCESS";
+export const GITHUB_LOGIN_FAIL = "GITHUB_LOGIN_FAIL";
+
 //join
 export const joinRequestAction = data => ({
     type: JOIN_REQUEST,
@@ -61,4 +65,16 @@ export const serviceSuccessAction = data => ({
 });
 export const serviceFailAction = () => ({
     type: SERVICE_FAIL,
+});
+
+//github login
+export const githubLoginRequestAction = data => ({
+    type: GITHUB_LOGIN_REQUEST,
+    payload: data,
+});
+export const githubLoginSuccessAction = () => ({
+    type: GITHUB_LOGIN_SUCCESS,
+});
+export const githubLoginFailAction = () => ({
+    type: GITHUB_LOGIN_FAIL,
 });

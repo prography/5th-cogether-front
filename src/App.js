@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import Header from "component/Header";
 import Footer from "component/Footer";
+import Oauth from "component/Oauth";
 import Main from "screens/Main";
 import Clubs from "screens/Club/Clubs";
 import Educations from "screens/Education/Educations";
@@ -43,6 +44,7 @@ const App = () => {
                     <Route path="/loginDirect" component={LoginDirect} />
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/userRequest" component={Request} />
+                    <Route path="/github/callback" component={Oauth} />
                 </Switch>
                 <Footer></Footer>
             </Router>
