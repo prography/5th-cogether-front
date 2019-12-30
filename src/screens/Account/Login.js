@@ -4,6 +4,7 @@ import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Login.scss";
 import { meRequestAction } from '../../store/actions/Auth';
+import swal from 'sweetalert';
 
 const Login = () => {
 
@@ -21,6 +22,14 @@ const Login = () => {
     });
     const onSubmit = useCallback(( e )=> {
         e.preventDefault();
+        if(username === '') {
+            swal("이메일을 입력해주세요")
+            return;
+        }
+        if(password === ''){
+            swal("비밀번호를 입력해주세요");
+            return;
+        }
         dispatch(loginRequestAction({username,password}));
     },[username, password]);
 
