@@ -5,6 +5,7 @@ import { Redirect } from'react-router-dom';
 import "./Login.scss";
 import { meRequestAction } from '../../store/actions/Auth';
 import swal from 'sweetalert';
+import { GithubLoginButton } from "react-social-login-buttons";
 
 const Login = () => {
 
@@ -33,6 +34,10 @@ const Login = () => {
         dispatch(loginRequestAction({username,password}));
     },[username, password]);
 
+    const onGithub = () =>{
+        
+    };
+
     useEffect(()=>{
         dispatch(meRequestAction());
     } ,[]);
@@ -57,6 +62,7 @@ const Login = () => {
                     <br/>
                     <button className="loginButton">로그인</button>
                 </form>
+                <div className="githubButton"><GithubLoginButton onClick={onGithub}/></div>
             </div>
         </div>
     );
