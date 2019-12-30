@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { joinRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Join.scss";
+import swal from 'sweetalert';
 
 const Join = () =>{
 
@@ -24,8 +25,12 @@ const Join = () =>{
     });
     const onSubmit = useCallback(( e )=> {
         e.preventDefault();
+        if(username === '' || p1 === '' || p2 === ''){
+            swal("이메일 또는 비밀번호를 입력해주세요");
+            return;
+        }
         if(p1 !== p2) {
-            alert("비밀번호가 일치하지 않습니다");
+            swal("비밀번호가 일치하지 않습니다");
             return;
         }
         dispatch(joinRequestAction({username, p1, p2}));

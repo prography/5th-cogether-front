@@ -4,7 +4,7 @@
     margin:20px;
     
     .in{
-        padding: 50px 120px 50px 120px;
+        padding: 20px 120px 50px 120px;
         display: inline-block;
 
         .loginText{
@@ -19,11 +19,11 @@
                 width:400px;
                 text-align: left;
                 font-size: 17px;
-                max-width:300px;
+                max-width:200px;
                 margin:10px;
             }
             .loginInput{
-                width:400px;
+                width:420px;
                 height:40px;
                 border: 1px solid #c2c0b3;
                 border-radius: 3px;
@@ -36,7 +36,7 @@
             }
         }
         .loginButton{
-            width:400px;
+            width:420px;
             height:40px;
             border:none;
             border-radius: 4px;
@@ -47,6 +47,10 @@
         }
         .loginButton:hover{
             background-color: rgb(236, 150, 64);
+        }
+        .githubButton{
+            width:450px;
+            padding:10px;
         }
         
     }
