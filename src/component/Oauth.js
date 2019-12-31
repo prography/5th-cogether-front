@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from'react-router-dom';
 import { githubLoginRequestAction } from "../store/actions/User";
 import { meRequestAction } from '../store/actions/User';
-
+import "./Oauth.scss";
 const Oauth = () =>{
 
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Oauth = () =>{
 
     return(
         <div>
-            { me ? <Redirect to='/mypage'></Redirect>: <h1>Loading</h1>}
+            { me ? <Redirect to='/mypage'></Redirect> : <div className="loading"><h1>Loading</h1></div>}
         </div>
     );
 

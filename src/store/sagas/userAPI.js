@@ -135,7 +135,7 @@ function* getGithubLoginData({ payload }) {
         }
     } catch (e) {
         yield put({ type: GITHUB_LOGIN_FAIL });
-        swal("public email을 등록해주세요");
+        swal(e.response.data.message);
     }
 }
 function* watchGithubLoginList() {

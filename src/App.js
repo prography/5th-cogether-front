@@ -28,7 +28,7 @@ const App = () => {
         if(token!==null) {
             dispatch(meRequestAction())
         } 
-    }, [token]);
+    }, []);
     
     return (
         <div className="App">
