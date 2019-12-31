@@ -7,45 +7,37 @@ import { fetchClubData, fetchDetail, fetchConferenceData, fetchEducationData } f
 
 function* getClubApiData() {
     try {
-        // do api call
         const data = yield call(fetchClubData);
         yield put(successClub(data));
     } catch (e) {
         yield put(failClub());
-        console.log(e);
     }
 }
 
 function* getConferenceApiData() {
     try {
-        // do api call
         const data = yield call(fetchConferenceData);
         yield put(successConference(data));
     } catch (e) {
         yield put(failConference());
-        console.log(e);
     }
 }
 
 function* getEducationApiData() {
     try {
-        // do api call
         const data = yield call(fetchEducationData);
         yield put(successEducation(data));
     } catch (e) {
         yield put(failEducation());
-        console.log(e);
     }
 }
 
 function* getDetail(payload) {
     try {
-        // do api call
         const data = yield call(fetchDetail, payload.payload);
         yield put(successDetail(data));
     } catch (e) {
         yield put(failDetail());
-        console.log(e);
     }
 }
 

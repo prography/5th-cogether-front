@@ -3,49 +3,52 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Login.scss";
-import { meRequestAction } from '../../store/actions/Auth';
 import swal from 'sweetalert';
 import { GithubLoginButton } from "react-social-login-buttons";
 
 const Login = () => {
 
     const dispatch = useDispatch();
-    const me = useSelector( state => state.meReducer.meInfo);
+    const me = useSelector( state => state.userReducer.meInfo);
+    const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const onChangeUsername = useCallback( (e) =>{
+    const onChangeUsername = useCallback((e) => {
         setUsername(e.target.value);
     });
-    const onChangePassword = useCallback((e)=>{
+
+    const onChangePassword = useCallback((e) => {
         setPassword(e.target.value);
     });
-    const onSubmit = useCallback(( e )=> {
+
+    const onSubmit = useCallback((e) => {
         e.preventDefault();
         if(username === '') {
             swal("이메일을 입력해주세요")
             return;
         }
-        if(password === ''){
+        if(password === '') {
             swal("비밀번호를 입력해주세요");
             return;
         }
         dispatch(loginRequestAction({username,password}));
-    },[username, password]);
+    }, [username, password]);
 
-    const onGithub = () =>{
+    const onGithub = () => {
         window.location.href="https://cogether.azurewebsites.net/account/login/github/";
     };
 
-    useEffect(()=>{
-        dispatch(meRequestAction());
-    } ,[]);
+    useEffect(() => {
+        console.log(token)
+        setToken(localStorage.getItem("accessToken"));
+    }, [localStorage.getItem("accessToken")]);
     
     return(
         <div className="login">
             <div className="in"> 
-                {me && <Redirect to='/'></Redirect>}
+                {token && <Redirect to='/'/>}
                 <form onSubmit={onSubmit}>
                     <div className="loginText">로그인</div>
                     <br/><br/>
