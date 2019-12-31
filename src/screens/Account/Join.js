@@ -5,7 +5,7 @@ import { Redirect } from'react-router-dom';
 import "./Join.scss";
 import swal from 'sweetalert';
 
-const Join = () =>{
+const Join = () => {
 
     const dispatch = useDispatch();
     const me = useSelector( state => state.userReducer.signedUp);
@@ -14,18 +14,18 @@ const Join = () =>{
     const [p1, setP1] = useState('');
     const [p2, setP2] = useState('');
 
-    const onChangeUsername = useCallback( (e) =>{
+    const onChangeUsername = useCallback((e) => {
         setUsername(e.target.value);
     });
-    const onChangeP1 = useCallback( (e) =>{
+    const onChangeP1 = useCallback((e) => {
         setP1(e.target.value);
     });
-    const onChangeP2 = useCallback( (e) =>{
+    const onChangeP2 = useCallback((e) => {
         setP2(e.target.value);
     });
-    const onSubmit = useCallback(( e )=> {
+    const onSubmit = useCallback((e) => {
         e.preventDefault();
-        if(username === '' || p1 === '' || p2 === ''){
+        if(username === '' || p1 === '' || p2 === '') {
             swal("이메일 또는 비밀번호를 입력해주세요");
             return;
         }
@@ -39,7 +39,7 @@ const Join = () =>{
     return(
         <div className="join">
             <div className="in"> 
-                {me && <Redirect to ='/loginDirect'></Redirect>}
+                {me && <Redirect to ='/loginDirect'/>}
                 <form onSubmit={onSubmit}>
                     <div className="joinText">Cogether에 가입하여<br/>국내 개발 행사들을 한눈에 확인해보세요</div>
                     <br/>

@@ -6,7 +6,6 @@ import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
-import { meRequestAction } from '../../store/actions/Auth';
 
 const HeaderContainer = () => {
     const dispatch = useDispatch();
@@ -14,7 +13,7 @@ const HeaderContainer = () => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
     const [showMenu, setShowMenu] = useState(false);
 
-    const me = useSelector(state => state.meReducer.meInfo);
+    const me = useSelector(state => state.userReducer.meInfo);
 
     const onLogout = useCallback(e => {
         e.preventDefault();
@@ -25,10 +24,6 @@ const HeaderContainer = () => {
     const showDropdownMenu = () => {
         setShowMenu(!showMenu);
     };
-
-    useEffect(()=>{
-        dispatch(meRequestAction());
-    }, []);
 
     useEffect(()=>{
         setToken(localStorage.getItem("accessToken"));
