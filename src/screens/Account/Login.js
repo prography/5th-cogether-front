@@ -1,13 +1,16 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from'react-router-dom';
 import "./Login.scss";
+import { meRequestAction } from '../../store/actions/Auth';
+import swal from 'sweetalert';
+import { GithubLoginButton } from "react-social-login-buttons";
 
 const Login = () => {
 
     const dispatch = useDispatch();
-    const me = useSelector( state => state.userReducer.userInfo);
+    const me = useSelector( state => state.meReducer.meInfo);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -20,26 +23,46 @@ const Login = () => {
     });
     const onSubmit = useCallback(( e )=> {
         e.preventDefault();
+        if(username === '') {
+            swal("이메일을 입력해주세요")
+            return;
+        }
+        if(password === ''){
+            swal("비밀번호를 입력해주세요");
+            return;
+        }
         dispatch(loginRequestAction({username,password}));
     },[username, password]);
 
+    const onGithub = () =>{
+        window.location.href="https://cogether.azurewebsites.net/account/login/github/";
+    };
+
+    useEffect(()=>{
+        dispatch(meRequestAction());
+    } ,[]);
     
     return(
         <div className="login">
             <div className="in"> 
                 {me && <Redirect to='/'></Redirect>}
                 <form onSubmit={onSubmit}>
+                    <div className="loginText">로그인</div>
+                    <br/><br/>
                     <div className="form">
-                        <div className="text">Username</div>
-                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}/>
+                        <div className="text">이메일</div>
+                        <input className="loginInput" type="email" value={username} onChange={onChangeUsername}
+                        placeholder="이메일 입력"/>
                     </div>
                     <div className="form">
-                        <div className="text">Password</div>
-                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}/>
+                        <div className="text">비밀번호</div>
+                        <input className="loginInput" type="password" value={password} onChange={onChangePassword}
+                        placeholder="비밀번호 입력"/>
                     </div>
                     <br/>
-                    <button className="loginButton">Login!</button>
+                    <button className="loginButton">로그인</button>
                 </form>
+                <div className="githubButton"><GithubLoginButton onClick={onGithub}/></div>
             </div>
         </div>
     );

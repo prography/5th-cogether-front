@@ -1,33 +1,43 @@
 .login{
     
     text-align: center;
-    margin:100px;
+    margin:20px;
+    
     .in{
-        padding:30px;
+        padding: 20px 120px 50px 120px;
         display: inline-block;
-        border: 1px solid #c2c0b3;
-        border-radius: 8px;
+
+        .loginText{
+            font-weight:bold;
+            font-size:20px;
+            text-align:left;
+            width:400px;
+        }
         .form{
-            display:flex;
 
             .text{
-                width:100px;
-                text-align: center;
-                font-size: 15px;
+                width:400px;
+                text-align: left;
+                font-size: 17px;
                 max-width:200px;
                 margin:10px;
             }
             .loginInput{
-                border:none;
-                border-bottom: 1px solid #c2c0b3;
+                width:420px;
+                height:40px;
+                border: 1px solid #c2c0b3;
+                border-radius: 3px;
                 outline:none;
                 margin:10px;
+                padding:10px;
             }
             .loginInput:focus{
-                border-bottom: 1px solid rgb(236, 150, 64);
+                border: 1px solid rgb(236, 150, 64);
             }
         }
         .loginButton{
+            width:420px;
+            height:40px;
             border:none;
             border-radius: 4px;
             background-color: #c2c0b3;
@@ -37,6 +47,10 @@
         }
         .loginButton:hover{
             background-color: rgb(236, 150, 64);
+        }
+        .githubButton{
+            width:450px;
+            padding:10px;
         }
         
     }
