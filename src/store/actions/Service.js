@@ -11,35 +11,35 @@ export const HELP_SUCCESS = "HELP_SUCCESS";
 export const HELP_FAIL = "HELP_FAIL";
 
 export const introRequestAction = () => ({
-    type: INTRO_REQUEST
+    type: INTRO_REQUEST,
 });
 export const introSuccessAction = data => ({
     type: INTRO_SUCCESS,
-    payload: data
+    payload: data,
 });
 export const meFailAction = () => ({
-    type: INTRO_FAIL
+    type: INTRO_FAIL,
 });
 
 export const freqRequestAction = () => ({
-    type: FREQ_REQUEST
+    type: FREQ_REQUEST,
 });
 export const freqSuccessAction = data => ({
     type: FREQ_SUCCESS,
-    payload: data
+    payload: data,
 });
 export const freqFailAction = () => ({
-    type: FREQ_FAIL
+    type: FREQ_FAIL,
 });
 
 export const helpRequestAction = data => ({
     type: HELP_REQUEST,
-    payload: data
+    payload: data,
 });
 export const helpSuccessAction = data => ({
     type: HELP_SUCCESS,
-    payload: data
+    payload: data,
 });
 export const helpFailAction = () => ({
-    type: FREQ_FAIL
+    type: FREQ_FAIL,
 });

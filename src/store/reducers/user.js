@@ -7,7 +7,6 @@ const initialState={
     isLoggingIn:false,
     isLoggingout:false,
     userInfo:null,
-    token: "",
     list: {},
     signedUp:null,
     meInfo: null,

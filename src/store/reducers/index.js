@@ -3,7 +3,7 @@ import clubReducer from "./club";
 import conferenceReducer from "./conference";
 import educationReducer from "./education";
 import serviceReducer from "./service";
-import userReducer from './user';
+import userReducer from "./user";
 
 
 const rootReducer = combineReducers({
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     conferenceReducer,
     educationReducer,
     userReducer,
-    serviceReducer
+    serviceReducer,
 });
 
 export default rootReducer;

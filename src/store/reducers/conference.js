@@ -1,14 +1,14 @@
 const initialState = {
     conferenceInfo: [],
-    detail: {}
+    detail: {},
 };
+
 const conferenceReducer = (state = initialState, action) => {
     switch (action.type) {
         case "GETCONFERENCE_REQUEST":
             return {
                 ...state,
             };
-
         case "GETCONFERENCE_SUCCESS":
             return {
                 ...state,

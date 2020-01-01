@@ -10,10 +10,7 @@ import {
     logoutSuccessAction,
     JOIN_REQUEST,
     JOIN_FAIL,
-    joinSuccessAction,
-    SERVICE_REQUEST,
-    SERVICE_FAIL,
-    serviceSuccessAction,  
+    joinSuccessAction, 
     GITHUB_LOGIN_REQUEST,
     GITHUB_LOGIN_FAIL,
     githubLoginSuccessAction,
@@ -47,7 +44,7 @@ function* getLoginData({ payload }) {
         swal("일치하는 회원 정보가 없습니다");
     }
 }
-function* watchLoginList() {
+function* watchLogin() {
     yield takeLatest(LOGIN_REQUEST, getLoginData);
 }
 
@@ -61,7 +58,7 @@ function* getLogoutData() {
         yield put({ type: LOGOUT_FAIL });
     }
 }
-function* watchLogoutList() {
+function* watchLogout() {
     yield takeLatest(LOGOUT_REQUEST, getLogoutData);
 }
 
@@ -83,43 +80,10 @@ function* getJoinData({ payload }) {
         swal("이미 존재하는 이메일 입니다.");
     }
 }
-function* watchJoinList() {
+function* watchJoin() {
     yield takeLatest(JOIN_REQUEST, getJoinData);
 }
-
-//service
-function* requestService({ payload }) {
-    try {
-        switch (payload.type) {
-            case "help":
-                const json = {
-                    username: payload.username,
-                    title: payload.title,
-                    content: payload.content,
-                    source: payload.type
-                };
-                break;
-            case "post":
-                break;
-            case "modify":
-                break;
-            case "list":
-                break;
-            default:
-                break;
-        }
-
-        // const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
-
-        // if (responseBody.data) {
-        //     localStorage.setItem("username", JSON.stringify(json.username));
-        //     yield put(joinSuccessAction(responseBody));
-        // }
-    } catch (e) {
-        yield put({ type: JOIN_FAIL });
-    }
-}
-
+  
 //github login
 function* getGithubLoginData({ payload }) {
     try {
@@ -138,7 +102,7 @@ function* getGithubLoginData({ payload }) {
         swal(e.response.data.message);
     }
 }
-function* watchGithubLoginList() {
+function* watchGithubLogin() {
     yield takeLatest(GITHUB_LOGIN_REQUEST, getGithubLoginData);
 }
 
@@ -167,10 +131,10 @@ function* watchMe() {
 
 export default function* userSaga() {
     yield all([
-        fork(watchLoginList), 
-        fork(watchLogoutList), 
-        fork(watchJoinList),
-        fork(watchGithubLoginList),
+        fork(watchLogin), 
+        fork(watchLogout), 
+        fork(watchJoin),
+        fork(watchGithubLogin),
         fork(watchMe),
     ]);
 }

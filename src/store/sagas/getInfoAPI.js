@@ -45,12 +45,10 @@ function* getDetail(payload) {
 
 function* searchApi(payload) {
     try {
-        // do api call
         const data = yield call([axios, "get"], `https://cogether.azurewebsites.net/event/?title=${payload.payload}`);
         yield put(successSearch(data.data));
     } catch (e) {
         yield put(failSearch());
-        console.log(e);
     }
 }
 

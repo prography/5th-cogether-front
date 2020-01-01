@@ -1,50 +1,49 @@
 const initialState = {
     intro: {},
     freq: {},
-    help: {}
+    help: {},
 };
 
 const serviceReducer = (state = initialState, action) => {
     switch (action.type) {
         case "INTRO_REQUEST":
             return {
-                ...state
+                ...state,
             };
-
         case "INTRO_SUCCESS":
             return {
                 ...state,
-                intro: action.payload
+                intro: action.payload,
             };
         case "INTRO_FAIL":
             return {
-                ...state
+                ...state,
             };
         case "FREQ_REQUEST":
             return {
-                ...state
+                ...state,
             };
         case "FREQ_SUCCESS":
             return {
                 ...state,
-                freq: action.payload
+                freq: action.payload,
             };
         case "FREQ_FAIL":
             return {
-                ...state
+                ...state,
             };
         case "HELP_REQUEST":
             return {
-                ...state
+                ...state,
             };
         case "HELP_SUCCESS":
             return {
                 ...state,
-                help: action.payload
+                help: action.payload,
             };
         case "HELP_FAIL":
             return {
-                ...state
+                ...state,
             };
         default:
             return state;

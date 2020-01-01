@@ -1,7 +1,8 @@
 const initialState = {
     educationInfo: [],
-    detail: {}
+    detail: {},
 };
+
 const educationReducer = (state = initialState, action) => {
     switch (action.type) {
         case "GETEDUCATION_REQUEST":
