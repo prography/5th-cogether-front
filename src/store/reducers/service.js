@@ -1,52 +1,62 @@
+import { handleActions } from "redux-actions";
+
 const initialState = {
     intro: {},
     freq: {},
     help: {},
 };
 
-const serviceReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "INTRO_REQUEST":
-            return {
-                ...state,
-            };
-        case "INTRO_SUCCESS":
-            return {
-                ...state,
-                intro: action.payload,
-            };
-        case "INTRO_FAIL":
-            return {
-                ...state,
-            };
-        case "FREQ_REQUEST":
-            return {
-                ...state,
-            };
-        case "FREQ_SUCCESS":
-            return {
-                ...state,
-                freq: action.payload,
-            };
-        case "FREQ_FAIL":
-            return {
-                ...state,
-            };
-        case "HELP_REQUEST":
-            return {
-                ...state,
-            };
-        case "HELP_SUCCESS":
-            return {
-                ...state,
-                help: action.payload,
-            };
-        case "HELP_FAIL":
-            return {
-                ...state,
-            };
-        default:
-            return state;
-    }
-};
+const serviceReducer = handleActions({
+
+    'INTRO_REQUEST': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'INTRO_SUCCESS': (state, action) => {
+        return{
+            ...state,
+            intro: action.payload,
+        };
+    },
+    'INTRO_FAIL': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'FREQ_REQUEST': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'FREQ_SUCCESS': (state, action) => {
+        return{
+            ...state,
+            freq: action.payload,
+        };
+    },
+    'FREQ_FAIL': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'HELP_REQUEST': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'HELP_SUCCESS': (state, action) => {
+        return{
+            ...state,
+            help: action.payload,
+        };
+    },
+    'HELP_FAIL': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    
+}, initialState);
+
 export default serviceReducer;
