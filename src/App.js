@@ -13,27 +13,26 @@ import Join from "screens/Account/Join";
 import LoginDirect from "screens/Account/LoginDirect";
 import Mypage from "screens/Account/Mypage";
 import Request from "screens/Service/Service";
+import Search from "screens/Search/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { meRequestAction } from "store/actions/User";
 
-
 const App = () => {
-
     const dispatch = useDispatch();
-    const isAuthenticating = useSelector(state=> state.userReducer.meInfo);
+    const isAuthenticating = useSelector(state => state.userReducer.meInfo);
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     useEffect(() => {
-        if(token!==null) {
-            dispatch(meRequestAction())
-        } 
+        if (token !== null) {
+            dispatch(meRequestAction());
+        }
     }, []);
-    
+
     return (
         <div className="App">
             <Router>
-                <Header/>
+                <Header />
                 <Switch>
                     <Route exact path="/" component={Main} />
                     <Route path="/club" component={Clubs} />
@@ -45,8 +44,9 @@ const App = () => {
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/userRequest" component={Request} />
                     <Route path="/github/callback" component={Oauth} />
+                    <Route path="/search/:text" component={Search} />
                 </Switch>
-                <Footer/>
+                <Footer />
             </Router>
         </div>
     );

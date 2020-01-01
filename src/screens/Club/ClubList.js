@@ -8,7 +8,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Row, Col, Container } from "react-bootstrap";
-
 import { useSelector, useDispatch } from "react-redux";
 import { requestClub } from "store/actions/Info";
 import { Link } from "react-router-dom";
@@ -24,19 +23,19 @@ const ClubList = ({ match }) => {
 
     const useStyles = makeStyles({
         card: {
-            maxWidth: 300,
+            maxWidth: 300
         },
         media: {
             height: 150,
-            backgroundColor:"#000000",
+            backgroundColor: "#000000"
         },
         text: {
-            height: 60,
+            height: 60
         },
-        text_size:{
-            fontSize:18,
-            textDecoration:'none',
-            color:'black',
+        text_size: {
+            fontSize: 18,
+            textDecoration: "none",
+            color: "black"
         }
     });
 
@@ -45,7 +44,11 @@ const ClubList = ({ match }) => {
     return (
         <div>
             <div className="navPic">
-                <div className="slogan">Co.gether와 함께<br/>원하는 목표를 성취해보세요</div>
+                <div className="slogan">
+                    Co.gether와 함께
+                    <br />
+                    원하는 목표를 성취해보세요
+                </div>
             </div>
             <Container>
                 <Row>
@@ -57,7 +60,10 @@ const ClubList = ({ match }) => {
                                         <Card className={classes.card}>
                                             <Link to={`${match.url}/${club.id}`}>
                                                 <CardActionArea>
-                                                    <CardMedia className={classes.media} image={club.photo?club.photo:require("assets/placeholder.png")}/>
+                                                    <CardMedia
+                                                        className={classes.media}
+                                                        image={club.photo ? club.photo : require("assets/placeholder.png")}
+                                                    />
                                                     <CardContent>
                                                         <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                                             <div className={classes.text_size}>{club.title}</div>

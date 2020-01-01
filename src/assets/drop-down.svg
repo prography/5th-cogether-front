@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="drop_down" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:#878d91}.cls-2{fill:none}
+        </style>
+    </defs>
+    <path id="패스_1974" d="M7 10l5 5 5-5z" class="cls-1" data-name="패스 1974"/>
+    <path id="패스_1975" d="M0 0h24v24H0z" class="cls-2" data-name="패스 1975"/>
+</svg>

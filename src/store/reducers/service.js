@@ -1,48 +1,48 @@
 const initialState = {
-    clubInfo: [],
-    detail: {},
-    search: {}
+    intro: {},
+    freq: {},
+    help: {}
 };
 
-const clubReducer = (state = initialState, action) => {
+const serviceReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "GETCLUB_REQUEST":
+        case "INTRO_REQUEST":
             return {
                 ...state
             };
 
-        case "GETCLUB_SUCCESS":
+        case "INTRO_SUCCESS":
             return {
                 ...state,
-                clubInfo: action.payload
+                intro: action.payload
             };
-        case "GETCLUB_FAIL":
+        case "INTRO_FAIL":
             return {
                 ...state
             };
-        case "GETDETAIL_REQUEST":
+        case "FREQ_REQUEST":
             return {
                 ...state
             };
-        case "GETDETAIL_SUCCESS":
+        case "FREQ_SUCCESS":
             return {
                 ...state,
-                detail: action.payload
+                freq: action.payload
             };
-        case "GETDETAIL_FAIL":
+        case "FREQ_FAIL":
             return {
                 ...state
             };
-        case "SEARCH_REQUEST":
+        case "HELP_REQUEST":
             return {
                 ...state
             };
-        case "SEARCH_SUCCESS":
+        case "HELP_SUCCESS":
             return {
                 ...state,
-                search: action.payload
+                help: action.payload
             };
-        case "SEARCH_FAIL":
+        case "HELP_FAIL":
             return {
                 ...state
             };
@@ -50,4 +50,4 @@ const clubReducer = (state = initialState, action) => {
             return state;
     }
 };
-export default clubReducer;
+export default serviceReducer;

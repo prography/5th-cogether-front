@@ -1,7 +1,8 @@
-import { combineReducers } from 'redux';
-import clubReducer from './club';
-import conferenceReducer from './conference';
-import educationReducer from './education';
+import { combineReducers } from "redux";
+import clubReducer from "./club";
+import conferenceReducer from "./conference";
+import educationReducer from "./education";
+import serviceReducer from "./service";
 import userReducer from './user';
 
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
     conferenceReducer,
     educationReducer,
     userReducer,
+    serviceReducer
 });
 
 export default rootReducer;

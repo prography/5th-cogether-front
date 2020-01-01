@@ -1,53 +1,60 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import "./Service.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { DropdownButton, Dropdown } from "react-bootstrap";
-import Footer from "component/Footer";
-import RadioButton from "antd/lib/radio/radioButton";
+import drop_arrow from "assets/drop-down.svg";
+import search from "assets/search.svg";
+import { introRequestAction, freqRequestAction, helpRequestAction } from "store/actions/Service";
 
 const Service = () => {
-    const [tab, setTab] = useState("introduce");
+    const dispatch = useDispatch();
 
+    const intros = useSelector(state => state.serviceReducer.intro);
+    const freqs = useSelector(state => state.serviceReducer.freq);
+    const helps = useSelector(state => state.serviceReducer.help);
+
+    const jwt = require("jsonwebtoken");
+    const decoded = jwt.decode(localStorage.getItem("accessToken"));
+    let json = {
+        user: decoded.user_id,
+        token: localStorage.getItem("accessToken")
+    };
+
+    useEffect(() => {
+        dispatch(introRequestAction());
+        dispatch(freqRequestAction());
+        dispatch(helpRequestAction(json));
+    }, []);
+
+    const [tab, setTab] = useState("introduce");
     const [ask, setAsk] = useState(false);
 
+    const [category, setCategory] = useState("help");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-
-    const categorys = ["1:1 문의", "수정 요청", "게시 요청"];
-    const [category, setCategory] = useState(categorys[0]);
-
     const onChangeTitle = useCallback(e => {
         setTitle(e.target.value);
     }, []);
-
     const onChangeContent = useCallback(e => {
         setContent(e.target.value);
     }, []);
 
-    const onSubmit = () => {};
-
-    const onAsk = ask => {
-        setAsk(ask);
+    const [dropdown, setDropdown] = useState("전체");
+    const [showMenu, setShowMenu] = useState(false);
+    const onSetDropdown = word => {
+        setDropdown(word);
+        setShowMenu(!showMenu);
     };
 
-    const onChangeTab = tab => {
-        setTab(tab);
-    };
-
-    const onChangeCategory = category => {
-        switch (category) {
-            case category[0]:
-                setCategory("help");
-                break;
-            case category[1]:
-                setCategory("modify");
-                break;
-            case category[2]:
-                setCategory("post");
-                break;
-            default:
-                break;
-        }
+    const onSubmit = () => {
+        json = {
+            user: json.user,
+            // token: localStorage.getItem("accessToken"),
+            title: title,
+            contents: content,
+            type: category
+        };
+        dispatch(helpRequestAction(json));
     };
 
     return (
@@ -57,17 +64,17 @@ const Service = () => {
             </div>
             <div className="content-box">
                 <div className="tab-box">
-                    <div className="tab" onClick={() => onChangeTab("introduce")}>
+                    <div className="tab" onClick={() => setTab("introduce")}>
                         Cogether 소개
                     </div>
-                    <div className="tab" onClick={() => onChangeTab("question")}>
+                    <div className="tab" onClick={() => setTab("question")}>
                         자주 묻는 질문
                     </div>
                     <div
                         className="tab"
                         onClick={() => {
-                            onChangeTab("ask");
-                            onAsk(false);
+                            setTab("ask");
+                            setAsk(false);
                         }}
                     >
                         내 문의 목록
@@ -77,10 +84,50 @@ const Service = () => {
                 {tab === "introduce" ? (
                     <div className="service-box">
                         <div className={tab}>어서오세요, Cogether 입니다.</div>
+                        {}
                     </div>
                 ) : tab === "question" ? (
                     <div className="service-box">
-                        <div className={tab}>질문리스트</div>
+                        <div className={tab}>
+                            <div className="freq-head">
+                                <div className="text">사용자들이 자주 묻는 질문을 찾아보세요.</div>
+                                <div className="dropdown-box" onClick={() => setShowMenu(!showMenu)}>
+                                    <div className="dropwon-text">{dropdown}</div>
+                                    <img src={drop_arrow}></img>
+                                </div>
+                                <span className="dropdown">
+                                    {showMenu ? (
+                                        <ul>
+                                            <ol className="list" onClick={() => onSetDropdown("전체")}>
+                                                전체
+                                            </ol>
+                                            <ol className="list" onClick={() => onSetDropdown("제목")}>
+                                                제목
+                                            </ol>
+                                            <ol className="list" onClick={() => onSetDropdown("내용")}>
+                                                내용
+                                            </ol>
+                                        </ul>
+                                    ) : null}
+                                </span>
+                                <div className="search">
+                                    <input placeholder="질문 검색하기"></input>
+                                    <img src={search}></img>
+                                </div>
+                            </div>
+                            <div className="bar"></div>
+                            <div className="freq-list">
+                                {freqs.results &&
+                                    freqs.results.map(freq => {
+                                        return (
+                                            <div className="freq">
+                                                <div>{freq.title}</div>
+                                                {/* <div>{freq.contents}</div> */}
+                                            </div>
+                                        );
+                                    })}
+                            </div>
+                        </div>
                     </div>
                 ) : (
                     <div className="service-box">
@@ -94,16 +141,26 @@ const Service = () => {
                                         className="submit-btn"
                                         onClick={() => {
                                             onSubmit();
-                                            onAsk(false);
+                                            setAsk(false);
                                         }}
                                     >
                                         문의 제출하기
                                     </button>
                                 ) : (
-                                    <button className="ask-btn" onClick={() => onAsk(true)}>
+                                    <button className="ask-btn" onClick={() => setAsk(true)}>
                                         1:1 문의하기
                                     </button>
                                 )}
+                                {/* {helps &&
+                                    helps.map(help => {
+                                        return (
+                                            <div>
+                                                <div>{help.title}</div>
+                                                <div>{help.contents}</div>
+                                                <div>{help.status}</div>
+                                            </div>
+                                        );
+                                    })} */}
                             </div>
                             {ask ? (
                                 <div className="ask-page">
@@ -111,16 +168,35 @@ const Service = () => {
                                         <div className="text">유형</div>
                                         <div className="category">
                                             <div className="item">
-                                                <input className="radio" type="radio" name="category" value="post"></input>
+                                                <input
+                                                    className="radio"
+                                                    type="radio"
+                                                    name="category"
+                                                    value="post"
+                                                    checked="checked"
+                                                    onClick={() => setCategory("create")}
+                                                ></input>
                                                 <span>게시 요청</span>
                                             </div>
                                             <div className="item">
-                                                <input className="radio" type="radio" name="category" value="modify"></input>
+                                                <input
+                                                    className="radio"
+                                                    type="radio"
+                                                    name="category"
+                                                    value="modify"
+                                                    onClick={() => setCategory("update")}
+                                                ></input>
                                                 <span>수정 요청</span>
                                             </div>
                                             <div className="item">
-                                                <input className="radio" type="radio" name="category" value="help"></input>
-                                                <span>기타 문의</span>
+                                                <input
+                                                    className="radio"
+                                                    type="radio"
+                                                    name="category"
+                                                    value="help"
+                                                    onClick={() => setCategory("help")}
+                                                ></input>
+                                                <span>1:1 문의</span>
                                             </div>
                                         </div>
                                     </div>

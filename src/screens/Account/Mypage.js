@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from'react-router-dom';
+import { Redirect } from "react-router-dom";
 import "./Mypage.scss";
 
 const Mypage = () => {
@@ -13,7 +13,7 @@ const Mypage = () => {
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
 
-    return(
+    return (
         <div className="mypage">
             <div className="in">
                 <div>mypage</div>
@@ -22,6 +22,6 @@ const Mypage = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Mypage;
