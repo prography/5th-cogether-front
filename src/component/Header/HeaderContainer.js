@@ -6,7 +6,7 @@ import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
-import { meRequestAction } from '../../store/actions/Auth';
+import { meRequestAction } from "../../store/actions/Auth";
 
 const HeaderContainer = () => {
     const dispatch = useDispatch();
@@ -26,11 +26,11 @@ const HeaderContainer = () => {
         setShowMenu(!showMenu);
     };
 
-    useEffect(()=>{
-        dispatch(meRequestAction());
+    useEffect(() => {
+        //dispatch(meRequestAction());
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
 
@@ -70,12 +70,7 @@ const HeaderContainer = () => {
             <img className="bar" src={bar} />
             {token && me ? (
                 <div className="account">
-                    <div className="username">
-                        {   me
-                            .split('"')[1]
-                            .split("@")[0]
-                        }
-                    </div>
+                    <div className="username">{me.split('"')[1].split("@")[0]}</div>
                     <div className="usericon" onClick={showDropdownMenu}>
                         <img src={user}></img>
                     </div>

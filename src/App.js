@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import Header from "component/Header";
@@ -17,19 +17,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { meRequestAction } from "store/actions/Auth";
 
-
 const App = () => {
-
     const dispatch = useDispatch();
-    const isAuthenticating = useSelector(state=> state.meReducer.meInfo);
+    const isAuthenticating = useSelector(state => state.meReducer.meInfo);
+    const sss = 1;
 
-    useEffect(()=>{
-        isAuthenticating ?
-        console.log(isAuthenticating) 
-        :
-        dispatch(meRequestAction());
-    });
-    
+    useEffect(() => {
+        // isAuthenticating ? console.log(isAuthenticating) : fun();
+    }, []);
+
     return (
         <div className="App">
             <Router>
