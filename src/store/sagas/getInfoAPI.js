@@ -3,7 +3,9 @@ import { GETCLUB_REQUEST, successClub, failClub } from "store/actions/Info";
 import { GETDETAIL_REQUEST, successDetail, failDetail } from "store/actions/Info";
 import { GETEDUCATION_REQUEST, successEducation, failEducation } from "store/actions/Info";
 import { GETCONFERENCE_REQUEST, successConference, failConference } from "store/actions/Info";
+import { SEARCH_REQUEST, successSearch, failSearch } from "store/actions/Info";
 import { fetchClubData, fetchDetail, fetchConferenceData, fetchEducationData } from "api";
+import axios from "axios";
 
 function* getClubApiData() {
     try {
@@ -49,9 +51,21 @@ function* getDetail(payload) {
     }
 }
 
+function* searchApi(payload) {
+    try {
+        // do api call
+        const data = yield call([axios, "get"], `https://cogether.azurewebsites.net/event/?title=${payload.payload}`);
+        yield put(successSearch(data.data));
+    } catch (e) {
+        yield put(failSearch());
+        console.log(e);
+    }
+}
+
 export default function* watchApiList() {
     yield takeLatest(GETCLUB_REQUEST, getClubApiData);
     yield takeLatest(GETCONFERENCE_REQUEST, getConferenceApiData);
     yield takeLatest(GETEDUCATION_REQUEST, getEducationApiData);
     yield takeLatest(GETDETAIL_REQUEST, getDetail);
+    yield takeLatest(SEARCH_REQUEST, searchApi);
 }

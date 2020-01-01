@@ -51,7 +51,7 @@ const Service = () => {
             user: json.user,
             // token: localStorage.getItem("accessToken"),
             title: title,
-            content: content,
+            contents: content,
             type: category
         };
         dispatch(helpRequestAction(json));

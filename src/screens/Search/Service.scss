@@ -1,0 +1,248 @@
+.service-wrap {
+    width: 100%;
+    min-height: calc(100vh - 86px);
+
+    .head {
+        width: 100%;
+        height: 200px;
+        background-color: #f8f8f8;
+        padding: 78px 0;
+        .text {
+            font-size: 30px;
+            color: #2d2d4b;
+            font-weight: bold;
+            width: 60%;
+            margin: 0 auto;
+        }
+    }
+    .content-box {
+        display: flex;
+        flex-direction: row;
+        margin: 64px auto;
+        width: 60%;
+
+        .tab-box {
+            width: 168px;
+            .tab {
+                text-align: left;
+                cursor: pointer;
+                margin-bottom: 33px;
+            }
+            .tab:hover {
+                color: #2d2d4b;
+                font-weight: bold;
+            }
+        }
+        .service-box {
+            flex: 1;
+            margin-left: 24px;
+            height: 700px;
+
+            .introduce {
+                // width: 100%;
+                // height: 100%;
+                // text-align: center;
+            }
+            .question {
+                // width: 100%;
+                // height: 100%;
+                // text-align: center;
+                .freq-head {
+                    display: flex;
+                    flex-direction: row;
+
+                    .text {
+                        flex: 1;
+                        font-size: 18px;
+                        color: #2d2d4b;
+                    }
+                    .dropdown-box {
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        width: 110px;
+                        height: 40px;
+                        border-radius: 3px;
+                        border: solid 1px #cbcecf;
+                        color: #878d91;
+                        padding: 10px;
+
+                        .dropdown-text {
+                            flex: 1;
+                        }
+                    }
+                    .dropdown {
+                        position: relative;
+                        display: inline-block;
+                        z-index: 3;
+
+                        ul {
+                            list-style-type: none;
+                            right: 0px;
+                            top: 50px;
+                            background-color: white;
+                            position: absolute;
+                            padding-inline-start: 0px;
+                            width: 110px;
+                            border-radius: 3px;
+                            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+
+                            .list {
+                                height: 44px;
+                                text-align: left;
+                                color: #878d91;
+                                font-size: 16px;
+                                padding-inline-start: 0px;
+                                padding: 10px;
+                            }
+                            .list:hover {
+                                color: #fd8c3e;
+                            }
+                        }
+                    }
+                    .search {
+                        margin-left: 10px;
+                        width: 264px;
+                        height: 40px;
+                        border-radius: 3px;
+                        border: solid 1px #cbcecf;
+                        background-color: #fafafa;
+                        display: flex;
+                        align-items: center;
+                        padding: 10px;
+
+                        input {
+                            flex: 1;
+                            border: none;
+                            outline: 0;
+                            background-color: #fafafa;
+                        }
+                    }
+                }
+                .bar {
+                    height: 1px;
+                    background-color: #cbcecf;
+                    margin-top: 24px;
+                }
+                .freq-list {
+                    .freq {
+                        cursor: pointer;
+                        font-size: 16px;
+                        padding: 20px 0 20px 16px;
+                        border-bottom: 1px solid #eaeaea;
+                    }
+                }
+            }
+            .ask {
+                .ask-head {
+                    display: flex;
+                    flex-direction: row;
+                    height: 64px;
+                    border-bottom: 1px solid #cbcecf;
+
+                    .text {
+                        flex: 1;
+                        font-size: 18px;
+                        color: #2d2d4b;
+                    }
+                    .ask-btn {
+                        width: 115px;
+                        height: 40px;
+                        border-radius: 3px;
+                        background-color: #fd8c3e;
+                        color: white;
+                        outline: none;
+                    }
+                    .submit-btn {
+                        width: 115px;
+                        height: 40px;
+                        border-radius: 3px;
+                        background-color: #fd8c3e;
+                        color: white;
+                        outline: none;
+                    }
+                }
+                .ask-page {
+                    .type {
+                        display: flex;
+                        flex-direction: row;
+                        .text {
+                            color: #878d91;
+                            font-size: 16px;
+                            margin: 20px 0 20px 16px;
+                            width: 25%;
+                        }
+                        .category {
+                            width: 50%;
+                            display: flex;
+                            flex-direction: row;
+                            margin: 20px 0;
+
+                            .item {
+                                flex: 1;
+                                .radio:checked {
+                                    background-color: #fd8c3e;
+                                }
+                                span {
+                                    margin-left: 10px;
+                                    color: #2d2d4b;
+                                }
+                            }
+                        }
+                        border-bottom: 1px solid #eaeaea;
+                    }
+                    .title {
+                        @extend .type;
+                        .text {
+                            margin: 20px 0 16px 16px;
+                        }
+                        input {
+                            flex: 1;
+                            height: 40px;
+                            border-radius: 3px;
+                            margin: 20px 0;
+                            border: solid 1px #cbcecf;
+                            background-color: #fafafa;
+                        }
+                    }
+                    .content {
+                        @extend .title;
+                        input {
+                            height: 260px;
+                        }
+                    }
+                }
+                .ask-list {
+                    .index {
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        color: #878d91;
+                        height: 64px;
+                        border-bottom: 1px solid #eaeaea;
+
+                        .type {
+                            flex: 1;
+                            text-align: center;
+                            margin: auto 0;
+                        }
+                        .title {
+                            flex: 5;
+                            margin: auto 0;
+                        }
+                        .date {
+                            flex: 1;
+                            text-align: center;
+                            margin: auto 0;
+                        }
+                        .status {
+                            flex: 1;
+                            text-align: center;
+                            margin: auto 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -13,6 +13,7 @@ import Join from "screens/Account/Join";
 import LoginDirect from "screens/Account/LoginDirect";
 import Mypage from "screens/Account/Mypage";
 import Request from "screens/Service/Service";
+import Search from "screens/Search/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { meRequestAction } from "store/actions/Auth";
@@ -41,6 +42,7 @@ const App = () => {
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/userRequest" component={Request} />
                     <Route path="/github/callback" component={Oauth} />
+                    <Route path="/search/:text" component={Search} />
                 </Switch>
                 <Footer></Footer>
             </Router>
