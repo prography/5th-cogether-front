@@ -6,7 +6,6 @@ import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
-import { meRequestAction } from "../../store/actions/Auth";
 
 const HeaderContainer = ({ match }) => {
     const dispatch = useDispatch();
@@ -20,7 +19,7 @@ const HeaderContainer = ({ match }) => {
         setSearchText(e.target.value);
     }, []);
 
-    const me = useSelector(state => state.meReducer.meInfo);
+    const me = useSelector(state => state.userReducer.meInfo);
 
     const onLogout = useCallback(e => {
         e.preventDefault();
@@ -32,11 +31,7 @@ const HeaderContainer = ({ match }) => {
         setShowMenu(!showMenu);
     };
 
-    useEffect(() => {
-        //dispatch(meRequestAction());
-    }, []);
-
-    useEffect(() => {
+    useEffect(()=>{
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
 

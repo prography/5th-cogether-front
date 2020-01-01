@@ -10,6 +10,7 @@ const initialState={
     token: "",
     list: {},
     signedUp:null,
+    meInfo: null,
 };
 
 const userReducer = handleActions({
@@ -67,6 +68,7 @@ const userReducer = handleActions({
         return{
             ...state,
             userInfo: null,
+            meInfo: null,
             isLoggedIn:false,
         };
     },
@@ -110,6 +112,23 @@ const userReducer = handleActions({
         return{
             ...state,
             isLoggingIn:false,
+        };
+    },
+    'ME_REQUEST': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'ME_SUCCESS': (state, action) => {
+        return{
+            ...state,
+            meInfo: action.payload,   //username
+        };
+    },
+    'ME_FAIL': (state, action) =>{
+        return{
+            ...state,
+            meInfo: null,
         };
     },
 

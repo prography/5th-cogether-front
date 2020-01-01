@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import Header from "component/Header";
@@ -16,21 +16,23 @@ import Request from "screens/Service/Service";
 import Search from "screens/Search/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { meRequestAction } from "store/actions/Auth";
+import { meRequestAction } from "store/actions/User";
 
 const App = () => {
     const dispatch = useDispatch();
-    const isAuthenticating = useSelector(state => state.meReducer.meInfo);
-    const sss = 1;
+    const isAuthenticating = useSelector(state => state.userReducer.meInfo);
+    const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     useEffect(() => {
-        // isAuthenticating ? console.log(isAuthenticating) : fun();
+        if (token !== null) {
+            dispatch(meRequestAction());
+        }
     }, []);
 
     return (
         <div className="App">
             <Router>
-                <Header></Header>
+                <Header />
                 <Switch>
                     <Route exact path="/" component={Main} />
                     <Route path="/club" component={Clubs} />
@@ -44,7 +46,7 @@ const App = () => {
                     <Route path="/github/callback" component={Oauth} />
                     <Route path="/search/:text" component={Search} />
                 </Switch>
-                <Footer></Footer>
+                <Footer />
             </Router>
         </div>
     );

@@ -6,6 +6,7 @@ import {
     loginSuccessAction,
     LOGOUT_REQUEST,
     LOGOUT_FAIL,
+    logoutRequestAction,
     logoutSuccessAction,
     JOIN_REQUEST,
     JOIN_FAIL,
@@ -16,8 +17,11 @@ import {
     GITHUB_LOGIN_REQUEST,
     GITHUB_LOGIN_FAIL,
     githubLoginSuccessAction,
+    ME_REQUEST, 
+    ME_FAIL, 
+    meSuccessAction,
 } from "../actions/User";
-import { meRequestAction } from "../actions/Auth";
+import { meRequestAction } from "../actions/User";
 import swal from 'sweetalert';
 
 //login
@@ -36,10 +40,9 @@ function* getLoginData({ payload }) {
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
             yield put(loginSuccessAction(JSON.stringify(json.username)));
-            yield put(meRequestAction());
+            yield put(meRequestAction()); 
         }
     } catch (e) {
-        console.log(e);
         yield put({ type: LOGIN_FAIL });
         swal("일치하는 회원 정보가 없습니다");
     }
@@ -54,9 +57,7 @@ function* getLogoutData() {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         yield put(logoutSuccessAction());
-        yield put(meRequestAction());
     } catch (e) {
-        console.log(e);
         yield put({ type: LOGOUT_FAIL });
     }
 }
@@ -78,7 +79,6 @@ function* getJoinData({ payload }) {
             yield put(joinSuccessAction(responseBody.data));
         }
     } catch (e) {
-        console.log(e);
         yield put({ type: JOIN_FAIL });
         swal("이미 존재하는 이메일 입니다.");
     }
@@ -116,7 +116,6 @@ function* requestService({ payload }) {
         //     yield put(joinSuccessAction(responseBody));
         // }
     } catch (e) {
-        console.log(e);
         yield put({ type: JOIN_FAIL });
     }
 }
@@ -135,19 +134,43 @@ function* getGithubLoginData({ payload }) {
             yield put(meRequestAction());
         }
     } catch (e) {
-        console.log(e);
         yield put({ type: GITHUB_LOGIN_FAIL });
-        swal("일치하는 회원 정보가 없습니다");
+        swal(e.response.data.message);
     }
 }
 function* watchGithubLoginList() {
     yield takeLatest(GITHUB_LOGIN_REQUEST, getGithubLoginData);
 }
+
+//me
+function* getMeData() {
+    try {
+        const json = {
+            token: localStorage.getItem("accessToken"),
+        };
+        
+        const isExpired = yield call(
+            [axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
+
+        const jwt = require("jsonwebtoken");
+        const decoded = jwt.decode(localStorage.getItem("accessToken"));
+        
+        yield put(meSuccessAction(JSON.stringify(decoded.username))); 
+    } catch (e) {
+        yield put({ type: ME_FAIL });
+        yield put(logoutRequestAction());
+    }
+}
+function* watchMe() {
+    yield takeLatest(ME_REQUEST, getMeData);
+}
+
 export default function* userSaga() {
     yield all([
         fork(watchLoginList), 
         fork(watchLogoutList), 
         fork(watchJoinList),
         fork(watchGithubLoginList),
+        fork(watchMe),
     ]);
 }

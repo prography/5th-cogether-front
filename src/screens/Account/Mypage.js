@@ -2,17 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./Mypage.scss";
-import { meRequestAction } from "../../store/actions/Auth";
 
 const Mypage = () => {
     const dispatch = useDispatch();
 
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
-    const me = useSelector(state => state.meReducer.meInfo);
-
-    /*useEffect(()=>{
-        dispatch(meRequestAction());
-    }, []);*/
+    const me = useSelector(state => state.userReducer.meInfo);
 
     useEffect(() => {
         setToken(localStorage.getItem("accessToken"));
@@ -22,8 +17,8 @@ const Mypage = () => {
         <div className="mypage">
             <div className="in">
                 <div>mypage</div>
-
-                {token ? <div className="welcome">{me}님, 환영합니다</div> : <Redirect to="/login"></Redirect>}
+                { token  ? <div className ="welcome">{me}님, 환영합니다</div>:
+                <Redirect to='/login'/>}
             </div>
         </div>
     );
