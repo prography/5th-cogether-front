@@ -2,7 +2,8 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { INTRO_REQUEST, introSuccessAction, meFailAction } from "store/actions/Service";
 import { FREQ_REQUEST, freqSuccessAction, freqFailAction } from "store/actions/Service";
 import { HELP_REQUEST, helpSuccessAction, helpFailAction } from "store/actions/Service";
-import { fetchIntroData, fetchFreqData, fetchHelpData } from "api";
+import { fetchIntroData, fetchFreqData } from "api";
+import axios from "axios";
 
 function* getIntroApiData() {
     try {
@@ -26,10 +27,41 @@ function* getFreqeApiData() {
     }
 }
 
-function* getHelpApiData() {
+function* getHelpApiData(info) {
     try {
         // do api call
-        const data = yield call(fetchHelpData);
+        // const json = {
+        //     username: payload.username,
+        //     password1: payload.p1,
+        //     password2: payload.p2,
+        // };
+        console.log("info", info.payload);
+        let data = null;
+
+        if (info.payload.title) {
+            data = yield call(
+                [axios, "post"],
+                "https://cogether.azurewebsites.net/help-center/my-questions/",
+                {
+                    headers: {
+                        Authorization: `Bearer ${info.payload.token}`
+                    }
+                },
+                info.payload
+            );
+        } else {
+            data = yield call(
+                [axios, "get"],
+                "https://cogether.azurewebsites.net/help-center/my-questions/",
+                // {
+                //     headers: {
+                //         Authorization: `Bearer ${info.payload.token}`
+                //     }
+                // },
+                info.payload
+            );
+        }
+
         yield put(helpSuccessAction(data));
     } catch (e) {
         yield put(helpFailAction());

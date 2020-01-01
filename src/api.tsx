@@ -54,25 +54,3 @@ export const fetchFreqData = async () => {
         console.log(e);
     }
 };
-
-export const fetchHelpData = async (payload: any) => {
-    try {
-        const jwt = require("jsonwebtoken");
-        const decoded = jwt.decode(localStorage.getItem("accessToken"));
-
-        const config = {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json"
-            },
-            body: decoded.user_id
-        };
-        const response = await fetch("https://cogether.azurewebsites.net/help-center/my-questions", config);
-        console.log("config: ", config);
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
-    }
-};

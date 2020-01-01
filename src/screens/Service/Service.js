@@ -11,69 +11,50 @@ const Service = () => {
 
     const intros = useSelector(state => state.serviceReducer.intro);
     const freqs = useSelector(state => state.serviceReducer.freq);
-    const helps = useSelector(state => state.serviceReducer.help, []);
+    const helps = useSelector(state => state.serviceReducer.help);
+
+    const jwt = require("jsonwebtoken");
+    const decoded = jwt.decode(localStorage.getItem("accessToken"));
+    let json = {
+        user: decoded.user_id,
+        token: localStorage.getItem("accessToken")
+    };
 
     useEffect(() => {
         dispatch(introRequestAction());
         dispatch(freqRequestAction());
-        dispatch(helpRequestAction());
+        dispatch(helpRequestAction(json));
     }, []);
 
-    console.log(freqs.results);
-
     const [tab, setTab] = useState("introduce");
-
     const [ask, setAsk] = useState(false);
 
+    const [category, setCategory] = useState("help");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-
-    const categorys = ["1:1 문의", "수정 요청", "게시 요청"];
-    const [category, setCategory] = useState(categorys[0]);
-
-    const [dropdown, setDropdown] = useState("전체");
-    const [showMenu, setShowMenu] = useState(false);
-
-    const onSetShowMenu = () => {
-        setShowMenu(!showMenu);
-    };
-    const onSetDropdown = word => {
-        setDropdown(word);
-        onSetShowMenu();
-    };
-
     const onChangeTitle = useCallback(e => {
         setTitle(e.target.value);
     }, []);
-
     const onChangeContent = useCallback(e => {
         setContent(e.target.value);
     }, []);
 
-    const onSubmit = () => {};
-
-    const onAsk = ask => {
-        setAsk(ask);
+    const [dropdown, setDropdown] = useState("전체");
+    const [showMenu, setShowMenu] = useState(false);
+    const onSetDropdown = word => {
+        setDropdown(word);
+        setShowMenu(!showMenu);
     };
 
-    const onChangeTab = tab => {
-        setTab(tab);
-    };
-
-    const onChangeCategory = category => {
-        switch (category) {
-            case category[0]:
-                setCategory("help");
-                break;
-            case category[1]:
-                setCategory("modify");
-                break;
-            case category[2]:
-                setCategory("post");
-                break;
-            default:
-                break;
-        }
+    const onSubmit = () => {
+        json = {
+            user: json.user,
+            // token: localStorage.getItem("accessToken"),
+            title: title,
+            content: content,
+            type: category
+        };
+        dispatch(helpRequestAction(json));
     };
 
     return (
@@ -83,17 +64,17 @@ const Service = () => {
             </div>
             <div className="content-box">
                 <div className="tab-box">
-                    <div className="tab" onClick={() => onChangeTab("introduce")}>
+                    <div className="tab" onClick={() => setTab("introduce")}>
                         Cogether 소개
                     </div>
-                    <div className="tab" onClick={() => onChangeTab("question")}>
+                    <div className="tab" onClick={() => setTab("question")}>
                         자주 묻는 질문
                     </div>
                     <div
                         className="tab"
                         onClick={() => {
-                            onChangeTab("ask");
-                            onAsk(false);
+                            setTab("ask");
+                            setAsk(false);
                         }}
                     >
                         내 문의 목록
@@ -110,7 +91,7 @@ const Service = () => {
                         <div className={tab}>
                             <div className="freq-head">
                                 <div className="text">사용자들이 자주 묻는 질문을 찾아보세요.</div>
-                                <div className="dropdown-box" onClick={onSetShowMenu}>
+                                <div className="dropdown-box" onClick={() => setShowMenu(!showMenu)}>
                                     <div className="dropwon-text">{dropdown}</div>
                                     <img src={drop_arrow}></img>
                                 </div>
@@ -160,13 +141,13 @@ const Service = () => {
                                         className="submit-btn"
                                         onClick={() => {
                                             onSubmit();
-                                            onAsk(false);
+                                            setAsk(false);
                                         }}
                                     >
                                         문의 제출하기
                                     </button>
                                 ) : (
-                                    <button className="ask-btn" onClick={() => onAsk(true)}>
+                                    <button className="ask-btn" onClick={() => setAsk(true)}>
                                         1:1 문의하기
                                     </button>
                                 )}
@@ -187,16 +168,35 @@ const Service = () => {
                                         <div className="text">유형</div>
                                         <div className="category">
                                             <div className="item">
-                                                <input className="radio" type="radio" name="category" value="post"></input>
+                                                <input
+                                                    className="radio"
+                                                    type="radio"
+                                                    name="category"
+                                                    value="post"
+                                                    checked="checked"
+                                                    onClick={() => setCategory("create")}
+                                                ></input>
                                                 <span>게시 요청</span>
                                             </div>
                                             <div className="item">
-                                                <input className="radio" type="radio" name="category" value="modify"></input>
+                                                <input
+                                                    className="radio"
+                                                    type="radio"
+                                                    name="category"
+                                                    value="modify"
+                                                    onClick={() => setCategory("update")}
+                                                ></input>
                                                 <span>수정 요청</span>
                                             </div>
                                             <div className="item">
-                                                <input className="radio" type="radio" name="category" value="help"></input>
-                                                <span>기타 문의</span>
+                                                <input
+                                                    className="radio"
+                                                    type="radio"
+                                                    name="category"
+                                                    value="help"
+                                                    onClick={() => setCategory("help")}
+                                                ></input>
+                                                <span>1:1 문의</span>
                                             </div>
                                         </div>
                                     </div>

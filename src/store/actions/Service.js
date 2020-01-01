@@ -32,8 +32,9 @@ export const freqFailAction = () => ({
     type: FREQ_FAIL
 });
 
-export const helpRequestAction = () => ({
-    type: HELP_REQUEST
+export const helpRequestAction = data => ({
+    type: HELP_REQUEST,
+    payload: data
 });
 export const helpSuccessAction = data => ({
     type: HELP_SUCCESS,
