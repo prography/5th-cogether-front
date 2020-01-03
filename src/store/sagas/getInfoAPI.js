@@ -3,49 +3,63 @@ import { GETCLUB_REQUEST, successClub, failClub } from "store/actions/Info";
 import { GETDETAIL_REQUEST, successDetail, failDetail } from "store/actions/Info";
 import { GETEDUCATION_REQUEST, successEducation, failEducation } from "store/actions/Info";
 import { GETCONFERENCE_REQUEST, successConference, failConference } from "store/actions/Info";
+import { SEARCH_REQUEST, successSearch, failSearch } from "store/actions/Info";
 import { fetchClubData, fetchDetail, fetchConferenceData, fetchEducationData } from "api";
+import axios from "axios";
 
 function* getClubApiData() {
     try {
-        // do api call
         const data = yield call(fetchClubData);
         yield put(successClub(data));
     } catch (e) {
         yield put(failClub());
-        console.log(e);
     }
 }
 
 function* getConferenceApiData() {
     try {
-        // do api call
         const data = yield call(fetchConferenceData);
         yield put(successConference(data));
     } catch (e) {
         yield put(failConference());
-        console.log(e);
     }
 }
 
 function* getEducationApiData() {
     try {
-        // do api call
         const data = yield call(fetchEducationData);
         yield put(successEducation(data));
     } catch (e) {
         yield put(failEducation());
-        console.log(e);
     }
 }
 
 function* getDetail(payload) {
     try {
-        // do api call
         const data = yield call(fetchDetail, payload.payload);
         yield put(successDetail(data));
     } catch (e) {
         yield put(failDetail());
-        console.log(e);
+    }
+}
+
+function* searchApi(payload) {
+    try {
+        const data = yield call([axios, "get"], `https://cogether.azurewebsites.net/event/?title=${payload.payload}`);
+        const count = data.data.count;
+        const club = data.data.results.filter(result => result.category.name === "circle");
+        const conf = data.data.results.filter(result => result.category.name === "conference");
+        const edu = data.data.results.filter(result => result.category.name === "education");
+        // console.log(search);
+        const result = {
+            count: count,
+            club: club,
+            conf: conf,
+            edu: edu
+        };
+        yield put(successSearch(result));
+    } catch (e) {
+        yield put(failSearch());
     }
 }
 
@@ -54,4 +68,5 @@ export default function* watchApiList() {
     yield takeLatest(GETCONFERENCE_REQUEST, getConferenceApiData);
     yield takeLatest(GETEDUCATION_REQUEST, getEducationApiData);
     yield takeLatest(GETDETAIL_REQUEST, getDetail);
+    yield takeLatest(SEARCH_REQUEST, searchApi);
 }

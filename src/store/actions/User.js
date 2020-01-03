@@ -14,6 +14,26 @@ export const SERVICE_REQUEST = "SERVICE_REQUEST";
 export const SERVICE_SUCCESS = "SERVICE_SUCCESS";
 export const SERVICE_FAIL = "SERVICE_FAIL";
 
+export const GITHUB_LOGIN_REQUEST = "GITHUB_LOGIN_REQUEST";
+export const GITHUB_LOGIN_SUCCESS = "GITHUB_LOGIN_SUCCESS";
+export const GITHUB_LOGIN_FAIL = "GITHUB_LOGIN_FAIL";
+
+export const ME_REQUEST = "ME_REQUEST";
+export const ME_SUCCESS = "ME_SUCCESS";
+export const ME_FAIL = "ME_FAIL";
+
+//me
+export const meRequestAction =()=> ({
+    type:ME_REQUEST,
+});
+export const meSuccessAction = data => ({
+    type:ME_SUCCESS,
+    payload:data,
+});
+export const meFailAction =()=> ({
+    type:ME_FAIL,
+});
+
 //join
 export const joinRequestAction = data => ({
     type: JOIN_REQUEST,
@@ -61,4 +81,16 @@ export const serviceSuccessAction = data => ({
 });
 export const serviceFailAction = () => ({
     type: SERVICE_FAIL,
+});
+
+//github login
+export const githubLoginRequestAction = data => ({
+    type: GITHUB_LOGIN_REQUEST,
+    payload: data,
+});
+export const githubLoginSuccessAction = () => ({
+    type: GITHUB_LOGIN_SUCCESS,
+});
+export const githubLoginFailAction = () => ({
+    type: GITHUB_LOGIN_FAIL,
 });

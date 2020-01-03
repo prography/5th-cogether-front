@@ -1,18 +1,22 @@
-.block{
-    margin:10%;
+.block {
+    margin: 10%;
 }
-.navPic{
-    width:100%;
-    height:200px;
-    background-image: url('../../assets/image-conference-22.png');
+.navPic {
+    width: 100%;
+    height: 200px;
+    background-image: url("../../assets/yellow.png");
     background-size: cover;
-    .slogan{
-        width:30%;
-        color:#ffffff;
+    .slogan {
+        width: 30%;
+        color: #ffffff;
         font-size: x-large;
         font-weight: 600;
         position: relative;
-        top:25%;
-        left:24%;
+        top: 25%;
+        left: 24%;
     }
+}
+
+.MuiCardContent-root {
+    height: 165px;
 }

@@ -6,15 +6,20 @@ import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
-import { meRequestAction } from '../../store/actions/Auth';
 
-const HeaderContainer = () => {
+const HeaderContainer = ({ match }) => {
     const dispatch = useDispatch();
 
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
     const [showMenu, setShowMenu] = useState(false);
 
-    const me = useSelector(state => state.meReducer.meInfo);
+    // let searchResult = useSelector(state => state.clubReducer.search, []);
+    const [searchText, setSearchText] = useState("");
+    const onSetSearchText = useCallback(e => {
+        setSearchText(e.target.value);
+    }, []);
+
+    const me = useSelector(state => state.userReducer.meInfo);
 
     const onLogout = useCallback(e => {
         e.preventDefault();
@@ -25,10 +30,6 @@ const HeaderContainer = () => {
     const showDropdownMenu = () => {
         setShowMenu(!showMenu);
     };
-
-    useEffect(()=>{
-        dispatch(meRequestAction());
-    }, []);
 
     useEffect(()=>{
         setToken(localStorage.getItem("accessToken"));
@@ -62,20 +63,15 @@ const HeaderContainer = () => {
                 </Link>
             </div>
             <div className="search-menu">
-                <input type="text" className="search-txt" placeholder="검색 (ex. 우아한 테크코스)" />
-                <Link to="/">
+                <input type="text" className="search-txt" placeholder="검색 (ex. 우아한 테크코스)" value={searchText} onChange={onSetSearchText} />
+                <Link to={searchText === "" ? "/" : `/search/${searchText}`}>
                     <img className="search-btn" src={search} />
                 </Link>
             </div>
             <img className="bar" src={bar} />
             {token && me ? (
                 <div className="account">
-                    <div className="username">
-                        {   me
-                            .split('"')[1]
-                            .split("@")[0]
-                        }
-                    </div>
+                    <div className="username">{me.split('"')[1].split("@")[0]}</div>
                     <div className="usericon" onClick={showDropdownMenu}>
                         <img src={user}></img>
                     </div>

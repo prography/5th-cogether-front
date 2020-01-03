@@ -1,38 +1,45 @@
+import { handleActions } from "redux-actions";
+
 const initialState = {
     educationInfo: [],
-    detail: {}
+    detail: {},
 };
-const educationReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case "GETEDUCATION_REQUEST":
-            return {
-                ...state,
-            };
 
-        case "GETEDUCATION_SUCCESS":
-            return {
-                ...state,
-                educationInfo: action.payload,
-            };
-        case "GETEDUCATION_FAIL":
-            return {
-                ...state,
-            };
-        case "GETDETAIL_REQUEST":
-            return {
-                ...state,
-            };
-        case "GETDETAIL_SUCCESS":
-            return {
-                ...state,
-                detail: action.payload,
-            };
-        case "GETDETAIL_FAIL":
-            return {
-                ...state,
-            };
-        default:
-            return state;
-    }
-};
+const educationReducer = handleActions({
+
+    'GETEDUCATION_REQUEST': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'GETEDUCATION_SUCCESS': (state, action) => {
+        return{
+            ...state,
+            educationInfo: action.payload,
+        };
+    },
+    'GETEDUCATION_FAIL': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'GETDETAIL_REQUEST': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    'GETDETAIL_SUCCESS': (state, action) => {
+        return{
+            ...state,
+            detail: action.payload,
+        };
+    },
+    'GETDETAIL_FAIL': (state, action) => {
+        return{
+            ...state,
+        };
+    },
+    
+}, initialState);
+
 export default educationReducer;

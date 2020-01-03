@@ -6,15 +6,20 @@ import {
     loginSuccessAction,
     LOGOUT_REQUEST,
     LOGOUT_FAIL,
+    logoutRequestAction,
     logoutSuccessAction,
     JOIN_REQUEST,
     JOIN_FAIL,
-    joinSuccessAction,
-    SERVICE_REQUEST,
-    SERVICE_FAIL,
-    serviceSuccessAction,  
+    joinSuccessAction, 
+    GITHUB_LOGIN_REQUEST,
+    GITHUB_LOGIN_FAIL,
+    githubLoginSuccessAction,
+    ME_REQUEST, 
+    ME_FAIL, 
+    meSuccessAction,
 } from "../actions/User";
-import { meRequestAction } from "../actions/Auth";
+import { meRequestAction } from "../actions/User";
+import swal from 'sweetalert';
 
 //login
 function* getLoginData({ payload }) {
@@ -28,20 +33,18 @@ function* getLoginData({ payload }) {
 
         const accessToken = responseBody.data.access;
         const refreshToken = responseBody.data.refresh;
-
         if (accessToken) {
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
             yield put(loginSuccessAction(JSON.stringify(json.username)));
-            yield put(meRequestAction());
+            yield put(meRequestAction()); 
         }
     } catch (e) {
-        console.log(e);
         yield put({ type: LOGIN_FAIL });
-        alert("일치하는 회원 정보가 없습니다");
+        swal("일치하는 회원 정보가 없습니다");
     }
 }
-function* watchLoginList() {
+function* watchLogin() {
     yield takeLatest(LOGIN_REQUEST, getLoginData);
 }
 
@@ -51,13 +54,11 @@ function* getLogoutData() {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         yield put(logoutSuccessAction());
-        yield put(meRequestAction());
     } catch (e) {
-        console.log(e);
         yield put({ type: LOGOUT_FAIL });
     }
 }
-function* watchLogoutList() {
+function* watchLogout() {
     yield takeLatest(LOGOUT_REQUEST, getLogoutData);
 }
 
@@ -71,59 +72,69 @@ function* getJoinData({ payload }) {
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
-
         if (responseBody.data) {
             yield put(joinSuccessAction(responseBody.data));
         }
-        
     } catch (e) {
-        console.log(e);
         yield put({ type: JOIN_FAIL });
-        alert("이미 존재하는 이메일 입니다.");
+        swal("이미 존재하는 이메일 입니다.");
     }
 }
-function* watchJoinList() {
+function* watchJoin() {
     yield takeLatest(JOIN_REQUEST, getJoinData);
 }
-
-//service
-function* requestService({ payload }) {
+  
+//github login
+function* getGithubLoginData({ payload }) {
     try {
-        switch (payload.type) {
-            case "help":
-                const json = {
-                    username: payload.username,
-                    title: payload.title,
-                    content: payload.content,
-                    source: payload.type
-                };
-                break;
-            case "post":
-                break;
-            case "modify":
-                break;
-            case "list":
-                break;
-            default:
-                break;
+        const responseBody = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/login/github/callback/?code=".concat(payload));
+        
+        const accessToken = responseBody.data.access;
+        const refreshToken = responseBody.data.refresh;
+        if (accessToken) {
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            yield put(githubLoginSuccessAction());
+            yield put(meRequestAction());
         }
-
-        // const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
-
-        // if (responseBody.data) {
-        //     localStorage.setItem("username", JSON.stringify(json.username));
-        //     yield put(joinSuccessAction(responseBody));
-        // }
     } catch (e) {
-        console.log(e);
-        yield put({ type: JOIN_FAIL });
+        yield put({ type: GITHUB_LOGIN_FAIL });
+        swal(e.response.data.message);
     }
+}
+function* watchGithubLogin() {
+    yield takeLatest(GITHUB_LOGIN_REQUEST, getGithubLoginData);
+}
+
+//me
+function* getMeData() {
+    try {
+        const json = {
+            token: localStorage.getItem("accessToken"),
+        };
+        
+        const isExpired = yield call(
+            [axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
+
+        const jwt = require("jsonwebtoken");
+        const decoded = jwt.decode(localStorage.getItem("accessToken"));
+        
+        yield put(meSuccessAction(JSON.stringify(decoded.username))); 
+    } catch (e) {
+        yield put({ type: ME_FAIL });
+        yield put(logoutRequestAction());
+    }
+}
+function* watchMe() {
+    yield takeLatest(ME_REQUEST, getMeData);
 }
 
 export default function* userSaga() {
     yield all([
-        fork(watchLoginList), 
-        fork(watchLogoutList), 
-        fork(watchJoinList),
+        fork(watchLogin), 
+        fork(watchLogout), 
+        fork(watchJoin),
+        fork(watchGithubLogin),
+        fork(watchMe),
     ]);
 }
