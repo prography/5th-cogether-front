@@ -1,20 +1,31 @@
-.block{
-    margin:10%;
+.block {
+    margin: 10%;
 }
 
-
-.navPic{
-    width:100%;
-    height:200px;
-    background-image: url('../../assets/yellow.png');
+.navPic {
+    width: 100%;
+    height: 200px;
+    background-image: url("../../assets/yellow.png");
     background-size: cover;
-    .slogan{
-        width:30%;
-        color:#ffffff;
+    .slogan {
+        width: 30%;
+        color: #ffffff;
         font-size: x-large;
         font-weight: 600;
         position: relative;
-        top:25%;
-        left:24%;
+        top: 25%;
+        left: 24%;
     }
+}
+
+.body-link link {
+    text-decoration: none;
+}
+
+.detail-link a {
+    text-decoration: none;
+}
+
+.MuiCardContent-root {
+    height: 165px;
 }

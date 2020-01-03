@@ -23,7 +23,7 @@ const ClubList = ({ match }) => {
 
     const useStyles = makeStyles({
         card: {
-            maxWidth: 300
+            maxWidth: 310
         },
         media: {
             height: 150,
@@ -34,6 +34,12 @@ const ClubList = ({ match }) => {
         },
         text_size: {
             fontSize: 18,
+            textDecoration: "none",
+            color: "#2d2d4b",
+            fontWeight: "bold"
+        },
+        body_size: {
+            fontSize: 16,
             textDecoration: "none",
             color: "black"
         }
@@ -58,7 +64,7 @@ const ClubList = ({ match }) => {
                                 <Col md={4}>
                                     <div className="block">
                                         <Card className={classes.card}>
-                                            <Link to={`${match.url}/${club.id}`}>
+                                            <Link to={`${match.url}/${club.id}`} className="body-link">
                                                 <CardActionArea>
                                                     <CardMedia
                                                         className={classes.media}
@@ -66,22 +72,23 @@ const ClubList = ({ match }) => {
                                                     />
                                                     <CardContent>
                                                         <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                            <div className={classes.text_size}>{club.title}</div>
+                                                            <div className={classes.text_size}>{club.host}</div>
                                                         </Typography>
-                                                        {/*<Typography variant="body2" color="textSecondary" component="p">
-                            </Typography>*/}
+                                                        <Typography variant="body2" color="textSecondary" component="p">
+                                                            <div className={classes.body_size}>{club.title}</div>
+                                                            <div>
+                                                                {club.start_at.split("T")[0]} ~ {club.end_at.split("T")[0]}
+                                                            </div>
+                                                        </Typography>
                                                     </CardContent>
                                                 </CardActionArea>
                                             </Link>
                                             <CardActions>
-                                                <Button size="small" color="primary">
-                                                    Share
-                                                </Button>
-                                                <Link to={`${match.url}/${club.id}`}>
-                                                    <Button size="small" color="primary">
-                                                        More Info
+                                                <a className="detail-link" href={`javascript:window.open('${club.external_link}','_blank')`}>
+                                                    <Button size="small" color="#2d2d4b">
+                                                        더 알아보기
                                                     </Button>
-                                                </Link>
+                                                </a>
                                             </CardActions>
                                         </Card>
                                     </div>

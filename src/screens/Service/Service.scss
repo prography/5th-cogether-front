@@ -126,10 +126,18 @@
                 }
                 .freq-list {
                     .freq {
-                        cursor: pointer;
-                        font-size: 16px;
-                        padding: 20px 0 20px 16px;
-                        border-bottom: 1px solid #eaeaea;
+                        .freq-title {
+                            cursor: pointer;
+                            font-size: 16px;
+                            padding: 20px 0 20px 16px;
+                            border-bottom: 1px solid #eaeaea;
+                        }
+
+                        .freq-content {
+                            padding: 10px 0 10px 16px;
+                            background-color: #fafafa;
+                            color: #878d91;
+                        }
                     }
                 }
             }
@@ -162,6 +170,7 @@
                         outline: none;
                     }
                 }
+
                 .ask-page {
                     .type {
                         display: flex;
@@ -239,6 +248,39 @@
                             flex: 1;
                             text-align: center;
                             margin: auto 0;
+                        }
+                    }
+                    .help-list {
+                        .help {
+                            display: flex;
+                            flex-direction: column;
+
+                            .help-title-box {
+                                cursor: pointer;
+                                @extend .index;
+                                color: #2d2d4b;
+                            }
+                            .help-content-box {
+                                .help-content {
+                                    height: 64px;
+                                    background-color: #fafafa;
+                                    color: #878d91;
+                                    font-size: 14px;
+                                    border-bottom: 1px solid #eaeaea;
+                                    display: flex;
+                                    flex-direction: row;
+
+                                    .writer {
+                                        text-align: center;
+                                        margin: auto 0;
+                                        width: calc(100% / 8);
+                                    }
+                                    .content {
+                                        flex: 1;
+                                        margin: auto 0;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

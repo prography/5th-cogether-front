@@ -46,7 +46,18 @@ function* getDetail(payload) {
 function* searchApi(payload) {
     try {
         const data = yield call([axios, "get"], `https://cogether.azurewebsites.net/event/?title=${payload.payload}`);
-        yield put(successSearch(data.data));
+        const count = data.data.count;
+        const club = data.data.results.filter(result => result.category.name === "circle");
+        const conf = data.data.results.filter(result => result.category.name === "conference");
+        const edu = data.data.results.filter(result => result.category.name === "education");
+        // console.log(search);
+        const result = {
+            count: count,
+            club: club,
+            conf: conf,
+            edu: edu
+        };
+        yield put(successSearch(result));
     } catch (e) {
         yield put(failSearch());
     }

@@ -25,19 +25,25 @@ const EducationList = ({ match }) => {
 
     const useStyles = makeStyles({
         card: {
-            maxWidth: 300,
+            maxWidth: 300
         },
         media: {
             height: 150,
-            backgroundColor:"#000000",
+            backgroundColor: "#000000"
         },
         text: {
-            height: 60,
+            height: 60
         },
-        text_size:{
-            fontSize:18,
-            textDecoration:'none',
-            color:'black',
+        text_size: {
+            fontSize: 18,
+            textDecoration: "none",
+            color: "#2d2d4b",
+            fontWeight: "bold"
+        },
+        body_size: {
+            fontSize: 16,
+            textDecoration: "none",
+            color: "black"
         }
     });
 
@@ -46,7 +52,11 @@ const EducationList = ({ match }) => {
     return (
         <div>
             <div className="navPic">
-                <div className="slogan">Co.gether와 함께<br/>원하는 목표를 성취해보세요</div>
+                <div className="slogan">
+                    Co.gether와 함께
+                    <br />
+                    원하는 목표를 성취해보세요
+                </div>
             </div>
             <Container>
                 <Row>
@@ -58,25 +68,29 @@ const EducationList = ({ match }) => {
                                         <Card className={classes.card}>
                                             <Link to={`${match.url}/${edu.id}`}>
                                                 <CardActionArea>
-                                                    <CardMedia className={classes.media} image={edu.photo?edu.photo:require("assets/placeholder.png")}/>
+                                                    <CardMedia
+                                                        className={classes.media}
+                                                        image={edu.photo ? edu.photo : require("assets/placeholder.png")}
+                                                    />
                                                     <CardContent>
                                                         <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                        <div className={classes.text_size}>{edu.title}</div>
+                                                            <div className={classes.text_size}>{edu.host}</div>
                                                         </Typography>
-                                                        {/*<Typography variant="body2" color="textSecondary" component="p">
-                            </Typography>*/}
+                                                        <Typography variant="body2" color="textSecondary" component="p">
+                                                            <div className={classes.body_size}>{edu.title}</div>
+                                                            <div>
+                                                                {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
+                                                            </div>
+                                                        </Typography>
                                                     </CardContent>
                                                 </CardActionArea>
                                             </Link>
                                             <CardActions>
-                                                <Button size="small" color="primary">
-                                                    Share
-                                                </Button>
-                                                <Link to={`${match.url}/${edu.id}`}>
-                                                    <Button size="small" color="primary">
-                                                        More Info
+                                                <a className="detail-link" href={`javascript:window.open('${edu.external_link}','_blank')`}>
+                                                    <Button size="small" color="#2d2d4b">
+                                                        더 알아보기
                                                     </Button>
-                                                </Link>
+                                                </a>
                                             </CardActions>
                                         </Card>
                                     </div>

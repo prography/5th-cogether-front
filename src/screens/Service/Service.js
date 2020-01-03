@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Service.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,11 +13,13 @@ const Service = () => {
     const freqs = useSelector(state => state.serviceReducer.freq);
     const helps = useSelector(state => state.serviceReducer.help);
 
+    let [freqState, setFreqState] = useState([]);
+    let [helpState, setHelpState] = useState([]);
+
     const jwt = require("jsonwebtoken");
     const decoded = jwt.decode(localStorage.getItem("accessToken"));
     let json = {
-        user: decoded.user_id,
-        token: localStorage.getItem("accessToken")
+        user: decoded ? decoded.user_id : null
     };
 
     useEffect(() => {
@@ -25,6 +27,14 @@ const Service = () => {
         dispatch(freqRequestAction());
         dispatch(helpRequestAction(json));
     }, []);
+
+    useEffect(() => {
+        let array = freqs.count && new Array(freqs.count).fill(false);
+        setFreqState(array);
+
+        let array2 = helps.count && new Array(helps.count).fill(false);
+        setHelpState(array2);
+    }, [freqs.count, helps.count]);
 
     const [tab, setTab] = useState("introduce");
     const [ask, setAsk] = useState(false);
@@ -49,7 +59,6 @@ const Service = () => {
     const onSubmit = () => {
         json = {
             user: json.user,
-            // token: localStorage.getItem("accessToken"),
             title: title,
             contents: content,
             type: category
@@ -118,11 +127,24 @@ const Service = () => {
                             <div className="bar"></div>
                             <div className="freq-list">
                                 {freqs.results &&
-                                    freqs.results.map(freq => {
+                                    freqs.results.map((freq, index) => {
                                         return (
                                             <div className="freq">
-                                                <div>{freq.title}</div>
-                                                {/* <div>{freq.contents}</div> */}
+                                                <div
+                                                    className="freq-title"
+                                                    onClick={() => {
+                                                        const tempArr = [
+                                                            ...freqState.slice(0, index),
+                                                            !freqState[index],
+                                                            ...freqState.slice(index + 1)
+                                                        ];
+                                                        freqState.splice(index, 1, !freqState[index]);
+                                                        setFreqState(tempArr);
+                                                    }}
+                                                >
+                                                    {freq.title}
+                                                </div>
+                                                {freqState[index] ? <div className="freq-content">{freq.contents}</div> : null}
                                             </div>
                                         );
                                     })}
@@ -151,17 +173,8 @@ const Service = () => {
                                         1:1 문의하기
                                     </button>
                                 )}
-                                {/* {helps &&
-                                    helps.map(help => {
-                                        return (
-                                            <div>
-                                                <div>{help.title}</div>
-                                                <div>{help.contents}</div>
-                                                <div>{help.status}</div>
-                                            </div>
-                                        );
-                                    })} */}
                             </div>
+
                             {ask ? (
                                 <div className="ask-page">
                                     <div className="type">
@@ -217,9 +230,56 @@ const Service = () => {
                                         <div className="date">작성일</div>
                                         <div className="status">처리상태</div>
                                     </div>
-                                    {/* {
-                                    asks.map()
-                                } */}
+                                    <div className="help-list">
+                                        {helps.results &&
+                                            helps.results.map((help, index) => {
+                                                return (
+                                                    <div>
+                                                        <div className="help">
+                                                            <div className="help-title-box">
+                                                                <div className="type">
+                                                                    {help.source === "help"
+                                                                        ? "1:1문의"
+                                                                        : help.source === "create"
+                                                                        ? "게시요청"
+                                                                        : help.source === "update"
+                                                                        ? "수정요청"
+                                                                        : null}
+                                                                </div>
+                                                                <div
+                                                                    className="title"
+                                                                    onClick={() => {
+                                                                        const tempArr = [
+                                                                            ...helpState.slice(0, index),
+                                                                            !helpState[index],
+                                                                            ...helpState.slice(index + 1)
+                                                                        ];
+                                                                        helpState.splice(index, 1, !helpState[index]);
+                                                                        setHelpState(tempArr);
+                                                                    }}
+                                                                >
+                                                                    {help.title}
+                                                                </div>
+                                                                <div className="date">{help.created_at.split("T")[0]}</div>
+                                                                <div className="status">{help.status === "waiting" ? "답변대기" : "답변완료"}</div>
+                                                            </div>
+                                                            {helpState[index] ? (
+                                                                <div className="help-content-box">
+                                                                    <div className="help-content">
+                                                                        <div className="writer">내용</div>
+                                                                        <div className="content">{help.contents}</div>
+                                                                    </div>
+                                                                    <div className="help-content">
+                                                                        <div className="writer">답변</div>
+                                                                        <div className="content">{help.answer}</div>
+                                                                    </div>
+                                                                </div>
+                                                            ) : null}
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                    </div>
                                 </div>
                             )}
                         </div>
