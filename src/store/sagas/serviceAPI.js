@@ -39,30 +39,21 @@ function* getHelpApiData(info) {
         let data = null;
 
         if (info.payload.title) {
-            data = yield call(
-                [axios, "post"],
-                "https://cogether.azurewebsites.net/help-center/my-questions/",
-                {
-                    headers: {
-                        Authorization: `Bearer ${info.payload.token}`
-                    }
-                },
-                info.payload
-            );
+            data = yield call([axios, "post"], "https://cogether.azurewebsites.net/help-center/my-questions/", info.payload);
         } else {
             data = yield call(
                 [axios, "get"],
                 "https://cogether.azurewebsites.net/help-center/my-questions/",
                 {
                     headers: {
-                        Authorization: `Bearer ${info.payload.token}`
+                        Authorization: `Bearer ${localStorage.getItem("accessToken")}`
                     }
                 },
                 info.payload
             );
         }
 
-        yield put(helpSuccessAction(data));
+        yield put(helpSuccessAction(data.data));
     } catch (e) {
         yield put(helpFailAction());
         console.log(e);

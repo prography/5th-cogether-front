@@ -36,7 +36,13 @@ const Search = ({ match }) => {
         text_size: {
             fontSize: 18,
             textDecoration: "none",
-            color: "#2d2d4b"
+            color: "#2d2d4b",
+            fontWeight: "bold"
+        },
+        body_size: {
+            fontSize: 16,
+            textDecoration: "none",
+            color: "black"
         }
     });
 
@@ -54,7 +60,7 @@ const Search = ({ match }) => {
                     <Fragment>
                         <div className="content-head">
                             <div className="name">동아리</div>
-                            <Link to={`/club/${match.params.text}`}>
+                            <Link to={`/club`}>
                                 <button className="btn">전체보기</button>
                             </Link>
                         </div>
@@ -76,17 +82,24 @@ const Search = ({ match }) => {
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                                                         <div className={classes.text_size}>{search.host}</div>
                                                                     </Typography>
-                                                                    {/*<Typography variant="body2" color="textSecondary" component="p">
-                                </Typography>*/}
+                                                                    <Typography variant="body2" color="textSecondary" component="p">
+                                                                        <div className={classes.body_size}>{search.title}</div>
+                                                                        <div>
+                                                                            {search.start_at.split("T")[0]} ~ {search.end_at.split("T")[0]}
+                                                                        </div>
+                                                                    </Typography>
                                                                 </CardContent>
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                            <Link to={`/club/${search.id}`}>
-                                                                <Button size="small" color="primary">
-                                                                    More Info
+                                                            <a
+                                                                className="detail-link"
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
+                                                            >
+                                                                <Button size="small" color="#2d2d4b">
+                                                                    더 알아보기
                                                                 </Button>
-                                                            </Link>
+                                                            </a>
                                                         </CardActions>
                                                     </Card>
                                                 </div>
@@ -98,7 +111,9 @@ const Search = ({ match }) => {
 
                         <div className="content-head">
                             <div className="name">컨퍼런스</div>
-                            <button className="btn">전체보기</button>
+                            <Link to={`/conference`}>
+                                <button className="btn">전체보기</button>
+                            </Link>
                         </div>
                         <Container>
                             <Row md={6}>
@@ -108,7 +123,7 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/conf/${search.id}`}>
+                                                        <Link to={`/conference/${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
@@ -118,17 +133,24 @@ const Search = ({ match }) => {
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                                                         <div className={classes.text_size}>{search.host}</div>
                                                                     </Typography>
-                                                                    {/*<Typography variant="body2" color="textSecondary" component="p">
-                                </Typography>*/}
+                                                                    <Typography variant="body2" color="textSecondary" component="p">
+                                                                        <div className={classes.body_size}>{search.title}</div>
+                                                                        <div>
+                                                                            {search.start_at.split("T")[0]} ~ {search.end_at.split("T")[0]}
+                                                                        </div>
+                                                                    </Typography>
                                                                 </CardContent>
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                            <Link to={`/conf/${search.id}`}>
-                                                                <Button size="small" color="primary">
-                                                                    More Info
+                                                            <a
+                                                                className="detail-link"
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
+                                                            >
+                                                                <Button size="small" color="#2d2d4b">
+                                                                    더 알아보기
                                                                 </Button>
-                                                            </Link>
+                                                            </a>
                                                         </CardActions>
                                                     </Card>
                                                 </div>
@@ -140,7 +162,9 @@ const Search = ({ match }) => {
 
                         <div className="content-head">
                             <div className="name">교육</div>
-                            <button className="btn">전체보기</button>
+                            <Link to={`/education`}>
+                                <button className="btn">전체보기</button>
+                            </Link>
                         </div>
                         <Container>
                             <Row md={6}>
@@ -150,7 +174,7 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/edu/${search.id}`}>
+                                                        <Link to={`/education/${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
@@ -160,17 +184,24 @@ const Search = ({ match }) => {
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
                                                                         <div className={classes.text_size}>{search.host}</div>
                                                                     </Typography>
-                                                                    {/*<Typography variant="body2" color="textSecondary" component="p">
-                                </Typography>*/}
+                                                                    <Typography variant="body2" color="textSecondary" component="p">
+                                                                        <div className={classes.body_size}>{search.title}</div>
+                                                                        <div>
+                                                                            {search.start_at.split("T")[0]} ~ {search.end_at.split("T")[0]}
+                                                                        </div>
+                                                                    </Typography>
                                                                 </CardContent>
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                            <Link to={`/edu/${search.id}`}>
-                                                                <Button size="small" color="primary">
-                                                                    More Info
+                                                            <a
+                                                                className="detail-link"
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
+                                                            >
+                                                                <Button size="small" color="#2d2d4b">
+                                                                    더 알아보기
                                                                 </Button>
-                                                            </Link>
+                                                            </a>
                                                         </CardActions>
                                                     </Card>
                                                 </div>
