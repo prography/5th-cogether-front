@@ -16,7 +16,7 @@ const Service = () => {
     const jwt = require("jsonwebtoken");
     const decoded = jwt.decode(localStorage.getItem("accessToken"));
     let json = {
-        user: decoded.user_id,
+        user: decoded ? decoded.user_id : null,
         token: localStorage.getItem("accessToken")
     };
 

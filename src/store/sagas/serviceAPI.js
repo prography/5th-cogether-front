@@ -53,11 +53,11 @@ function* getHelpApiData(info) {
             data = yield call(
                 [axios, "get"],
                 "https://cogether.azurewebsites.net/help-center/my-questions/",
-                // {
-                //     headers: {
-                //         Authorization: `Bearer ${info.payload.token}`
-                //     }
-                // },
+                {
+                    headers: {
+                        Authorization: `Bearer ${info.payload.token}`
+                    }
+                },
                 info.payload
             );
         }
