@@ -1,7 +1,7 @@
 # cogether
 > 국내 개발 행사를 소개하는 프로젝트
 
-해당 링크로 이동하여 웹 서비스를 이용하실 수 있습니다. [cogether](https://clever-minsky-ddfb53.netlify.com/)
+해당 링크로 이동하여 웹 서비스를 이용하실 수 있습니다. [cogether](https://cogether.kr/)
 ![](../header.png)
 
 ## :book: 개요

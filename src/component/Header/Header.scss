@@ -1,5 +1,58 @@
+@import "~antd/dist/antd.css";
+
 .header {
-    min-width: 1200px;
+    //  min-width: 1200px;
+    @media screen and (max-width: 1100px) {
+        .ant-collapse-icon-position-right {
+            width: 100%;
+
+            .z-index {
+                //width: 95%;
+                display: flex;
+                flex-direction: row;
+                z-index: 999;
+                padding-top: 20px;
+                align-items: center;
+                .image {
+                    //margin-top: 20px;
+                }
+                .search-menu {
+                }
+                .account {
+                }
+            }
+
+            .ant-collapse-item {
+                flex: 1;
+                text-align: center;
+                font-size: 15px;
+                width: 100%;
+                .ant-collapse-header {
+                    .ant-collapse-arrow {
+                        top: -20px;
+                    }
+                }
+                .ant-collapse-content-box {
+                    padding: 0;
+                    a {
+                        text-decoration: none;
+                        .txt {
+                            width: 100%;
+                            color: #878d91;
+                            border-bottom: 1px solid #cbcecf;
+                            padding: 10px 0;
+                        }
+                        .txt:hover {
+                            color: #fd8c3e;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+        height: auto;
+    }
+
     height: 86px;
     display: flex;
     flex-direction: row;
