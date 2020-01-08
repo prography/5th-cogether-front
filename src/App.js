@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./App.css";
+import "./App.scss";
 import Header from "component/Header";
 import Footer from "component/Footer";
 import Oauth from "component/Oauth";

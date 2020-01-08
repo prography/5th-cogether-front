@@ -22,7 +22,6 @@ const MainPT = () => {
     const [eduIndex, setEduIndex] = useState(0);
     const [confIndex, setConfIndex] = useState(0);
 
-
     //const createChildren = useCallback(() => {}, [clubs]);
 
     useEffect(() => {
@@ -65,7 +64,7 @@ const MainPT = () => {
                 <div className="itemlist">
                     <ItemsCarousel
                         // Carousel configurations
-                        numberOfCards={3}
+                        numberOfCards={1}
                         gutter={16}
                         showSlither={false}
                         firstAndLastGutter={false}
