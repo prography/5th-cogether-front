@@ -22,9 +22,6 @@ const MainPT = () => {
     const [eduIndex, setEduIndex] = useState(0);
     const [confIndex, setConfIndex] = useState(0);
 
-
-    //const createChildren = useCallback(() => {}, [clubs]);
-
     useEffect(() => {
         dispatch(requestClub());
         dispatch(requestConference());
@@ -93,7 +90,7 @@ const MainPT = () => {
                                                 marginBottom: 2
                                             }}
                                         >
-                                            <img src={club.photo ? club.photo : require("assets/placeholder.png")} alt="logo" />
+                                            <img src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} alt="logo" />
                                             <div className="host">{club.host}</div>
                                             <div className="title">{club.title}</div>
                                         </div>
@@ -141,7 +138,7 @@ const MainPT = () => {
                                                 marginBottom: 2
                                             }}
                                         >
-                                            <img src={edu.photo ? edu.photo : require("assets/placeholder.png")} alt="logo" />
+                                            <img src={edu.photo.photo ? edu.photo.photo : require("assets/placeholder.png")} alt="logo" />
                                             <div className="host">{edu.host}</div>
                                             <div className="title">{edu.title}</div>
                                         </div>
@@ -161,7 +158,7 @@ const MainPT = () => {
                 <div className="itemlist">
                     <ItemsCarousel
                         // Carousel configurations
-                        numberOfCards={3}
+                        numberOfCards={1}
                         gutter={16}
                         showSlither={false}
                         firstAndLastGutter={false}
@@ -189,7 +186,7 @@ const MainPT = () => {
                                                 marginBottom: 2
                                             }}
                                         >
-                                            <img src={conf.photo ? conf.photo : require("assets/placeholder.png")} alt="logo" />
+                                            <img src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} alt="logo" />
                                             <div className="host">{conf.host}</div>
                                             <div className="title">{conf.title}</div>
                                         </div>
