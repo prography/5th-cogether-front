@@ -44,7 +44,7 @@
         .service-explanation {
             flex: none;
             text-align: center;
-            padding: 20px;
+            padding: 10px;
             width: 600px;
             margin: 0 auto;
             font-size: 18px;
@@ -74,7 +74,7 @@
             .chevron-down {
                 width:100%;
                 position: absolute;
-                transform: translate(50%,30%);
+                transform: translate(0,200px);
             }
         }
     }
