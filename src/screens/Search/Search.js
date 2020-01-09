@@ -47,7 +47,7 @@ const Search = ({ match }) => {
     });
 
     const classes = useStyles();
-    console.log(match);
+
     return (
         <div className="search-wrap">
             <div className="head">
@@ -111,7 +111,7 @@ const Search = ({ match }) => {
 
                         <div className="content-head">
                             <div className="name">컨퍼런스</div>
-                            <Link to={`/conference`}>
+                            <Link to={`/conference/${match.params.text}`}>
                                 <button className="btn">전체보기</button>
                             </Link>
                         </div>
