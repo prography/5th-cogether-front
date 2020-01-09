@@ -21,27 +21,37 @@ const EducationDetail = ({ match }) => {
                             <img className="image" src={details.photo.photo}></img>
                         </div>
                     ) : null}
-                    {details.title ? <div className="box">{details.title}</div> : null}
+                    <div className="link">
+                        <a href={`javascript:window.open('${details.external_link}')`}>더 자세히 알아보기</a>
+                    </div>
+                    {details.title ? 
+                        <>
+                            <div className="seperator">Title</div>
+                            <div className="box">{details.title}</div>
+                        </> : null}
                     {details.content ? (
-                        <div className="box">
-                            {
-                                <div className="box">
-                                    {details.content
-                                        .replace(/(<br>|<br\/>|<br \/>|<p>|<\/p>)/g, "\n")
-                                        .split("\n")
-                                        .map(line => {
-                                            return (
-                                                <span>
-                                                    {line}
-                                                    <br />
-                                                </span>
-                                            );
-                                        })}
-                                </div>
-                            }
-                        </div>
+                        <>
+                            <div className="seperator">About</div>
+                            <div className="box">
+                                {details.content
+                                    .replace(/(<br>|<br\/>|<br \/>|<p>|<\/p>)/g, "\n")
+                                    .split("\n")
+                                    .map(line => {
+                                        return (
+                                            <span>
+                                                {line}
+                                                <br />
+                                            </span>
+                                        );
+                                    })}
+                            </div>
+                        </>
                     ) : null}
-                    {details.location ? <div className="box">{details.location}</div> : null}
+                    {details.location ? 
+                        <>
+                            <div className="seperator">Where</div>
+                            <div className="box">{details.location}</div> 
+                        </> : null}
                 </div>
             </Card>
         </div>
