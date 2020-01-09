@@ -12,8 +12,6 @@ const ConferenceDetail = ({ match }) => {
         dispatch(requestDetail(match.params.id));
     }, []);
 
-    //details.content && console.log(details.content.replace(/(<br>|<br\/>|<br \/>)/gs, "\r\n"));
-
     return (
         <div>
             <Card>

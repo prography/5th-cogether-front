@@ -98,7 +98,7 @@ const EducationList = ({ match }) => {
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}
-                                                          image={edu.photo ? edu.photo : require("assets/placeholder.png")}
+                                                          image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
                                                       />
                                                       <CardContent>
                                                           <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -142,7 +142,7 @@ const EducationList = ({ match }) => {
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}
-                                                          image={edu.photo ? edu.photo : require("assets/placeholder.png")}
+                                                          image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
                                                       />
                                                       <CardContent>
                                                           <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
