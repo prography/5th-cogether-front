@@ -13,6 +13,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestConference, requestSearch } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./ConferenceList.scss";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import swal from 'sweetalert';
 
 const ConferenceList = ({ match }) => {
     const dispatch = useDispatch();
@@ -37,6 +39,11 @@ const ConferenceList = ({ match }) => {
         }
     }, [match.params.text]);
 
+    const url = "https://cogether.kr";
+    const copy = () => {
+        swal("클립보드 복사가 완료되었습니다")
+    }
+    
     const useStyles = makeStyles({
         card: {
             maxWidth: 300
@@ -91,7 +98,7 @@ const ConferenceList = ({ match }) => {
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}
-                                                          image={conf.photo ? conf.photo : require("assets/placeholder.png")}
+                                                          image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
                                                       />
                                                       <CardContent>
                                                           <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -112,6 +119,13 @@ const ConferenceList = ({ match }) => {
                                                           더 알아보기
                                                       </Button>
                                                   </a>
+                                                  <a className="detail-link" >
+                                                      <CopyToClipboard text={url.concat(`${match.url}/${conf.id}`)}>
+                                                          <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                              링크 공유하기
+                                                          </Button>
+                                                      </CopyToClipboard>
+                                                  </a>
                                               </CardActions>
                                           </Card>
                                       </div>
@@ -128,7 +142,7 @@ const ConferenceList = ({ match }) => {
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}
-                                                          image={conf.photo ? conf.photo : require("assets/placeholder.png")}
+                                                          image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
                                                       />
                                                       <CardContent>
                                                           <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -148,6 +162,13 @@ const ConferenceList = ({ match }) => {
                                                       <Button size="small" color="#2d2d4b">
                                                           더 알아보기
                                                       </Button>
+                                                  </a>
+                                                  <a className="detail-link" >
+                                                      <CopyToClipboard text={url.concat(`${match.url}/${conf.id}`)}>
+                                                          <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                              링크 공유하기
+                                                          </Button>
+                                                      </CopyToClipboard>
                                                   </a>
                                               </CardActions>
                                           </Card>

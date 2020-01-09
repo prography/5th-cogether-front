@@ -12,7 +12,7 @@ import PrevArrow from "component/Arrow/PrevArrow";
 import NextArrow from "component/Arrow/NextArrow";
 import { Layout } from "antd";
 import Header from "component/Header";
-import Carousel from "nuka-carousel";
+import MainRT from "./MainRT";
 
 const MainPT = () => {
     const dispatch = useDispatch();
@@ -82,43 +82,7 @@ const MainPT = () => {
 
             {small ? (
                 <>
-                    <div className="media-box">
-                        <div className="title">컨퍼런스</div>
-                        <Link to="/conference" className="txt">
-                            <button className="all">전체보기</button>
-                        </Link>
-                    </div>
-                    <Carousel showArrows={true} autoplay={true} className="carousel">
-                        {conferences.results &&
-                            conferences.results.map(conf => {
-                                return (
-                                    <div className="element">
-                                        <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
-                                        <p className="host">{conf.host}</p>
-                                        <p className="title">{conf.title}</p>
-                                    </div>
-                                );
-                            })}
-                    </Carousel>
-
-                    <div className="media-box">
-                        <div className="title">컨퍼런스</div>
-                        <Link to="/conference" className="txt">
-                            <button className="all">전체보기</button>
-                        </Link>
-                    </div>
-                    <Carousel showArrows={true} autoplay={true} className="carousel">
-                        {conferences.results &&
-                            conferences.results.map(conf => {
-                                return (
-                                    <div className="element">
-                                        <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
-                                        <p className="host">{conf.host}</p>
-                                        <p className="title">{conf.title}</p>
-                                    </div>
-                                );
-                            })}
-                    </Carousel>
+                    <MainRT />
                 </>
             ) : (
                 <>
