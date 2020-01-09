@@ -33,14 +33,7 @@
             color: white;
             font-weight: 600;
         }
-        @media screen and (max-width: 992px){
-            .service-slogan {
-                width:100%;
-                position: absolute;
-                transform: translate(0,-70%);
-                font-size: 24px;
-            }
-        }
+        
         .service-explanation {
             flex: none;
             text-align: center;
@@ -50,14 +43,7 @@
             font-size: 18px;
             color: white;
         }
-        @media screen and (max-width: 992px){
-            .service-explanation {
-                width:100%;
-                position: absolute;
-                transform: translate(0,30%);
-                font-size: 14px;
-            }
-        }
+        
         .chevron-down {
             flex: 1;
             display: flex;
@@ -70,22 +56,8 @@
                 margin: 20px;
             }
         }
-        @media screen and (max-width: 992px){
-            .chevron-down {
-                width:100%;
-                position: absolute;
-                transform: translate(0,200px);
-            }
-        }
     }
-    @media screen and (max-width: 992px){
-        .intro {
-            /*background-image: url("../../assets/image-conference.png");
-            background-position: center;
-            justify-content: center;*/
-            height: calc(100vh - 60px);
-        }
-    }
+    
     .club {
         max-width: 1024px;
         margin: 0 auto;
@@ -117,32 +89,31 @@
 
         .itemlist {
             margin-top: 16px;
+
             a {
                 text-decoration: none;
             }
-
             .item {
                 img {
                     width: 330px;
-                    height: 244px;
+                    height: 200px;
                     border-radius: 3;
                     background: black;
                 }
                 .host {
-                    height: 29px;
-                    font-size: 20px;
+                    height: 40px;
+                    font-size: 18px;
                     font-weight: bold;
                     text-align: left;
                     color: #2d2d4b;
-                    margin: 0 16px;
-                    margin-top: 20px;
+                    margin: 20px 16px;
                 }
                 .title {
                     font-size: 16px;
                     color: #2d2d4b;
                     text-align: left;
                     margin: 0 16px;
-                    margin-top: 8px;
+                    margin-top: 30px;
                 }
             }
         }
@@ -152,6 +123,37 @@
     }
     .conference {
         @extend .club;
+    }
+}
+
+@media screen and (max-width: 992px){
+    .main-wrap {
+        min-width: initial;
+
+        .intro {
+            /*background-image: url("../../assets/image-conference.png");
+            background-position: center;
+            justify-content: center;*/
+            height: calc(100vh - 60px);
+
+            .service-slogan {
+                width:100%;
+                position: absolute;
+                transform: translate(0,-70%);
+                font-size: 24px;
+            }
+            .service-explanation {
+                width:100%;
+                position: absolute;
+                transform: translate(0,30%);
+                font-size: 14px;
+            }
+            .chevron-down {
+                width:100%;
+                position: absolute;
+                transform: translate(0,200px);
+            }
+        }
     }
 }
 
