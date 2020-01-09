@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import swal from 'sweetalert';
 
 const Search = ({ match }) => {
     const dispatch = useDispatch();
@@ -21,6 +23,11 @@ const Search = ({ match }) => {
     useEffect(() => {
         dispatch(requestSearch(match.params.text));
     }, [match.params.text]);
+
+    const url = "https://cogether.kr";
+    const copy = () => {
+        swal("클립보드 복사가 완료되었습니다")
+    }
 
     const useStyles = makeStyles({
         card: {
@@ -72,11 +79,11 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/club/${search.id}`}>
+                                                        <Link to={`/club/detail/${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
-                                                                    image={search.photo ? search.photo : require("assets/placeholder.png")}
+                                                                    image={search.photo ? search.photo.photo : require("assets/placeholder.png")}
                                                                 />
                                                                 <CardContent>
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -94,11 +101,17 @@ const Search = ({ match }) => {
                                                         <CardActions>
                                                             <a
                                                                 className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
-                                                            >
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
                                                                 <Button size="small" color="#2d2d4b">
                                                                     더 알아보기
                                                                 </Button>
+                                                            </a>
+                                                            <a className="detail-link" >
+                                                                <CopyToClipboard text={url.concat(`/club/detail/${search.id}`)}>
+                                                                    <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                                        링크 공유하기
+                                                                    </Button>
+                                                                </CopyToClipboard>
                                                             </a>
                                                         </CardActions>
                                                     </Card>
@@ -123,11 +136,11 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/conference/${search.id}`}>
+                                                        <Link to={`/conference/detail/${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
-                                                                    image={search.photo ? search.photo : require("assets/placeholder.png")}
+                                                                    image={search.photo ? search.photo.photo : require("assets/placeholder.png")}
                                                                 />
                                                                 <CardContent>
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -145,11 +158,17 @@ const Search = ({ match }) => {
                                                         <CardActions>
                                                             <a
                                                                 className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
-                                                            >
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
                                                                 <Button size="small" color="#2d2d4b">
                                                                     더 알아보기
                                                                 </Button>
+                                                            </a>
+                                                            <a className="detail-link" >
+                                                                <CopyToClipboard text={url.concat(`/conference/detail/${search.id}`)}>
+                                                                    <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                                        링크 공유하기
+                                                                    </Button>
+                                                                </CopyToClipboard>
                                                             </a>
                                                         </CardActions>
                                                     </Card>
@@ -174,11 +193,11 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/education/${search.id}`}>
+                                                        <Link to={`/education/detail${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
-                                                                    image={search.photo ? search.photo : require("assets/placeholder.png")}
+                                                                    image={search.photo ? search.photo.photo : require("assets/placeholder.png")}
                                                                 />
                                                                 <CardContent>
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -196,11 +215,18 @@ const Search = ({ match }) => {
                                                         <CardActions>
                                                             <a
                                                                 className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
-                                                            >
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
+                                                            
                                                                 <Button size="small" color="#2d2d4b">
                                                                     더 알아보기
                                                                 </Button>
+                                                            </a>
+                                                            <a className="detail-link" >
+                                                                <CopyToClipboard text={url.concat(`/education/detail/${search.id}`)}>
+                                                                    <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                                        링크 공유하기
+                                                                    </Button>
+                                                                </CopyToClipboard>
                                                             </a>
                                                         </CardActions>
                                                     </Card>
