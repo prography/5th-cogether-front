@@ -120,7 +120,8 @@ const ConferenceList = ({ match }) => {
                                                       </Button>
                                                   </a>
                                                   <a className="detail-link" >
-                                                      <CopyToClipboard text={url.concat(`${match.url}/${conf.id}`)}>
+                                                      <CopyToClipboard text={url.concat(`${match.url}/detail/${conf.id}`)
+                                                        .replace(`${match.params.text}/`,"")}>
                                                           <Button size="small" color="#2d2d4b" onClick={copy}>
                                                               링크 공유하기
                                                           </Button>
@@ -164,7 +165,7 @@ const ConferenceList = ({ match }) => {
                                                       </Button>
                                                   </a>
                                                   <a className="detail-link" >
-                                                      <CopyToClipboard text={url.concat(`${match.url}/${conf.id}`)}>
+                                                      <CopyToClipboard text={url.concat(`${match.url}/detail/${conf.id}`)}>
                                                           <Button size="small" color="#2d2d4b" onClick={copy}>
                                                               링크 공유하기
                                                           </Button>

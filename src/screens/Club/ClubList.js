@@ -94,7 +94,7 @@ const ClubList = ({ match }) => {
                                   <Col md={4}>
                                       <div className="block">
                                           <Card className={classes.card}>
-                                              <Link to={`${match.url}/${club.id}`} className="body-link">
+                                              <Link to={`/club/detail/${club.id}`}>
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}
@@ -120,7 +120,8 @@ const ClubList = ({ match }) => {
                                                       </Button>
                                                   </a>
                                                   <a className="detail-link" >
-                                                      <CopyToClipboard text={url.concat(`${match.url}/${club.id}`)}>
+                                                      <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)
+                                                        .replace(`${match.params.text}/`,"")}>
                                                           <Button size="small" color="#2d2d4b" onClick={copy}>
                                                               링크 공유하기
                                                           </Button>
@@ -138,7 +139,7 @@ const ClubList = ({ match }) => {
                                   <Col md={4}>
                                       <div className="block">
                                           <Card className={classes.card}>
-                                              <Link to={`${match.url}/${club.id}`} className="body-link">
+                                              <Link to={`/club/detail/${club.id}`}>
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}
@@ -164,7 +165,7 @@ const ClubList = ({ match }) => {
                                                       </Button>
                                                   </a>
                                                   <a className="detail-link" >
-                                                      <CopyToClipboard text={url.concat(`${match.url}/${club.id}`)}>
+                                                      <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)}>
                                                           <Button size="small" color="#2d2d4b" onClick={copy}>
                                                               링크 공유하기
                                                           </Button>
