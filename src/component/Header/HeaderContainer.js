@@ -113,7 +113,7 @@ const HeaderContainer = ({ match }) => {
                             <Link to="/conference">
                                 <div className="txt">컨퍼런스</div>
                             </Link>
-                            <Link to="/userRequest">
+                            <Link to="/service">
                                 <div className="txt">고객센터</div>
                             </Link>
                         </Panel>
@@ -142,7 +142,7 @@ const HeaderContainer = ({ match }) => {
                         </Link>
                     </div>
                     <div className="menu">
-                        <Link to="/userRequest" className="txt">
+                        <Link to="/service" className="txt">
                             고객센터
                         </Link>
                     </div>
