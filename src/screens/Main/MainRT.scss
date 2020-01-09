@@ -1,0 +1,52 @@
+.media-box {
+
+    display: flex;
+    flex-direction: row;
+    
+    .title {
+
+        flex: 1;
+        width: 80px;
+        height: 33px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #2d2d4b;
+        margin: 33px;
+    }
+    .all {
+
+        width: 92px;
+        height: 40px;
+        border-radius: 3px;
+        border: solid 1px #cbcecf;
+        background-color: #fafafa;
+        margin: 30px;
+    }
+    .all:hover {
+        background-color: #eaeaea;
+    }
+}
+.carousel {
+
+    border-bottom: 1px solid #c2c0b3;
+    
+    .element {
+
+        text-align: center;
+        padding: 50px 0px 50px 0px;
+        width: 100%;
+
+        .image {
+            width: 400px;
+        }
+        .host {
+            font-weight: bold;
+            margin: 20px;
+            font-size: 18px;
+        }
+        .title {
+            margin: 20px;
+            font-size: 15px;
+        }
+    }
+}

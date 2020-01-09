@@ -42,7 +42,6 @@ const HeaderContainer = ({ match }) => {
 
     const [small, setSmall] = useState(false);
     const [size, setSize] = useState(0);
-    var x = window.innerWidth;
 
     useLayoutEffect(() => {
         function updateSize() {
@@ -63,28 +62,15 @@ const HeaderContainer = ({ match }) => {
     }, [size]);
 
     return (
-        <div className="header">
+        <div className="header" style={{ width: size }}>
             {small ? (
-                <Collapse onChange={callback} expandIconPosition={"right"} defaultActiveKey={["0"]}>
+                <Fragment>
                     <div className="z-index">
                         <span className="image">
                             <Link to="/">
                                 <img className="logo" src={require("../../assets/cogether_logo@3x.png")} alt="logo" />
                             </Link>
                         </span>
-                        {/* <div className="search-menu">
-                            <input
-                                type="text"
-                                className="search-txt"
-                                placeholder="검색 (ex. 우아한 테크코스)"
-                                value={searchText}
-                                onChange={onSetSearchText}
-                            />
-                            <Link to={searchText === "" ? "/" : `/search/${searchText}`}>
-                                <img className="search-btn" src={search} />
-                            </Link>
-                        </div>
-            <img className="bar" src={bar} />*/}
                         {token && me ? (
                             <div className="account">
                                 <div className="username">{me.split('"')[1].split("@")[0]}</div>
@@ -116,22 +102,23 @@ const HeaderContainer = ({ match }) => {
                             </div>
                         )}
                     </div>
-
-                    <Panel key="1">
-                        <Link to="/club">
-                            <div className="txt">동아리</div>
-                        </Link>
-                        <Link to="/education">
-                            <div className="txt">교육</div>
-                        </Link>
-                        <Link to="/conference">
-                            <div className="txt">컨퍼런스</div>
-                        </Link>
-                        <Link to="/userRequest">
-                            <div className="txt">고객센터</div>
-                        </Link>
-                    </Panel>
-                </Collapse>
+                    <Collapse onChange={callback} expandIconPosition={"right"} defaultActiveKey={["0"]}>
+                        <Panel key="1">
+                            <Link to="/club">
+                                <div className="txt">동아리</div>
+                            </Link>
+                            <Link to="/education">
+                                <div className="txt">교육</div>
+                            </Link>
+                            <Link to="/conference">
+                                <div className="txt">컨퍼런스</div>
+                            </Link>
+                            <Link to="/userRequest">
+                                <div className="txt">고객센터</div>
+                            </Link>
+                        </Panel>
+                    </Collapse>
+                </Fragment>
             ) : (
                 <Fragment>
                     <div className="image">
@@ -159,7 +146,7 @@ const HeaderContainer = ({ match }) => {
                             고객센터
                         </Link>
                     </div>
-                    <div className="search-menu">
+                    <div className="header-search-menu">
                         <input
                             type="text"
                             className="search-txt"

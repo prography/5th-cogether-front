@@ -15,11 +15,45 @@
         top: 25%;
         left: 24%;
     }
-    @media screen and (max-width: 992px){
+    @media screen and (max-width: 992px) {
         .slogan {
             font-size: 16px;
             width: 40%;
         }
+    }
+}
+
+.search-menu {
+    flex: none;
+    width: 264px;
+    height: 40px;
+    border-radius: 3px;
+    border: solid 1px #878d91;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: 10%;
+    margin-top: 20px;
+
+    .search-txt {
+        width: 210px;
+        height: 20px;
+        font-size: 14px;
+        color: #cbcecf;
+        border: none;
+        margin-left: 10px;
+        outline: none;
+    }
+    .search-btn {
+        flex: none;
+        width: 24px;
+        height: 24px;
+    }
+}
+.search-menu:focus-within {
+    border: solid 1px #fd8c3e;
+    .search-txt {
+        color: black;
     }
 }
 
