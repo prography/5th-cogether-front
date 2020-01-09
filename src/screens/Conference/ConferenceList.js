@@ -44,7 +44,7 @@ const ConferenceList = ({ match }) => {
 
     const url = "https://cogether.kr";
     const copy = () => {
-        swal("클립보드 복사가 완료되었습니다")
+        swal("클립보드 복사가 완료되었습니다");
     };
 
     const like = () => {
