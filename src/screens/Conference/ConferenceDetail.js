@@ -13,10 +13,6 @@ const ConferenceDetail = ({ match }) => {
     }, []);
 
     //details.content && console.log(details.content.replace(/(<br>|<br\/>|<br \/>)/gs, "\r\n"));
-    var text = "web<br/>is<br/>free";
-    var result = text.replace(/(<br>|<br\/>|<br \/>)/g, "\r\n");
-    //
-    console.log(result);
 
     return (
         <div>
@@ -31,6 +27,7 @@ const ConferenceDetail = ({ match }) => {
                     {details.content ? (
                         <div className="box">
                             {details.content
+                                .replace(/(\[masked\]|\/)/g, "")
                                 .replace(/(<br>|<br\/>|<br \/>|<p>|<\/p>)/g, "\n")
                                 .split("\n")
                                 .map(line => {
