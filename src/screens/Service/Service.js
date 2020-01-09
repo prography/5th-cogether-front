@@ -100,29 +100,6 @@ const Service = () => {
                         <div className={tab}>
                             <div className="freq-head">
                                 <div className="text">사용자들이 자주 묻는 질문을 찾아보세요.</div>
-                                {/* <div className="dropdown-box" onClick={() => setShowMenu(!showMenu)}>
-                                    <div className="dropwon-text">{dropdown}</div>
-                                    <img src={drop_arrow}></img>
-                                </div>
-                                <span className="dropdown">
-                                    {showMenu ? (
-                                        <ul>
-                                            <ol className="list" onClick={() => onSetDropdown("전체")}>
-                                                전체
-                                            </ol>
-                                            <ol className="list" onClick={() => onSetDropdown("제목")}>
-                                                제목
-                                            </ol>
-                                            <ol className="list" onClick={() => onSetDropdown("내용")}>
-                                                내용
-                                            </ol>
-                                        </ul>
-                                    ) : null}
-                                </span>
-                                <div className="search">
-                                    <input placeholder="질문 검색하기"></input>
-                                    <img src={search}></img>
-                                </div> */}
                             </div>
                             <div className="bar"></div>
                             <div className="freq-list">
