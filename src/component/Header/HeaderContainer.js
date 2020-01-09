@@ -71,36 +71,6 @@ const HeaderContainer = ({ match }) => {
                                 <img className="logo" src={require("../../assets/cogether_logo@3x.png")} alt="logo" />
                             </Link>
                         </span>
-                        {token && me ? (
-                            <div className="account">
-                                <div className="username">{me.split('"')[1].split("@")[0]}</div>
-                                <div className="usericon" onClick={showDropdownMenu}>
-                                    <img src={user}></img>
-                                </div>
-                                <span className="dropdown">
-                                    {showMenu ? (
-                                        <ul>
-                                            <Link to="/mypage">
-                                                <ol className="list">마이페이지</ol>
-                                            </Link>
-
-                                            <Link to="/" onClick={onLogout}>
-                                                <ol className="list">로그아웃</ol>
-                                            </Link>
-                                        </ul>
-                                    ) : null}
-                                </span>
-                            </div>
-                        ) : (
-                            <div className="account">
-                                <Link to="/login" className="login-btn">
-                                    로그인
-                                </Link>
-                                <Link to="/join" className="sign-btn">
-                                    회원가입
-                                </Link>
-                            </div>
-                        )}
                     </div>
                     <Collapse onChange={callback} expandIconPosition={"right"} defaultActiveKey={["0"]}>
                         <Panel key="1">
@@ -116,6 +86,25 @@ const HeaderContainer = ({ match }) => {
                             <Link to="/service">
                                 <div className="txt">고객센터</div>
                             </Link>
+                            {token && me ? (
+                                <div className="r-account">
+                                    <Link to="/mypage">
+                                        <div className="txt">마이페이지</div>
+                                    </Link>
+                                    <Link to="/" onClick={onLogout}>
+                                        <div className="txt">로그아웃</div>
+                                    </Link>
+                                </div>
+                            ) : (
+                                <div className="r-account">
+                                    <Link to="/login">
+                                        <div className="txt">로그인</div>
+                                    </Link>
+                                    <Link to="/sign">
+                                        <div className="txt">회원가입</div>
+                                    </Link>
+                                </div>
+                            )}
                         </Panel>
                     </Collapse>
                 </Fragment>
