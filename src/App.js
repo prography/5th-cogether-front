@@ -35,9 +35,12 @@ const App = () => {
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Main} />
+                    <Route exact path="/club" component={Clubs} />
                     <Route path="/club" component={Clubs} />
+                    <Route exact path="/education" component={Educations} />
                     <Route path="/education" component={Educations} />
-                    <Route path="/conference" component={Conferences} />
+                    <Route exact path="/conference" component={Conferences} />
+                    <Route path="/conference/:text" component={Conferences} />
                     <Route path="/login" component={Login} />
                     <Route path="/join" component={Join} />
                     <Route path="/loginDirect" component={LoginDirect} />

@@ -6,6 +6,7 @@ import ConferenceDetail from "./ConferenceDetail";
 function Conferences({ match }) {
     return (
         <>
+            {match.params.text && <Route expact path={`${match.path}/:text`} component={ConferenceList} />}
             <Route exact path={match.path} component={ConferenceList} />
             <Route path={`${match.path}/:id`} component={ConferenceDetail} />
         </>
