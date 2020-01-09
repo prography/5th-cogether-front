@@ -2,59 +2,6 @@
 
 .header {
     //  min-width: 1200px;
-    @media screen and (max-width: 1100px) {
-        height: auto;
-        .ant-collapse-icon-position-right {
-            width: 100%;
-            .z-index {
-                //width: 95%;
-                display: flex;
-                flex-direction: row;
-                z-index: 999;
-                padding-top: 20px;
-                align-items: center;
-                .image {
-                    //margin-top: 20px;
-                }
-                .search-menu {
-                }
-                .account {
-                }
-            }
-
-            .ant-collapse-item {
-                text-align: center;
-                font-size: 15px;
-                .ant-collapse-header {
-                    .ant-collapse-arrow {
-                        top: -24px;
-                    }
-                }
-                .ant-collapse-content-box {
-                    padding: 0;
-                    a {
-                        text-decoration: none;
-                        .txt {
-                            width: 100%;
-                            color: #878d91;
-                            border-bottom: 1px solid #cbcecf;
-                            padding: 10px 0;
-                        }
-                        .txt:hover {
-                            color: #fd8c3e;
-                            font-weight: bold;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    // @media screen and (max-width: 1100px) {
-    //     -webkit-region-fragment: {
-    //         display: none;
-    //     }
-    // }
     height: 86px;
     display: flex;
     flex-direction: row;
@@ -95,7 +42,7 @@
             font-weight: bold;
         }
     }
-    .search-menu {
+    .header-search-menu {
         flex: none;
         width: 264px;
         height: 40px;
@@ -119,7 +66,7 @@
             height: 24px;
         }
     }
-    .search-menu:focus-within {
+    .header-search-menu:focus-within {
         border: solid 1px #fd8c3e;
         .search-txt {
             color: black;
@@ -131,6 +78,7 @@
         height: 24px;
         margin-left: 16px;
     }
+
     .account {
         flex: none;
         margin-left: 16px;
@@ -195,6 +143,57 @@
                 }
                 .list:hover {
                     color: #fd8c3e;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .header {
+        height: auto;
+        .z-index {
+            //width: 95%;
+            display: flex;
+            flex-direction: row;
+            //z-index: 999;
+            padding-top: 20px;
+            align-items: center;
+            .image {
+                width: 148.45px;
+                // flex: none;
+            }
+            .search-menu {
+            }
+            .account {
+            }
+        }
+        .ant-collapse-icon-position-right {
+            width: 100%;
+
+            .ant-collapse-item {
+                text-align: center;
+                font-size: 15px;
+                .ant-collapse-header {
+                    .ant-collapse-arrow {
+                        top: -24px;
+                    }
+                }
+                .ant-collapse-content-box {
+                    padding: 0;
+                    a {
+                        text-decoration: none;
+                        .txt {
+                            // width: 100%;
+                            color: #878d91;
+                            border-bottom: 1px solid #cbcecf;
+                            padding: 10px 0;
+                        }
+                        .txt:hover {
+                            color: #fd8c3e;
+                            font-weight: bold;
+                        }
+                    }
                 }
             }
         }

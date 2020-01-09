@@ -21,7 +21,7 @@ const ConferenceList = ({ match }) => {
     const conferences = useSelector(state => state.conferenceReducer.conferenceInfo);
     const searchs = useSelector(state => state.clubReducer.search.conf);
 
-    const [searchText, setSearchText] = useState(match.params.text);
+    const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
     const onSetSearchText = useCallback(e => {
         setSearchText(e.target.value);
@@ -94,7 +94,7 @@ const ConferenceList = ({ match }) => {
                                   <Col md={4}>
                                       <div className="block">
                                           <Card className={classes.card}>
-                                              <Link to={`${match.url}/${conf.id}`}>
+                                              <Link to={`/conference/detail/${conf.id}`}>
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}
@@ -138,7 +138,7 @@ const ConferenceList = ({ match }) => {
                                   <Col md={4}>
                                       <div className="block">
                                           <Card className={classes.card}>
-                                              <Link to={`${match.url}/${conf.id}`}>
+                                              <Link to={`conference/detail/${conf.id}`}>
                                                   <CardActionArea>
                                                       <CardMedia
                                                           className={classes.media}

@@ -12,7 +12,7 @@ import PrevArrow from "component/Arrow/PrevArrow";
 import NextArrow from "component/Arrow/NextArrow";
 import { Layout } from "antd";
 import Header from "component/Header";
-import Carousel from 'nuka-carousel';
+import Carousel from "nuka-carousel";
 
 const MainPT = () => {
     const dispatch = useDispatch();
@@ -64,7 +64,8 @@ const MainPT = () => {
                 <div className="service-upper-blank"></div>
                 <div className="service-slogan">국내 개발 행사 한번에 볼 수 없을까?</div>
                 <div className="service-explanation">
-                    Co.gether에서는 <br />개발자들을 위한 동아리 교육 컨퍼런스 정보를 제공합니다.
+                    Co.gether에서는 <br />
+                    개발자들을 위한 동아리 교육 컨퍼런스 정보를 제공합니다.
                     <br />
                     쉽고 빠르게 원하는 개발 모임을 찾고, 컨퍼런스에 참가해 보아요!
                 </div>
@@ -72,190 +73,199 @@ const MainPT = () => {
                     <img src={scroll_down} alt="scroll down" />
                 </div>
             </div>
-            { small ? (
+            <div className="request">
+                <div className="request-text">더 많은 컨텐츠를 추가해주세요!</div>
+                <Link to="/service">
+                    <button className="request-btn">게시/수정 요청</button>
+                </Link>
+            </div>
+
+            {small ? (
                 <>
-                <div className="media-box">
-                    <div className="title">컨퍼런스</div>
-                    <Link to="/conference" className="txt">
-                        <button className="all">전체보기</button>
-                    </Link>
-                </div>
-                <Carousel showArrows={true} autoplay={true} className="carousel">
-                    {conferences.results && conferences.results.map(conf => {
-                        return(
-                            <div className="element">
-                                <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
-                                <p className="host">{conf.host}</p>
-                                <p className="title">{conf.title}</p>
-                            </div>
-                        );     
-                    })}
-                </Carousel>
-                
-                <div className="media-box">
-                        <div className="title">컨퍼런스</div>
-                        <Link to="/conference" className="txt">
-                            <button className="all">전체보기</button>
-                        </Link>
-                </div>
-                <Carousel showArrows={true} autoplay={true} className="carousel">
-                    {conferences.results && conferences.results.map(conf => {
-                        return(
-                            <div className="element">
-                                <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
-                                <p className="host">{conf.host}</p>
-                                <p className="title">{conf.title}</p>
-                            </div>
-                        );     
-                    })}
-                </Carousel> 
-                </> ):(
-                <>
-                <div className="club">
-                    <div className="title-box">
-                        <div className="title">동아리</div>
-                        <Link to="/club" className="txt">
-                            <button className="all">전체보기</button>
-                        </Link>
-                    </div>
-                    <div className="itemlist">
-                        <ItemsCarousel
-                            // Carousel configurations
-                            numberOfCards={3}
-                            gutter={16}
-                            showSlither={false}
-                            firstAndLastGutter={false}
-                            freeScrolling={false}
-                            // Active item configurations
-                            requestToChangeActive={changeActiveClubItem}
-                            activeItemIndex={clubIndex}
-                            activePosition={"center"}
-                            chevronWidth={72}
-                            rightChevron={<NextArrow></NextArrow>}
-                            leftChevron={<PrevArrow></PrevArrow>}
-                            outsideChevron={true}
-                        >
-                            {clubs.results &&
-                                clubs.results.map(club => {
-                                    return (
-                                        <Link to={`/club/${club.id}`}>
-                                            <div
-                                                className="item"
-                                                style={{
-                                                    height: 365,
-                                                    borderRadius: 3,
-                                                    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
-                                                    backgroundColor: "#ffffff",
-                                                    marginBottom: 2
-                                                }}
-                                            >
-                                                <img src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} alt="logo" />
-                                                <div className="host">{club.host}</div>
-                                                <div className="title">{club.title}</div>
-                                            </div>
-                                        </Link>
-                                    );
-                                })}
-                        </ItemsCarousel>
-                    </div>
-                </div>
-                <div className="education">
-                    <div className="title-box">
-                        <div className="title">교육</div>
-                        <Link to="/education" className="txt">
-                            <button className="all">전체보기</button>
-                        </Link>
-                    </div>
-                    <div className="itemlist">
-                        <ItemsCarousel
-                            // Carousel configurations
-                            numberOfCards={3}
-                            gutter={16}
-                            showSlither={false}
-                            firstAndLastGutter={false}
-                            freeScrolling={false}
-                            // Active item configurations
-                            requestToChangeActive={changeActiveEduItem}
-                            activeItemIndex={eduIndex}
-                            activePosition={"center"}
-                            chevronWidth={72}
-                            rightChevron={<NextArrow></NextArrow>}
-                            leftChevron={<PrevArrow></PrevArrow>}
-                            outsideChevron={true}
-                        >
-                            {educations.results &&
-                                educations.results.map(edu => {
-                                    return (
-                                        <Link to={`/club/${edu.id}`}>
-                                            <div
-                                                className="item"
-                                                style={{
-                                                    height: 365,
-                                                    borderRadius: 3,
-                                                    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
-                                                    backgroundColor: "#ffffff",
-                                                    marginBottom: 2
-                                                }}
-                                            >
-                                                <img src={edu.photo.photo ? edu.photo.photo : require("assets/placeholder.png")} alt="logo" />
-                                                <div className="host">{edu.host}</div>
-                                                <div className="title">{edu.title}</div>
-                                            </div>
-                                        </Link>
-                                    );
-                                })}
-                        </ItemsCarousel>
-                    </div>
-                </div>
-                <div className="conference">
-                    <div className="title-box">
+                    <div className="media-box">
                         <div className="title">컨퍼런스</div>
                         <Link to="/conference" className="txt">
                             <button className="all">전체보기</button>
                         </Link>
                     </div>
-                    <div className="itemlist">
-                        <ItemsCarousel
-                            // Carousel configurations
-                            numberOfCards={3}
-                            gutter={16}
-                            showSlither={false}
-                            firstAndLastGutter={false}
-                            freeScrolling={false}
-                            // Active item configurations
-                            requestToChangeActive={changeActiveConfItem}
-                            activeItemIndex={confIndex}
-                            activePosition={"center"}
-                            chevronWidth={72}
-                            rightChevron={<NextArrow></NextArrow>}
-                            leftChevron={<PrevArrow></PrevArrow>}
-                            outsideChevron={true}
-                        >
-                            {conferences.results &&
-                                conferences.results.map(conf => {
-                                    return (
-                                        <Link to={`/club/${conf.id}`}>
-                                            <div
-                                                className="item"
-                                                style={{
-                                                    height: 365,
-                                                    borderRadius: 3,
-                                                    boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
-                                                    backgroundColor: "#ffffff",
-                                                    marginBottom: 2
-                                                }}
-                                            >
-                                                <img src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} alt="logo" />
-                                                <div className="host">{conf.host}</div>
-                                                <div className="title">{conf.title}</div>
-                                            </div>
-                                        </Link>
-                                    );
-                                })}
-                        </ItemsCarousel>
+                    <Carousel showArrows={true} autoplay={true} className="carousel">
+                        {conferences.results &&
+                            conferences.results.map(conf => {
+                                return (
+                                    <div className="element">
+                                        <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
+                                        <p className="host">{conf.host}</p>
+                                        <p className="title">{conf.title}</p>
+                                    </div>
+                                );
+                            })}
+                    </Carousel>
+                    <div className="media-box">
+                        <div className="title">컨퍼런스</div>
+                        <Link to="/conference" className="txt">
+                            <button className="all">전체보기</button>
+                        </Link>
                     </div>
-                </div>
-            </>
+                    <Carousel showArrows={true} autoplay={true} className="carousel">
+                        {conferences.results &&
+                            conferences.results.map(conf => {
+                                return (
+                                    <div className="element">
+                                        <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
+                                        <p className="host">{conf.host}</p>
+                                        <p className="title">{conf.title}</p>
+                                    </div>
+                                );
+                            })}
+                    </Carousel>
+                </>
+            ) : (
+                <>
+                    <div className="club">
+                        <div className="title-box">
+                            <div className="title">동아리</div>
+                            <Link to="/club" className="txt">
+                                <button className="all">전체보기</button>
+                            </Link>
+                        </div>
+                        <div className="itemlist">
+                            <ItemsCarousel
+                                // Carousel configurations
+                                numberOfCards={1}
+                                gutter={16}
+                                showSlither={false}
+                                firstAndLastGutter={false}
+                                freeScrolling={false}
+                                // Active item configurations
+                                requestToChangeActive={changeActiveClubItem}
+                                activeItemIndex={clubIndex}
+                                activePosition={"center"}
+                                chevronWidth={72}
+                                rightChevron={<NextArrow></NextArrow>}
+                                leftChevron={<PrevArrow></PrevArrow>}
+                                outsideChevron={true}
+                            >
+                                {clubs.results &&
+                                    clubs.results.map(club => {
+                                        return (
+                                            <Link to={`/club/${club.id}`}>
+                                                <div
+                                                    className="item"
+                                                    style={{
+                                                        height: 365,
+                                                        borderRadius: 3,
+                                                        boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
+                                                        backgroundColor: "#ffffff",
+                                                        marginBottom: 2
+                                                    }}
+                                                >
+                                                    <img src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} alt="logo" />
+                                                    <div className="host">{club.host}</div>
+                                                    <div className="title">{club.title}</div>
+                                                </div>
+                                            </Link>
+                                        );
+                                    })}
+                            </ItemsCarousel>
+                        </div>
+                    </div>
+                    <div className="education">
+                        <div className="title-box">
+                            <div className="title">교육</div>
+                            <Link to="/education" className="txt">
+                                <button className="all">전체보기</button>
+                            </Link>
+                        </div>
+                        <div className="itemlist">
+                            <ItemsCarousel
+                                // Carousel configurations
+                                numberOfCards={3}
+                                gutter={16}
+                                showSlither={false}
+                                firstAndLastGutter={false}
+                                freeScrolling={false}
+                                // Active item configurations
+                                requestToChangeActive={changeActiveEduItem}
+                                activeItemIndex={eduIndex}
+                                activePosition={"center"}
+                                chevronWidth={72}
+                                rightChevron={<NextArrow></NextArrow>}
+                                leftChevron={<PrevArrow></PrevArrow>}
+                                outsideChevron={true}
+                            >
+                                {educations.results &&
+                                    educations.results.map(edu => {
+                                        return (
+                                            <Link to={`/club/${edu.id}`}>
+                                                <div
+                                                    className="item"
+                                                    style={{
+                                                        height: 365,
+                                                        borderRadius: 3,
+                                                        boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
+                                                        backgroundColor: "#ffffff",
+                                                        marginBottom: 2
+                                                    }}
+                                                >
+                                                    <img src={edu.photo.photo ? edu.photo.photo : require("assets/placeholder.png")} alt="logo" />
+                                                    <div className="host">{edu.host}</div>
+                                                    <div className="title">{edu.title}</div>
+                                                </div>
+                                            </Link>
+                                        );
+                                    })}
+                            </ItemsCarousel>
+                        </div>
+                    </div>
+                    <div className="conference">
+                        <div className="title-box">
+                            <div className="title">컨퍼런스</div>
+                            <Link to="/conference" className="txt">
+                                <button className="all">전체보기</button>
+                            </Link>
+                        </div>
+                        <div className="itemlist">
+                            <ItemsCarousel
+                                // Carousel configurations
+                                numberOfCards={3}
+                                gutter={16}
+                                showSlither={false}
+                                firstAndLastGutter={false}
+                                freeScrolling={false}
+                                // Active item configurations
+                                requestToChangeActive={changeActiveConfItem}
+                                activeItemIndex={confIndex}
+                                activePosition={"center"}
+                                chevronWidth={72}
+                                rightChevron={<NextArrow></NextArrow>}
+                                leftChevron={<PrevArrow></PrevArrow>}
+                                outsideChevron={true}
+                            >
+                                {conferences.results &&
+                                    conferences.results.map(conf => {
+                                        return (
+                                            <Link to={`/club/${conf.id}`}>
+                                                <div
+                                                    className="item"
+                                                    style={{
+                                                        height: 365,
+                                                        borderRadius: 3,
+                                                        boxShadow: "0 2px 4px 0 rgba(0,0,0,0.21)",
+                                                        backgroundColor: "#ffffff",
+                                                        marginBottom: 2
+                                                    }}
+                                                >
+                                                    <img src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} alt="logo" />
+                                                    <div className="host">{conf.host}</div>
+                                                    <div className="title">{conf.title}</div>
+                                                </div>
+                                            </Link>
+                                        );
+                                    })}
+                            </ItemsCarousel>
+                        </div>
+                    </div>
+                </>
             )}
         </div>
     );
