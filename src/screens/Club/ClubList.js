@@ -19,7 +19,7 @@ const ClubList = ({ match }) => {
     const clubs = useSelector(state => state.clubReducer.clubInfo);
     const searchs = useSelector(state => state.clubReducer.search.club);
 
-    const [searchText, setSearchText] = useState(match.params.text);
+    const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
     const onSetSearchText = useCallback(e => {
         setSearchText(e.target.value);
@@ -80,7 +80,7 @@ const ClubList = ({ match }) => {
             </div>
             <Container>
                 <Row>
-                    {match.parpams.text
+                    {match.params.text
                         ? searchs &&
                           searchs.map(club => {
                               return (
@@ -155,7 +155,6 @@ const ClubList = ({ match }) => {
                                   </Col>
                               );
                           })}
-                    }
                 </Row>
             </Container>
         </div>

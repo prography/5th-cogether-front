@@ -36,16 +36,16 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={Main} />
                     <Route exact path="/club" component={Clubs} />
-                    <Route path="/club" component={Clubs} />
+                    <Route path="/club/:text/:id?" component={Clubs} />
                     <Route exact path="/education" component={Educations} />
-                    <Route path="/education" component={Educations} />
+                    <Route path="/education/:text/:id?" component={Educations} />
                     <Route exact path="/conference" component={Conferences} />
-                    <Route path="/conference/:text" component={Conferences} />
+                    <Route path="/conference/:text/:id?" component={Conferences} />
                     <Route path="/login" component={Login} />
                     <Route path="/join" component={Join} />
                     <Route path="/loginDirect" component={LoginDirect} />
                     <Route path="/mypage" component={Mypage} />
-                    <Route path="/userRequest" component={Request} />
+                    <Route path="/service" component={Request} />
                     <Route path="/github/callback" component={Oauth} />
                     <Route path="/search/:text" component={Search} />
                 </Switch>

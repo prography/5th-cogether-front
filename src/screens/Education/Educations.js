@@ -6,9 +6,9 @@ import EducationDetail from "./EducationDetail";
 function Educations({ match }) {
     return (
         <>
-            {match.params.text && <Route expact path={`${match.path}/:text`} component={EducationList} />}
-            <Route exact path={match.path} component={EducationList} />
-            <Route path={`${match.path}/:id`} component={EducationDetail} />
+            {match.params.text && match.params.text !== "detail" && <Route expact path="/education/:text" component={EducationList} />}
+            <Route exact path="/education" component={EducationList} />
+            {match.params.id && <Route path="/education/detail/:id" component={EducationDetail} />}
         </>
     );
 }

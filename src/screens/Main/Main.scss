@@ -33,7 +33,7 @@
             color: white;
             font-weight: 600;
         }
-        
+
         .service-explanation {
             flex: none;
             text-align: center;
@@ -43,7 +43,7 @@
             font-size: 18px;
             color: white;
         }
-        
+
         .chevron-down {
             flex: 1;
             display: flex;
@@ -57,13 +57,36 @@
             }
         }
     }
-    
-    .media-box {
 
+    .request {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 20px;
+        .request-text {
+            flex: 1;
+            text-decoration: none;
+        }
+        @media screen and (max-width: 1100px) {
+            .request-text {
+                display: none;
+            }
+        }
+        .request-btn {
+            width: 120px;
+            height: 40px;
+            border-radius: 3px;
+            border: none;
+            background-color: #fd8c3e;
+            color: white;
+        }
+    }
+
+    .media-box {
         display: flex;
         flex-direction: row;
         .title {
-
             flex: 1;
             width: 80px;
             height: 33px;
@@ -73,7 +96,6 @@
             margin: 33px;
         }
         .all {
-
             width: 92px;
             height: 40px;
             border-radius: 3px;
@@ -86,11 +108,9 @@
         }
     }
     .carousel {
-
         border-bottom: 1px solid #c2c0b3;
-        
-        .element {
 
+        .element {
             text-align: center;
             padding: 50px 0px 50px 0px;
             width: 100%;
@@ -107,7 +127,6 @@
                 font-size: 15px;
             }
         }
-
     }
 
     .club {
@@ -178,7 +197,7 @@
     }
 }
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 992px) {
     .main-wrap {
         min-width: initial;
 
@@ -189,21 +208,21 @@
             height: calc(100vh - 60px);
 
             .service-slogan {
-                width:100%;
+                width: 100%;
                 position: absolute;
-                transform: translate(0,-70%);
+                transform: translate(0, -70%);
                 font-size: 24px;
             }
             .service-explanation {
-                width:100%;
+                width: 100%;
                 position: absolute;
-                transform: translate(0,30%);
+                transform: translate(0, 30%);
                 font-size: 14px;
             }
             .chevron-down {
-                width:100%;
+                width: 100%;
                 position: absolute;
-                transform: translate(0,200px);
+                transform: translate(0, 200px);
             }
         }
     }

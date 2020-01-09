@@ -19,7 +19,7 @@ const EducationList = ({ match }) => {
     const educations = useSelector(state => state.educationReducer.educationInfo);
     const searchs = useSelector(state => state.clubReducer.search.edu);
 
-    const [searchText, setSearchText] = useState(match.params.text);
+    const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
     const onSetSearchText = useCallback(e => {
         setSearchText(e.target.value);
@@ -80,7 +80,7 @@ const EducationList = ({ match }) => {
             </div>
             <Container>
                 <Row>
-                    {match.paarams.text
+                    {match.params.text
                         ? searchs &&
                           searchs.map(edu => {
                               return (
@@ -155,7 +155,6 @@ const EducationList = ({ match }) => {
                                   </Col>
                               );
                           })}
-                    }
                 </Row>
             </Container>
         </div>

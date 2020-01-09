@@ -36,7 +36,7 @@ const Service = () => {
         setHelpState(array2);
     }, [freqs.count, helps.count]);
 
-    const [tab, setTab] = useState("introduce");
+    const [tab, setTab] = useState("ask");
     const [ask, setAsk] = useState(false);
 
     const [category, setCategory] = useState("help");
@@ -100,7 +100,7 @@ const Service = () => {
                         <div className={tab}>
                             <div className="freq-head">
                                 <div className="text">사용자들이 자주 묻는 질문을 찾아보세요.</div>
-                                <div className="dropdown-box" onClick={() => setShowMenu(!showMenu)}>
+                                {/* <div className="dropdown-box" onClick={() => setShowMenu(!showMenu)}>
                                     <div className="dropwon-text">{dropdown}</div>
                                     <img src={drop_arrow}></img>
                                 </div>
@@ -122,7 +122,7 @@ const Service = () => {
                                 <div className="search">
                                     <input placeholder="질문 검색하기"></input>
                                     <img src={search}></img>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="bar"></div>
                             <div className="freq-list">
@@ -156,7 +156,9 @@ const Service = () => {
                         <div className={tab}>
                             <div className="ask-head">
                                 <div className="text">
-                                    {ask ? "1:1 문의 내용을 입력해주세요 " : "궁금한 점이 있으시다면 1:1 문의를 이용해주세요."}
+                                    {ask
+                                        ? "1:1 문의 내용을 입력해주세요 "
+                                        : "게시 또는 수정을 원하시거나, 궁금한 점이 있으시다면 1:1 문의를 이용해주세요."}
                                 </div>
                                 {ask ? (
                                     <button

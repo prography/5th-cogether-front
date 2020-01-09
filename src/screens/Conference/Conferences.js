@@ -4,11 +4,12 @@ import ConferenceList from "./ConferenceList";
 import ConferenceDetail from "./ConferenceDetail";
 
 function Conferences({ match }) {
+    console.log(match);
     return (
         <>
-            {match.params.text && <Route expact path={`${match.path}/:text`} component={ConferenceList} />}
-            <Route exact path={match.path} component={ConferenceList} />
-            <Route path={`${match.path}/:id`} component={ConferenceDetail} />
+            {match.params.text && match.params.text !== "detail" && <Route expact path="/conference/:text" component={ConferenceList} />}
+            <Route exact path="/conference" component={ConferenceList} />
+            {match.params.id && <Route path="/conference/detail/:id" component={ConferenceDetail} />}
         </>
     );
 }
