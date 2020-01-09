@@ -7,13 +7,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
 import { Row, Col, Container } from "react-bootstrap";
-
 import { useSelector, useDispatch } from "react-redux";
 import { requestEducation } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./EducationList.scss";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import swal from 'sweetalert';
 
 const EducationList = ({ match }) => {
     const dispatch = useDispatch();
@@ -22,6 +22,11 @@ const EducationList = ({ match }) => {
     useEffect(() => {
         dispatch(requestEducation());
     }, []);
+
+    const url = "https://cogether.kr";
+    const copy = () => {
+        swal("클립보드 복사가 완료되었습니다")
+    }
 
     const useStyles = makeStyles({
         card: {
@@ -90,6 +95,13 @@ const EducationList = ({ match }) => {
                                                     <Button size="small" color="#2d2d4b">
                                                         더 알아보기
                                                     </Button>
+                                                </a>
+                                                <a className="detail-link" >
+                                                    <CopyToClipboard text={url.concat(`${match.url}/${edu.id}`)}>
+                                                        <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                            링크 공유하기
+                                                        </Button>
+                                                    </CopyToClipboard>
                                                 </a>
                                             </CardActions>
                                         </Card>

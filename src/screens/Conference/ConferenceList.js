@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -7,13 +7,13 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
 import { Row, Col, Container } from "react-bootstrap";
-
 import { useSelector, useDispatch } from "react-redux";
 import { requestConference } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./ConferenceList.scss";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import swal from 'sweetalert';
 
 const ConferenceList = ({ match }) => {
     const dispatch = useDispatch();
@@ -22,7 +22,11 @@ const ConferenceList = ({ match }) => {
     useEffect(() => {
         dispatch(requestConference());
     }, []);
-    //console.log(conferences);
+
+    const url = "https://cogether.kr";
+    const copy = () => {
+        swal("클립보드 복사가 완료되었습니다")
+    }
 
     const useStyles = makeStyles({
         card: {
@@ -91,11 +95,13 @@ const ConferenceList = ({ match }) => {
                                                     <Button size="small" color="#2d2d4b">
                                                         더 알아보기
                                                     </Button>
-                                                </a>
-                                                <a className="detail-link" href={`javascript:window.open('${conf.external_link}','_blank')`}>
-                                                    <Button size="small" color="#2d2d4b">
-                                                        링크 공유하기
-                                                    </Button>
+                                                </a>                                                
+                                                <a className="detail-link" >
+                                                    <CopyToClipboard text={url.concat(`${match.url}/${conf.id}`)}>
+                                                        <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                            링크 공유하기
+                                                        </Button>
+                                                    </CopyToClipboard>
                                                 </a>
                                             </CardActions>
                                         </Card>

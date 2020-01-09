@@ -12,6 +12,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestClub } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./ClubList.scss";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import swal from 'sweetalert';
 
 const ClubList = ({ match }) => {
     const dispatch = useDispatch();
@@ -20,6 +22,11 @@ const ClubList = ({ match }) => {
     useEffect(() => {
         dispatch(requestClub());
     }, []);
+
+    const url = "https://cogether.kr";
+    const copy = () => {
+        swal("클립보드 복사가 완료되었습니다")
+    }
 
     const useStyles = makeStyles({
         card: {
@@ -88,6 +95,13 @@ const ClubList = ({ match }) => {
                                                     <Button size="small" color="#2d2d4b">
                                                         더 알아보기
                                                     </Button>
+                                                </a>
+                                                <a className="detail-link" >
+                                                    <CopyToClipboard text={url.concat(`${match.url}/${club.id}`)}>
+                                                        <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                            링크 공유하기
+                                                        </Button>
+                                                    </CopyToClipboard>
                                                 </a>
                                             </CardActions>
                                         </Card>
