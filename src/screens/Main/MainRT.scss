@@ -11,19 +11,23 @@
         font-size: 20px;
         font-weight: bold;
         color: #2d2d4b;
-        margin: 33px;
+        margin: 10px 60px 10px 0px;
+        padding: 20px 10px 20px 0px;
     }
-    .all {
+    .txt {
+        
+        .all {
 
-        width: 92px;
-        height: 40px;
-        border-radius: 3px;
-        border: solid 1px #cbcecf;
-        background-color: #fafafa;
-        margin: 30px;
-    }
-    .all:hover {
-        background-color: #eaeaea;
+            width: 92px;
+            height: 40px;
+            border-radius: 3px;
+            border: solid 1px #cbcecf;
+            background-color: #fafafa;
+            margin: 25px 0px 0px 120px;
+        }
+        .all:hover {
+            background-color: #eaeaea;
+        }
     }
 }
 .carousel {

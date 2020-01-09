@@ -20,8 +20,8 @@ const MainRT = () => {
     
     return (
         <>
-        <div className="media-box">
-            <div className="title">동아리</div>
+            <div className="media-box">
+                <div className="title">동아리</div>
                 <Link to="/club" className="txt">
                     <button className="all">전체보기</button>
                 </Link>
