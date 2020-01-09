@@ -13,6 +13,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestEducation, requestSearch } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./EducationList.scss";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import swal from 'sweetalert';
 
 const EducationList = ({ match }) => {
     const dispatch = useDispatch();
@@ -37,6 +39,11 @@ const EducationList = ({ match }) => {
         }
     }, [match.params.text]);
 
+    const url = "https://cogether.kr";
+    const copy = () => {
+        swal("클립보드 복사가 완료되었습니다")
+    }
+    
     const useStyles = makeStyles({
         card: {
             maxWidth: 300
@@ -80,7 +87,7 @@ const EducationList = ({ match }) => {
             </div>
             <Container>
                 <Row>
-                    {match.paarams.text
+                    {match.params.text
                         ? searchs &&
                           searchs.map(edu => {
                               return (
@@ -111,6 +118,13 @@ const EducationList = ({ match }) => {
                                                       <Button size="small" color="#2d2d4b">
                                                           더 알아보기
                                                       </Button>
+                                                  </a>
+                                                  <a className="detail-link" >
+                                                      <CopyToClipboard text={url.concat(`${match.url}/${edu.id}`)}>
+                                                          <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                              링크 공유하기
+                                                          </Button>
+                                                      </CopyToClipboard>
                                                   </a>
                                               </CardActions>
                                           </Card>
@@ -149,13 +163,19 @@ const EducationList = ({ match }) => {
                                                           더 알아보기
                                                       </Button>
                                                   </a>
+                                                  <a className="detail-link" >
+                                                      <CopyToClipboard text={url.concat(`${match.url}/${edu.id}`)}>
+                                                          <Button size="small" color="#2d2d4b" onClick={copy}>
+                                                              링크 공유하기
+                                                          </Button>
+                                                      </CopyToClipboard>
+                                                  </a>
                                               </CardActions>
                                           </Card>
                                       </div>
                                   </Col>
                               );
                           })}
-                    }
                 </Row>
             </Container>
         </div>
