@@ -22,6 +22,7 @@ const ConferenceList = ({ match }) => {
     useEffect(() => {
         dispatch(requestConference());
     }, []);
+    //console.log(conferences);
 
     const useStyles = makeStyles({
         card: {
@@ -70,7 +71,7 @@ const ConferenceList = ({ match }) => {
                                                 <CardActionArea>
                                                     <CardMedia
                                                         className={classes.media}
-                                                        image={conf.photo ? conf.photo : require("assets/placeholder.png")}
+                                                        image={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")}
                                                     />
                                                     <CardContent>
                                                         <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -89,6 +90,11 @@ const ConferenceList = ({ match }) => {
                                                 <a className="detail-link" href={`javascript:window.open('${conf.external_link}','_blank')`}>
                                                     <Button size="small" color="#2d2d4b">
                                                         더 알아보기
+                                                    </Button>
+                                                </a>
+                                                <a className="detail-link" href={`javascript:window.open('${conf.external_link}','_blank')`}>
+                                                    <Button size="small" color="#2d2d4b">
+                                                        링크 공유하기
                                                     </Button>
                                                 </a>
                                             </CardActions>
