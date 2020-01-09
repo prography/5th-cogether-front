@@ -15,11 +15,14 @@ import search_icon from "assets/search.svg";
 import "./ClubList.scss";
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import swal from 'sweetalert';
+import { Icon } from "antd";
 
 const ClubList = ({ match }) => {
     const dispatch = useDispatch();
     const clubs = useSelector(state => state.clubReducer.clubInfo);
     const searchs = useSelector(state => state.clubReducer.search.club);
+
+    const [liking, setLiking] = useState(false);  //즐겨찾기 여부
 
     const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
@@ -41,8 +44,13 @@ const ClubList = ({ match }) => {
   
     const url = "https://cogether.kr";
     const copy = () => {
-        swal("클립보드 복사가 완료되었습니다")
-    }
+        swal("클립보드 복사가 완료되었습니다");
+    };
+
+    const like = () => {
+        setLiking(!liking);
+        console.log(liking);
+    };
 
     const useStyles = makeStyles({
         card: {
@@ -65,7 +73,7 @@ const ClubList = ({ match }) => {
             fontSize: 16,
             textDecoration: "none",
             color: "black"
-        }
+        },
     });
 
     const classes = useStyles();
@@ -114,19 +122,28 @@ const ClubList = ({ match }) => {
                                                   </CardActionArea>
                                               </Link>
                                               <CardActions>
-                                                  <a className="detail-link" href={`javascript:window.open('${club.external_link}','_blank')`}>
-                                                      <Button size="small" color="#2d2d4b">
-                                                          더 알아보기
-                                                      </Button>
-                                                  </a>
-                                                  <a className="detail-link" >
-                                                      <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)
-                                                        .replace(`${match.params.text}/`,"")}>
-                                                          <Button size="small" color="#2d2d4b" onClick={copy}>
-                                                              링크 공유하기
-                                                          </Button>
-                                                      </CopyToClipboard>
-                                                  </a>
+                                                  <div className="three-icons">
+                                                    <a className="detail-link" href={`javascript:window.open('${club.external_link}','_blank')`}>
+                                                        <div className="page">
+                                                            <img className="pp" src={require("assets/page.png")}></img>
+                                                        </div>
+                                                    </a>
+                                                    <a className="detail-link" >
+                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)
+                                                            .replace(`${match.params.text}/`,"")}>
+                                                            <div className="share">
+                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                            </div>
+                                                        </CopyToClipboard>
+                                                    </a>
+                                                    <div className="heart">
+                                                        { liking ? 
+                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
+                                                            :
+                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
+                                                        }
+                                                    </div>
+                                                  </div>
                                               </CardActions>
                                           </Card>
                                       </div>
@@ -159,18 +176,27 @@ const ClubList = ({ match }) => {
                                                   </CardActionArea>
                                               </Link>
                                               <CardActions>
-                                                  <a className="detail-link" href={`javascript:window.open('${club.external_link}','_blank')`}>
-                                                      <Button size="small" color="#2d2d4b">
-                                                          더 알아보기
-                                                      </Button>
-                                                  </a>
-                                                  <a className="detail-link" >
-                                                      <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)}>
-                                                          <Button size="small" color="#2d2d4b" onClick={copy}>
-                                                              링크 공유하기
-                                                          </Button>
-                                                      </CopyToClipboard>
-                                                  </a>
+                                                  <div className="three-icons">
+                                                    <a className="detail-link" href={`javascript:window.open('${club.external_link}','_blank')`}>
+                                                        <div className="page">
+                                                            <img className="pp" src={require("assets/page.png")}></img>
+                                                        </div>
+                                                    </a>
+                                                    <a className="detail-link" >
+                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)}>
+                                                            <div className="share">
+                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                            </div>
+                                                        </CopyToClipboard>
+                                                    </a>
+                                                    <div className="heart">
+                                                        { liking ? 
+                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
+                                                            :
+                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
+                                                        }
+                                                    </div>
+                                                  </div>
                                               </CardActions>
                                           </Card>
                                       </div>

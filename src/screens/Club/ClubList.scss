@@ -51,6 +51,12 @@
         height: 24px;
     }
 }
+.search-menu:focus-within {
+    border: solid 1px #fd8c3e;
+    .search-txt {
+        color: black;
+    }
+}
 
 .body-link link {
     text-decoration: none;
@@ -62,4 +68,35 @@
 
 .MuiCardContent-root {
     height: 165px;
+}
+
+.three-icons {
+
+    display: flex;
+    justify-content: flex-end;
+    width:100%;
+
+    .page {
+
+        width:30px;
+        padding-top:3px;
+         .pp {
+            width:100%;
+         }
+    }
+    .share {
+
+        width:35px;
+        padding-bottom:3px;
+        .ss {
+            width:100%;
+        }
+    }
+    .heart {
+
+        padding-top:3px;
+        .hh {
+            width:100%;
+        }
+    }
 }

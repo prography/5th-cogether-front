@@ -1,6 +1,7 @@
 .block {
     margin: 10%;
 }
+
 .navPic {
     width: 100%;
     height: 200px;
@@ -59,4 +60,35 @@
 
 .MuiCardContent-root {
     height: 165px;
+}
+
+.three-icons {
+
+    display: flex;
+    justify-content: flex-end;
+    width:100%;
+
+    .page {
+
+        width:30px;
+        padding-top:3px;
+         .pp {
+            width:100%;
+         }
+    }
+    .share {
+
+        width:35px;
+        padding-bottom:3px;
+        .ss {
+            width:100%;
+        }
+    }
+    .heart {
+
+        padding-top:3px;
+        .hh {
+            width:100%;
+        }
+    }
 }
