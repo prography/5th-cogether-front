@@ -42,7 +42,6 @@ const HeaderContainer = ({ match }) => {
 
     const [small, setSmall] = useState(false);
     const [size, setSize] = useState(0);
-    var x = window.innerWidth;
 
     useLayoutEffect(() => {
         function updateSize() {
@@ -63,10 +62,10 @@ const HeaderContainer = ({ match }) => {
     }, [size]);
 
     return (
-        <div className="header">
+        <div className="header" style={{ width: size }}>
             {small ? (
-                <>
-                    <span className="z-index">
+                <Fragment>
+                    <div className="z-index">
                         <span className="image">
                             <Link to="/">
                                 <img className="logo" src={require("../../assets/cogether_logo@3x.png")} alt="logo" />
@@ -102,7 +101,7 @@ const HeaderContainer = ({ match }) => {
                                 </Link>
                             </div>
                         )}
-                    </span>
+                    </div>
                     <Collapse onChange={callback} expandIconPosition={"right"} defaultActiveKey={["0"]}>
                         <Panel key="1">
                             <Link to="/club">
@@ -119,7 +118,7 @@ const HeaderContainer = ({ match }) => {
                             </Link>
                         </Panel>
                     </Collapse>
-                </>
+                </Fragment>
             ) : (
                 <Fragment>
                     <div className="image">
