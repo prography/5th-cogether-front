@@ -12,15 +12,13 @@ const ConferenceDetail = ({ match }) => {
         dispatch(requestDetail(match.params.id));
     }, []);
 
-    //details.content && console.log(details.content.replace(/(<br>|<br\/>|<br \/>)/gs, "\r\n"));
-
     return (
         <div>
             <Card>
                 <div className="detailBox">
                     {details.photo ? (
                         <div className="box">
-                            <img className="image" src={details.photo}></img>
+                            <img className="image" src={details.photo.photo}></img>
                         </div>
                     ) : null}
                     {details.title ? <div className="box">{details.title}</div> : null}

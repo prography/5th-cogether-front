@@ -100,7 +100,6 @@ const MainPT = () => {
                                 );
                             })}
                     </Carousel>
-
                     <div className="media-box">
                         <div className="title">컨퍼런스</div>
                         <Link to="/conference" className="txt">

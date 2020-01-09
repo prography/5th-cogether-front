@@ -5,7 +5,7 @@ import MainPT from "./MainPT";
 const MainCT = () => {
     
     
-    return <MainPT></MainPT>;
+    return <MainPT />;
 };
 
 // const statePropTypes = returntypeof(mapStateToProps);
