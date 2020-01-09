@@ -3,9 +3,9 @@
 .header {
     //  min-width: 1200px;
     @media screen and (max-width: 1100px) {
+        height: auto;
         .ant-collapse-icon-position-right {
             width: 100%;
-
             .z-index {
                 //width: 95%;
                 display: flex;
@@ -23,10 +23,8 @@
             }
 
             .ant-collapse-item {
-                flex: 1;
                 text-align: center;
                 font-size: 15px;
-                width: 100%;
                 .ant-collapse-header {
                     .ant-collapse-arrow {
                         top: -20px;
@@ -50,9 +48,13 @@
                 }
             }
         }
-        height: auto;
     }
 
+    // @media screen and (max-width: 1100px) {
+    //     -webkit-region-fragment: {
+    //         display: none;
+    //     }
+    // }
     height: 86px;
     display: flex;
     flex-direction: row;
