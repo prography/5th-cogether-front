@@ -75,59 +75,52 @@ const EducationList = ({ match }) => {
             color: "black"
         },
     });
-
     const classes = useStyles();
 
-    return (
-        <div>
-            <div className="navPic">
-                <div className="slogan">
-                    Co.gether와 함께
-                    <br />
-                    원하는 목표를 성취해보세요
+    if( match.params.text ){
+        return(
+            <div>
+                <div className="navPic">
+                    <div className="slogan">
+                        Co.gether와 함께
+                        <br />
+                        원하는 목표를 성취해보세요
+                    </div>
                 </div>
-            </div>
-            <div className="search-menu">
-                <input type="text" className="search-txt" placeholder="검색" value={searchText} onChange={onSetSearchText} />
-                <Link to={searchText === "" ? "/education" : `/education/${searchText}`}>
-                    <img className="search-btn" src={search_icon} onClick={search} />
-                </Link>
-            </div>
-            <Container>
-                <Row>
-                    {match.params.text
-                        ? searchs &&
-                          searchs.map(edu => {
-                              return (
-                                  <Col md={4}>
-                                      <div className="block">
-                                          <Card className={classes.card}>
-                                              <Link to={`/education/detail/${edu.id}`}>
-                                                  <CardActionArea>
-                                                      <CardMedia
-                                                          className={classes.media}
-                                                          image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
-                                                      />
-                                                      <CardContent>
-                                                          <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                              <div className={classes.text_size}>{edu.host}</div>
-                                                          </Typography>
-                                                          <Typography variant="body2" color="textSecondary" component="p">
-                                                              <div className={classes.body_size}>{edu.title}</div>
-                                                              <div>
-                                                                  {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
-                                                              </div>
-                                                          </Typography>
-                                                      </CardContent>
-                                                  </CardActionArea>
-                                              </Link>
-                                              <CardActions>
-                                                  <div className="three-icons">
-                                                    <a className="detail-link" href={`javascript:window.open('${edu.external_link}','_blank')`}>
-                                                        <div className="page">
-                                                            <img className="pp" src={require("assets/page.png")}></img>
-                                                        </div>
-                                                    </a>
+                <div className="search-menu">
+                    <input type="text" className="search-txt" placeholder="검색" value={searchText} onChange={onSetSearchText} />
+                    <Link to={searchText === "" ? "/education" : `/education/${searchText}`}>
+                        <img className="search-btn" src={search_icon} onClick={search} />
+                    </Link>
+                </div>
+                <Container>
+                    <Row>
+                        { searchs && searchs.map(edu => {
+                            return (
+                                <Col md={4}>
+                                    <div className="block">
+                                        <Card className={classes.card}>
+                                            <Link to={`/education/detail/${edu.id}`}>
+                                                <CardActionArea>
+                                                    <CardMedia
+                                                        className={classes.media}
+                                                        image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
+                                                    />
+                                                    <CardContent>
+                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                            <div className={classes.text_size}>{edu.host}</div>
+                                                        </Typography>
+                                                        <Typography variant="body2" color="textSecondary" component="p">
+                                                            <div className={classes.body_size}>{edu.title}</div>
+                                                            <div>
+                                                                {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
+                                                            </div>
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Link>
+                                            <CardActions>
+                                                <div className="icons">
                                                     <a className="detail-link" >
                                                         <CopyToClipboard text={url.concat(`${match.url}/detail/${edu.id}`)
                                                             .replace(`${match.params.text}/`,"")}>
@@ -143,45 +136,61 @@ const EducationList = ({ match }) => {
                                                             <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
                                                         }
                                                     </div>
-                                                  </div>
-                                              </CardActions>
-                                          </Card>
-                                      </div>
-                                  </Col>
-                              );
-                          })
-                        : educations.results &&
-                          educations.results.map(edu => {
-                              return (
-                                  <Col md={4}>
-                                      <div className="block">
-                                          <Card className={classes.card}>
-                                              <Link to={`/education/detail/${edu.id}`}>
-                                                  <CardActionArea>
-                                                      <CardMedia
-                                                          className={classes.media}
-                                                          image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
-                                                      />
-                                                      <CardContent>
-                                                          <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                              <div className={classes.text_size}>{edu.host}</div>
-                                                          </Typography>
-                                                          <Typography variant="body2" color="textSecondary" component="p">
-                                                              <div className={classes.body_size}>{edu.title}</div>
-                                                              <div>
-                                                                  {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
-                                                              </div>
-                                                          </Typography>
-                                                      </CardContent>
-                                                  </CardActionArea>
-                                              </Link>
-                                              <CardActions>
-                                                  <div className="three-icons">
-                                                    <a className="detail-link" href={`javascript:window.open('${edu.external_link}','_blank')`}>
-                                                        <div className="page">
-                                                            <img className="pp" src={require("assets/page.png")}></img>
-                                                        </div>
-                                                    </a>
+                                                </div>
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                </Container>
+            </div>
+        );
+    } else {
+        return(
+            <div>
+                <div className="navPic">
+                    <div className="slogan">
+                        Co.gether와 함께
+                        <br />
+                        원하는 목표를 성취해보세요
+                    </div>
+                </div>
+                <div className="search-menu">
+                    <input type="text" className="search-txt" placeholder="검색" value={searchText} onChange={onSetSearchText} />
+                    <Link to={searchText === "" ? "/education" : `/education/${searchText}`}>
+                        <img className="search-btn" src={search_icon} onClick={search} />
+                    </Link>
+                </div>
+                <Container>
+                    <Row>
+                        { educations.results && educations.results.map(edu => {
+                            return (
+                                <Col md={4}>
+                                    <div className="block">
+                                        <Card className={classes.card}>
+                                            <Link to={`/education/detail/${edu.id}`}>
+                                                <CardActionArea>
+                                                    <CardMedia
+                                                        className={classes.media}
+                                                        image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
+                                                    />
+                                                    <CardContent>
+                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                            <div className={classes.text_size}>{edu.host}</div>
+                                                        </Typography>
+                                                        <Typography variant="body2" color="textSecondary" component="p">
+                                                            <div className={classes.body_size}>{edu.title}</div>
+                                                            <div>
+                                                                {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
+                                                            </div>
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Link>
+                                            <CardActions>
+                                                <div className="icons">
                                                     <a className="detail-link" >
                                                         <CopyToClipboard text={url.concat(`${match.url}/detail/${edu.id}`)}>
                                                             <div className="share">
@@ -196,17 +205,18 @@ const EducationList = ({ match }) => {
                                                             <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
                                                         }
                                                     </div>
-                                                  </div>
-                                              </CardActions>
-                                          </Card>
-                                      </div>
-                                  </Col>
-                              );
-                          })}
-                </Row>
-            </Container>
-        </div>
-    );
+                                                </div>
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                </Container>
+            </div>
+        );
+    }
 };
 
 export default EducationList;
