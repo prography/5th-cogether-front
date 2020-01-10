@@ -53,13 +53,7 @@ const ClubDetail = ({ match }) => {
                         <>
                             <div className="seperator">About</div>
                             <div className="box">
-                                {small ?
-                                    parse(''.concat(details.content
-                                        .replace(/src=/g,'style="width: 300px; height: auto;" src=')))
-                                    : 
-                                    parse(''.concat(details.content
-                                        .replace(/src=/g,'style="width: 620px; height: auto;" src=')))
-                                }
+                                {parse(''.concat(details.content.replace(/src=/g,`style="width: ${small ? '300px' : '620px'}; height: auto;" src=`)))}
                             </div>
                         </>
                     ) : null}
