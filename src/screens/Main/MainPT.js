@@ -35,18 +35,18 @@ const MainPT = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(requestClub());
-        dispatch(requestConference());
-        dispatch(requestEducation());
-    }, []);
-
-    useEffect(() => {
         if (size > 1100) {
             setSmall(false);
         } else {
             setSmall(true);
         }
     }, [size]);
+
+    useEffect(() => {
+        dispatch(requestClub());
+        dispatch(requestConference());
+        dispatch(requestEducation());
+    }, []);
 
     const changeActiveClubItem = index => {
         setClubIndex(index);

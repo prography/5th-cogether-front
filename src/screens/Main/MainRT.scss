@@ -35,13 +35,14 @@
     border-bottom: 1px solid #c2c0b3;
     
     .element {
-
+        z-index:-1;
         text-align: center;
-        padding: 50px 0px 50px 0px;
+        padding: 50px 0px 30px 0px;
         width: 100%;
 
         .image {
             width: 400px;
+            max-height: 300px;
         }
         .host {
             font-weight: bold;

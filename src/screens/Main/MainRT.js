@@ -27,12 +27,12 @@ const MainRT = () => {
                 </Link>
             </div>
             <Carousel showArrows={true} autoplay={true} className="carousel">
-                {conferences.results && conferences.results.map(conf => {
+                {clubs.results && clubs.results.map(club => {
                     return(
                         <div className="element">
-                            <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
-                            <p className="host">{conf.host}</p>
-                            <p className="title">{conf.title}</p>
+                            <img className="image" src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} />
+                            <p className="host">{club.host}</p>
+                            <p className="title">{club.title}</p>
                         </div>
                     );     
                 })}
@@ -45,12 +45,12 @@ const MainRT = () => {
                 </Link>
             </div>
             <Carousel showArrows={true} autoplay={true} className="carousel">
-                {conferences.results && conferences.results.map(conf => {
+                {educations.results && educations.results.map(edu => {
                     return(
                         <div className="element">
-                            <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
-                            <p className="host">{conf.host}</p>
-                            <p className="title">{conf.title}</p>
+                            <img className="image" src={edu.photo.photo ? edu.photo.photo : require("assets/placeholder.png")} />
+                            <p className="host">{edu.host}</p>
+                            <p className="title">{edu.title}</p>
                         </div>
                     );     
                 })}

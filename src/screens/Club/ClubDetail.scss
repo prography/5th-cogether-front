@@ -5,11 +5,6 @@
     border-radius: 8px;
     max-width:900px;
     
-    .link {
-        padding: 0px 0px 60px 0px;
-        font-size: 20px;
-    }
-
     .seperator {
         padding:20px 0px 0px 0px;
         margin:10px auto;
@@ -32,14 +27,17 @@
             max-height: 400px;
         }
     }
+
+    .link {
+        padding: 0px 0px 60px 0px;
+        font-size: 20px;
+    }
+
 }
 @media screen and (max-width: 992px) {
 
     .detailBox {
 
-        .link {
-            font-size:16px;
-        }
         .seperator {
             font-size: large;
         }
@@ -50,6 +48,9 @@
                 width: 100%;
                 height: auto;
             }
+        }
+        .link {
+            font-size:16px;
         }
     }
 }
