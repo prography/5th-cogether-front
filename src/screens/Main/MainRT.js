@@ -26,7 +26,17 @@ const MainRT = () => {
                     <button className="all">전체보기</button>
                 </Link>
             </div>
-            <Carousel showArrows={true} autoplay={true} className="carousel">
+            <Carousel autoplay={true} className="carousel"
+                renderCenterLeftControls={({ previousSlide }) => (
+                    <button onClick={previousSlide}>
+                    <i className="fa fa-arrow-left" />
+                    </button>
+                )}
+                renderCenterRightControls={({ nextSlide }) => (
+                    <button onClick={nextSlide}>
+                    <i className="fa fa-arrow-right"/>
+                    </button>
+                )}>
                 {clubs.results && clubs.results.map(club => {
                     return(
                         <div className="element">
@@ -44,7 +54,17 @@ const MainRT = () => {
                     <button className="all">전체보기</button>
                 </Link>
             </div>
-            <Carousel showArrows={true} autoplay={true} className="carousel">
+            <Carousel autoplay={true} className="carousel"
+                renderCenterLeftControls={({ previousSlide }) => (
+                    <button onClick={previousSlide}>
+                    <i className="fa fa-arrow-left" />
+                    </button>
+                )}
+                renderCenterRightControls={({ nextSlide }) => (
+                    <button onClick={nextSlide}>
+                    <i className="fa fa-arrow-right"/>
+                    </button>
+                )}>
                 {educations.results && educations.results.map(edu => {
                     return(
                         <div className="element">
@@ -62,7 +82,17 @@ const MainRT = () => {
                     <button className="all">전체보기</button>
                 </Link>
             </div>
-            <Carousel showArrows={true} autoplay={true} className="carousel">
+            <Carousel autoplay={true} className="carousel"
+                renderCenterLeftControls={({ previousSlide }) => (
+                    <button onClick={previousSlide}>
+                    <i className="fa fa-arrow-left" />
+                    </button>
+                )}
+                renderCenterRightControls={({ nextSlide }) => (
+                    <button onClick={nextSlide}>
+                    <i className="fa fa-arrow-right"/>
+                    </button>
+                )}>
                 {conferences.results && conferences.results.map(conf => {
                     return(
                         <div className="element">
