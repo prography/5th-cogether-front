@@ -28,19 +28,17 @@ const MainRT = () => {
             </div>
             <Carousel autoplay={true} className="carousel"
                 renderCenterLeftControls={({ previousSlide }) => (
-                    <button onClick={previousSlide}>
-                    <i className="fa fa-arrow-left" />
-                    </button>
+                    <></>
                 )}
                 renderCenterRightControls={({ nextSlide }) => (
-                    <button onClick={nextSlide}>
-                    <i className="fa fa-arrow-right"/>
-                    </button>
+                    <></>
                 )}>
                 {clubs.results && clubs.results.map(club => {
                     return(
                         <div className="element">
-                            <img className="image" src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} />
+                            <Link to={`/club/detail/${club.id}`}>
+                                <img className="image" src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} />
+                            </Link>
                             <p className="host">{club.host}</p>
                             <p className="title">{club.title}</p>
                         </div>
@@ -56,19 +54,17 @@ const MainRT = () => {
             </div>
             <Carousel autoplay={true} className="carousel"
                 renderCenterLeftControls={({ previousSlide }) => (
-                    <button onClick={previousSlide}>
-                    <i className="fa fa-arrow-left" />
-                    </button>
+                    <></>
                 )}
                 renderCenterRightControls={({ nextSlide }) => (
-                    <button onClick={nextSlide}>
-                    <i className="fa fa-arrow-right"/>
-                    </button>
+                    <></>
                 )}>
                 {educations.results && educations.results.map(edu => {
                     return(
                         <div className="element">
-                            <img className="image" src={edu.photo.photo ? edu.photo.photo : require("assets/placeholder.png")} />
+                            <Link to={`/education/detail/${edu.id}`}>
+                                <img className="image" src={edu.photo.photo ? edu.photo.photo : require("assets/placeholder.png")} />
+                            </Link>
                             <p className="host">{edu.host}</p>
                             <p className="title">{edu.title}</p>
                         </div>
@@ -84,19 +80,17 @@ const MainRT = () => {
             </div>
             <Carousel autoplay={true} className="carousel"
                 renderCenterLeftControls={({ previousSlide }) => (
-                    <button onClick={previousSlide}>
-                    <i className="fa fa-arrow-left" />
-                    </button>
+                    <></>
                 )}
                 renderCenterRightControls={({ nextSlide }) => (
-                    <button onClick={nextSlide}>
-                    <i className="fa fa-arrow-right"/>
-                    </button>
+                    <></>
                 )}>
                 {conferences.results && conferences.results.map(conf => {
                     return(
                         <div className="element">
-                            <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
+                            <Link to={`/conference/detail/${conf.id}`}>
+                                <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
+                            </Link>
                             <p className="host">{conf.host}</p>
                             <p className="title">{conf.title}</p>
                         </div>
