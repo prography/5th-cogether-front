@@ -1,18 +1,103 @@
-.mypage{
-    text-align: center;
-    margin:100px;
-   
-    .in{
-        padding:30px;
-        width:600px;
-        max-width:1000px;
-        height:300px;
-        display: inline-block;
-        border: 1px solid #c2c0b3;
-        border-radius: 8px;
-        .welcome{
-            padding:20px;
+.mypage-wrap {
+    width: 100%;
+    min-height: calc(100vh - 86px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .head {
+        flex: none;
+        width: 100%;
+        height: 200px;
+        background-color: #f8f8f8;
+        padding: 78px 0;
+        .text {
+            font-size: 30px;
+            color: #2d2d4b;
+            font-weight: bold;
+            width: 60%;
+            margin: 0 auto;
         }
     }
-    
+
+    .content-box {
+        width: 60%;
+        //border: 1px solid black;
+        margin-top: 34px;
+        .section {
+            margin-bottom: 70px;
+            .section-title {
+                font-size: 22px;
+                color: #2d2d4b;
+                font-weight: bold;
+            }
+            .section-head {
+                display: flex;
+                flex-direction: row;
+                margin-top: 10px;
+
+                .detail {
+                    font-size: 18px;
+                    //color: #2d2d4b;
+                    flex: 1;
+                }
+                .save {
+                    width: 92px;
+                    height: 40px;
+                    border-radius: 3px;
+                    background-color: #cbcecf;
+                }
+            }
+            .section-content {
+                display: flex;
+                flex-direction: row;
+                border-top: 1px solid #cbcecf;
+                border-bottom: 1px solid #cbcecf;
+                padding: 20px 0;
+                margin-top: 24px;
+
+                .photo {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .photo-button {
+                        width: 92px;
+                        height: 40px;
+                        border-radius: 3px;
+                        border: solid 1px#cbcecf;
+                        background-color: #fafafa;
+                        margin-top: 20px;
+                    }
+                }
+                .info-box {
+                    flex: 3;
+                    .info {
+                        display: flex;
+                        flex-direction: row;
+                        padding: 10px 0;
+                        .key {
+                            font-size: 16px;
+                            color: #878d91;
+                            flex: 1;
+                        }
+                        .value {
+                            border-radius: 3px;
+                            border: solid 1px #cbcecf;
+                            background-color: #fafafa;
+                            flex: 3;
+                            height: 40px;
+                            padding-left: 10px;
+                        }
+                        .value-1 {
+                            flex: 3;
+                            .ant-switch-checked {
+                                background-color: #fd8c3e !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
