@@ -197,17 +197,18 @@
                             font-weight: bold;
                         }
                     }
+
+                    .r-account {
+                        display: flex;
+                        flex-direction: row;
+                        a {
+                            flex: 1;
+                            .txt {
+                                padding: 10px 0;
+                            }
+                        }
+                    }
                 }
-            }
-        }
-        .account {
-            margin-left: 5%;
-            .login-btn {
-                width: auto;
-            }
-            .sign-btn {
-                width: auto;
-                margin-left: 3%;
             }
         }
     }

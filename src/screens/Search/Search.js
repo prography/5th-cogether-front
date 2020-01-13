@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Search.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,14 +13,29 @@ import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import swal from 'sweetalert';
+import { Icon } from "antd";
 
 const Search = ({ match }) => {
     const dispatch = useDispatch();
     let searchs = useSelector(state => state.clubReducer.search, {});
 
+    const [liking, setLiking] = useState(false);  //즐겨찾기 여부
+
     useEffect(() => {
         dispatch(requestSearch(match.params.text));
     }, [match.params.text]);
+
+    const url = "https://cogether.kr";
+    const copy = () => {
+        swal("클립보드 복사가 완료되었습니다");
+    };
+
+    const like = () => {
+        setLiking(!liking);
+        console.log(liking);
+    };
 
     const useStyles = makeStyles({
         card: {
@@ -43,7 +58,7 @@ const Search = ({ match }) => {
             fontSize: 16,
             textDecoration: "none",
             color: "black"
-        }
+        },
     });
 
     const classes = useStyles();
@@ -72,11 +87,11 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/club/${search.id}`}>
+                                                        <Link to={`/club/detail/${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
-                                                                    image={search.photo ? search.photo : require("assets/placeholder.png")}
+                                                                    image={search.photo ? search.photo.photo : require("assets/placeholder.png")}
                                                                 />
                                                                 <CardContent>
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -92,14 +107,28 @@ const Search = ({ match }) => {
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                            <a
-                                                                className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
-                                                            >
-                                                                <Button size="small" color="#2d2d4b">
-                                                                    더 알아보기
-                                                                </Button>
+                                                          <div className="three-icons">
+                                                            <a className="detail-link"
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
+                                                                <div className="page">
+                                                                    <img className="pp" src={require("assets/page.png")}></img>
+                                                                </div>
                                                             </a>
+                                                            <a className="detail-link" >
+                                                                <CopyToClipboard text={url.concat(`/club/detail/${search.id}`)}>
+                                                                    <div className="share">
+                                                                        <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                    </div>
+                                                                </CopyToClipboard>
+                                                            </a>
+                                                            <div className="heart">
+                                                                { liking ? 
+                                                                    <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
+                                                                    :
+                                                                    <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
+                                                                }
+                                                            </div>
+                                                          </div>
                                                         </CardActions>
                                                     </Card>
                                                 </div>
@@ -123,11 +152,11 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/conference/${search.id}`}>
+                                                        <Link to={`/conference/detail/${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
-                                                                    image={search.photo ? search.photo : require("assets/placeholder.png")}
+                                                                    image={search.photo ? search.photo.photo : require("assets/placeholder.png")}
                                                                 />
                                                                 <CardContent>
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -143,14 +172,28 @@ const Search = ({ match }) => {
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                            <a
-                                                                className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
-                                                            >
-                                                                <Button size="small" color="#2d2d4b">
-                                                                    더 알아보기
-                                                                </Button>
+                                                          <div className="three-icons">
+                                                            <a className="detail-link"
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
+                                                                <div className="page">
+                                                                    <img className="pp" src={require("assets/page.png")}></img>
+                                                                </div>
                                                             </a>
+                                                            <a className="detail-link" >
+                                                                <CopyToClipboard text={url.concat(`/conference/detail/${search.id}`)}>
+                                                                    <div className="share">
+                                                                        <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                    </div>
+                                                                </CopyToClipboard>
+                                                            </a>
+                                                            <div className="heart">
+                                                                { liking ? 
+                                                                    <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
+                                                                    :
+                                                                    <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
+                                                                }
+                                                            </div>
+                                                          </div>
                                                         </CardActions>
                                                     </Card>
                                                 </div>
@@ -174,11 +217,11 @@ const Search = ({ match }) => {
                                             <Col md={4}>
                                                 <div className="block">
                                                     <Card className={classes.card}>
-                                                        <Link to={`/education/${search.id}`}>
+                                                        <Link to={`/education/detail${search.id}`}>
                                                             <CardActionArea>
                                                                 <CardMedia
                                                                     className={classes.media}
-                                                                    image={search.photo ? search.photo : require("assets/placeholder.png")}
+                                                                    image={search.photo ? search.photo.photo : require("assets/placeholder.png")}
                                                                 />
                                                                 <CardContent>
                                                                     <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
@@ -194,14 +237,28 @@ const Search = ({ match }) => {
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                            <a
-                                                                className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}
-                                                            >
-                                                                <Button size="small" color="#2d2d4b">
-                                                                    더 알아보기
-                                                                </Button>
+                                                          <div className="three-icons">
+                                                            <a className="detail-link"
+                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
+                                                                <div className="page">
+                                                                    <img className="pp" src={require("assets/page.png")}></img>
+                                                                </div>
                                                             </a>
+                                                            <a className="detail-link" >
+                                                                <CopyToClipboard text={url.concat(`/education/detail/${search.id}`)}>
+                                                                    <div className="share">
+                                                                        <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                    </div>
+                                                                </CopyToClipboard>
+                                                            </a>
+                                                            <div className="heart">
+                                                                { liking ? 
+                                                                    <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
+                                                                    :
+                                                                    <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
+                                                                }
+                                                            </div>
+                                                          </div>
                                                         </CardActions>
                                                     </Card>
                                                 </div>

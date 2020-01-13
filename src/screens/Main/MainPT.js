@@ -35,18 +35,18 @@ const MainPT = () => {
     }, []);
 
     useEffect(() => {
-        dispatch(requestClub());
-        dispatch(requestConference());
-        dispatch(requestEducation());
-    }, []);
-
-    useEffect(() => {
         if (size > 1100) {
             setSmall(false);
         } else {
             setSmall(true);
         }
     }, [size]);
+
+    useEffect(() => {
+        dispatch(requestClub());
+        dispatch(requestConference());
+        dispatch(requestEducation());
+    }, []);
 
     const changeActiveClubItem = index => {
         setClubIndex(index);
@@ -113,7 +113,7 @@ const MainPT = () => {
                                 {clubs.results &&
                                     clubs.results.map(club => {
                                         return (
-                                            <Link to={`/club/${club.id}`}>
+                                            <Link to={`/club/detail/${club.id}`}>
                                                 <div
                                                     className="item"
                                                     style={{
@@ -161,7 +161,7 @@ const MainPT = () => {
                                 {educations.results &&
                                     educations.results.map(edu => {
                                         return (
-                                            <Link to={`/club/${edu.id}`}>
+                                            <Link to={`/education/detail/${edu.id}`}>
                                                 <div
                                                     className="item"
                                                     style={{
@@ -209,7 +209,7 @@ const MainPT = () => {
                                 {conferences.results &&
                                     conferences.results.map(conf => {
                                         return (
-                                            <Link to={`/club/${conf.id}`}>
+                                            <Link to={`/conference/detail/${conf.id}`}>
                                                 <div
                                                     className="item"
                                                     style={{
