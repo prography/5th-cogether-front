@@ -10,23 +10,26 @@ import {
     logoutSuccessAction,
     JOIN_REQUEST,
     JOIN_FAIL,
-    joinSuccessAction, 
+    joinSuccessAction,
     GITHUB_LOGIN_REQUEST,
     GITHUB_LOGIN_FAIL,
     githubLoginSuccessAction,
-    ME_REQUEST, 
-    ME_FAIL, 
+    ME_REQUEST,
+    ME_FAIL,
     meSuccessAction,
+    FAVOR_REQUEST,
+    FAVOR_FAIL,
+    favorSuccess
 } from "../actions/User";
 import { meRequestAction } from "../actions/User";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 //login
 function* getLoginData({ payload }) {
     try {
         const json = {
             username: payload.username,
-            password: payload.password,
+            password: payload.password
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/", json);
@@ -37,7 +40,7 @@ function* getLoginData({ payload }) {
             localStorage.setItem("accessToken", accessToken);
             localStorage.setItem("refreshToken", refreshToken);
             yield put(loginSuccessAction(JSON.stringify(json.username)));
-            yield put(meRequestAction()); 
+            yield put(meRequestAction());
         }
     } catch (e) {
         yield put({ type: LOGIN_FAIL });
@@ -68,7 +71,7 @@ function* getJoinData({ payload }) {
         const json = {
             username: payload.username,
             password1: payload.p1,
-            password2: payload.p2,
+            password2: payload.p2
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
@@ -83,12 +86,12 @@ function* getJoinData({ payload }) {
 function* watchJoin() {
     yield takeLatest(JOIN_REQUEST, getJoinData);
 }
-  
+
 //github login
 function* getGithubLoginData({ payload }) {
     try {
         const responseBody = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/login/github/callback/?code=".concat(payload));
-        
+
         const accessToken = responseBody.data.access;
         const refreshToken = responseBody.data.refresh;
         if (accessToken) {
@@ -110,16 +113,15 @@ function* watchGithubLogin() {
 function* getMeData() {
     try {
         const json = {
-            token: localStorage.getItem("accessToken"),
+            token: localStorage.getItem("accessToken")
         };
-        
-        const isExpired = yield call(
-            [axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
+
+        const isExpired = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
 
         const jwt = require("jsonwebtoken");
         const decoded = jwt.decode(localStorage.getItem("accessToken"));
-        
-        yield put(meSuccessAction(JSON.stringify(decoded.username))); 
+
+        yield put(meSuccessAction(JSON.stringify(decoded.username)));
     } catch (e) {
         yield put({ type: ME_FAIL });
         yield put(logoutRequestAction());
@@ -129,12 +131,25 @@ function* watchMe() {
     yield takeLatest(ME_REQUEST, getMeData);
 }
 
+function* Favor(data) {
+    try {
+        //get favor
+        if (data.type === "get") {
+        }
+        //add favor
+        else {
+        }
+        // const json = {
+        //     token: localStorage.getItem("accessToken")
+        // };
+        // const jwt = require("jsonwebtoken");
+        // const decoded = jwt.decode(localStorage.getItem("accessToken"));
+        // yield put(meSuccessAction(JSON.stringify(decoded.username)));
+    } catch (e) {
+        yield put({ type: FAVOR_FAIL });
+    }
+}
+
 export default function* userSaga() {
-    yield all([
-        fork(watchLogin), 
-        fork(watchLogout), 
-        fork(watchJoin),
-        fork(watchGithubLogin),
-        fork(watchMe),
-    ]);
+    yield all([fork(watchLogin), fork(watchLogout), fork(watchJoin), fork(watchGithubLogin), fork(watchMe), fork(Favor)]);
 }
