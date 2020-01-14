@@ -9,7 +9,8 @@ const initialState = {
     userInfo: null,
     list: {},
     signedUp: null,
-    meInfo: null,
+    meName: null,
+    mePhoto: null,
     favor: [],
 };
 
@@ -67,7 +68,8 @@ const userReducer = handleActions({
         return{
             ...state,
             userInfo: null,
-            meInfo: null,
+            meName: null,
+            mePhoto: null,
             isLoggedIn:false,
         };
     },
@@ -121,29 +123,15 @@ const userReducer = handleActions({
     'ME_SUCCESS': (state, action) => {
         return{
             ...state,
-            meInfo: action.payload,   //username
+            meName: JSON.stringify(action.payload.username),   //username
+            mePhoto: action.payload.social_avatar,   //profile photo
         };
     },
     'ME_FAIL': (state, action) =>{
         return{
             ...state,
-            meInfo: null,
-        };
-    },
-    'USER_EDIT_REQUEST': (state, action) => {
-        return{
-            ...state,
-        };
-    },
-    'USER_EDIT_SUCCESS': (state, action) => {
-        return{
-            ...state,
-            edited: true,
-        };
-    },
-    'USER_EDIT_FAIL': (state, action) =>{
-        return{
-            ...state,
+            meName: null,
+            mePhoto: null,
         };
     },
     'FAVOR_REQUEST': (state, action) => {

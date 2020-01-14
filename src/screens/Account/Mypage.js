@@ -10,8 +10,10 @@ const Mypage = () => {
     const dispatch = useDispatch();
 
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
-    const me = useSelector(state => state.userReducer.meInfo);
+    const meName = useSelector(state => state.userReducer.meName);
+    const mePhoto = useSelector(state => state.userReducer.mePhoto);
     const [item, setItem] = useState("전체");
+    console.log(mePhoto);
 
     const menu = (
         <Menu>
@@ -26,7 +28,7 @@ const Mypage = () => {
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
 
-    if(me){
+    if(meName){
         return (
             <div className="mypage-wrap">
                 <div className="head">
@@ -41,13 +43,17 @@ const Mypage = () => {
                         </div>
                         <div className="section-content">
                             <div className="photo">
-                                <img style={{ width: 100, height: 100 }} src={user}></img>
+                                { mePhoto ? 
+                                    <img style={{ width: 100, height: 100 }} src={mePhoto} /> 
+                                    : 
+                                    <img style={{ width: 100, height: 100 }} src={user} />
+                                }
                                 <button className="photo-button">사진변경</button>
                             </div>
                             <div className="info-box">
                                 <div className="info">
                                     <div className="key">이메일</div>
-                                    <div className="value">{me}</div>
+                                    <div className="value">{meName}</div>
                                 </div>
                                 <div className="info">
                                     <div className="key">비밀번호</div>

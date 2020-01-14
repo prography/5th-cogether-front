@@ -8,7 +8,7 @@ import { GithubLoginButton } from "react-social-login-buttons";
 
 const Login = () => {
     const dispatch = useDispatch();
-    const me = useSelector( state => state.userReducer.meInfo);
+    const meName = useSelector( state => state.userReducer.meName);
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     const [username, setUsername] = useState("");

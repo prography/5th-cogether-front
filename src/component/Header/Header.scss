@@ -85,7 +85,7 @@
         width: 140px;
         height: 27px;
         display: flex;
-        margin-right: 32px;
+        margin-right: 32px; 
         text-decoration: none;
         cursor: pointer;
         align-items: center;
@@ -105,12 +105,18 @@
         }
 
         .username {
-            flex: 1;
+            flex: 2;
         }
         .usericon {
             flex: 1;
             width: 48px;
             height: 48px;
+
+            .circle {
+                width:48px;
+                height:48px;
+                border-radius: 50px;
+            }
         }
         .dropdown {
             position: relative;

@@ -20,7 +20,7 @@ import { meRequestAction } from "store/actions/User";
 
 const App = () => {
     const dispatch = useDispatch();
-    const isAuthenticating = useSelector(state => state.userReducer.meInfo);
+    const isAuthenticating = useSelector(state => state.userReducer.meName);
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     useEffect(() => {

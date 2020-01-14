@@ -120,8 +120,8 @@ function* getMeData() {
 
         const jwt = require("jsonwebtoken");
         const decoded = jwt.decode(localStorage.getItem("accessToken"));
-
-        yield put(meSuccessAction(JSON.stringify(decoded.username)));
+        
+        yield put(meSuccessAction(decoded));
     } catch (e) {
         yield put({ type: ME_FAIL });
         yield put(logoutRequestAction());
