@@ -19,7 +19,7 @@ import {
     meSuccessAction,
     FAVOR_REQUEST,
     FAVOR_FAIL,
-    favorSuccess
+    favorSuccess,
 } from "../actions/User";
 import { meRequestAction } from "../actions/User";
 import swal from "sweetalert";
@@ -29,7 +29,7 @@ function* getLoginData({ payload }) {
     try {
         const json = {
             username: payload.username,
-            password: payload.password
+            password: payload.password,
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/", json);
@@ -71,7 +71,7 @@ function* getJoinData({ payload }) {
         const json = {
             username: payload.username,
             password1: payload.p1,
-            password2: payload.p2
+            password2: payload.p2,
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
@@ -113,7 +113,7 @@ function* watchGithubLogin() {
 function* getMeData() {
     try {
         const json = {
-            token: localStorage.getItem("accessToken")
+            token: localStorage.getItem("accessToken"),
         };
 
         const isExpired = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
@@ -151,5 +151,12 @@ function* Favor(data) {
 }
 
 export default function* userSaga() {
-    yield all([fork(watchLogin), fork(watchLogout), fork(watchJoin), fork(watchGithubLogin), fork(watchMe), fork(Favor)]);
+    yield all([
+        fork(watchLogin), 
+        fork(watchLogout), 
+        fork(watchJoin), 
+        fork(watchGithubLogin), 
+        fork(watchMe), 
+        fork(Favor),
+    ]);
 }
