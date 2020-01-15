@@ -7,7 +7,7 @@ import "./Oauth.scss";
 const Oauth = () =>{
 
     const dispatch = useDispatch();
-    const me = useSelector( state => state.userReducer.meInfo);
+    const meName = useSelector( state => state.userReducer.meName);
 
     const url = window.location.search;
     const searchParams = new URLSearchParams(url);
@@ -20,7 +20,7 @@ const Oauth = () =>{
 
     return(
         <div>
-            { me ? <Redirect to='/mypage'></Redirect> : <div className="loading"><h1>Loading</h1></div>}
+            { meName ? <Redirect to='/mypage'></Redirect> : <div className="loading"><h1>Loading</h1></div>}
         </div>
     );
 

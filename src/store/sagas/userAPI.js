@@ -19,7 +19,10 @@ import {
     meSuccessAction,
     FAVOR_REQUEST,
     FAVOR_FAIL,
-    favorSuccess
+    favorSuccess,
+    PASSWORD_MODIFY_REQUEST,
+    PASSWORD_MODIFY_FAIL,
+    passwordModifySuccessAction,
 } from "../actions/User";
 import { meRequestAction } from "../actions/User";
 import swal from "sweetalert";
@@ -29,7 +32,7 @@ function* getLoginData({ payload }) {
     try {
         const json = {
             username: payload.username,
-            password: payload.password
+            password: payload.password,
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/", json);
@@ -71,7 +74,7 @@ function* getJoinData({ payload }) {
         const json = {
             username: payload.username,
             password1: payload.p1,
-            password2: payload.p2
+            password2: payload.p2,
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
@@ -113,15 +116,15 @@ function* watchGithubLogin() {
 function* getMeData() {
     try {
         const json = {
-            token: localStorage.getItem("accessToken")
+            token: localStorage.getItem("accessToken"),
         };
 
         const isExpired = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
 
         const jwt = require("jsonwebtoken");
         const decoded = jwt.decode(localStorage.getItem("accessToken"));
-
-        yield put(meSuccessAction(JSON.stringify(decoded.username)));
+        
+        yield put(meSuccessAction(decoded));
     } catch (e) {
         yield put({ type: ME_FAIL });
         yield put(logoutRequestAction());
@@ -178,4 +181,40 @@ function* watchFavor() {
 
 export default function* userSaga() {
     yield all([fork(watchLogin), fork(watchLogout), fork(watchJoin), fork(watchGithubLogin), fork(watchMe), fork(watchFavor)]);
+//modify password
+function* getPasswordData({ payload }) {
+    try {
+        const json = {
+            current_password: payload.current_password,
+            password1: payload.password1,
+            password2: payload.password2,
+        };
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        };
+        
+        const responseBody = yield call([axios, "put"], "https://cogether.azurewebsites.net/account/update-password/",
+            json, { headers: headerParams });
+        
+        yield put(passwordModifySuccessAction());
+        
+    } catch (e) {
+        yield put({ type: PASSWORD_MODIFY_FAIL });
+        swal(e.response.data.message);
+    }
+}
+function* watchPassword() {
+    yield takeLatest(PASSWORD_MODIFY_REQUEST, getPasswordData);
+}
+
+export default function* userSaga() {
+    yield all([
+        fork(watchLogin), 
+        fork(watchLogout), 
+        fork(watchJoin), 
+        fork(watchGithubLogin), 
+        fork(watchMe), 
+        fork(watchFavor),
+        fork(watchPassword),
+    ]);
 }
