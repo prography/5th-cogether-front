@@ -40,7 +40,6 @@ const Login = () => {
     };
 
     useEffect(() => {
-        console.log(token)
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
     

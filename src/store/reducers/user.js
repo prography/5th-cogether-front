@@ -11,6 +11,7 @@ const initialState = {
     signedUp: null,
     meName: null,
     mePhoto: null,
+    meLogin: null,
     favor: [],
 };
 
@@ -70,6 +71,7 @@ const userReducer = handleActions({
             userInfo: null,
             meName: null,
             mePhoto: null,
+            meLogin: null,
             isLoggedIn:false,
         };
     },
@@ -123,8 +125,9 @@ const userReducer = handleActions({
     'ME_SUCCESS': (state, action) => {
         return{
             ...state,
-            meName: JSON.stringify(action.payload.username),   //username
-            mePhoto: action.payload.social_avatar,   //profile photo
+            meName: JSON.stringify(action.payload.username),   // username
+            mePhoto: action.payload.social_avatar,   // profile photo
+            meLogin: action.payload.login_method,  // email or github 
         };
     },
     'ME_FAIL': (state, action) =>{
@@ -132,6 +135,7 @@ const userReducer = handleActions({
             ...state,
             meName: null,
             mePhoto: null,
+            meLogin: null,
         };
     },
     'FAVOR_REQUEST': (state, action) => {

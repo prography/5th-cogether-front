@@ -12,8 +12,9 @@ const Mypage = () => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
     const meName = useSelector(state => state.userReducer.meName);
     const mePhoto = useSelector(state => state.userReducer.mePhoto);
+    const meLogin = useSelector(state => state.userReducer.meLogin);
     const [item, setItem] = useState("전체");
-    console.log(mePhoto);
+    const [password, setPassword] = useState(false);
 
     const menu = (
         <Menu>
@@ -24,12 +25,18 @@ const Mypage = () => {
         </Menu>
     );
 
+    const modifyPassword = () => {
+        setPassword(true);
+    };
+
     useEffect(() => {
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
 
     if(meName){
         return (
+            <>
+            { password && <Redirect to ='/password' /> }
             <div className="mypage-wrap">
                 <div className="head">
                     <div className="text">마이페이지</div>
@@ -55,10 +62,12 @@ const Mypage = () => {
                                     <div className="key">이메일</div>
                                     <div className="value">{meName}</div>
                                 </div>
-                                <div className="info">
-                                    <div className="key">비밀번호</div>
-                                    <input className="value" value="1234" type="password"></input>
-                                </div>
+                                { meLogin==='email' && 
+                                    <div className="info">
+                                        <div className="key">비밀번호</div>
+                                        <button className="modify-password" onClick={modifyPassword}>비밀번호 변경하기</button>
+                                    </div> 
+                                }
                                 <div className="info">
                                     <div className="key">이메일 수신 알림</div>
                                     <div className="value-1">
@@ -91,6 +100,7 @@ const Mypage = () => {
                     </div>
                 </div>
             </div>
+            </>
         );
     } else {
         return(
