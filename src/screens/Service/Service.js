@@ -5,16 +5,17 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import drop_arrow from "assets/drop-down.svg";
 import search from "assets/search.svg";
 import { introRequestAction, freqRequestAction, helpRequestAction } from "store/actions/Service";
+import { Collapse } from "antd";
 
 const Service = () => {
     const dispatch = useDispatch();
 
     const intros = useSelector(state => state.serviceReducer.intro);
-    const freqs = useSelector(state => state.serviceReducer.freq);
-    const helps = useSelector(state => state.serviceReducer.help);
+    var freqs = useSelector(state => state.serviceReducer.freq);
+    var helps = useSelector(state => state.serviceReducer.help);
 
-    let [freqState, setFreqState] = useState([]);
-    let [helpState, setHelpState] = useState([]);
+    var [freqState, setFreqState] = useState([]);
+    var [helpState, setHelpState] = useState([]);
 
     const jwt = require("jsonwebtoken");
     const decoded = jwt.decode(localStorage.getItem("accessToken"));
@@ -28,13 +29,19 @@ const Service = () => {
         dispatch(helpRequestAction(json));
     }, []);
 
-    useEffect(() => {
-        let array = freqs.count && new Array(freqs.count).fill(false);
-        setFreqState(array);
+    // useEffect(() => {
+    //     let array = freqs.count && new Array(freqs.count).fill(false);
+    //     setFreqState(array);
+    // }, [freqs.count]);
 
-        let array2 = helps.count && new Array(helps.count).fill(false);
-        setHelpState(array2);
-    }, [freqs.count, helps.count]);
+    // useEffect(() => {
+    //     console.log(helpState);
+
+    //     let array2 = helps.count && new Array(helps.count).fill(false);
+    //     console.log(array2);
+    //     setHelpState(array2);
+    //     console.log(helpState);
+    // }, [helps]);
 
     const [tab, setTab] = useState("ask");
     const [ask, setAsk] = useState(false);
@@ -69,6 +76,8 @@ const Service = () => {
     const [small, setSmall] = useState(false);
     const [size, setSize] = useState(0);
 
+    const { Panel } = Collapse;
+
     useLayoutEffect(() => {
         function updateSize() {
             setSize(window.innerWidth);
@@ -86,6 +95,7 @@ const Service = () => {
             setSmall(true);
         }
     }, [size]);
+    console.log(helps);
 
     return (
         <div className="service-wrap">
@@ -93,6 +103,39 @@ const Service = () => {
                 <Fragment>
                     <div className="head">
                         <div className="text">고객센터</div>
+                    </div>
+                    <div className="content-box">
+                        <Collapse defaultActiveKey={["1"]}>
+                            <Panel header="Cogether 소개1" key="1">
+                                <p>어서오세요</p>
+                            </Panel>
+                            <Panel header="자주 묻는 질문" key="2">
+                                <Collapse>
+                                    {freqs &&
+                                        freqs.results &&
+                                        freqs.results.map((freq, index) => {
+                                            return (
+                                                <Panel header={freq.title}>
+                                                    <div className="freq-content">{freq.contents}</div>
+                                                </Panel>
+                                            );
+                                        })}
+                                </Collapse>
+                            </Panel>
+                            <Panel header="내 문의 목록" key="3">
+                                <Collapse>
+                                    {helps &&
+                                        helps.results &&
+                                        helps.results.map((help, index) => {
+                                            return (
+                                                <Panel header={help.title}>
+                                                    <div className="help-content">{help.contents}</div>
+                                                </Panel>
+                                            );
+                                        })}
+                                </Collapse>
+                            </Panel>
+                        </Collapse>
                     </div>
                 </Fragment>
             ) : (
@@ -132,7 +175,8 @@ const Service = () => {
                                     </div>
                                     <div className="bar"></div>
                                     <div className="freq-list">
-                                        {freqs.results &&
+                                        {freqs &&
+                                            freqs.results &&
                                             freqs.results.map((freq, index) => {
                                                 return (
                                                     <div className="freq">
@@ -146,10 +190,12 @@ const Service = () => {
                                                                 ];
                                                                 freqState.splice(index, 1, !freqState[index]);
                                                                 setFreqState(tempArr);
+                                                                console.log(freqs);
                                                             }}
                                                         >
                                                             {freq.title}
                                                         </div>
+
                                                         {freqState[index] ? <div className="freq-content">{freq.contents}</div> : null}
                                                     </div>
                                                 );
@@ -239,7 +285,12 @@ const Service = () => {
                                                 <div className="status">처리상태</div>
                                             </div>
                                             <div className="help-list">
-                                                {helps.results &&
+                                                {/* {helps.results &&
+                                                    helps.results.map((help, index) => {
+                                                        return <div>{help.title}</div>;
+                                                    })} */}
+                                                {helps &&
+                                                    helps.results &&
                                                     helps.results.map((help, index) => {
                                                         return (
                                                             <div>
@@ -268,12 +319,12 @@ const Service = () => {
                                                                         >
                                                                             {help.title}
                                                                         </div>
-                                                                        <div className="date">{help.created_at.split("T")[0]}</div>
+                                                                        <div className="date">{help.created_at}</div>
                                                                         <div className="status">
                                                                             {help.status === "waiting" ? "답변대기" : "답변완료"}
                                                                         </div>
                                                                     </div>
-                                                                    {helpState[index] ? (
+                                                                    {/* {helpState[0] ? (
                                                                         <div className="help-content-box">
                                                                             <div className="help-content">
                                                                                 <div className="writer">내용</div>
@@ -284,7 +335,7 @@ const Service = () => {
                                                                                 <div className="content">{help.answer}</div>
                                                                             </div>
                                                                         </div>
-                                                                    ) : null}
+                                                                    ) : null} */}
                                                                 </div>
                                                             </div>
                                                         );

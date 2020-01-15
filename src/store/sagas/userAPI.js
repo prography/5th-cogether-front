@@ -133,23 +133,49 @@ function* watchMe() {
 
 function* Favor(data) {
     try {
+        console.log(data);
+        const json = {
+            token: localStorage.getItem("accessToken")
+        };
+        var response = null;
+        console.log(localStorage.getItem("accessToken"));
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+        };
         //get favor
-        if (data.type === "get") {
+        if (data.payload.type === "get") {
+            console.log("a");
+            response = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", {
+                headers: headerParams
+            });
+            yield put(favorSuccess(response.data));
         }
-        //add favor
-        else {
+        //add & delete favor
+        else if (data.payload.type === "post") {
+            console.log("a");
+
+            yield call(
+                [axios, "post"],
+                `https://cogether.azurewebsites.net/event/${data.payload.id}/like/`,
+                {},
+                {
+                    headers: headerParams
+                }
+            );
+            response = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", {
+                headers: headerParams
+            });
+            yield put(favorSuccess(response.data));
         }
-        // const json = {
-        //     token: localStorage.getItem("accessToken")
-        // };
-        // const jwt = require("jsonwebtoken");
-        // const decoded = jwt.decode(localStorage.getItem("accessToken"));
-        // yield put(meSuccessAction(JSON.stringify(decoded.username)));
     } catch (e) {
         yield put({ type: FAVOR_FAIL });
     }
 }
 
+function* watchFavor() {
+    yield takeLatest(FAVOR_REQUEST, Favor);
+}
+
 export default function* userSaga() {
-    yield all([fork(watchLogin), fork(watchLogout), fork(watchJoin), fork(watchGithubLogin), fork(watchMe), fork(Favor)]);
+    yield all([fork(watchLogin), fork(watchLogout), fork(watchJoin), fork(watchGithubLogin), fork(watchMe), fork(watchFavor)]);
 }

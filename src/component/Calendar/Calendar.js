@@ -4,32 +4,19 @@ import { Calendar, Badge } from "antd";
 const Calendars = () => {
     const getListData = value => {
         let listData;
-        switch (value.date()) {
-            case 8:
-                listData = [
-                    { type: "warning", content: "This is warning event." },
-                    { type: "success", content: "This is usual event." }
-                ];
-                break;
-            case 10:
-                listData = [
-                    { type: "warning", content: "This is warning event." },
-                    { type: "success", content: "This is usual event." },
-                    { type: "error", content: "This is error event." }
-                ];
-                break;
-            case 15:
-                listData = [
-                    { type: "warning", content: "This is warning event" },
-                    { type: "success", content: "This is very long usual event。。...." },
-                    { type: "error", content: "This is error event 1." },
-                    { type: "error", content: "This is error event 2." },
-                    { type: "error", content: "This is error event 3." },
-                    { type: "error", content: "This is error event 4." }
-                ];
-                break;
-            default:
-        }
+        // switch (value.date()) {
+        //     case 15:
+        //         listData = [{ type: "success", content: "초보자를 위한 AWS 뿌시기 " }];
+        //         break;
+        //     case 20:
+        //         listData = [{ type: "warning", content: "네이버 클라우드 플랫폼" }];
+        //         break;
+        //     case 11:
+        //         listData = [{ type: "error", content: "CircleCI Korea User Group" }];
+        //         break;
+        //     default:
+        // }
+        listData = [{ type: "success", content: "초보자를 위한 AWS 뿌시기 " }];
         return listData || [];
     };
 
