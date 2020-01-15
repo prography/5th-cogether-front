@@ -26,7 +26,7 @@ const Mypage = () => {
     );
 
     const modifyPassword = () => {
-        setPassword(true);
+        setPassword(!password);
     };
 
     useEffect(() => {
@@ -46,7 +46,6 @@ const Mypage = () => {
                         <div className="section-title"> 내 정보 관리</div>
                         <div className="section-head">
                             <div className="detail">내 개인 정보를 수정해주세요.</div>
-                            <button className="save">저장하기</button>
                         </div>
                         <div className="section-content">
                             <div className="photo">

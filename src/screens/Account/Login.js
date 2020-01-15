@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from "react-router-dom";
 import "./Login.scss";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { GithubLoginButton } from "react-social-login-buttons";
 
 const Login = () => {
@@ -25,7 +25,7 @@ const Login = () => {
     const onSubmit = useCallback((e) => {
         e.preventDefault();
         if(username === '') {
-            swal("이메일을 입력해주세요")
+            swal("이메일을 입력해주세요");
             return;
         }
         if(password === '') {

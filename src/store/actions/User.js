@@ -26,6 +26,10 @@ export const FAVOR_REQUEST = "FAVOR_REQUEST";
 export const FAVOR_SUCCESS = "FAVOR_SUCCESS";
 export const FAVOR_FAIL = "FAVOR_FAIL";
 
+export const PASSWORD_MODIFY_REQUEST = "PASSWORD_MODIFY_REQUEST";
+export const PASSWORD_MODIFY_SUCCESS = "PASSWORD_MODIFY_SUCCESS";
+export const PASSWORD_MODIFY_FAIL = "PASSWORD_MODIFY_FAIL";
+
 //me
 export const meRequestAction = () => ({
     type: ME_REQUEST,
@@ -110,4 +114,16 @@ export const favorSuccess = data => ({
 });
 export const favorFail = () => ({
     type: FAVOR_FAIL,
+});
+
+//modify password
+export const passwordModifyRequestAction = data => ({
+    type: PASSWORD_MODIFY_REQUEST,
+    payload: data,
+});
+export const passwordModifySuccessAction = () => ({
+    type: PASSWORD_MODIFY_SUCCESS,
+});
+export const passwordModifyFailAction = () => ({
+    type: PASSWORD_MODIFY_FAIL,
 });

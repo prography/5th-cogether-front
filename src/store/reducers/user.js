@@ -13,6 +13,7 @@ const initialState = {
     mePhoto: null,
     meLogin: null,
     favor: [],
+    passwordEdited: false,
 };
 
 const userReducer = handleActions({
@@ -140,18 +141,34 @@ const userReducer = handleActions({
     },
     'FAVOR_REQUEST': (state, action) => {
         return {
-            ...state
+            ...state,
         };
     },
     'FAVOR_SUCCESS': (state, action) => {
         return {
             ...state,
-            favor: action.payload
+            favor: action.payload,
         };
     },
     'FAVOR_FAIL': (state, action) => {
         return {
-            ...state
+            ...state,
+        };
+    },
+    'PASSWORD_MODIFY_REQUEST': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+    'PASSWORD_MODIFY_SUCCESS': (state, action) => {
+        return {
+            ...state,
+            passwordEdited:true,
+        };
+    },
+    'PASSWORD_MODIFY_FAIL': (state, action) => {
+        return {
+            ...state,
         };
     },
 

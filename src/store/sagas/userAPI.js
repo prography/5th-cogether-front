@@ -20,6 +20,9 @@ import {
     FAVOR_REQUEST,
     FAVOR_FAIL,
     favorSuccess,
+    PASSWORD_MODIFY_REQUEST,
+    PASSWORD_MODIFY_FAIL,
+    passwordModifySuccessAction,
 } from "../actions/User";
 import { meRequestAction } from "../actions/User";
 import swal from "sweetalert";
@@ -150,6 +153,32 @@ function* Favor(data) {
     }
 }
 
+//modify password
+function* getPasswordData({ payload }) {
+    try {
+        const json = {
+            current_password: payload.current_password,
+            password1: payload.password1,
+            password2: payload.password2,
+        };
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        };
+        
+        const responseBody = yield call([axios, "put"], "https://cogether.azurewebsites.net/account/update-password/",
+            json, { headers: headerParams });
+        
+        yield put(passwordModifySuccessAction());
+        
+    } catch (e) {
+        yield put({ type: PASSWORD_MODIFY_FAIL });
+        swal(e.response.data.message);
+    }
+}
+function* watchPassword() {
+    yield takeLatest(PASSWORD_MODIFY_REQUEST, getPasswordData);
+}
+
 export default function* userSaga() {
     yield all([
         fork(watchLogin), 
@@ -158,5 +187,6 @@ export default function* userSaga() {
         fork(watchGithubLogin), 
         fork(watchMe), 
         fork(Favor),
+        fork(watchPassword),
     ]);
 }
