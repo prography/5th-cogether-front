@@ -16,15 +16,13 @@ import "./ConferenceList.scss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import swal from "sweetalert";
 import { Icon } from "antd";
-import { favorRequest } from "store/actions/User";
+import { favorRequestAction } from "store/actions/User";
 
 const ConferenceList = ({ match }) => {
     const dispatch = useDispatch();
     const conferences = useSelector(state => state.conferenceReducer.conferenceInfo);
     const searchs = useSelector(state => state.clubReducer.search.conf);
-
-    const [liking, setLiking] = useState(false); //즐겨찾기 여부
-
+    var favors = useSelector(state => state.userReducer.favor);
     const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
     const onSetSearchText = useCallback(e => {
@@ -50,14 +48,17 @@ const ConferenceList = ({ match }) => {
 
     const addLike = id => {
         const data = { type: "post", id: id };
-        dispatch(favorRequest(data));
+        dispatch(favorRequestAction(data));
     };
 
-    const like = () => {
-        setLiking(!liking);
-        console.log(liking);
+    const like = id => {
+        return favors.findIndex(x => x.id === id);
     };
-
+    
+    useEffect(() => {
+        dispatch(favorRequestAction({ type: "get" }));
+    }, []);
+    
     const useStyles = makeStyles({
         card: {
             maxWidth: 300
@@ -130,29 +131,25 @@ const ConferenceList = ({ match }) => {
                                                     <div className="icons">
                                                         <a className="detail-link">
                                                             <CopyToClipboard
-                                                                text={url
-                                                                    .concat(`${match.url}/detail/${conf.id}`)
-                                                                    .replace(`${match.params.text}/`, "")}
-                                                            >
+                                                                text={url.concat(`${match.url}/detail/${conf.id}`)
+                                                                    .replace(`${match.params.text}/`, "")}>
                                                                 <div className="share">
                                                                     <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
                                                                 </div>
                                                             </CopyToClipboard>
                                                         </a>
                                                         <div className="heart" onClick={() => addLike(conf.id)}>
-                                                            {liking ? (
+                                                            {like(conf.id)!==-1 ? (
                                                                 <Icon
                                                                     className="hh"
                                                                     type="heart"
                                                                     style={{ fontSize: "28px", color: "#e53935" }}
-                                                                    onClick={() => like(conf.id)}
                                                                 />
                                                             ) : (
                                                                 <Icon
                                                                     className="hh"
                                                                     type="heart"
                                                                     style={{ fontSize: "28px" }}
-                                                                    onClick={() => like(conf.id)}
                                                                 />
                                                             )}
                                                         </div>
@@ -219,17 +216,19 @@ const ConferenceList = ({ match }) => {
                                                                 </div>
                                                             </CopyToClipboard>
                                                         </a>
-
                                                         <div className="heart" onClick={() => addLike(conf.id)}>
-                                                            {liking ? (
+                                                            {like(conf.id)!==-1 ? (
                                                                 <Icon
                                                                     className="hh"
                                                                     type="heart"
                                                                     style={{ fontSize: "28px", color: "#e53935" }}
-                                                                    onClick={like}
                                                                 />
                                                             ) : (
-                                                                <Icon className="hh" type="heart" style={{ fontSize: "28px" }} onClick={like} />
+                                                                <Icon
+                                                                    className="hh"
+                                                                    type="heart"
+                                                                    style={{ fontSize: "28px" }}
+                                                                />
                                                             )}
                                                         </div>
                                                     </div>

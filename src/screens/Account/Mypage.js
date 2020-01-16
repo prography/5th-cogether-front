@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { alarmModifyRequestAction } from "../../store/actions/User";
+import { favorRequestAction } from "store/actions/User";
 import user from "assets/user.png";
 import "./Mypage.scss";
 import Card from "@material-ui/core/Card";
@@ -12,7 +13,6 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { Switch, Menu, Dropdown, Button } from "antd";
 import Calendars from "component/Calendar/Calendar";
-import { favorRequest } from "store/actions/User";
 import { Row, Col, Container } from "react-bootstrap";
 import { Icon } from "antd";
 import { makeStyles } from "@material-ui/core/styles";
@@ -26,6 +26,8 @@ const Mypage = ({ match }) => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     var favors = useSelector(state => state.userReducer.favor);
+    var favorID = useSelector(state => state.userReducer.favorID);
+    console.log(favorID);
     const [item, setItem] = useState("전체");
     const [liking, setLiking] = useState(false); //즐겨찾기 여부
 
@@ -59,12 +61,12 @@ const Mypage = ({ match }) => {
 
     const addLike = id => {
         const data = { type: "post", id: id };
-        dispatch(favorRequest(data));
+        dispatch(favorRequestAction(data));
     };
 
     const like = () => {
         setLiking(!liking);
-        dispatch(favorRequest({ type: "post" }));
+        dispatch(favorRequestAction({ type: "post" }));
         console.log(liking);
     };
 
@@ -98,7 +100,7 @@ const Mypage = ({ match }) => {
     }, [localStorage.getItem("accessToken")]);
 
     useEffect(() => {
-        dispatch(favorRequest({ type: "get" }));
+        dispatch(favorRequestAction({ type: "get" }));
     }, []);
 
     if (meName) {

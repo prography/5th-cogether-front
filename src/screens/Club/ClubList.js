@@ -10,21 +10,19 @@ import Typography from "@material-ui/core/Typography";
 import { Row, Col, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { requestClub, requestSearch } from "store/actions/Info";
-import { favorRequest } from "store/actions/User";
 import { Link } from "react-router-dom";
 import search_icon from "assets/search.svg";
 import "./ClubList.scss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import swal from "sweetalert";
 import { Icon } from "antd";
+import { favorRequestAction } from "store/actions/User";
 
 const ClubList = ({ match }) => {
     const dispatch = useDispatch();
     const clubs = useSelector(state => state.clubReducer.clubInfo);
     const searchs = useSelector(state => state.clubReducer.search.club);
-
-    const [liking, setLiking] = useState(false); //즐겨찾기 여부
-
+    var favors = useSelector(state => state.userReducer.favor);
     const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
     const onSetSearchText = useCallback(e => {
@@ -48,11 +46,18 @@ const ClubList = ({ match }) => {
         swal("클립보드 복사가 완료되었습니다");
     };
 
-    const like = () => {
-        setLiking(!liking);
-        dispatch(favorRequest({ type: "post" }));
-        console.log(liking);
+    const addLike = id => {
+        const data = { type: "post", id: id };
+        dispatch(favorRequestAction(data));
     };
+
+    const like = id => {
+        return favors.findIndex(x => x.id === id);
+    };
+    
+    useEffect(() => {
+        dispatch(favorRequestAction({ type: "get" }));
+    }, []);
 
     const useStyles = makeStyles({
         card: {
@@ -126,25 +131,26 @@ const ClubList = ({ match }) => {
                                                     <div className="icons">
                                                         <a className="detail-link">
                                                             <CopyToClipboard
-                                                                text={url
-                                                                    .concat(`${match.url}/detail/${club.id}`)
-                                                                    .replace(`${match.params.text}/`, "")}
-                                                            >
+                                                                text={url.concat(`${match.url}/detail/${club.id}`)
+                                                                    .replace(`${match.params.text}/`, "")}>
                                                                 <div className="share">
                                                                     <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
                                                                 </div>
                                                             </CopyToClipboard>
                                                         </a>
-                                                        <div className="heart">
-                                                            {liking ? (
+                                                        <div className="heart" onClick={() => addLike(club.id)}>
+                                                            {like(club.id)!==-1 ? (
                                                                 <Icon
                                                                     className="hh"
                                                                     type="heart"
                                                                     style={{ fontSize: "28px", color: "#e53935" }}
-                                                                    onClick={like}
                                                                 />
                                                             ) : (
-                                                                <Icon className="hh" type="heart" style={{ fontSize: "28px" }} onClick={like} />
+                                                                <Icon
+                                                                    className="hh"
+                                                                    type="heart"
+                                                                    style={{ fontSize: "28px" }}
+                                                                />
                                                             )}
                                                         </div>
                                                     </div>
@@ -210,16 +216,19 @@ const ClubList = ({ match }) => {
                                                                 </div>
                                                             </CopyToClipboard>
                                                         </a>
-                                                        <div className="heart">
-                                                            {liking ? (
+                                                        <div className="heart" onClick={() => addLike(club.id)}>
+                                                            {like(club.id)!==-1 ? (
                                                                 <Icon
                                                                     className="hh"
                                                                     type="heart"
                                                                     style={{ fontSize: "28px", color: "#e53935" }}
-                                                                    onClick={like}
                                                                 />
                                                             ) : (
-                                                                <Icon className="hh" type="heart" style={{ fontSize: "28px" }} onClick={like} />
+                                                                <Icon
+                                                                    className="hh"
+                                                                    type="heart"
+                                                                    style={{ fontSize: "28px" }}
+                                                                />
                                                             )}
                                                         </div>
                                                     </div>

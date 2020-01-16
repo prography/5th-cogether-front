@@ -108,15 +108,15 @@ export const githubLoginFailAction = () => ({
 });
 
 //즐겨찾기
-export const favorRequest = data => ({
+export const favorRequestAction = data => ({
     type: FAVOR_REQUEST,
     payload: data,
 });
-export const favorSuccess = data => ({
+export const favorSuccessAction = data => ({
     type: FAVOR_SUCCESS,
     payload: data,
 });
-export const favorFail = () => ({
+export const favorFailAction = () => ({
     type: FAVOR_FAIL,
 });
 

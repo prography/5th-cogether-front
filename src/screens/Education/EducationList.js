@@ -16,14 +16,13 @@ import "./EducationList.scss";
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import swal from 'sweetalert';
 import { Icon } from "antd";
+import { favorRequestAction } from "store/actions/User";
 
 const EducationList = ({ match }) => {
     const dispatch = useDispatch();
     const educations = useSelector(state => state.educationReducer.educationInfo);
     const searchs = useSelector(state => state.clubReducer.search.edu);
-
-    const [liking, setLiking] = useState(false);  //즐겨찾기 여부
-
+    var favors = useSelector(state => state.userReducer.favor);
     const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
     const onSetSearchText = useCallback(e => {
@@ -47,10 +46,18 @@ const EducationList = ({ match }) => {
         swal("클립보드 복사가 완료되었습니다");
     };
 
-    const like = () => {
-        setLiking(!liking);
-        console.log(liking);
+    const addLike = id => {
+        const data = { type: "post", id: id };
+        dispatch(favorRequestAction(data));
     };
+
+    const like = id => {
+        return favors.findIndex(x => x.id === id);
+    };
+
+    useEffect(() => {
+        dispatch(favorRequestAction({ type: "get" }));
+    }, []);
     
     const useStyles = makeStyles({
         card: {
@@ -122,19 +129,28 @@ const EducationList = ({ match }) => {
                                             <CardActions>
                                                 <div className="icons">
                                                     <a className="detail-link" >
-                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${edu.id}`)
-                                                            .replace(`${match.params.text}/`,"")}>
+                                                        <CopyToClipboard 
+                                                            text={url.concat(`${match.url}/detail/${edu.id}`)
+                                                                .replace(`${match.params.text}/`,"")}>
                                                             <div className="share">
                                                                 <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
                                                             </div>
                                                         </CopyToClipboard>
                                                     </a>
-                                                    <div className="heart">
-                                                        { liking ? 
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
-                                                            :
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
-                                                        }
+                                                    <div className="heart" onClick={() => addLike(edu.id)}>
+                                                        {like(edu.id)!==-1 ? (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px", color: "#e53935" }}
+                                                            />
+                                                        ) : (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px" }}
+                                                            />
+                                                        )}
                                                     </div>
                                                 </div>
                                             </CardActions>
@@ -198,12 +214,20 @@ const EducationList = ({ match }) => {
                                                             </div>
                                                         </CopyToClipboard>
                                                     </a>
-                                                    <div className="heart">
-                                                        { liking ? 
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
-                                                            :
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
-                                                        }
+                                                    <div className="heart" onClick={() => addLike(edu.id)}>
+                                                        {like(edu.id)!==-1 ? (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px", color: "#e53935" }}
+                                                            />
+                                                        ) : (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px" }}
+                                                            />
+                                                        )}
                                                     </div>
                                                 </div>
                                             </CardActions>

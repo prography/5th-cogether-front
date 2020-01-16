@@ -19,7 +19,7 @@ import {
     meSuccessAction,
     FAVOR_REQUEST,
     FAVOR_FAIL,
-    favorSuccess,
+    favorSuccessAction,
     PASSWORD_MODIFY_REQUEST,
     PASSWORD_MODIFY_FAIL,
     passwordModifySuccessAction,
@@ -126,10 +126,10 @@ function* getMeData() {
         };
 
         const isExpired = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
-        const userInfo = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/retrieve-profile/", 
+        const userData = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/retrieve-profile/", 
             { headers: headerParams });
         
-        yield put(meSuccessAction(userInfo.data));
+        yield put(meSuccessAction(userData.data));
     } catch (e) {
         yield put({ type: ME_FAIL });
         yield put(logoutRequestAction());
@@ -140,41 +140,33 @@ function* watchMe() {
 }
 
 //즐겨찾기
-function* Favor(data) {
+function* Favor({ payload }) {
     try {
-        console.log(data);
-        const json = {
-            token: localStorage.getItem("accessToken"),
-        };
-        var response = null;
-        console.log(localStorage.getItem("accessToken"));
         const headerParams = {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`
         };
         //get favor
-        if (data.payload.type === "get") {
-            console.log("a");
-            response = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", {
-                headers: headerParams
-            });
-            yield put(favorSuccess(response.data));
+        if (payload.type === "get") {
+            
+            const responseBody = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", 
+            { headers: headerParams });
+            
+            yield put(favorSuccessAction(responseBody.data));
         }
         //add & delete favor
-        else if (data.payload.type === "post") {
-            console.log("a");
+        else if (payload.type === "post") {
 
             yield call(
                 [axios, "post"],
-                `https://cogether.azurewebsites.net/event/${data.payload.id}/like/`,
+                `https://cogether.azurewebsites.net/event/${payload.id}/like/`,
                 {},
-                {
-                    headers: headerParams
-                }
-            );
-            response = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", {
+                { headers: headerParams });
+
+            const responseBody = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", {
                 headers: headerParams
             });
-            yield put(favorSuccess(response.data));
+            
+            yield put(favorSuccessAction(responseBody.data));
         }
     } catch (e) {
         yield put({ type: FAVOR_FAIL });
