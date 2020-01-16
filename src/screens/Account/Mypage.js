@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { alarmModifyRequestAction } from "../../store/actions/User";
 import user from "assets/user.png";
 import "./Mypage.scss";
 import Card from "@material-ui/core/Card";
@@ -24,14 +25,14 @@ const Mypage = ({ match }) => {
 
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
-    const me = useSelector(state => state.userReducer.meInfo);
     var favors = useSelector(state => state.userReducer.favor);
-
     const [item, setItem] = useState("전체");
     const [liking, setLiking] = useState(false); //즐겨찾기 여부
+
     const meName = useSelector(state => state.userReducer.meName);
     const mePhoto = useSelector(state => state.userReducer.mePhoto);
     const meLogin = useSelector(state => state.userReducer.meLogin);
+    const meSubscribe = useSelector(state => state.userReducer.meSubscribe);
 
     const [password, setPassword] = useState(false);
 
@@ -47,6 +48,13 @@ const Mypage = ({ match }) => {
     const url = "https://cogether.kr";
     const copy = () => {
         swal("클립보드 복사가 완료되었습니다");
+    };
+
+    const modifyPassword = () => {
+        setPassword(!password);
+    };
+    const switched = () => {
+        dispatch(alarmModifyRequestAction(!meSubscribe));
     };
 
     const addLike = id => {
@@ -84,10 +92,6 @@ const Mypage = ({ match }) => {
         }
     });
     const classes = useStyles();
-
-    const modifyPassword = () => {
-        setPassword(!password);
-    };
 
     useEffect(() => {
         setToken(localStorage.getItem("accessToken"));
@@ -136,7 +140,7 @@ const Mypage = ({ match }) => {
                                     <div className="info">
                                         <div className="key">이메일 수신 알림</div>
                                         <div className="value-1">
-                                            <Switch defaultChecked />
+                                            <Switch defaultChecked={meSubscribe} onChange={switched} />
                                         </div>
                                     </div>
                                 </div>

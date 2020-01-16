@@ -30,6 +30,10 @@ export const PASSWORD_MODIFY_REQUEST = "PASSWORD_MODIFY_REQUEST";
 export const PASSWORD_MODIFY_SUCCESS = "PASSWORD_MODIFY_SUCCESS";
 export const PASSWORD_MODIFY_FAIL = "PASSWORD_MODIFY_FAIL";
 
+export const ALARM_MODIFY_REQUEST = "ALARM_MODIFY_REQUEST";
+export const ALARM_MODIFY_SUCCESS = "ALARM_MODIFY_SUCCESS";
+export const ALARM_MODIFY_FAIL = "ALARM_MODIFY_FAIL";
+
 //me
 export const meRequestAction = () => ({
     type: ME_REQUEST,
@@ -126,4 +130,17 @@ export const passwordModifySuccessAction = () => ({
 });
 export const passwordModifyFailAction = () => ({
     type: PASSWORD_MODIFY_FAIL,
+});
+
+//modify email alarm
+export const alarmModifyRequestAction = data => ({
+    type: ALARM_MODIFY_REQUEST,
+    payload: data,
+});
+export const alarmModifySuccessAction = data => ({
+    type: ALARM_MODIFY_SUCCESS,
+    payload: data,
+});
+export const alarmModifyFailAction = () => ({
+    type: ALARM_MODIFY_FAIL,
 });

@@ -23,6 +23,9 @@ import {
     PASSWORD_MODIFY_REQUEST,
     PASSWORD_MODIFY_FAIL,
     passwordModifySuccessAction,
+    ALARM_MODIFY_REQUEST,
+    ALARM_MODIFY_FAIL,
+    alarmModifySuccessAction,
 } from "../actions/User";
 import { meRequestAction } from "../actions/User";
 import swal from "sweetalert";
@@ -118,13 +121,15 @@ function* getMeData() {
         const json = {
             token: localStorage.getItem("accessToken"),
         };
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        };
 
         const isExpired = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
-
-        const jwt = require("jsonwebtoken");
-        const decoded = jwt.decode(localStorage.getItem("accessToken"));
+        const userInfo = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/retrieve-profile/", 
+            { headers: headerParams });
         
-        yield put(meSuccessAction(decoded));
+        yield put(meSuccessAction(userInfo.data));
     } catch (e) {
         yield put({ type: ME_FAIL });
         yield put(logoutRequestAction());
@@ -134,11 +139,12 @@ function* watchMe() {
     yield takeLatest(ME_REQUEST, getMeData);
 }
 
+//즐겨찾기
 function* Favor(data) {
     try {
         console.log(data);
         const json = {
-            token: localStorage.getItem("accessToken")
+            token: localStorage.getItem("accessToken"),
         };
         var response = null;
         console.log(localStorage.getItem("accessToken"));
@@ -204,6 +210,29 @@ function* watchPassword() {
     yield takeLatest(PASSWORD_MODIFY_REQUEST, getPasswordData);
 }
 
+//modify email alarm
+function* getAlarmData({ payload }) {
+    try {
+        const json = {
+            subscribe: payload,
+        };
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        };
+        
+        const responseBody = yield call([axios, "patch"], "https://cogether.azurewebsites.net/account/update-profile/",
+            json, { headers: headerParams });
+        
+        yield put(alarmModifySuccessAction(payload));
+    } catch (e) {
+        yield put({ type: ALARM_MODIFY_FAIL });
+        swal(e.response.data.message);
+    }
+}
+function* watchAlarm() {
+    yield takeLatest(ALARM_MODIFY_REQUEST, getAlarmData);
+}
+
 export default function* userSaga() {
     yield all([
         fork(watchLogin), 
@@ -213,5 +242,6 @@ export default function* userSaga() {
         fork(watchMe), 
         fork(watchFavor),
         fork(watchPassword),
+        fork(watchAlarm),
     ]);
 }

@@ -100,7 +100,7 @@ const HeaderContainer = ({ match }) => {
                                     <Link to="/login">
                                         <div className="txt">로그인</div>
                                     </Link>
-                                    <Link to="/sign">
+                                    <Link to="/join">
                                         <div className="txt">회원가입</div>
                                     </Link>
                                 </div>

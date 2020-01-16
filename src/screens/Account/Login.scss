@@ -39,7 +39,7 @@
             
         }
         .loginButton {
-            width:450px;
+            width:420px;
             height:40px;
             border:none;
             border-radius: 4px;
@@ -52,8 +52,9 @@
             background-color: rgb(236, 150, 64);
         }
         .githubButton {
-            width:480px;
-            padding:10px;
+            width:440px;
+            padding:5px;
+            margin:20px;
         }
         
     }
@@ -71,6 +72,7 @@
             .loginText {
                 font-size:16px;
                 width:250px;
+                margin-top: 1rem;
             }
             .form{
 
@@ -83,10 +85,10 @@
             }
 
             .loginButton {
-                width:310px;
+                width:280px;
             }
             .githubButton {
-                width:340px;
+                width:310px;
                 padding:10px;
             }
         }

@@ -12,8 +12,10 @@ const initialState = {
     meName: null,
     mePhoto: null,
     meLogin: null,
+    meSubscribe: true,
     favor: [],
     passwordEdited: false,
+    alarmEdited: false,
 };
 
 const userReducer = handleActions({
@@ -21,49 +23,49 @@ const userReducer = handleActions({
     'JOIN_REQUEST': (state, action) => {
         return{
             ...state,
-            isJoined:false,
-            isJoining:true,
+            isJoined: false,
+            isJoining: true,
         };
     },
     'JOIN_SUCCESS': (state, action) => {
         return{
             ...state,
             signedUp: action.payload,
-            isJoined:true,
-            isJoining:false,
+            isJoined: true,
+            isJoining: false,
         };
     },
     'JOIN_FAIL': (state, action) =>{
         return{
             ...state,
-            isJoining:false,
+            isJoining: false,
         };
     },
     'LOGIN_REQUEST': (state, action) =>{
         return{
             ...state,
-            isLoggedIn:false,
-            isLoggingIn:true,
+            isLoggedIn: false,
+            isLoggingIn: true,
         };
     },
     'LOGIN_SUCCESS': (state, action) =>{
         return{
             ...state,
             userInfo: action.payload,  
-            isLoggedIn:true,
-            isLoggingIn:false,
+            isLoggedIn: true,
+            isLoggingIn: false,
         };
     },
     'LOGIN_FAIL': (state, action) =>{
         return{
             ...state,
-            isLoggingIn:false,
+            isLoggingIn: false,
         };
     },
     'LOGOUT_REQUEST': (state, action) =>{
         return{
             ...state,
-            isLoggingout:true,
+            isLoggingout: true,
         };
     },
     'LOGOUT_SUCCESS': (state, action) =>{
@@ -73,13 +75,13 @@ const userReducer = handleActions({
             meName: null,
             mePhoto: null,
             meLogin: null,
-            isLoggedIn:false,
+            isLoggedIn: false,
         };
     },
     'LOGOUT_FAIL': (state, action) =>{
         return{
             ...state,
-            isLoggingout:false,
+            isLoggingout: false,
         };
     },
     'SERVICE_REQUEST': (state, action) => {
@@ -101,21 +103,21 @@ const userReducer = handleActions({
     'GITHUB_LOGIN_REQUEST': (state, action) =>{
         return{
             ...state,
-            isLoggedIn:false,
-            isLoggingIn:true,
+            isLoggedIn: false,
+            isLoggingIn: true,
         };
     },
     'GITHUB_LOGIN_SUCCESS': (state, action) =>{
         return{
             ...state, 
-            isLoggedIn:true,
-            isLoggingIn:false,
+            isLoggedIn: true,
+            isLoggingIn: false,
         };
     },
     'GITHUB_LOGIN_FAIL': (state, action) =>{
         return{
             ...state,
-            isLoggingIn:false,
+            isLoggingIn: false,
         };
     },
     'ME_REQUEST': (state, action) => {
@@ -129,6 +131,7 @@ const userReducer = handleActions({
             meName: JSON.stringify(action.payload.username),   // username
             mePhoto: action.payload.social_avatar,   // profile photo
             meLogin: action.payload.login_method,  // email or github 
+            meSubscribe: action.payload.subscribe, // email alarm subscribe : true or false
         };
     },
     'ME_FAIL': (state, action) =>{
@@ -163,10 +166,27 @@ const userReducer = handleActions({
     'PASSWORD_MODIFY_SUCCESS': (state, action) => {
         return {
             ...state,
-            passwordEdited:true,
+            passwordEdited: true,
         };
     },
     'PASSWORD_MODIFY_FAIL': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+    'ALARM_MODIFY_REQUEST': (state, action) => {
+        return {
+            ...state,
+        };
+    },
+    'ALARM_MODIFY_SUCCESS': (state, action) => {
+        return {
+            ...state,
+            meSubscribe: action.payload,
+            alarmEdited: true,
+        };
+    },
+    'ALARM_MODIFY_FAIL': (state, action) => {
         return {
             ...state,
         };
