@@ -22,14 +22,9 @@ import { Link } from "react-router-dom";
 
 const Mypage = ({ match }) => {
     const dispatch = useDispatch();
-
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
-
     var favors = useSelector(state => state.userReducer.favor);
-    var favorID = useSelector(state => state.userReducer.favorID);
-    console.log(favorID);
     const [item, setItem] = useState("전체");
-    const [liking, setLiking] = useState(false); //즐겨찾기 여부
 
     const meName = useSelector(state => state.userReducer.meName);
     const mePhoto = useSelector(state => state.userReducer.mePhoto);
@@ -64,11 +59,13 @@ const Mypage = ({ match }) => {
         dispatch(favorRequestAction(data));
     };
 
-    const like = () => {
-        setLiking(!liking);
-        dispatch(favorRequestAction({ type: "post" }));
-        console.log(liking);
+    const like = id => {
+        return favors.findIndex(x => x.id === id);
     };
+
+    useEffect(() => {
+        dispatch(favorRequestAction({ type: "get" }));
+    }, []);
 
     const useStyles = makeStyles({
         card: {
@@ -98,10 +95,6 @@ const Mypage = ({ match }) => {
     useEffect(() => {
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
-
-    useEffect(() => {
-        dispatch(favorRequestAction({ type: "get" }));
-    }, []);
 
     if (meName) {
         return (
@@ -202,19 +195,17 @@ const Mypage = ({ match }) => {
                                                                         </CopyToClipboard>
                                                                     </a>
                                                                     <div className="heart" onClick={() => addLike(favor.id)}>
-                                                                        {liking ? (
+                                                                        {like(favor.id)!==-1 ? (
                                                                             <Icon
                                                                                 className="hh"
                                                                                 type="heart"
                                                                                 style={{ fontSize: "28px", color: "#e53935" }}
-                                                                                onClick={like}
                                                                             />
                                                                         ) : (
                                                                             <Icon
                                                                                 className="hh"
                                                                                 type="heart"
                                                                                 style={{ fontSize: "28px" }}
-                                                                                onClick={like}
                                                                             />
                                                                         )}
                                                                     </div>
