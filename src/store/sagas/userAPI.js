@@ -174,13 +174,10 @@ function* Favor(data) {
         yield put({ type: FAVOR_FAIL });
     }
 }
-
 function* watchFavor() {
     yield takeLatest(FAVOR_REQUEST, Favor);
 }
 
-export default function* userSaga() {
-    yield all([fork(watchLogin), fork(watchLogout), fork(watchJoin), fork(watchGithubLogin), fork(watchMe), fork(watchFavor)]);
 //modify password
 function* getPasswordData({ payload }) {
     try {
