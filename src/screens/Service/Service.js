@@ -106,10 +106,10 @@ const Service = () => {
                     </div>
                     <div className="content-box">
                         <Collapse defaultActiveKey={["1"]}>
-                            <Panel header="Cogether 소개1" key="1">
-                                <p>어서오세요</p>
+                            <Panel header="Cogether 소개" key="1" style={{ fontSize: 18, color: "#2d2d4b", fontWeight: "bold" }}>
+                                <div className="page-intro">개발 관련 동아리, 컨퍼런스, 교육 정보를 한 번에 받아보세요!</div>
                             </Panel>
-                            <Panel header="자주 묻는 질문" key="2">
+                            <Panel header="자주 묻는 질문" key="2" style={{ fontSize: 18, color: "#2d2d4b", fontWeight: "bold" }}>
                                 <Collapse>
                                     {freqs &&
                                         freqs.results &&
@@ -122,7 +122,7 @@ const Service = () => {
                                         })}
                                 </Collapse>
                             </Panel>
-                            <Panel header="내 문의 목록" key="3">
+                            <Panel header="내 문의 목록" key="3" style={{ fontSize: 18, color: "#2d2d4b", fontWeight: "bold" }}>
                                 <Collapse>
                                     {helps &&
                                         helps.results &&
