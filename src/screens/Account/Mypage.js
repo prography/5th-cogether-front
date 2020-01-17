@@ -147,77 +147,84 @@ const Mypage = ({ match }) => {
                                 <div className="detail">즐겨찾기한 일정들을 한눈에 모아보세요.</div>
                             </div>
                             <div className="section-content">
-                                <Calendars></Calendars>
+                                <Calendars favors={favors}></Calendars>
                             </div>
                         </div>
-                        <div className="section-content">
-                            <Dropdown overlay={menu} placement="bottomCenter">
-                                <Button>{item}</Button>
-                            </Dropdown>
-                            <Container>
-                                <Row>
-                                    {favors &&
-                                        favors.map(favor => {
-                                            return (
-                                                <Col md={4}>
-                                                    <div className="block">
-                                                        <Card className={classes.card}>
-                                                            <Link to={`/club/detail/${favor.id}`}>
-                                                                <CardActionArea>
-                                                                    <CardMedia
-                                                                        className={classes.media}
-                                                                        image={favor.photo ? favor.photo.photo : require("assets/placeholder.png")}
-                                                                    />
-                                                                    <CardContent>
-                                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                                            <div className={classes.text_size}>{favor.host}</div>
-                                                                        </Typography>
-                                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                                            <div className={classes.body_size}>{favor.title}</div>
-                                                                            <div>
-                                                                                {favor.start_at.split("T")[0]} ~ {favor.end_at.split("T")[0]}
-                                                                            </div>
-                                                                        </Typography>
-                                                                    </CardContent>
-                                                                </CardActionArea>
-                                                            </Link>
-                                                            <CardActions>
-                                                                <div className="icons">
-                                                                    <a className="detail-link">
-                                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${favor.id}`)}>
-                                                                            <div className="share">
-                                                                                <img
-                                                                                    className="ss"
-                                                                                    src={require("assets/share.png")}
-                                                                                    onClick={copy}
-                                                                                ></img>
-                                                                            </div>
-                                                                        </CopyToClipboard>
-                                                                    </a>
-                                                                    <div className="heart" onClick={() => addLike(favor.id)}>
-                                                                        {like(favor.id)!==-1 ? (
-                                                                            <Icon
-                                                                                className="hh"
-                                                                                type="heart"
-                                                                                style={{ fontSize: "28px", color: "#e53935" }}
-                                                                            />
-                                                                        ) : (
-                                                                            <Icon
-                                                                                className="hh"
-                                                                                type="heart"
-                                                                                style={{ fontSize: "28px" }}
-                                                                            />
-                                                                        )}
+                        <div className="section">
+                            <div className="section-title">즐겨찾기한 목록</div>
+                            <div className="section-head">{/* <div className="detail">즐겨찾기한 일정들을 한눈에 모아보세요.</div> */}</div>
+                            <div className="section-content">
+                                <Dropdown overlay={menu} placement="bottomCenter">
+                                    <Button>{item}</Button>
+                                </Dropdown>
+                                <Container>
+                                    <Row>
+                                        {favors &&
+                                            favors.map(favor => {
+                                                return (
+                                                    <Col md={4}>
+                                                        <div className="block">
+                                                            <Card className={classes.card}>
+                                                                <Link to={`/${favor.category.name}/detail/${favor.id}`}>
+                                                                    <CardActionArea>
+                                                                        <CardMedia
+                                                                            className={classes.media}
+                                                                            image={
+                                                                                favor.photo ? favor.photo.photo : require("assets/placeholder.png")
+                                                                            }
+                                                                        />
+                                                                        <CardContent>
+                                                                            <Typography
+                                                                                gutterBottom
+                                                                                variant="h5"
+                                                                                component="h2"
+                                                                                className={classes.text}
+                                                                            >
+                                                                                <div className={classes.text_size}>{favor.host}</div>
+                                                                            </Typography>
+                                                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                                                <div className={classes.body_size}>{favor.title}</div>
+                                                                                <div>
+                                                                                    {favor.start_at.split("T")[0]} ~ {favor.end_at.split("T")[0]}
+                                                                                </div>
+                                                                            </Typography>
+                                                                        </CardContent>
+                                                                    </CardActionArea>
+                                                                </Link>
+                                                                <CardActions>
+                                                                    <div className="icons">
+                                                                        <a className="detail-link">
+                                                                            <CopyToClipboard text={url.concat(`${match.url}/detail/${favor.id}`)}>
+                                                                                <div className="share">
+                                                                                    <img
+                                                                                        className="ss"
+                                                                                        src={require("assets/share.png")}
+                                                                                        onClick={copy}
+                                                                                    ></img>
+                                                                                </div>
+                                                                            </CopyToClipboard>
+                                                                        </a>
+                                                                        <div className="heart" onClick={() => addLike(favor.id)}>
+                                                                            {like(favor.id) !== -1 ? (
+                                                                                <Icon
+                                                                                    className="hh"
+                                                                                    type="heart"
+                                                                                    style={{ fontSize: "28px", color: "#e53935" }}
+                                                                                />
+                                                                            ) : (
+                                                                                <Icon className="hh" type="heart" style={{ fontSize: "28px" }} />
+                                                                            )}
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </CardActions>
-                                                        </Card>
-                                                    </div>
-                                                </Col>
-                                            );
-                                        })}
-                                </Row>
-                            </Container>
+                                                                </CardActions>
+                                                            </Card>
+                                                        </div>
+                                                    </Col>
+                                                );
+                                            })}
+                                    </Row>
+                                </Container>
+                            </div>
                         </div>
                     </div>
                 </div>
