@@ -33,7 +33,7 @@ const MainRT = () => {
                 renderCenterRightControls={({ nextSlide }) => (
                     <></>
                 )}>
-                {clubs.results && clubs.results.map(club => {
+                {clubs && clubs.map(club => {
                     return(
                         <div className="element">
                             <Link to={`/club/detail/${club.id}`}>
