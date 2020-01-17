@@ -102,64 +102,63 @@ const ConferenceList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        {searchs &&
-                            searchs.map(conf => {
-                                return (
-                                    <Col md={4}>
-                                        <div className="block">
-                                            <Card className={classes.card}>
-                                                <Link to={`/conference/detail/${conf.id}`}>
-                                                    <CardActionArea>
-                                                        <CardMedia
-                                                            className={classes.media}
-                                                            image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
-                                                        />
-                                                        <CardContent>
-                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                                <div className={classes.text_size}>{conf.host}</div>
-                                                            </Typography>
-                                                            <Typography variant="body2" color="textSecondary" component="p">
-                                                                <div className={classes.body_size}>{conf.title}</div>
-                                                                <div>
-                                                                    {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
-                                                                </div>
-                                                            </Typography>
-                                                        </CardContent>
-                                                    </CardActionArea>
-                                                </Link>
-                                                <CardActions>
-                                                    <div className="icons">
-                                                        <a className="detail-link">
-                                                            <CopyToClipboard
-                                                                text={url.concat(`${match.url}/detail/${conf.id}`)
-                                                                    .replace(`${match.params.text}/`, "")}>
-                                                                <div className="share">
-                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                                </div>
-                                                            </CopyToClipboard>
-                                                        </a>
-                                                        <div className="heart" onClick={() => addLike(conf.id)}>
-                                                            {like(conf.id)!==-1 ? (
-                                                                <Icon
-                                                                    className="hh"
-                                                                    type="heart"
-                                                                    style={{ fontSize: "28px", color: "#e53935" }}
-                                                                />
-                                                            ) : (
-                                                                <Icon
-                                                                    className="hh"
-                                                                    type="heart"
-                                                                    style={{ fontSize: "28px" }}
-                                                                />
-                                                            )}
-                                                        </div>
+                        {searchs && searchs.map(conf => {
+                            return (
+                                <Col md={4}>
+                                    <div className="block">
+                                        <Card className={classes.card}>
+                                            <Link to={`/conference/detail/${conf.id}`}>
+                                                <CardActionArea>
+                                                    <CardMedia
+                                                        className={classes.media}
+                                                        image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
+                                                    />
+                                                    <CardContent>
+                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                            <div className={classes.text_size}>{conf.host}</div>
+                                                        </Typography>
+                                                        <Typography variant="body2" color="textSecondary" component="p">
+                                                            <div className={classes.body_size}>{conf.title}</div>
+                                                            <div>
+                                                                {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
+                                                            </div>
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Link>
+                                            <CardActions>
+                                                <div className="icons">
+                                                    <a className="detail-link">
+                                                        <CopyToClipboard
+                                                            text={url.concat(`${match.url}/detail/${conf.id}`)
+                                                                .replace(`${match.params.text}/`, "")}>
+                                                            <div className="share">
+                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                            </div>
+                                                        </CopyToClipboard>
+                                                    </a>
+                                                    <div className="heart" onClick={() => addLike(conf.id)}>
+                                                        {like(conf.id)!==-1 ? (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px", color: "#e53935" }}
+                                                            />
+                                                        ) : (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px" }}
+                                                            />
+                                                        )}
                                                     </div>
-                                                </CardActions>
-                                            </Card>
-                                        </div>
-                                    </Col>
-                                );
-                            })}
+                                                </div>
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+                                </Col>
+                            );
+                        })}
                     </Row>
                 </Container>
             </div>
@@ -182,62 +181,61 @@ const ConferenceList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        {conferences.results &&
-                            conferences.results.map(conf => {
-                                return (
-                                    <Col md={4}>
-                                        <div className="block">
-                                            <Card className={classes.card}>
-                                                <Link to={`conference/detail/${conf.id}`}>
-                                                    <CardActionArea>
-                                                        <CardMedia
-                                                            className={classes.media}
-                                                            image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
-                                                        />
-                                                        <CardContent>
-                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                                <div className={classes.text_size}>{conf.host}</div>
-                                                            </Typography>
-                                                            <Typography variant="body2" color="textSecondary" component="p">
-                                                                <div className={classes.body_size}>{conf.title}</div>
-                                                                <div>
-                                                                    {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
-                                                                </div>
-                                                            </Typography>
-                                                        </CardContent>
-                                                    </CardActionArea>
-                                                </Link>
-                                                <CardActions>
-                                                    <div className="icons">
-                                                        <a className="detail-link">
-                                                            <CopyToClipboard text={url.concat(`${match.url}/detail/${conf.id}`)}>
-                                                                <div className="share">
-                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                                </div>
-                                                            </CopyToClipboard>
-                                                        </a>
-                                                        <div className="heart" onClick={() => addLike(conf.id)}>
-                                                            {like(conf.id)!==-1 ? (
-                                                                <Icon
-                                                                    className="hh"
-                                                                    type="heart"
-                                                                    style={{ fontSize: "28px", color: "#e53935" }}
-                                                                />
-                                                            ) : (
-                                                                <Icon
-                                                                    className="hh"
-                                                                    type="heart"
-                                                                    style={{ fontSize: "28px" }}
-                                                                />
-                                                            )}
-                                                        </div>
+                        {conferences && conferences.map(conf => {
+                            return (
+                                <Col md={4}>
+                                    <div className="block">
+                                        <Card className={classes.card}>
+                                            <Link to={`conference/detail/${conf.id}`}>
+                                                <CardActionArea>
+                                                    <CardMedia
+                                                        className={classes.media}
+                                                        image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
+                                                    />
+                                                    <CardContent>
+                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                            <div className={classes.text_size}>{conf.host}</div>
+                                                        </Typography>
+                                                        <Typography variant="body2" color="textSecondary" component="p">
+                                                            <div className={classes.body_size}>{conf.title}</div>
+                                                            <div>
+                                                                {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
+                                                            </div>
+                                                        </Typography>
+                                                    </CardContent>
+                                                </CardActionArea>
+                                            </Link>
+                                            <CardActions>
+                                                <div className="icons">
+                                                    <a className="detail-link">
+                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${conf.id}`)}>
+                                                            <div className="share">
+                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                            </div>
+                                                        </CopyToClipboard>
+                                                    </a>
+                                                    <div className="heart" onClick={() => addLike(conf.id)}>
+                                                        {like(conf.id)!==-1 ? (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px", color: "#e53935" }}
+                                                            />
+                                                        ) : (
+                                                            <Icon
+                                                                className="hh"
+                                                                type="heart"
+                                                                style={{ fontSize: "28px" }}
+                                                            />
+                                                        )}
                                                     </div>
-                                                </CardActions>
-                                            </Card>
-                                        </div>
-                                    </Col>
-                                );
-                            })}
+                                                </div>
+                                            </CardActions>
+                                        </Card>
+                                    </div>
+                                </Col>
+                            );
+                        })}
                     </Row>
                 </Container>
             </div>

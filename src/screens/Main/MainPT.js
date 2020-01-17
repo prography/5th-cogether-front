@@ -110,8 +110,8 @@ const MainPT = () => {
                                 leftChevron={<PrevArrow></PrevArrow>}
                                 outsideChevron={true}
                             >
-                                {clubs.results &&
-                                    clubs.results.map(club => {
+                                {clubs &&
+                                    clubs.map(club => {
                                         return (
                                             <Link to={`/club/detail/${club.id}`}>
                                                 <div
@@ -158,8 +158,8 @@ const MainPT = () => {
                                 leftChevron={<PrevArrow></PrevArrow>}
                                 outsideChevron={true}
                             >
-                                {educations.results &&
-                                    educations.results.map(edu => {
+                                {educations &&
+                                    educations.map(edu => {
                                         return (
                                             <Link to={`/education/detail/${edu.id}`}>
                                                 <div
@@ -206,8 +206,8 @@ const MainPT = () => {
                                 leftChevron={<PrevArrow></PrevArrow>}
                                 outsideChevron={true}
                             >
-                                {conferences.results &&
-                                    conferences.results.map(conf => {
+                                {conferences &&
+                                    conferences.map(conf => {
                                         return (
                                             <Link to={`/conference/detail/${conf.id}`}>
                                                 <div

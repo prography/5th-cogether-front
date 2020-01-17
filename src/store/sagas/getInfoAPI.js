@@ -9,8 +9,19 @@ import axios from "axios";
 
 function* getClubApiData() {
     try {
-        const data = yield call(fetchClubData);
-        yield put(successClub(data));
+        const response = yield call([axios, "get"], "https://cogether.azurewebsites.net/event/?category=circle");
+        var array = response.data.results;
+        
+        if(response.data.next) {
+            var responseBody = response;
+
+            while(1){
+                var responseBody = yield call([axios, "get"], responseBody.data.next);
+                array = array.concat(responseBody.data.results);
+                if(responseBody.data.next===null) break;
+            }
+        }
+        yield put(successClub(array));
     } catch (e) {
         yield put(failClub());
     }
@@ -18,8 +29,20 @@ function* getClubApiData() {
 
 function* getConferenceApiData() {
     try {
-        const data = yield call(fetchConferenceData);
-        yield put(successConference(data));
+        const response = yield call([axios, "get"], "https://cogether.azurewebsites.net/event/?category=conference");
+        var array = response.data.results;
+        
+        if(response.data.next) {
+            var responseBody = response;
+
+            while(1){
+                var responseBody = yield call([axios, "get"], responseBody.data.next);
+                array = array.concat(responseBody.data.results);
+                if(responseBody.data.next===null) break;
+            }
+        }
+
+        yield put(successConference(array));
     } catch (e) {
         yield put(failConference());
     }
@@ -27,8 +50,19 @@ function* getConferenceApiData() {
 
 function* getEducationApiData() {
     try {
-        const data = yield call(fetchEducationData);
-        yield put(successEducation(data));
+        const response = yield call([axios, "get"], "https://cogether.azurewebsites.net/event/?category=education");
+        var array = response.data.results;
+        
+        if(response.data.next) {
+            var responseBody = response;
+
+            while(1){
+                var responseBody = yield call([axios, "get"], responseBody.data.next);
+                array = array.concat(responseBody.data.results);
+                if(responseBody.data.next===null) break;
+            }
+        }
+        yield put(successEducation(array));
     } catch (e) {
         yield put(failEducation());
     }
@@ -50,7 +84,7 @@ function* searchApi(payload) {
         const club = data.data.results.filter(result => result.category.name === "circle");
         const conf = data.data.results.filter(result => result.category.name === "conference");
         const edu = data.data.results.filter(result => result.category.name === "education");
-        // console.log(search);
+        
         const result = {
             count: count,
             club: club,

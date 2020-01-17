@@ -181,7 +181,7 @@ const EducationList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        { educations.results && educations.results.map(edu => {
+                        { educations && educations.map(edu => {
                             return (
                                 <Col md={4}>
                                     <div className="block">

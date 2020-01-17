@@ -59,7 +59,7 @@ const MainRT = () => {
                 renderCenterRightControls={({ nextSlide }) => (
                     <></>
                 )}>
-                {educations.results && educations.results.map(edu => {
+                {educations && educations.map(edu => {
                     return(
                         <div className="element">
                             <Link to={`/education/detail/${edu.id}`}>
@@ -85,7 +85,7 @@ const MainRT = () => {
                 renderCenterRightControls={({ nextSlide }) => (
                     <></>
                 )}>
-                {conferences.results && conferences.results.map(conf => {
+                {conferences && conferences.map(conf => {
                     return(
                         <div className="element">
                             <Link to={`/conference/detail/${conf.id}`}>
