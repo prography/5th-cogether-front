@@ -26,87 +26,121 @@ export const FAVOR_REQUEST = "FAVOR_REQUEST";
 export const FAVOR_SUCCESS = "FAVOR_SUCCESS";
 export const FAVOR_FAIL = "FAVOR_FAIL";
 
+export const PASSWORD_MODIFY_REQUEST = "PASSWORD_MODIFY_REQUEST";
+export const PASSWORD_MODIFY_SUCCESS = "PASSWORD_MODIFY_SUCCESS";
+export const PASSWORD_MODIFY_FAIL = "PASSWORD_MODIFY_FAIL";
+
+export const ALARM_MODIFY_REQUEST = "ALARM_MODIFY_REQUEST";
+export const ALARM_MODIFY_SUCCESS = "ALARM_MODIFY_SUCCESS";
+export const ALARM_MODIFY_FAIL = "ALARM_MODIFY_FAIL";
+
 //me
 export const meRequestAction = () => ({
-    type: ME_REQUEST
+    type: ME_REQUEST,
 });
 export const meSuccessAction = data => ({
     type: ME_SUCCESS,
-    payload: data
+    payload: data,
 });
 export const meFailAction = () => ({
-    type: ME_FAIL
+    type: ME_FAIL,
 });
 
 //join
 export const joinRequestAction = data => ({
     type: JOIN_REQUEST,
-    payload: data
+    payload: data,
 });
 export const joinSuccessAction = data => ({
     type: JOIN_SUCCESS,
-    payload: data
+    payload: data,
 });
 export const joinFailAction = () => ({
-    type: JOIN_FAIL
+    type: JOIN_FAIL,
 });
 
 //login
 export const loginRequestAction = data => ({
     type: LOGIN_REQUEST,
-    payload: data
+    payload: data,
 });
 export const loginSuccessAction = data => ({
     type: LOGIN_SUCCESS,
-    payload: data
+    payload: data,
 });
 export const loginFailAction = () => ({
-    type: LOGIN_FAIL
+    type: LOGIN_FAIL,
 });
 
 //logout
 export const logoutRequestAction = () => ({
-    type: LOGOUT_REQUEST
+    type: LOGOUT_REQUEST,
 });
 export const logoutSuccessAction = () => ({
-    type: LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS,
 });
 export const logoutFailAction = () => ({
-    type: LOGOUT_FAIL
+    type: LOGOUT_FAIL,
 });
 
 //service center
 export const serviceRequestAction = data => ({
     type: SERVICE_REQUEST,
-    payload: data
+    payload: data,
 });
 export const serviceSuccessAction = data => ({
-    type: SERVICE_SUCCESS
+    type: SERVICE_SUCCESS,
 });
 export const serviceFailAction = () => ({
-    type: SERVICE_FAIL
+    type: SERVICE_FAIL,
 });
 
 //github login
 export const githubLoginRequestAction = data => ({
     type: GITHUB_LOGIN_REQUEST,
-    payload: data
+    payload: data,
 });
 export const githubLoginSuccessAction = () => ({
-    type: GITHUB_LOGIN_SUCCESS
+    type: GITHUB_LOGIN_SUCCESS,
 });
 export const githubLoginFailAction = () => ({
-    type: GITHUB_LOGIN_FAIL
+    type: GITHUB_LOGIN_FAIL,
 });
 
-export const favorRequest = data => ({
+//즐겨찾기
+export const favorRequestAction = data => ({
     type: FAVOR_REQUEST,
-    payload: data
+    payload: data,
 });
-export const favorSuccess = data => ({
+export const favorSuccessAction = data => ({
     type: FAVOR_SUCCESS,
-    payload: data
+    payload: data,
 });
-export const favorFail = () => ({
-    type: FAVOR_FAIL
+export const favorFailAction = () => ({
+    type: FAVOR_FAIL,
+});
+
+//modify password
+export const passwordModifyRequestAction = data => ({
+    type: PASSWORD_MODIFY_REQUEST,
+    payload: data,
+});
+export const passwordModifySuccessAction = () => ({
+    type: PASSWORD_MODIFY_SUCCESS,
+});
+export const passwordModifyFailAction = () => ({
+    type: PASSWORD_MODIFY_FAIL,
+});
+
+//modify email alarm
+export const alarmModifyRequestAction = data => ({
+    type: ALARM_MODIFY_REQUEST,
+    payload: data,
+});
+export const alarmModifySuccessAction = data => ({
+    type: ALARM_MODIFY_SUCCESS,
+    payload: data,
+});
+export const alarmModifyFailAction = () => ({
+    type: ALARM_MODIFY_FAIL,
 });

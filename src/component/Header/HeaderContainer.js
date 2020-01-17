@@ -16,15 +16,15 @@ const HeaderContainer = ({ match }) => {
     const dispatch = useDispatch();
 
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
+    const meName = useSelector(state => state.userReducer.meName);
+    const mePhoto = useSelector(state => state.userReducer.mePhoto);
+
     const [showMenu, setShowMenu] = useState(false);
 
-    // let searchResult = useSelector(state => state.clubReducer.search, []);
     const [searchText, setSearchText] = useState("");
     const onSetSearchText = useCallback(e => {
         setSearchText(e.target.value);
     }, []);
-
-    const me = useSelector(state => state.userReducer.meInfo);
 
     const onLogout = useCallback(e => {
         e.preventDefault();
@@ -86,7 +86,7 @@ const HeaderContainer = ({ match }) => {
                             <Link to="/service">
                                 <div className="txt">고객센터</div>
                             </Link>
-                            {token && me ? (
+                            {token && meName ? (
                                 <div className="r-account">
                                     <Link to="/mypage">
                                         <div className="txt">마이페이지</div>
@@ -100,7 +100,7 @@ const HeaderContainer = ({ match }) => {
                                     <Link to="/login">
                                         <div className="txt">로그인</div>
                                     </Link>
-                                    <Link to="/sign">
+                                    <Link to="/join">
                                         <div className="txt">회원가입</div>
                                     </Link>
                                 </div>
@@ -148,11 +148,15 @@ const HeaderContainer = ({ match }) => {
                         </Link>
                     </div>
                     <img className="bar" src={bar} />
-                    {token && me ? (
+                    {token && meName ? (
                         <div className="account">
-                            <div className="username">{me.split('"')[1].split("@")[0]}</div>
+                            <div className="username">{meName.split('"')[1].split("@")[0]}</div>
                             <div className="usericon" onClick={showDropdownMenu}>
-                                <img src={user}></img>
+                                { mePhoto ? 
+                                    <img className="circle" src={mePhoto} /> 
+                                    : 
+                                    <img src={user} />
+                                }
                             </div>
                             <span className="dropdown">
                                 {showMenu ? (

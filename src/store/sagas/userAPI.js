@@ -19,7 +19,13 @@ import {
     meSuccessAction,
     FAVOR_REQUEST,
     FAVOR_FAIL,
-    favorSuccess
+    favorSuccessAction,
+    PASSWORD_MODIFY_REQUEST,
+    PASSWORD_MODIFY_FAIL,
+    passwordModifySuccessAction,
+    ALARM_MODIFY_REQUEST,
+    ALARM_MODIFY_FAIL,
+    alarmModifySuccessAction,
 } from "../actions/User";
 import { meRequestAction } from "../actions/User";
 import swal from "sweetalert";
@@ -29,7 +35,7 @@ function* getLoginData({ payload }) {
     try {
         const json = {
             username: payload.username,
-            password: payload.password
+            password: payload.password,
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/", json);
@@ -71,7 +77,7 @@ function* getJoinData({ payload }) {
         const json = {
             username: payload.username,
             password1: payload.p1,
-            password2: payload.p2
+            password2: payload.p2,
         };
 
         const responseBody = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/", json);
@@ -113,15 +119,17 @@ function* watchGithubLogin() {
 function* getMeData() {
     try {
         const json = {
-            token: localStorage.getItem("accessToken")
+            token: localStorage.getItem("accessToken"),
+        };
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         };
 
         const isExpired = yield call([axios, "post"], "https://cogether.azurewebsites.net/account/api/token/verify/", json);
-
-        const jwt = require("jsonwebtoken");
-        const decoded = jwt.decode(localStorage.getItem("accessToken"));
-
-        yield put(meSuccessAction(JSON.stringify(decoded.username)));
+        const userData = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/retrieve-profile/", 
+            { headers: headerParams });
+        
+        yield put(meSuccessAction(userData.data));
     } catch (e) {
         yield put({ type: ME_FAIL });
         yield put(logoutRequestAction());
@@ -131,25 +139,101 @@ function* watchMe() {
     yield takeLatest(ME_REQUEST, getMeData);
 }
 
-function* Favor(data) {
+//즐겨찾기
+function* Favor({ payload }) {
     try {
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`
+        };
         //get favor
-        if (data.type === "get") {
+        if (payload.type === "get") {
+            
+            const responseBody = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", 
+            { headers: headerParams });
+            
+            yield put(favorSuccessAction(responseBody.data));
         }
-        //add favor
-        else {
+        //add & delete favor
+        else if (payload.type === "post") {
+
+            yield call(
+                [axios, "post"],
+                `https://cogether.azurewebsites.net/event/${payload.id}/like/`,
+                {},
+                { headers: headerParams });
+
+            const responseBody = yield call([axios, "get"], "https://cogether.azurewebsites.net/account/like/", {
+                headers: headerParams
+            });
+            
+            yield put(favorSuccessAction(responseBody.data));
         }
-        // const json = {
-        //     token: localStorage.getItem("accessToken")
-        // };
-        // const jwt = require("jsonwebtoken");
-        // const decoded = jwt.decode(localStorage.getItem("accessToken"));
-        // yield put(meSuccessAction(JSON.stringify(decoded.username)));
     } catch (e) {
         yield put({ type: FAVOR_FAIL });
     }
 }
+function* watchFavor() {
+    yield takeLatest(FAVOR_REQUEST, Favor);
+}
+
+//modify password
+function* getPasswordData({ payload }) {
+    try {
+        const json = {
+            current_password: payload.current_password,
+            password1: payload.password1,
+            password2: payload.password2,
+        };
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        };
+        
+        const responseBody = yield call([axios, "put"], "https://cogether.azurewebsites.net/account/update-password/",
+            json, { headers: headerParams });
+        
+        yield put(passwordModifySuccessAction());
+        
+    } catch (e) {
+        yield put({ type: PASSWORD_MODIFY_FAIL });
+        swal(e.response.data.message);
+    }
+}
+function* watchPassword() {
+    yield takeLatest(PASSWORD_MODIFY_REQUEST, getPasswordData);
+}
+
+//modify email alarm
+function* getAlarmData({ payload }) {
+    try {
+        const json = {
+            subscribe: payload,
+        };
+        const headerParams = {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        };
+        
+        const responseBody = yield call([axios, "patch"], "https://cogether.azurewebsites.net/account/update-profile/",
+            json, { headers: headerParams });
+        
+        yield put(alarmModifySuccessAction(payload));
+    } catch (e) {
+        yield put({ type: ALARM_MODIFY_FAIL });
+        swal(e.response.data.message);
+    }
+}
+function* watchAlarm() {
+    yield takeLatest(ALARM_MODIFY_REQUEST, getAlarmData);
+}
 
 export default function* userSaga() {
-    yield all([fork(watchLogin), fork(watchLogout), fork(watchJoin), fork(watchGithubLogin), fork(watchMe), fork(Favor)]);
+    yield all([
+        fork(watchLogin), 
+        fork(watchLogout), 
+        fork(watchJoin), 
+        fork(watchGithubLogin), 
+        fork(watchMe), 
+        fork(watchFavor),
+        fork(watchPassword),
+        fork(watchAlarm),
+    ]);
 }

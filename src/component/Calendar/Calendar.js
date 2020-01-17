@@ -1,42 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Calendar, Badge } from "antd";
 
-const Calendars = () => {
+const Calendars = favors => {
     const getListData = value => {
         let listData;
-        switch (value.date()) {
-            case 8:
-                listData = [
-                    { type: "warning", content: "This is warning event." },
-                    { type: "success", content: "This is usual event." }
-                ];
-                break;
-            case 10:
-                listData = [
-                    { type: "warning", content: "This is warning event." },
-                    { type: "success", content: "This is usual event." },
-                    { type: "error", content: "This is error event." }
-                ];
-                break;
-            case 15:
-                listData = [
-                    { type: "warning", content: "This is warning event" },
-                    { type: "success", content: "This is very long usual event。。...." },
-                    { type: "error", content: "This is error event 1." },
-                    { type: "error", content: "This is error event 2." },
-                    { type: "error", content: "This is error event 3." },
-                    { type: "error", content: "This is error event 4." }
-                ];
-                break;
-            default:
+        let start = favors.favors.filter(
+            favor => new Date(favor.start_at).getDate() === value.date() && new Date(favor.start_at).getMonth() === value.month()
+        );
+        if (start) {
+            listData = start.map(value => ({ type: "success", content: value.title }));
         }
+
         return listData || [];
     };
 
     const dateCellRender = value => {
         const listData = getListData(value);
+
         return (
-            <ul className="events">
+            <ul className="events" style={{ listStyle: "none" }}>
                 {listData.map(item => (
                     <li key={item.content}>
                         <Badge status={item.type} text={item.content} />

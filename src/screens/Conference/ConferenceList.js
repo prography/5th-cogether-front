@@ -13,17 +13,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestConference, requestSearch } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./ConferenceList.scss";
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import swal from 'sweetalert';
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import swal from "sweetalert";
 import { Icon } from "antd";
+import { favorRequestAction } from "store/actions/User";
 
 const ConferenceList = ({ match }) => {
     const dispatch = useDispatch();
     const conferences = useSelector(state => state.conferenceReducer.conferenceInfo);
     const searchs = useSelector(state => state.clubReducer.search.conf);
-
-    const [liking, setLiking] = useState(false);  //즐겨찾기 여부
-
+    var favors = useSelector(state => state.userReducer.favor);
     const [searchText, setSearchText] = useState(match.params.text ? match.params.text : "");
 
     const onSetSearchText = useCallback(e => {
@@ -47,10 +46,18 @@ const ConferenceList = ({ match }) => {
         swal("클립보드 복사가 완료되었습니다");
     };
 
-    const like = () => {
-        setLiking(!liking);
-        console.log(liking);
+    const addLike = id => {
+        const data = { type: "post", id: id };
+        dispatch(favorRequestAction(data));
     };
+
+    const like = id => {
+        return favors.findIndex(x => x.id === id);
+    };
+    
+    useEffect(() => {
+        dispatch(favorRequestAction({ type: "get" }));
+    }, []);
     
     const useStyles = makeStyles({
         card: {
@@ -73,11 +80,11 @@ const ConferenceList = ({ match }) => {
             fontSize: 16,
             textDecoration: "none",
             color: "black"
-        },
+        }
     });
     const classes = useStyles();
 
-    if( match.params.text ){
+    if (match.params.text) {
         return (
             <div>
                 <div className="navPic">
@@ -95,54 +102,64 @@ const ConferenceList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        { searchs && searchs.map(conf => {
-                            return (
-                                <Col md={4}>
-                                    <div className="block">
-                                        <Card className={classes.card}>
-                                            <Link to={`/conference/detail/${conf.id}`}>
-                                                <CardActionArea>
-                                                    <CardMedia
-                                                        className={classes.media}
-                                                        image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
-                                                    />
-                                                    <CardContent>
-                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                            <div className={classes.text_size}>{conf.host}</div>
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                            <div className={classes.body_size}>{conf.title}</div>
-                                                            <div>
-                                                                {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
-                                                            </div>
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Link>
-                                            <CardActions>
-                                                <div className="icons">
-                                                    <a className="detail-link" >
-                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${conf.id}`)
-                                                            .replace(`${match.params.text}/`,"")}>
-                                                            <div className="share">
-                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                            </div>
-                                                        </CopyToClipboard>
-                                                    </a>
-                                                    <div className="heart">
-                                                        { liking ? 
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
-                                                            :
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
-                                                        }
+                        {searchs &&
+                            searchs.map(conf => {
+                                return (
+                                    <Col md={4}>
+                                        <div className="block">
+                                            <Card className={classes.card}>
+                                                <Link to={`/conference/detail/${conf.id}`}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            className={classes.media}
+                                                            image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
+                                                        />
+                                                        <CardContent>
+                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                                <div className={classes.text_size}>{conf.host}</div>
+                                                            </Typography>
+                                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                                <div className={classes.body_size}>{conf.title}</div>
+                                                                <div>
+                                                                    {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
+                                                                </div>
+                                                            </Typography>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Link>
+                                                <CardActions>
+                                                    <div className="icons">
+                                                        <a className="detail-link">
+                                                            <CopyToClipboard
+                                                                text={url.concat(`${match.url}/detail/${conf.id}`)
+                                                                    .replace(`${match.params.text}/`, "")}>
+                                                                <div className="share">
+                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                </div>
+                                                            </CopyToClipboard>
+                                                        </a>
+                                                        <div className="heart" onClick={() => addLike(conf.id)}>
+                                                            {like(conf.id)!==-1 ? (
+                                                                <Icon
+                                                                    className="hh"
+                                                                    type="heart"
+                                                                    style={{ fontSize: "28px", color: "#e53935" }}
+                                                                />
+                                                            ) : (
+                                                                <Icon
+                                                                    className="hh"
+                                                                    type="heart"
+                                                                    style={{ fontSize: "28px" }}
+                                                                />
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
-                                </Col>
-                            );
-                        })}
+                                                </CardActions>
+                                            </Card>
+                                        </div>
+                                    </Col>
+                                );
+                            })}
                     </Row>
                 </Container>
             </div>
@@ -165,53 +182,62 @@ const ConferenceList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        { conferences.results && conferences.results.map(conf => {
-                            return (
-                                <Col md={4}>
-                                    <div className="block">
-                                        <Card className={classes.card}>
-                                            <Link to={`conference/detail/${conf.id}`}>
-                                                <CardActionArea>
-                                                    <CardMedia
-                                                        className={classes.media}
-                                                        image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
-                                                    />
-                                                    <CardContent>
-                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                            <div className={classes.text_size}>{conf.host}</div>
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                            <div className={classes.body_size}>{conf.title}</div>
-                                                            <div>
-                                                                {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
-                                                            </div>
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Link>
-                                            <CardActions>
-                                                <div className="icons">
-                                                    <a className="detail-link" >
-                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${conf.id}`)}>
-                                                            <div className="share">
-                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                            </div>
-                                                        </CopyToClipboard>
-                                                    </a>
-                                                    <div className="heart">
-                                                        { liking ? 
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px', color: '#e53935' }} onClick={like} />
-                                                            :
-                                                            <Icon className="hh" type="heart" style={{ fontSize: '28px' }} onClick={like} />
-                                                        }
+                        {conferences.results &&
+                            conferences.results.map(conf => {
+                                return (
+                                    <Col md={4}>
+                                        <div className="block">
+                                            <Card className={classes.card}>
+                                                <Link to={`conference/detail/${conf.id}`}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            className={classes.media}
+                                                            image={conf.photo ? conf.photo.photo : require("assets/placeholder.png")}
+                                                        />
+                                                        <CardContent>
+                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                                <div className={classes.text_size}>{conf.host}</div>
+                                                            </Typography>
+                                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                                <div className={classes.body_size}>{conf.title}</div>
+                                                                <div>
+                                                                    {conf.start_at.split("T")[0]} ~ {conf.end_at.split("T")[0]}
+                                                                </div>
+                                                            </Typography>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Link>
+                                                <CardActions>
+                                                    <div className="icons">
+                                                        <a className="detail-link">
+                                                            <CopyToClipboard text={url.concat(`${match.url}/detail/${conf.id}`)}>
+                                                                <div className="share">
+                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                </div>
+                                                            </CopyToClipboard>
+                                                        </a>
+                                                        <div className="heart" onClick={() => addLike(conf.id)}>
+                                                            {like(conf.id)!==-1 ? (
+                                                                <Icon
+                                                                    className="hh"
+                                                                    type="heart"
+                                                                    style={{ fontSize: "28px", color: "#e53935" }}
+                                                                />
+                                                            ) : (
+                                                                <Icon
+                                                                    className="hh"
+                                                                    type="heart"
+                                                                    style={{ fontSize: "28px" }}
+                                                                />
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
-                                </Col>
-                            );
-                        })}
+                                                </CardActions>
+                                            </Card>
+                                        </div>
+                                    </Col>
+                                );
+                            })}
                     </Row>
                 </Container>
             </div>

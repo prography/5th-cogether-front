@@ -11,6 +11,7 @@ import Conferences from "screens/Conference/Conferences";
 import Login from "screens/Account/Login";
 import Join from "screens/Account/Join";
 import LoginDirect from "screens/Account/LoginDirect";
+import Password from "screens/Account/Password";
 import Mypage from "screens/Account/Mypage";
 import Request from "screens/Service/Service";
 import Search from "screens/Search/Search";
@@ -20,7 +21,7 @@ import { meRequestAction } from "store/actions/User";
 
 const App = () => {
     const dispatch = useDispatch();
-    const isAuthenticating = useSelector(state => state.userReducer.meInfo);
+    const isAuthenticating = useSelector(state => state.userReducer.meName);
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     useEffect(() => {
@@ -44,6 +45,7 @@ const App = () => {
                     <Route path="/login" component={Login} />
                     <Route path="/join" component={Join} />
                     <Route path="/loginDirect" component={LoginDirect} />
+                    <Route path="/password" component={Password} />
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/service" component={Request} />
                     <Route path="/github/callback" component={Oauth} />

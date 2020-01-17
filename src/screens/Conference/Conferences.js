@@ -4,7 +4,6 @@ import ConferenceList from "./ConferenceList";
 import ConferenceDetail from "./ConferenceDetail";
 
 function Conferences({ match }) {
-    console.log(match);
     return (
         <>
             {match.params.text && match.params.text !== "detail" && <Route expact path="/conference/:text" component={ConferenceList} />}

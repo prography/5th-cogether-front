@@ -3,12 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginRequestAction } from "../../store/actions/User";
 import { Redirect } from "react-router-dom";
 import "./Login.scss";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { GithubLoginButton } from "react-social-login-buttons";
 
 const Login = () => {
     const dispatch = useDispatch();
-    const me = useSelector( state => state.userReducer.meInfo);
+    const meName = useSelector( state => state.userReducer.meName);
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     const [username, setUsername] = useState("");
@@ -25,7 +25,7 @@ const Login = () => {
     const onSubmit = useCallback((e) => {
         e.preventDefault();
         if(username === '') {
-            swal("이메일을 입력해주세요")
+            swal("이메일을 입력해주세요");
             return;
         }
         if(password === '') {
@@ -40,7 +40,6 @@ const Login = () => {
     };
 
     useEffect(() => {
-        console.log(token)
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
     

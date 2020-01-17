@@ -105,12 +105,18 @@
         }
 
         .username {
-            flex: 1;
+            flex: 2;
         }
         .usericon {
             flex: 1;
             width: 48px;
             height: 48px;
+
+            .circle {
+                width: 48px;
+                height: 48px;
+                border-radius: 50px;
+            }
         }
         .dropdown {
             position: relative;
