@@ -48,10 +48,7 @@
         }
         .joinButton:hover {
             background-color: rgb(236, 150, 64);
-        }
-
-        
-        
+        } 
     }
 }
 @media screen and (max-width: 992px){
@@ -62,7 +59,7 @@
         width:300px;
 
         .in {
-            padding: 5px 40px 10px 40px;
+            padding: 5px 10px 10px 30px;
 
             .joinText {
                 font-size:16px;
