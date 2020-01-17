@@ -154,9 +154,9 @@ const Mypage = ({ match }) => {
                             <div className="section-title">즐겨찾기한 목록</div>
                             <div className="section-head">{/* <div className="detail">즐겨찾기한 일정들을 한눈에 모아보세요.</div> */}</div>
                             <div className="section-content">
-                                <Dropdown overlay={menu} placement="bottomCenter">
+                                {/* <Dropdown overlay={menu} placement="bottomCenter">
                                     <Button>{item}</Button>
-                                </Dropdown>
+                                </Dropdown> */}
                                 <Container>
                                     <Row>
                                         {favors &&

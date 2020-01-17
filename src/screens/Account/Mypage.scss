@@ -48,6 +48,7 @@
                     background-color: #cbcecf;
                 }
             }
+
             .section-content {
                 display: flex;
                 flex-direction: row;
@@ -105,6 +106,24 @@
                             .ant-switch-checked {
                                 background-color: #fd8c3e !important;
                             }
+                        }
+                    }
+                }
+            }
+            @media screen and (max-width: 1100px) {
+                .section-content {
+                    display: flex;
+                    flex-direction: column;
+                    border-top: 1px solid #cbcecf;
+                    border-bottom: 1px solid #cbcecf;
+                    padding: 20px 0;
+                    margin-top: 24px;
+                    .photo {
+                    }
+                    .info-box {
+                        .info {
+                            display: flex;
+                            flex-direction: column;
                         }
                     }
                 }
