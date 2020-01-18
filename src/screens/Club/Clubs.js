@@ -8,7 +8,7 @@ function Clubs({ match }) {
         <>
             {match.params.text && match.params.text !== "detail" && <Route expact path="/club/:text" component={ClubList} />}
             <Route exact path="/club" component={ClubList} />
-            {match.params.id && <Route path="club/detail/:id" component={ClubDetail} />}
+            {match.params.id && <Route path="/club/detail/:id" component={ClubDetail} />}
         </>
     );
 }

@@ -1,28 +1,28 @@
-.detailBox{
+.detailBox {
     text-align: center;
-    margin:50px auto 100px;
+    margin: 50px auto 100px;
     border: 1px solid #c2c0b3;
     border-radius: 8px;
-    max-width:900px;
+    max-width: 900px;
 
     .seperator {
-        padding:20px 0px 0px 0px;
-        margin:10px auto;
+        padding: 20px 0px 0px 0px;
+        margin: 10px auto;
         width: 100%;
         font-weight: bold;
         font-size: x-large;
         color: #2d2d4b;
     }
 
-    .box{
-        padding:0px 20px 40px 20px;
-        margin:10px auto;
+    .box {
+        padding: 0px 20px 40px 20px;
+        margin: 10px auto;
         width: 100%;
         max-width: 768px;
         word-break: break-all;
         font-size: 14px;
 
-        .image{
+        .image {
             margin-top: 40px;
             max-width: 700px;
             max-height: 400px;
@@ -32,12 +32,16 @@
     .link {
         padding: 0px 0px 60px 0px;
         font-size: 20px;
+
+        a {
+            text-decoration: none;
+            color: #2d2d4b;
+            font-weight: bold;
+        }
     }
 }
 @media screen and (max-width: 992px) {
-
     .detailBox {
-
         .seperator {
             font-size: large;
         }
@@ -50,7 +54,13 @@
             }
         }
         .link {
-            font-size:16px;
+            font-size: 16px;
+
+            a {
+                text-decoration: none;
+                color: #2d2d4b;
+                font-weight: bold;
+            }
         }
     }
 }

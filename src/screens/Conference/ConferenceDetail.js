@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestDetail } from "store/actions/Info";
 import "./ConferenceDetail.scss";
 import { Card } from "antd";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const ConferenceDetail = ({ match }) => {
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const ConferenceDetail = ({ match }) => {
         updateSize();
         return () => window.removeEventListener("resize", updateSize);
     }, []);
-    
+
     useEffect(() => {
         if (size > 1100) {
             setSmall(false);
@@ -30,6 +30,8 @@ const ConferenceDetail = ({ match }) => {
     }, [size]);
 
     useEffect(() => {
+        console.log("a");
+
         dispatch(requestDetail(match.params.id));
     }, []);
 
@@ -43,27 +45,31 @@ const ConferenceDetail = ({ match }) => {
                         </div>
                     ) : null}
 
-                    {details.title ? 
+                    {details.title ? (
                         <>
                             <div className="seperator">Title</div>
                             <div className="box">{details.title}</div>
-                        </> : null}
+                        </>
+                    ) : null}
 
                     {details.content ? (
                         <>
                             <div className="seperator">About</div>
                             <div className="box">
-                                {parse(''.concat(details.content.replace(/src=/g,`style="width: ${small ? '300px' : '620px'}; height: auto;" src=`)))}
+                                {parse(
+                                    "".concat(details.content.replace(/src=/g, `style="width: ${small ? "300px" : "620px"}; height: auto;" src=`))
+                                )}
                             </div>
                         </>
                     ) : null}
 
-                    {details.location ? 
+                    {details.location ? (
                         <>
                             <div className="seperator">Where</div>
-                            <div className="box">{details.location}</div> 
-                        </> : null}
-                        
+                            <div className="box">{details.location}</div>
+                        </>
+                    ) : null}
+
                     <div className="link">
                         <a href={`javascript:window.open('${details.external_link}')`}>더 자세히 알아보기</a>
                     </div>
