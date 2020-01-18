@@ -96,7 +96,7 @@ const MainPT = () => {
                         <div className="itemlist">
                             <ItemsCarousel
                                 // Carousel configurations
-                                numberOfCards={1}
+                                numberOfCards={3}
                                 gutter={16}
                                 showSlither={false}
                                 firstAndLastGutter={false}
