@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { requestDetail } from "store/actions/Info";
 import "./ClubDetail.scss";
 import { Card } from "antd";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const ClubDetail = ({ match }) => {
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const ClubDetail = ({ match }) => {
         updateSize();
         return () => window.removeEventListener("resize", updateSize);
     }, []);
-    
+
     useEffect(() => {
         if (size > 1100) {
             setSmall(false);
@@ -33,6 +33,7 @@ const ClubDetail = ({ match }) => {
         dispatch(requestDetail(match.params.id));
     }, []);
 
+    console.log(details.content);
     return (
         <div>
             <Card>
@@ -42,27 +43,35 @@ const ClubDetail = ({ match }) => {
                             <img className="image" src={details.photo.photo}></img>
                         </div>
                     ) : null}
-                    
-                    {details.title ? 
+
+                    {details.title ? (
                         <>
                             <div className="seperator">Title</div>
                             <div className="box">{details.title}</div>
-                        </> : null}
+                        </>
+                    ) : null}
 
                     {details.content ? (
                         <>
                             <div className="seperator">About</div>
                             <div className="box">
-                                {parse(''.concat(details.content.replace(/src=/g,`style="width: ${small ? '300px' : '620px'}; height: auto;" src=`)))}
+                                {parse(
+                                    "".concat(
+                                        details.content
+                                            .replace(/src=/g, `style="width: ${small ? "300px" : "620px"}; height: auto;" src=`)
+                                            .replace("<Q&A>", "[Q&A]")
+                                    )
+                                )}
                             </div>
                         </>
                     ) : null}
 
-                    {details.location ? 
+                    {details.location ? (
                         <>
                             <div className="seperator">Where</div>
-                            <div className="box">{details.location}</div> 
-                        </> : null}
+                            <div className="box">{details.location}</div>
+                        </>
+                    ) : null}
 
                     <div className="link">
                         <a href={`javascript:window.open('${details.external_link}')`}>더 자세히 알아보기</a>
