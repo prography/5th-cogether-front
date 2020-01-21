@@ -170,6 +170,7 @@ function* Favor({ payload }) {
         }
     } catch (e) {
         yield put({ type: FAVOR_FAIL });
+        if(payload.type === "post") swal("즐겨찾기는 로그인 후 이용해주세요!");
     }
 }
 function* watchFavor() {
