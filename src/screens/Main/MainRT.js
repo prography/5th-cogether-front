@@ -21,8 +21,8 @@ const MainRT = () => {
     return (
         <>
             <div className="media-box">
-                <div className="title">동아리</div>
-                <Link to="/club" className="txt">
+                <div className="title">컨퍼런스</div>
+                <Link to="/conference" className="txt">
                     <button className="all">전체보기</button>
                 </Link>
             </div>
@@ -33,18 +33,18 @@ const MainRT = () => {
                 renderCenterRightControls={({ nextSlide }) => (
                     <></>
                 )}>
-                {clubs && clubs.map(club => {
+                {conferences && conferences.map(conf => {
                     return(
                         <div className="element">
-                            <Link to={`/club/detail/${club.id}`}>
-                                <img className="image" src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} />
+                            <Link to={`/conference/detail/${conf.id}`}>
+                                <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
                             </Link>
-                            <p className="host">{club.host}</p>
-                            <p className="title">{club.title}</p>
+                            <p className="host">{conf.host}</p>
+                            <p className="title">{conf.title}</p>
                         </div>
                     );     
                 })}
-            </Carousel>
+            </Carousel> 
             
             <div className="media-box">
                 <div className="title">교육</div>
@@ -73,8 +73,8 @@ const MainRT = () => {
             </Carousel> 
 
             <div className="media-box">
-                <div className="title">컨퍼런스</div>
-                <Link to="/conference" className="txt">
+                <div className="title">동아리</div>
+                <Link to="/club" className="txt">
                     <button className="all">전체보기</button>
                 </Link>
             </div>
@@ -85,18 +85,18 @@ const MainRT = () => {
                 renderCenterRightControls={({ nextSlide }) => (
                     <></>
                 )}>
-                {conferences && conferences.map(conf => {
+                {clubs && clubs.map(club => {
                     return(
                         <div className="element">
-                            <Link to={`/conference/detail/${conf.id}`}>
-                                <img className="image" src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} />
+                            <Link to={`/club/detail/${club.id}`}>
+                                <img className="image" src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} />
                             </Link>
-                            <p className="host">{conf.host}</p>
-                            <p className="title">{conf.title}</p>
+                            <p className="host">{club.host}</p>
+                            <p className="title">{club.title}</p>
                         </div>
                     );     
                 })}
-            </Carousel> 
+            </Carousel>
         </> 
     );
 };

@@ -74,14 +74,14 @@ const HeaderContainer = ({ match }) => {
                     </div>
                     <Collapse onChange={callback} expandIconPosition={"right"} defaultActiveKey={["0"]}>
                         <Panel key="1">
-                            <Link to="/club">
-                                <div className="txt">동아리</div>
+                            <Link to="/conference">
+                                <div className="txt">컨퍼런스</div>
                             </Link>
                             <Link to="/education">
                                 <div className="txt">교육</div>
                             </Link>
-                            <Link to="/conference">
-                                <div className="txt">컨퍼런스</div>
+                            <Link to="/club">
+                                <div className="txt">동아리</div>
                             </Link>
                             <Link to="/service">
                                 <div className="txt">고객센터</div>
@@ -116,8 +116,8 @@ const HeaderContainer = ({ match }) => {
                         </Link>
                     </div>
                     <div className="menu">
-                        <Link to="/club" className="txt">
-                            동아리
+                        <Link to="/conference" className="txt">
+                            컨퍼런스
                         </Link>
                     </div>
                     <div className="menu">
@@ -126,8 +126,8 @@ const HeaderContainer = ({ match }) => {
                         </Link>
                     </div>
                     <div className="menu">
-                        <Link to="/conference" className="txt">
-                            컨퍼런스
+                        <Link to="/club" className="txt">
+                            동아리
                         </Link>
                     </div>
                     <div className="menu">

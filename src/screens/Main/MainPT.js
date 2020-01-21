@@ -86,10 +86,10 @@ const MainPT = () => {
                 </>
             ) : (
                 <>
-                    <div className="club">
+                    <div className="conference">
                         <div className="title-box">
-                            <div className="title">동아리</div>
-                            <Link to="/club" className="txt">
+                            <div className="title">컨퍼런스</div>
+                            <Link to="/conference" className="txt">
                                 <button className="all">전체보기</button>
                             </Link>
                         </div>
@@ -102,18 +102,18 @@ const MainPT = () => {
                                 firstAndLastGutter={false}
                                 freeScrolling={false}
                                 // Active item configurations
-                                requestToChangeActive={changeActiveClubItem}
-                                activeItemIndex={clubIndex}
+                                requestToChangeActive={changeActiveConfItem}
+                                activeItemIndex={confIndex}
                                 activePosition={"center"}
                                 chevronWidth={72}
                                 rightChevron={<NextArrow></NextArrow>}
                                 leftChevron={<PrevArrow></PrevArrow>}
                                 outsideChevron={true}
                             >
-                                {clubs &&
-                                    clubs.map(club => {
+                                {conferences &&
+                                    conferences.map(conf => {
                                         return (
-                                            <Link to={`/club/detail/${club.id}`}>
+                                            <Link to={`/conference/detail/${conf.id}`}>
                                                 <div
                                                     className="item"
                                                     style={{
@@ -124,9 +124,9 @@ const MainPT = () => {
                                                         marginBottom: 2
                                                     }}
                                                 >
-                                                    <img src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} alt="logo" />
-                                                    <div className="host">{club.host}</div>
-                                                    <div className="title">{club.title}</div>
+                                                    <img src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} alt="logo" />
+                                                    <div className="host">{conf.host}</div>
+                                                    <div className="title">{conf.title}</div>
                                                 </div>
                                             </Link>
                                         );
@@ -182,10 +182,10 @@ const MainPT = () => {
                             </ItemsCarousel>
                         </div>
                     </div>
-                    <div className="conference">
+                    <div className="club">
                         <div className="title-box">
-                            <div className="title">컨퍼런스</div>
-                            <Link to="/conference" className="txt">
+                            <div className="title">동아리</div>
+                            <Link to="/club" className="txt">
                                 <button className="all">전체보기</button>
                             </Link>
                         </div>
@@ -198,18 +198,18 @@ const MainPT = () => {
                                 firstAndLastGutter={false}
                                 freeScrolling={false}
                                 // Active item configurations
-                                requestToChangeActive={changeActiveConfItem}
-                                activeItemIndex={confIndex}
+                                requestToChangeActive={changeActiveClubItem}
+                                activeItemIndex={clubIndex}
                                 activePosition={"center"}
                                 chevronWidth={72}
                                 rightChevron={<NextArrow></NextArrow>}
                                 leftChevron={<PrevArrow></PrevArrow>}
                                 outsideChevron={true}
                             >
-                                {conferences &&
-                                    conferences.map(conf => {
+                                {clubs &&
+                                    clubs.map(club => {
                                         return (
-                                            <Link to={`/conference/detail/${conf.id}`}>
+                                            <Link to={`/club/detail/${club.id}`}>
                                                 <div
                                                     className="item"
                                                     style={{
@@ -220,9 +220,9 @@ const MainPT = () => {
                                                         marginBottom: 2
                                                     }}
                                                 >
-                                                    <img src={conf.photo.photo ? conf.photo.photo : require("assets/placeholder.png")} alt="logo" />
-                                                    <div className="host">{conf.host}</div>
-                                                    <div className="title">{conf.title}</div>
+                                                    <img src={club.photo.photo ? club.photo.photo : require("assets/placeholder.png")} alt="logo" />
+                                                    <div className="host">{club.host}</div>
+                                                    <div className="title">{club.title}</div>
                                                 </div>
                                             </Link>
                                         );
