@@ -11,10 +11,11 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Switch, Menu, Dropdown, Button } from "antd";
 import Calendars from "component/Calendar/Calendar";
 import { Row, Col, Container } from "react-bootstrap";
-import { Icon } from "antd";
 import { makeStyles } from "@material-ui/core/styles";
 import swal from "sweetalert";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -206,13 +207,9 @@ const Mypage = ({ match }) => {
                                                                         </a>
                                                                         <div className="heart" onClick={() => addLike(favor.id)}>
                                                                             {like(favor.id) !== -1 ? (
-                                                                                <Icon
-                                                                                    className="hh"
-                                                                                    type="heart"
-                                                                                    style={{ fontSize: "28px", color: "#e53935" }}
-                                                                                />
+                                                                                <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
                                                                             ) : (
-                                                                                <Icon className="hh" type="heart" style={{ fontSize: "28px" }} />
+                                                                                <FavoriteBorderIcon style={{ fontSize:"30px" }} />
                                                                             )}
                                                                         </div>
                                                                     </div>

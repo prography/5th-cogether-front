@@ -5,8 +5,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import search_icon from "assets/search.svg";
 import { Row, Col, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +16,6 @@ import { Link } from "react-router-dom";
 import "./ConferenceList.scss";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import swal from "sweetalert";
-import { Icon } from "antd";
 import { favorRequestAction } from "store/actions/User";
 
 const ConferenceList = ({ match }) => {
@@ -139,17 +139,9 @@ const ConferenceList = ({ match }) => {
                                                     </a>
                                                     <div className="heart" onClick={() => addLike(conf.id)}>
                                                         {like(conf.id)!==-1 ? (
-                                                            <Icon
-                                                                className="hh"
-                                                                type="heart"
-                                                                style={{ fontSize: "28px", color: "#e53935" }}
-                                                            />
+                                                            <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
                                                         ) : (
-                                                            <Icon
-                                                                className="hh"
-                                                                type="heart"
-                                                                style={{ fontSize: "28px" }}
-                                                            />
+                                                            <FavoriteBorderIcon style={{ fontSize:"30px" }} />
                                                         )}
                                                     </div>
                                                 </div>
@@ -216,17 +208,9 @@ const ConferenceList = ({ match }) => {
                                                     </a>
                                                     <div className="heart" onClick={() => addLike(conf.id)}>
                                                         {like(conf.id)!==-1 ? (
-                                                            <Icon
-                                                                className="hh"
-                                                                type="heart"
-                                                                style={{ fontSize: "28px", color: "#e53935" }}
-                                                            />
+                                                            <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
                                                         ) : (
-                                                            <Icon
-                                                                className="hh"
-                                                                type="heart"
-                                                                style={{ fontSize: "28px" }}
-                                                            />
+                                                            <FavoriteBorderIcon style={{ fontSize:"30px" }} />
                                                         )}
                                                     </div>
                                                 </div>
