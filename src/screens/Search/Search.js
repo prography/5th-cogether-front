@@ -16,12 +16,12 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Link } from "react-router-dom";
 import swal from 'sweetalert';
+import { favorRequestAction } from "store/actions/User";
 
 const Search = ({ match }) => {
     const dispatch = useDispatch();
     let searchs = useSelector(state => state.clubReducer.search, {});
-
-    const [liking, setLiking] = useState(false);  //즐겨찾기 여부
+    var favors = useSelector(state => state.userReducer.favor);
 
     useEffect(() => {
         dispatch(requestSearch(match.params.text));
@@ -32,10 +32,18 @@ const Search = ({ match }) => {
         swal("클립보드 복사가 완료되었습니다");
     };
 
-    const like = () => {
-        setLiking(!liking);
-        console.log(liking);
+    const addLike = id => {
+        const data = { type: "post", id: id };
+        dispatch(favorRequestAction(data));
     };
+
+    const like = id => {
+        return favors.findIndex(x => x.id === id);
+    };
+
+    useEffect(() => {
+        dispatch(favorRequestAction({ type: "get" }));
+    }, []);
 
     const useStyles = makeStyles({
         card: {
@@ -60,7 +68,6 @@ const Search = ({ match }) => {
             color: "black"
         },
     });
-
     const classes = useStyles();
 
     return (
@@ -121,12 +128,12 @@ const Search = ({ match }) => {
                                                                     </div>
                                                                 </CopyToClipboard>
                                                             </a>
-                                                            <div className="heart">
-                                                                { liking ? 
-                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} onClick={like} />
-                                                                    :
-                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} onClick={like} />
-                                                                }
+                                                            <div className="heart" onClick={() => addLike(search.id)}>
+                                                                {like(search.id)!==-1 ? (
+                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
+                                                                ) : (
+                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} />
+                                                                )}
                                                             </div>
                                                           </div>
                                                         </CardActions>
@@ -186,12 +193,12 @@ const Search = ({ match }) => {
                                                                     </div>
                                                                 </CopyToClipboard>
                                                             </a>
-                                                            <div className="heart">
-                                                                { liking ? 
-                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} onClick={like} />
-                                                                    :
-                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} onClick={like} />
-                                                                }
+                                                            <div className="heart" onClick={() => addLike(search.id)}>
+                                                                {like(search.id)!==-1 ? (
+                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
+                                                                ) : (
+                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} />
+                                                                )}
                                                             </div>
                                                           </div>
                                                         </CardActions>
@@ -251,12 +258,12 @@ const Search = ({ match }) => {
                                                                     </div>
                                                                 </CopyToClipboard>
                                                             </a>
-                                                            <div className="heart">
-                                                                { liking ? 
-                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} onClick={like} />
-                                                                    :
-                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} onClick={like} />
-                                                                }
+                                                            <div className="heart" onClick={() => addLike(search.id)}>
+                                                                {like(search.id)!==-1 ? (
+                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
+                                                                ) : (
+                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} />
+                                                                )}
                                                             </div>
                                                           </div>
                                                         </CardActions>
