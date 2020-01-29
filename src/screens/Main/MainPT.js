@@ -61,6 +61,16 @@ const MainPT = () => {
     return (
         <div className="main-wrap">
             <div className="intro">
+                <div className="google-form">
+                    자유롭게 Co.gether 서비스를 피드백 해주세요 !
+                    <a 
+                        className="google-link"
+                        href="https://docs.google.com/forms/d/1wTvgiGOeHSpF0eVrQQLWN5USoXRqFnFWGVmOvSImesA/edit?usp=drivesdk"
+                        target="_blank"
+                    >
+                        구글 폼
+                    </a>
+                </div>
                 <div className="service-upper-blank"></div>
                 <div className="service-slogan">국내 개발 행사 한번에 볼 수 없을까?</div>
                 <div className="service-explanation">
