@@ -62,7 +62,7 @@ const MainPT = () => {
         <div className="main-wrap">
             <div className="intro">
                 <div className="google-form">
-                    자유롭게 Co.gether 서비스를 피드백 해주세요 !
+                    <div className="google-text">자유롭게 Co.gether 서비스를 피드백 해주세요 !</div>
                     <a 
                         className="google-link"
                         href="https://docs.google.com/forms/d/1wTvgiGOeHSpF0eVrQQLWN5USoXRqFnFWGVmOvSImesA/edit?usp=drivesdk"
