@@ -14,7 +14,6 @@ const store=configure();
 ReactDOM.render(
     <Provider store={store}>
             <App />
-            {/* <Login /> */}
     </Provider>,
     document.getElementById("root")
 );

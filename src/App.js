@@ -18,6 +18,7 @@ import Search from "screens/Search/Search";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { meRequestAction } from "store/actions/User";
+import ReactGA from "react-ga";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -25,14 +26,20 @@ const App = () => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     useEffect(() => {
+        ReactGA.initialize("UA-156434695-1");
         if (token !== null) {
             dispatch(meRequestAction());
         }
     }, []);
 
+    const logPageView = () => {
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname);
+    };
+
     return (
         <div className="App">
-            <Router>
+            <Router onUpdate={logPageView}>
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Main} />
