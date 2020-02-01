@@ -397,8 +397,9 @@ const Service = () => {
                                                                             {help.title}
                                                                         </div>
                                                                         <div className="date">
-                                                                            {help.created_at.getYear()} - {help.created_at.getMonth()} -{" "}
-                                                                            {help.created_at.getDate()}
+                                                                            {new Date(help.created_at).getYear()} -{" "}
+                                                                            {new Date(help.created_at).getMonth()} -{" "}
+                                                                            {new Date(help.created_at).getDate()}
                                                                         </div>
                                                                         <div className="status">
                                                                             {help.status === "waiting" ? "답변대기" : "답변완료"}
