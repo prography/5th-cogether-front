@@ -396,12 +396,15 @@ const Service = () => {
                                                                         >
                                                                             {help.title}
                                                                         </div>
-                                                                        <div className="date">{help.created_at}</div>
+                                                                        <div className="date">
+                                                                            {help.created_at.getYear()} - {help.created_at.getMonth()} -{" "}
+                                                                            {help.created_at.getDate()}
+                                                                        </div>
                                                                         <div className="status">
                                                                             {help.status === "waiting" ? "답변대기" : "답변완료"}
                                                                         </div>
                                                                     </div>
-                                                                    {/* {helpState[0] ? (
+                                                                    {helpState[index] ? (
                                                                         <div className="help-content-box">
                                                                             <div className="help-content">
                                                                                 <div className="writer">내용</div>
@@ -412,7 +415,7 @@ const Service = () => {
                                                                                 <div className="content">{help.answer}</div>
                                                                             </div>
                                                                         </div>
-                                                                    ) : null} */}
+                                                                    ) : null}
                                                                 </div>
                                                             </div>
                                                         );
