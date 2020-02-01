@@ -34,6 +34,8 @@ const App = props => {
     const logPageView = () => {
         props.ReactGA.set({ page: window.location.pathname });
         ReactGA.pageview(window.location.pathname);
+
+        return null;
     };
 
     return (
