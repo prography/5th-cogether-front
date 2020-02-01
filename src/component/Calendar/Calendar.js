@@ -29,13 +29,11 @@ const Calendars = favors => {
 
         return (
             <>
-                listData ?
-                {
+                {listData ? (
                     <Dropdown overlay={menu} trigger={["click"]}>
                         <Badge status={"success"}></Badge>
                     </Dropdown>
-                }
-                : null
+                ) : null}
             </>
         );
     };

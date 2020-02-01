@@ -26,7 +26,6 @@ const App = () => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     useEffect(() => {
-        ReactGA.initialize("UA-156434695-1");
         if (token !== null) {
             dispatch(meRequestAction());
         }
