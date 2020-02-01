@@ -22,11 +22,11 @@ function* getHelpApiData(info) {
         };
 
         if (info.payload.title) {
-            data = yield call([axios, "post"], "https://cogether.azurewebsites.net/help-center/my-questions/", json, {
+            data = yield call([axios, "post"], "https://cogether.azurewebsites.net/help-center/me/", json, {
                 headers: headerParams
             });
         } else {
-            data = yield call([axios, "get"], "hhttps://cogether.azurewebsites.net/help-center/my-questions/", {
+            data = yield call([axios, "get"], "https://cogether.azurewebsites.net/help-center/me/", {
                 headers: headerParams
             });
         }
