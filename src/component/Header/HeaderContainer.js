@@ -172,7 +172,6 @@ const HeaderContainer = ({ match }) => {
                                     <div className="usericon">{mePhoto ? <img className="circle" src={mePhoto} /> : <img src={user} />}</div>
                                 </a>
                             </Dropdown>
-                            ,
                         </div>
                     ) : (
                         <div className="account">

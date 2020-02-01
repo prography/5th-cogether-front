@@ -28,11 +28,7 @@ const Calendars = favors => {
         );
     };
 
-    const getMonthData = value => {
-        if (value.month() === 8) {
-            return 1394;
-        }
-    };
+    const getMonthData = value => {};
 
     const monthCellRender = value => {
         const num = getMonthData(value);
@@ -46,7 +42,7 @@ const Calendars = favors => {
 
     return (
         <div>
-            <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
+            <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} mode={"month"} />
         </div>
     );
 };
