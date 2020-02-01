@@ -6,6 +6,7 @@ import drop_arrow from "assets/drop-down.svg";
 import search from "assets/search.svg";
 import { introRequestAction, helpRequestAction } from "store/actions/Service";
 import { Collapse } from "antd";
+import swal from "sweetalert";
 
 const Service = () => {
     const dispatch = useDispatch();
@@ -163,15 +164,67 @@ const Service = () => {
                         {tab === "introduce" ? (
                             <div className="service-box">
                                 <div className={tab}>
-                                    <div>Code + together = Cogether ! </div>
-                                    <div>Cogether를 통해, 매주 업데이트 되는 개발 행사 정보를 이메일로 알림받고 한눈에 모아보세요!</div>
-                                    <div>
-                                        또한 마음에 드는 행사를 즐겨찾기해 캘린더에서 일정을 확인하세요! 공유하고 싶은 행사 또는 동아리가 있으시다면,
+                                    <div style={{ fontSize: "20px" }}>
+                                        <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>Code</span>{" "}
+                                        <span style={{ fontWeight: "bold" }}>+</span>{" "}
+                                        <span style={{ color: "#FD8C3E", fontWeight: "bold" }}>Together</span>{" "}
+                                        <span style={{ fontWeight: "bold" }}>=</span> <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>Co</span>
+                                        <span style={{ color: "#FD8C3E", fontWeight: "bold" }}>gether</span>{" "}
+                                        <span style={{ fontWeight: "bold" }}>!</span>
                                     </div>
-                                    <div>고객센터에 글을 남겨주세요!</div>
-                                    <div> 모든 Cogether 이용자들과 공유할 수 있습니다 :) </div>
-                                    <div>
-                                        더 나은 서비스의 발전을 위해 모든 피드백을 메인 페이지 상단에 있는 구글폼📝 에 남겨주시면 감사하겠습니다! 💖
+                                    <div style={{ color: "#878d91", fontWeight: "bold", fontSize: "30px", margin: "30px 0 40px 0" }}>
+                                        이런 분들에게 Cogether를 추천합니다.
+                                    </div>
+                                    <div
+                                        style={{
+                                            fontSize: "15px",
+                                            marginLeft: "20px",
+                                            borderRadius: "3px",
+                                            border: "1px solid rgba(239, 238, 238, 0.5)",
+                                            backgroundColor: "rgba(239, 238, 238, 0.5)",
+                                            padding: "10px"
+                                        }}
+                                    >
+                                        <div style={{ margin: "10px 0" }}>
+                                            개발 관련 <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>동아리/컨퍼런스/교육/세미나</span>를
+                                            찾느라 이리저리 방황하시는 분들!
+                                        </div>
+                                        <div style={{ margin: "10px 0" }}>
+                                            <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>새로운 행사</span>가 업데이트 되는 소식을 받고
+                                            싶으신 분들!
+                                        </div>
+                                        <div style={{ margin: "10px 0" }}>개발 컨퍼런스나 세미나를 등록해놓고, 자주 잊어버리셨던 분들!</div>
+                                        <div style={{ margin: "10px 0" }}>
+                                            개발자들과{" "}
+                                            <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>공유하고 싶은 개발 행사 또는 동아리</span>가 있으신
+                                            분들!
+                                        </div>
+                                    </div>
+
+                                    <div style={{ height: "70px" }}></div>
+                                    <div style={{ margin: "10px 0" }}>
+                                        <div style={{ fontSize: "15px", marginBottom: "30px" }}>
+                                            <span style={{ color: "#2d2d4b", fontWeight: "bold", fontSize: "30px" }}>Cogether</span> 를 통해,
+                                        </div>
+                                        <div style={{ margin: "20px 0 20px 0" }}>
+                                            ✔️<span style={{ color: "#2d2d4b", fontWeight: "bold" }}>매주 업데이트</span> 되는 개발 행사 정보를{" "}
+                                            <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>이메일</span>로 알림받고 한눈에 모아보세요!
+                                        </div>
+                                        <div style={{ margin: "20px 0 5px 0" }}>
+                                            ✔️마음에 드는 행사를 <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>즐겨찾기</span>해{" "}
+                                            <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>캘린더</span>에서 일정을 확인하세요!{" "}
+                                            <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>공유</span>하고 싶은 행사 또는 동아리가 있으시다면,
+                                        </div>
+                                        <div>
+                                            <span style={{ color: "#2d2d4b", fontWeight: "bold", marginLeft: "20px" }}>고객센터</span>에 글을
+                                            남겨주세요!
+                                        </div>
+                                        <div style={{ margin: "7px 0", marginLeft: "20px" }}> 모든 Cogether 이용자들과 공유할 수 있습니다 :) </div>
+                                        <div style={{ margin: "20px 0" }}>
+                                            ✔️ 더 나은 서비스의 발전을 위해 모든 <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>피드백</span>
+                                            을 메인 페이지 상단에 있는 <span style={{ color: "#2d2d4b", fontWeight: "bold" }}>구글폼</span>에
+                                            남겨주시면 감사하겠습니다!
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +295,16 @@ const Service = () => {
                                                 문의 제출하기
                                             </button>
                                         ) : (
-                                            <button className="ask-btn" onClick={() => setAsk(true)}>
+                                            <button
+                                                className="ask-btn"
+                                                onClick={() => {
+                                                    if (decoded) {
+                                                        setAsk(true);
+                                                    } else {
+                                                        swal("로그인 후 이용해주세요!");
+                                                    }
+                                                }}
+                                            >
                                                 1:1 문의하기
                                             </button>
                                         )}
@@ -307,11 +369,6 @@ const Service = () => {
                                                 {helps &&
                                                     helps.results &&
                                                     helps.results.map((help, index) => {
-                                                        return <div>{help.title}</div>;
-                                                    })}
-                                                {helps &&
-                                                    helps.results &&
-                                                    helps.results.map((help, index) => {
                                                         return (
                                                             <div>
                                                                 <div className="help">
@@ -339,12 +396,16 @@ const Service = () => {
                                                                         >
                                                                             {help.title}
                                                                         </div>
-                                                                        <div className="date">{help.created_at}</div>
+                                                                        <div className="date">
+                                                                            {new Date(help.created_at).getYear()} -{" "}
+                                                                            {new Date(help.created_at).getMonth()} -{" "}
+                                                                            {new Date(help.created_at).getDate()}
+                                                                        </div>
                                                                         <div className="status">
                                                                             {help.status === "waiting" ? "답변대기" : "답변완료"}
                                                                         </div>
                                                                     </div>
-                                                                    {/* {helpState[0] ? (
+                                                                    {helpState[index] ? (
                                                                         <div className="help-content-box">
                                                                             <div className="help-content">
                                                                                 <div className="writer">내용</div>
@@ -355,7 +416,7 @@ const Service = () => {
                                                                                 <div className="content">{help.answer}</div>
                                                                             </div>
                                                                         </div>
-                                                                    ) : null} */}
+                                                                    ) : null}
                                                                 </div>
                                                             </div>
                                                         );
