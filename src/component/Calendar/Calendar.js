@@ -29,9 +29,9 @@ const Calendars = favors => {
 
         return (
             <>
-                {listData ? (
+                {listData.length ? (
                     <Dropdown overlay={menu} trigger={["click"]}>
-                        <Badge status={"success"}></Badge>
+                        일정이 있어요!
                     </Dropdown>
                 ) : null}
             </>
