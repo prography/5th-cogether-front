@@ -118,40 +118,6 @@
                 border-radius: 50px;
             }
         }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            z-index: 3;
-
-            a {
-                text-decoration: none;
-            }
-            ul {
-                list-style-type: none;
-                right: 0px;
-                top: 40px;
-                background-color: white;
-                position: absolute;
-                padding-inline-start: 0px;
-                width: 168px;
-                height: 88px;
-                border-radius: 3px;
-                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.48);
-                background-color: #ffffff;
-
-                .list {
-                    height: 44px;
-                    text-align: left;
-                    color: #878d91;
-                    font-size: 16px;
-                    padding-inline-start: 0px;
-                    padding: 10px;
-                }
-                .list:hover {
-                    color: #fd8c3e;
-                }
-            }
-        }
     }
 }
 

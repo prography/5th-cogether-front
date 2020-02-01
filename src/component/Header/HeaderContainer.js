@@ -6,7 +6,8 @@ import { logoutRequestAction } from "../../store/actions/User";
 import search from "assets/search.svg";
 import bar from "assets/bar.svg";
 import user from "assets/user.svg";
-import { Layout, Menu, Icon, Collapse } from "antd";
+import { Layout, Menu, Icon, Collapse, Dropdown } from "antd";
+
 const { Panel } = Collapse;
 
 const HeaderContainer = ({ match }) => {
@@ -19,7 +20,7 @@ const HeaderContainer = ({ match }) => {
     const meName = useSelector(state => state.userReducer.meName);
     const mePhoto = useSelector(state => state.userReducer.mePhoto);
 
-    const [showMenu, setShowMenu] = useState(false);
+    // const [showMenu, setShowMenu] = useState(false);
 
     const [searchText, setSearchText] = useState("");
     const onSetSearchText = useCallback(e => {
@@ -32,11 +33,26 @@ const HeaderContainer = ({ match }) => {
         setToken(localStorage.getItem("accessToken"));
     }, []);
 
-    const showDropdownMenu = () => {
-        setShowMenu(!showMenu);
-    };
+    // const showDropdownMenu = () => {
+    //     setShowMenu(!showMenu);
+    // };
+
+    const menu = (
+        <Menu>
+            <Menu.Item key="0">
+                <Link to="/mypage">마이페이지</Link>
+            </Menu.Item>
+            <Menu.Divider />
+            <Menu.Item key="1">
+                <Link to="/" onClick={onLogout}>
+                    로그아웃
+                </Link>
+            </Menu.Item>
+        </Menu>
+    );
 
     useEffect(() => {
+        // setShowMenu(false);
         setToken(localStorage.getItem("accessToken"));
     }, [localStorage.getItem("accessToken")]);
 
@@ -151,26 +167,12 @@ const HeaderContainer = ({ match }) => {
                     {token && meName ? (
                         <div className="account">
                             <div className="username">{meName.split('"')[1].split("@")[0]}</div>
-                            <div className="usericon" onClick={showDropdownMenu}>
-                                { mePhoto ? 
-                                    <img className="circle" src={mePhoto} /> 
-                                    : 
-                                    <img src={user} />
-                                }
-                            </div>
-                            <span className="dropdown">
-                                {showMenu ? (
-                                    <ul>
-                                        <Link to="/mypage">
-                                            <ol className="list">마이페이지</ol>
-                                        </Link>
-
-                                        <Link to="/" onClick={onLogout}>
-                                            <ol className="list">로그아웃</ol>
-                                        </Link>
-                                    </ul>
-                                ) : null}
-                            </span>
+                            <Dropdown overlay={menu} trigger={["click"]}>
+                                <a className="ant-dropdown-link" href="#">
+                                    <div className="usericon">{mePhoto ? <img className="circle" src={mePhoto} /> : <img src={user} />}</div>
+                                </a>
+                            </Dropdown>
+                            ,
                         </div>
                     ) : (
                         <div className="account">

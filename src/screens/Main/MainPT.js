@@ -119,6 +119,7 @@ const MainPT = () => {
                                 rightChevron={<NextArrow></NextArrow>}
                                 leftChevron={<PrevArrow></PrevArrow>}
                                 outsideChevron={true}
+                                
                             >
                                 {conferences &&
                                     conferences.map(conf => {
