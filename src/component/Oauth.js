@@ -4,6 +4,9 @@ import { Redirect } from'react-router-dom';
 import { githubLoginRequestAction } from "../store/actions/User";
 import { meRequestAction } from '../store/actions/User';
 import "./Oauth.scss";
+import { BoxLoading } from 'react-loadingg';
+
+
 const Oauth = () =>{
 
     const dispatch = useDispatch();
@@ -20,7 +23,14 @@ const Oauth = () =>{
 
     return(
         <div>
-            { meName ? <Redirect to='/mypage'></Redirect> : <div className="loading"><h1>Loading</h1></div>}
+            { meName ? 
+                <Redirect to='/mypage'></Redirect> 
+                : 
+                <div className="loading">
+                    <BoxLoading size="large"/>
+                    <h1>Loading</h1>
+                </div>
+            }
         </div>
     );
 
