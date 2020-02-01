@@ -6,6 +6,7 @@ import drop_arrow from "assets/drop-down.svg";
 import search from "assets/search.svg";
 import { introRequestAction, helpRequestAction } from "store/actions/Service";
 import { Collapse } from "antd";
+import swal from "sweetalert";
 
 const Service = () => {
     const dispatch = useDispatch();
@@ -294,7 +295,16 @@ const Service = () => {
                                                 문의 제출하기
                                             </button>
                                         ) : (
-                                            <button className="ask-btn" onClick={() => setAsk(true)}>
+                                            <button
+                                                className="ask-btn"
+                                                onClick={() => {
+                                                    if (decoded) {
+                                                        setAsk(true);
+                                                    } else {
+                                                        swal("로그인 후 이용해주세요!");
+                                                    }
+                                                }}
+                                            >
                                                 1:1 문의하기
                                             </button>
                                         )}
@@ -356,11 +366,6 @@ const Service = () => {
                                                 <div className="status">처리상태</div>
                                             </div>
                                             <div className="help-list">
-                                                {helps &&
-                                                    helps.results &&
-                                                    helps.results.map((help, index) => {
-                                                        return <div>{help.title}</div>;
-                                                    })}
                                                 {helps &&
                                                     helps.results &&
                                                     helps.results.map((help, index) => {
