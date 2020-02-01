@@ -29,6 +29,10 @@ const Join = () => {
             swal("이메일 또는 비밀번호를 입력해주세요");
             return;
         }
+        if(p1.length < 8 || p2.length < 8){
+            swal("비밀번호는 8자리 이상으로 입력해주세요");
+            return;
+        }
         if(p1 !== p2) {
             swal("비밀번호가 일치하지 않습니다");
             return;
