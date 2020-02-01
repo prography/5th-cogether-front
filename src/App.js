@@ -26,7 +26,12 @@ const App = () => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     ReactGA.initialize("UA-156434695-01");
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    //  ReactGA.pageview(window.location.pathname + window.location.search);
+
+    const onUpdate = () => {
+        ReactGA.set({ page: window.location.pathname });
+        ReactGA.pageview(window.location.pathname);
+    };
 
     useEffect(() => {
         if (token !== null) {
@@ -34,30 +39,26 @@ const App = () => {
         }
     }, []);
 
-    const logPageView = () => {
-        return null;
-    };
-
     return (
         <div className="App">
-            <Router onEnter={logPageView}>
+            <Router>
                 <Header />
                 <Switch>
-                    <Route exact path="/" component={Main} />
-                    <Route exact path="/club" component={Clubs} />
-                    <Route path="/club/:text/:id?" component={Clubs} />
-                    <Route exact path="/education" component={Educations} />
-                    <Route path="/education/:text/:id?" component={Educations} />
-                    <Route exact path="/conference" component={Conferences} />
-                    <Route path="/conference/:text/:id?" component={Conferences} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/join" component={Join} />
-                    <Route path="/loginDirect" component={LoginDirect} />
-                    <Route path="/password" component={Password} />
-                    <Route path="/mypage" component={Mypage} />
-                    <Route path="/service" component={Request} />
-                    <Route path="/github/callback" component={Oauth} />
-                    <Route path="/search/:text" component={Search} />
+                    <Route exact path="/" component={Main} onUpdate={onUpdate} />
+                    <Route exact path="/club" component={Clubs} onUpdate={onUpdate} />
+                    <Route path="/club/:text/:id?" component={Clubs} onUpdate={onUpdate} />
+                    <Route exact path="/education" component={Educations} onUpdate={onUpdate} />
+                    <Route path="/education/:text/:id?" component={Educations} onUpdate={onUpdate} />
+                    <Route exact path="/conference" component={Conferences} onUpdate={onUpdate} />
+                    <Route path="/conference/:text/:id?" component={Conferences} onUpdate={onUpdate} />
+                    <Route path="/login" component={Login} onUpdate={onUpdate} />
+                    <Route path="/join" component={Join} onUpdate={onUpdate} />
+                    <Route path="/loginDirect" component={LoginDirect} onUpdate={onUpdate} />
+                    <Route path="/password" component={Password} onUpdate={onUpdate} />
+                    <Route path="/mypage" component={Mypage} onUpdate={onUpdate} />
+                    <Route path="/service" component={Request} onUpdate={onUpdate} />
+                    <Route path="/github/callback" component={Oauth} onUpdate={onUpdate} />
+                    <Route path="/search/:text" component={Search} onUpdate={onUpdate} />
                 </Switch>
                 <Footer />
             </Router>
