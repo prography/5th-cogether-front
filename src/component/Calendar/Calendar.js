@@ -31,7 +31,9 @@ const Calendars = favors => {
             <>
                 {listData.length ? (
                     <Dropdown overlay={menu} trigger={["click"]}>
-                        일정이 있어요!
+                        <a className="ant-dropdown-link" href="#">
+                            일정이 있어요!
+                        </a>
                     </Dropdown>
                 ) : null}
             </>
