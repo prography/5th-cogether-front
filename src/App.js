@@ -20,10 +20,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { meRequestAction } from "store/actions/User";
 import ReactGA from "react-ga";
 
-const App = props => {
+const App = () => {
     const dispatch = useDispatch();
     const isAuthenticating = useSelector(state => state.userReducer.meName);
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
+
+    ReactGA.initialize("UA-156434695-01");
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
     useEffect(() => {
         if (token !== null) {
@@ -32,16 +35,12 @@ const App = props => {
     }, []);
 
     const logPageView = () => {
-        props.ReactGA.set({ page: window.location.pathname });
-        ReactGA.pageview(window.location.pathname);
-
         return null;
     };
 
     return (
         <div className="App">
-            <Router>
-                <Route path="/" component={logPageView} />
+            <Router onEnter={logPageView}>
                 <Header />
                 <Switch>
                     <Route exact path="/" component={Main} />
