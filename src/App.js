@@ -26,7 +26,7 @@ const App = () => {
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
     ReactGA.initialize("UA-156434695-01");
-    //  ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
     const onUpdate = () => {
         ReactGA.set({ page: window.location.pathname });

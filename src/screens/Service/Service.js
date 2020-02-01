@@ -4,14 +4,12 @@ import "./Service.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import drop_arrow from "assets/drop-down.svg";
 import search from "assets/search.svg";
-import { introRequestAction, freqRequestAction, helpRequestAction } from "store/actions/Service";
+import { introRequestAction, helpRequestAction } from "store/actions/Service";
 import { Collapse } from "antd";
 
 const Service = () => {
     const dispatch = useDispatch();
 
-    const intros = useSelector(state => state.serviceReducer.intro);
-    var freqs = useSelector(state => state.serviceReducer.freq);
     var helps = useSelector(state => state.serviceReducer.help);
 
     var [freqState, setFreqState] = useState([]);
@@ -25,7 +23,6 @@ const Service = () => {
 
     useEffect(() => {
         dispatch(introRequestAction());
-        dispatch(freqRequestAction());
         dispatch(helpRequestAction(json));
     }, []);
 
@@ -111,15 +108,11 @@ const Service = () => {
                             </Panel>
                             <Panel header="자주 묻는 질문" key="2" style={{ fontSize: 18, color: "#2d2d4b", fontWeight: "bold" }}>
                                 <Collapse>
-                                    {freqs &&
-                                        freqs.results &&
-                                        freqs.results.map((freq, index) => {
-                                            return (
-                                                <Panel header={freq.title}>
-                                                    <div className="freq-content">{freq.contents}</div>
-                                                </Panel>
-                                            );
-                                        })}
+                                    <Panel header="깃헙 로그인이 불가합니다.">
+                                        <div className="freq-content">
+                                            깃헙 페이지에서 로그인 후, [Settigs - Profile]에서 Public Email을 설정해주세요.
+                                        </div>
+                                    </Panel>
                                 </Collapse>
                             </Panel>
                             <Panel header="내 문의 목록" key="3" style={{ fontSize: 18, color: "#2d2d4b", fontWeight: "bold" }}>
@@ -175,31 +168,42 @@ const Service = () => {
                                     </div>
                                     <div className="bar"></div>
                                     <div className="freq-list">
-                                        {freqs &&
-                                            freqs.results &&
-                                            freqs.results.map((freq, index) => {
-                                                return (
-                                                    <div className="freq">
-                                                        <div
-                                                            className="freq-title"
-                                                            onClick={() => {
-                                                                const tempArr = [
-                                                                    ...freqState.slice(0, index),
-                                                                    !freqState[index],
-                                                                    ...freqState.slice(index + 1)
-                                                                ];
-                                                                freqState.splice(index, 1, !freqState[index]);
-                                                                setFreqState(tempArr);
-                                                                console.log(freqs);
-                                                            }}
-                                                        >
-                                                            {freq.title}
-                                                        </div>
+                                        <div className="freq">
+                                            <div
+                                                className="freq-title"
+                                                onClick={() => {
+                                                    const tempArr = [...freqState.slice(0, 0), !freqState[0], ...freqState.slice(0 + 1)];
+                                                    freqState.splice(0, 1, !freqState[0]);
+                                                    setFreqState(tempArr);
+                                                }}
+                                            >
+                                                깃헙 로그인이 불가합니다.
+                                            </div>
 
-                                                        {freqState[index] ? <div className="freq-content">{freq.contents}</div> : null}
-                                                    </div>
-                                                );
-                                            })}
+                                            {freqState[0] ? (
+                                                <div className="freq-content">
+                                                    깃헙 페이지에서 로그인 후, [Settigs - Profile]에서 Public Email을 설정해주세요.
+                                                </div>
+                                            ) : null}
+                                        </div>
+                                        <div className="freq">
+                                            <div
+                                                className="freq-title"
+                                                onClick={() => {
+                                                    const tempArr = [...freqState.slice(0, 1), !freqState[1], ...freqState.slice(1 + 1)];
+                                                    freqState.splice(0, 1, !freqState[1]);
+                                                    setFreqState(tempArr);
+                                                }}
+                                            >
+                                                게시/수정 요청은 바로 반영이 되나요?
+                                            </div>
+
+                                            {freqState[1] ? (
+                                                <div className="freq-content">
+                                                    게시/수정 요청된 개발 행사는 일주일 내에 반영됩니다! 피드백 감사합니다 :)
+                                                </div>
+                                            ) : null}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -285,10 +289,11 @@ const Service = () => {
                                                 <div className="status">처리상태</div>
                                             </div>
                                             <div className="help-list">
-                                                {/* {helps.results &&
+                                                {helps &&
+                                                    helps.results &&
                                                     helps.results.map((help, index) => {
                                                         return <div>{help.title}</div>;
-                                                    })} */}
+                                                    })}
                                                 {helps &&
                                                     helps.results &&
                                                     helps.results.map((help, index) => {

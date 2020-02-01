@@ -35,22 +35,3 @@ export const fetchDetail = async (id: number) => {
         console.log(e);
     }
 };
-export const fetchIntroData = async () => {
-    try {
-        const response = await fetch("https://cogether.azurewebsites.net/help-center/info");
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
-    }
-};
-
-export const fetchFreqData = async () => {
-    try {
-        const response = await fetch("https://cogether.azurewebsites.net/help-center/freq");
-        const data = await response.json();
-        return data;
-    } catch (e) {
-        console.log(e);
-    }
-};
