@@ -22,7 +22,10 @@
     @media screen and (max-width: 992px) {
         .slogan {
             font-size: 16px;
-            width: 45%;
+            width: 50%;
+            position: relative;
+            top: 440px;
+            left: 10%;
         }
     }
 }
