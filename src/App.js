@@ -25,9 +25,9 @@ const App = () => {
     const isAuthenticating = useSelector(state => state.userReducer.meName);
     const [token, setToken] = useState(localStorage.getItem("accessToken"));
 
-    ReactGA.initialize("UA-156434695-02");
-    if (window.location.host !== "localhost:3000") {
-        ReactGA.initialize("UA-156434695-01");
+    ReactGA.initialize("UA-156710590-01");
+    if (window.location.host === "localhost:3000") {
+        ReactGA.initialize("UA-156710590-2");
     }
 
     ReactGA.pageview(window.location.pathname + window.location.search);
