@@ -94,6 +94,13 @@
             text-decoration: none;
             display: flex;
             flex-direction: row;
+            align-items: center;
+            color: black;
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
             .username {
                 flex: 2;
             }
@@ -101,6 +108,7 @@
                 flex: 1;
                 width: 48px;
                 height: 48px;
+                margin-left: 3px;
 
                 .circle {
                     width: 48px;

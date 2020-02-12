@@ -80,7 +80,6 @@ const Service = () => {
             setSmall(true);
         }
     }, [size]);
-    console.log(helps);
 
     return (
         <div className="service-wrap">
@@ -371,11 +370,11 @@ const Service = () => {
                                                                 <div className="help">
                                                                     <div className="help-title-box">
                                                                         <div className="type">
-                                                                            {help.source === "help"
+                                                                            {help.type === "help"
                                                                                 ? "1:1문의"
-                                                                                : help.source === "create"
+                                                                                : help.type === "create"
                                                                                 ? "게시요청"
-                                                                                : help.source === "update"
+                                                                                : help.type === "update"
                                                                                 ? "수정요청"
                                                                                 : null}
                                                                         </div>

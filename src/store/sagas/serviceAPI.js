@@ -12,6 +12,7 @@ function* getHelpApiData(info) {
         // };
         console.log("info", info.payload);
         const json = {
+            ...info,
             user: info.payload.user
         };
         console.log(json);
