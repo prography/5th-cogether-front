@@ -124,7 +124,7 @@ const Mypage = ({ match }) => {
                                 <div className="info-box">
                                     <div className="info">
                                         <div className="key">이메일</div>
-                                        <div className="value">{meName.toString().replaceAll('"', "")}</div>
+                                        <div className="value">{meName && meName.toString().replaceAll('"', "")}</div>
                                     </div>
                                     {meLogin === "email" && (
                                         <div className="info">
