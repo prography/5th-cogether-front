@@ -9,7 +9,12 @@ const Calendars = favors => {
             favor => new Date(favor.start_at).getDate() === value.date() && new Date(favor.start_at).getMonth() === value.month()
         );
         if (start) {
-            listData = start.map(value => ({ type: "success", content: value.title }));
+            listData = start.map(value => ({
+                type: "success",
+                content: value.title,
+                category: value.category.name === "circle" ? "club" : value.category.name,
+                id: value.id
+            }));
         }
 
         return listData || [];
@@ -22,7 +27,7 @@ const Calendars = favors => {
             <Menu>
                 {listData.map(item => (
                     <Menu.Item>
-                        <Link to={`/${item.category === "circle" ? "club" : item.category}/detail/${item.id}`}>
+                        <Link to={`/${item.category}/detail/${item.id}`}>
                             <Badge status={item.type} text={item.content} />
                         </Link>
                     </Menu.Item>

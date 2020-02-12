@@ -90,6 +90,26 @@
         cursor: pointer;
         align-items: center;
 
+        .ant-dropdown-link {
+            text-decoration: none;
+            display: flex;
+            flex-direction: row;
+            .username {
+                flex: 2;
+            }
+            .usericon {
+                flex: 1;
+                width: 48px;
+                height: 48px;
+
+                .circle {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50px;
+                }
+            }
+        }
+
         .login-btn {
             width: 50px;
             height: 20px;
@@ -102,21 +122,6 @@
             font-size: 15px;
             color: #fd8c3e;
             margin-left: 24px;
-        }
-
-        .username {
-            flex: 2;
-        }
-        .usericon {
-            flex: 1;
-            width: 48px;
-            height: 48px;
-
-            .circle {
-                width: 48px;
-                height: 48px;
-                border-radius: 50px;
-            }
         }
 
         .ant-dropdown-menu-item {
