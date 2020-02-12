@@ -317,7 +317,6 @@ const Service = () => {
                                                             type="radio"
                                                             name="category"
                                                             value="post"
-                                                            checked="checked"
                                                             onClick={() => setCategory("create")}
                                                         ></input>
                                                         <span>게시 요청</span>
