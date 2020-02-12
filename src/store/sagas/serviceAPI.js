@@ -11,11 +11,7 @@ function* getHelpApiData(info) {
         //     password2: payload.p2,
         // };
         console.log("info", info.payload);
-        const json = {
-            ...info,
-            user: info.payload.user
-        };
-        console.log(json);
+    
         let data = null;
 
         const headerParams = {
@@ -23,7 +19,7 @@ function* getHelpApiData(info) {
         };
 
         if (info.payload.title) {
-            data = yield call([axios, "post"], "https://cogether.azurewebsites.net/help-center/me/", json, {
+            data = yield call([axios, "post"], "https://cogether.azurewebsites.net/help-center/me/", info.payload, {
                 headers: headerParams
             });
         } else {
