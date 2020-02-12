@@ -7,6 +7,7 @@
         height: 200px;
         background-color: #f8f8f8;
         padding: 78px 0;
+        word-break: break-all;
         .text {
             font-size: 30px;
             color: #2d2d4b;
@@ -47,32 +48,28 @@
         }
 
         .three-icons {
-
             display: flex;
             justify-content: flex-end;
-            width:100%;
-        
+            width: 100%;
+
             .page {
-        
-                width:28px;
-                padding-top:3px;
-                 .pp {
-                    width:100%;
-                 }
+                width: 28px;
+                padding-top: 3px;
+                .pp {
+                    width: 100%;
+                }
             }
             .share {
-        
-                width:35px;
-                padding-bottom:3px;
+                width: 35px;
+                padding-bottom: 3px;
                 .ss {
-                    width:100%;
+                    width: 100%;
                 }
             }
             .heart {
-        
-                padding-top:3px;
+                padding-top: 3px;
                 .hh {
-                    width:100%;
+                    width: 100%;
                 }
             }
         }

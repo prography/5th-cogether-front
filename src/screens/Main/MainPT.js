@@ -43,6 +43,11 @@ const MainPT = () => {
     }, [size]);
 
     useEffect(() => {
+        if (size > 1100) {
+            window.scrollTo(0, 0);
+        } else {
+            window.scrollTo(0, 200);
+        }
         dispatch(requestClub());
         dispatch(requestConference());
         dispatch(requestEducation());
@@ -63,7 +68,7 @@ const MainPT = () => {
             <div className="intro">
                 <div className="google-form">
                     <div className="google-text">자유롭게 Co.gether 서비스를 피드백 해주세요 !</div>
-                    <a 
+                    <a
                         className="google-link"
                         href="https://docs.google.com/forms/d/1wTvgiGOeHSpF0eVrQQLWN5USoXRqFnFWGVmOvSImesA/edit?usp=drivesdk"
                         target="_blank"
@@ -119,7 +124,6 @@ const MainPT = () => {
                                 rightChevron={<NextArrow></NextArrow>}
                                 leftChevron={<PrevArrow></PrevArrow>}
                                 outsideChevron={true}
-                                
                             >
                                 {conferences &&
                                     conferences.map(conf => {

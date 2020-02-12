@@ -6,16 +6,16 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import search_icon from "assets/search.svg";
 import { Row, Col, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { requestEducation, requestSearch } from "store/actions/Info";
 import { Link } from "react-router-dom";
 import "./EducationList.scss";
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import swal from 'sweetalert';
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import swal from "sweetalert";
 import { favorRequestAction } from "store/actions/User";
 
 const EducationList = ({ match }) => {
@@ -56,9 +56,10 @@ const EducationList = ({ match }) => {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(favorRequestAction({ type: "get" }));
     }, []);
-    
+
     const useStyles = makeStyles({
         card: {
             maxWidth: 300
@@ -80,12 +81,12 @@ const EducationList = ({ match }) => {
             fontSize: 16,
             textDecoration: "none",
             color: "black"
-        },
+        }
     });
     const classes = useStyles();
 
-    if( match.params.text ){
-        return(
+    if (match.params.text) {
+        return (
             <div>
                 <div className="navPic">
                     <div className="slogan">
@@ -102,61 +103,64 @@ const EducationList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        { searchs && searchs.map(edu => {
-                            return (
-                                <Col md={4}>
-                                    <div className="block">
-                                        <Card className={classes.card}>
-                                            <Link to={`/education/detail/${edu.id}`}>
-                                                <CardActionArea>
-                                                    <CardMedia
-                                                        className={classes.media}
-                                                        image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
-                                                    />
-                                                    <CardContent>
-                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                            <div className={classes.text_size}>{edu.host}</div>
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                            <div className={classes.body_size}>{edu.title}</div>
-                                                            <div>
-                                                                {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
-                                                            </div>
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Link>
-                                            <CardActions>
-                                                <div className="icons">
-                                                    <a className="detail-link" >
-                                                        <CopyToClipboard 
-                                                            text={url.concat(`${match.url}/detail/${edu.id}`)
-                                                                .replace(`${match.params.text}/`,"")}>
-                                                            <div className="share">
-                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                            </div>
-                                                        </CopyToClipboard>
-                                                    </a>
-                                                    <div className="heart" onClick={() => addLike(edu.id)}>
-                                                        {like(edu.id)!==-1 ? (
-                                                            <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
-                                                        ) : (
-                                                            <FavoriteBorderIcon style={{ fontSize:"30px" }} />
-                                                        )}
+                        {searchs &&
+                            searchs.map(edu => {
+                                return (
+                                    <Col md={4}>
+                                        <div className="block">
+                                            <Card className={classes.card}>
+                                                <Link to={`/education/detail/${edu.id}`}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            className={classes.media}
+                                                            image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
+                                                        />
+                                                        <CardContent>
+                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                                <div className={classes.text_size}>{edu.host}</div>
+                                                            </Typography>
+                                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                                <div className={classes.body_size}>{edu.title}</div>
+                                                                <div>
+                                                                    {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
+                                                                </div>
+                                                            </Typography>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Link>
+                                                <CardActions>
+                                                    <div className="icons">
+                                                        <a className="detail-link">
+                                                            <CopyToClipboard
+                                                                text={url
+                                                                    .concat(`${match.url}/detail/${edu.id}`)
+                                                                    .replace(`${match.params.text}/`, "")}
+                                                            >
+                                                                <div className="share">
+                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                </div>
+                                                            </CopyToClipboard>
+                                                        </a>
+                                                        <div className="heart" onClick={() => addLike(edu.id)}>
+                                                            {like(edu.id) !== -1 ? (
+                                                                <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
+                                                            ) : (
+                                                                <FavoriteBorderIcon style={{ fontSize: "30px" }} />
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
-                                </Col>
-                            );
-                        })}
+                                                </CardActions>
+                                            </Card>
+                                        </div>
+                                    </Col>
+                                );
+                            })}
                     </Row>
                 </Container>
             </div>
         );
     } else {
-        return(
+        return (
             <div>
                 <div className="navPic">
                     <div className="slogan">
@@ -173,53 +177,54 @@ const EducationList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        { educations && educations.map(edu => {
-                            return (
-                                <Col md={4}>
-                                    <div className="block">
-                                        <Card className={classes.card}>
-                                            <Link to={`/education/detail/${edu.id}`}>
-                                                <CardActionArea>
-                                                    <CardMedia
-                                                        className={classes.media}
-                                                        image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
-                                                    />
-                                                    <CardContent>
-                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                            <div className={classes.text_size}>{edu.host}</div>
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                            <div className={classes.body_size}>{edu.title}</div>
-                                                            <div>
-                                                                {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
-                                                            </div>
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Link>
-                                            <CardActions>
-                                                <div className="icons">
-                                                    <a className="detail-link" >
-                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${edu.id}`)}>
-                                                            <div className="share">
-                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                            </div>
-                                                        </CopyToClipboard>
-                                                    </a>
-                                                    <div className="heart" onClick={() => addLike(edu.id)}>
-                                                        {like(edu.id)!==-1 ? (
-                                                            <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
-                                                        ) : (
-                                                            <FavoriteBorderIcon style={{ fontSize:"30px" }} />
-                                                        )}
+                        {educations &&
+                            educations.map(edu => {
+                                return (
+                                    <Col md={4}>
+                                        <div className="block">
+                                            <Card className={classes.card}>
+                                                <Link to={`/education/detail/${edu.id}`}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            className={classes.media}
+                                                            image={edu.photo ? edu.photo.photo : require("assets/placeholder.png")}
+                                                        />
+                                                        <CardContent>
+                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                                <div className={classes.text_size}>{edu.host}</div>
+                                                            </Typography>
+                                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                                <div className={classes.body_size}>{edu.title}</div>
+                                                                <div>
+                                                                    {edu.start_at.split("T")[0]} ~ {edu.end_at.split("T")[0]}
+                                                                </div>
+                                                            </Typography>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Link>
+                                                <CardActions>
+                                                    <div className="icons">
+                                                        <a className="detail-link">
+                                                            <CopyToClipboard text={url.concat(`${match.url}/detail/${edu.id}`)}>
+                                                                <div className="share">
+                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                </div>
+                                                            </CopyToClipboard>
+                                                        </a>
+                                                        <div className="heart" onClick={() => addLike(edu.id)}>
+                                                            {like(edu.id) !== -1 ? (
+                                                                <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
+                                                            ) : (
+                                                                <FavoriteBorderIcon style={{ fontSize: "30px" }} />
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
-                                </Col>
-                            );
-                        })}
+                                                </CardActions>
+                                            </Card>
+                                        </div>
+                                    </Col>
+                                );
+                            })}
                     </Row>
                 </Container>
             </div>

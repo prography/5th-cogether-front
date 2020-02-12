@@ -11,8 +11,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Switch, Menu, Dropdown, Button } from "antd";
 import Calendars from "component/Calendar/Calendar";
 import { Row, Col, Container } from "react-bootstrap";
@@ -65,6 +65,7 @@ const Mypage = ({ match }) => {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(favorRequestAction({ type: "get" }));
     }, []);
 
@@ -123,7 +124,7 @@ const Mypage = ({ match }) => {
                                 <div className="info-box">
                                     <div className="info">
                                         <div className="key">이메일</div>
-                                        <div className="value">{meName}</div>
+                                        <div className="value">{meName.replaceAll('"', "")}</div>
                                     </div>
                                     {meLogin === "email" && (
                                         <div className="info">
@@ -207,9 +208,9 @@ const Mypage = ({ match }) => {
                                                                         </a>
                                                                         <div className="heart" onClick={() => addLike(favor.id)}>
                                                                             {like(favor.id) !== -1 ? (
-                                                                                <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
+                                                                                <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
                                                                             ) : (
-                                                                                <FavoriteBorderIcon style={{ fontSize:"30px" }} />
+                                                                                <FavoriteBorderIcon style={{ fontSize: "30px" }} />
                                                                             )}
                                                                         </div>
                                                                     </div>

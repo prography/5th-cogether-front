@@ -30,8 +30,7 @@ const ConferenceDetail = ({ match }) => {
     }, [size]);
 
     useEffect(() => {
-        console.log("a");
-
+        window.scrollTo(0, 0);
         dispatch(requestDetail(match.params.id));
     }, []);
 

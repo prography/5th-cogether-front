@@ -11,11 +11,11 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { CopyToClipboard } from 'react-copy-to-clipboard'
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { favorRequestAction } from "store/actions/User";
 
 const Search = ({ match }) => {
@@ -24,6 +24,7 @@ const Search = ({ match }) => {
     var favors = useSelector(state => state.userReducer.favor);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(requestSearch(match.params.text));
     }, [match.params.text]);
 
@@ -66,7 +67,7 @@ const Search = ({ match }) => {
             fontSize: 16,
             textDecoration: "none",
             color: "black"
-        },
+        }
     });
     const classes = useStyles();
 
@@ -114,28 +115,34 @@ const Search = ({ match }) => {
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                          <div className="three-icons">
-                                                            <a className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
-                                                                <div className="page">
-                                                                    <img className="pp" src={require("assets/page.png")}></img>
-                                                                </div>
-                                                            </a>
-                                                            <a className="detail-link" >
-                                                                <CopyToClipboard text={url.concat(`/club/detail/${search.id}`)}>
-                                                                    <div className="share">
-                                                                        <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                            <div className="three-icons">
+                                                                <a
+                                                                    className="detail-link"
+                                                                    href={`javascript:window.open('${search.external_link}','_blank')`}
+                                                                >
+                                                                    <div className="page">
+                                                                        <img className="pp" src={require("assets/page.png")}></img>
                                                                     </div>
-                                                                </CopyToClipboard>
-                                                            </a>
-                                                            <div className="heart" onClick={() => addLike(search.id)}>
-                                                                {like(search.id)!==-1 ? (
-                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
-                                                                ) : (
-                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} />
-                                                                )}
+                                                                </a>
+                                                                <a className="detail-link">
+                                                                    <CopyToClipboard text={url.concat(`/club/detail/${search.id}`)}>
+                                                                        <div className="share">
+                                                                            <img
+                                                                                className="ss"
+                                                                                src={require("assets/share.png")}
+                                                                                onClick={copy}
+                                                                            ></img>
+                                                                        </div>
+                                                                    </CopyToClipboard>
+                                                                </a>
+                                                                <div className="heart" onClick={() => addLike(search.id)}>
+                                                                    {like(search.id) !== -1 ? (
+                                                                        <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
+                                                                    ) : (
+                                                                        <FavoriteBorderIcon style={{ fontSize: "30px" }} />
+                                                                    )}
+                                                                </div>
                                                             </div>
-                                                          </div>
                                                         </CardActions>
                                                     </Card>
                                                 </div>
@@ -179,28 +186,34 @@ const Search = ({ match }) => {
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                          <div className="three-icons">
-                                                            <a className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
-                                                                <div className="page">
-                                                                    <img className="pp" src={require("assets/page.png")}></img>
-                                                                </div>
-                                                            </a>
-                                                            <a className="detail-link" >
-                                                                <CopyToClipboard text={url.concat(`/conference/detail/${search.id}`)}>
-                                                                    <div className="share">
-                                                                        <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                            <div className="three-icons">
+                                                                <a
+                                                                    className="detail-link"
+                                                                    href={`javascript:window.open('${search.external_link}','_blank')`}
+                                                                >
+                                                                    <div className="page">
+                                                                        <img className="pp" src={require("assets/page.png")}></img>
                                                                     </div>
-                                                                </CopyToClipboard>
-                                                            </a>
-                                                            <div className="heart" onClick={() => addLike(search.id)}>
-                                                                {like(search.id)!==-1 ? (
-                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
-                                                                ) : (
-                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} />
-                                                                )}
+                                                                </a>
+                                                                <a className="detail-link">
+                                                                    <CopyToClipboard text={url.concat(`/conference/detail/${search.id}`)}>
+                                                                        <div className="share">
+                                                                            <img
+                                                                                className="ss"
+                                                                                src={require("assets/share.png")}
+                                                                                onClick={copy}
+                                                                            ></img>
+                                                                        </div>
+                                                                    </CopyToClipboard>
+                                                                </a>
+                                                                <div className="heart" onClick={() => addLike(search.id)}>
+                                                                    {like(search.id) !== -1 ? (
+                                                                        <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
+                                                                    ) : (
+                                                                        <FavoriteBorderIcon style={{ fontSize: "30px" }} />
+                                                                    )}
+                                                                </div>
                                                             </div>
-                                                          </div>
                                                         </CardActions>
                                                     </Card>
                                                 </div>
@@ -244,28 +257,34 @@ const Search = ({ match }) => {
                                                             </CardActionArea>
                                                         </Link>
                                                         <CardActions>
-                                                          <div className="three-icons">
-                                                            <a className="detail-link"
-                                                                href={`javascript:window.open('${search.external_link}','_blank')`}>
-                                                                <div className="page">
-                                                                    <img className="pp" src={require("assets/page.png")}></img>
-                                                                </div>
-                                                            </a>
-                                                            <a className="detail-link" >
-                                                                <CopyToClipboard text={url.concat(`/education/detail/${search.id}`)}>
-                                                                    <div className="share">
-                                                                        <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                            <div className="three-icons">
+                                                                <a
+                                                                    className="detail-link"
+                                                                    href={`javascript:window.open('${search.external_link}','_blank')`}
+                                                                >
+                                                                    <div className="page">
+                                                                        <img className="pp" src={require("assets/page.png")}></img>
                                                                     </div>
-                                                                </CopyToClipboard>
-                                                            </a>
-                                                            <div className="heart" onClick={() => addLike(search.id)}>
-                                                                {like(search.id)!==-1 ? (
-                                                                    <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
-                                                                ) : (
-                                                                    <FavoriteBorderIcon style={{ fontSize:"30px" }} />
-                                                                )}
+                                                                </a>
+                                                                <a className="detail-link">
+                                                                    <CopyToClipboard text={url.concat(`/education/detail/${search.id}`)}>
+                                                                        <div className="share">
+                                                                            <img
+                                                                                className="ss"
+                                                                                src={require("assets/share.png")}
+                                                                                onClick={copy}
+                                                                            ></img>
+                                                                        </div>
+                                                                    </CopyToClipboard>
+                                                                </a>
+                                                                <div className="heart" onClick={() => addLike(search.id)}>
+                                                                    {like(search.id) !== -1 ? (
+                                                                        <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
+                                                                    ) : (
+                                                                        <FavoriteBorderIcon style={{ fontSize: "30px" }} />
+                                                                    )}
+                                                                </div>
                                                             </div>
-                                                          </div>
                                                         </CardActions>
                                                     </Card>
                                                 </div>

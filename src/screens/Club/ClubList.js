@@ -6,8 +6,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { Row, Col, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { requestClub, requestSearch } from "store/actions/Info";
@@ -54,8 +54,9 @@ const ClubList = ({ match }) => {
     const like = id => {
         return favors.findIndex(x => x.id === id);
     };
-    
+
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(favorRequestAction({ type: "get" }));
     }, []);
 
@@ -102,55 +103,58 @@ const ClubList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        {searchs && searchs.map(club => {
-                            return (
-                                <Col md={4}>
-                                    <div className="block">
-                                        <Card className={classes.card}>
-                                            <Link to={`/club/detail/${club.id}`}>
-                                                <CardActionArea>
-                                                    <CardMedia
-                                                        className={classes.media}
-                                                        image={club.photo ? club.photo.photo : require("assets/placeholder.png")}
-                                                    />
-                                                    <CardContent>
-                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                            <div className={classes.text_size}>{club.host}</div>
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                            <div className={classes.body_size}>{club.title}</div>
-                                                            <div>
-                                                                {club.start_at.split("T")[0]} ~ {club.end_at.split("T")[0]}
-                                                            </div>
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Link>
-                                            <CardActions>
-                                                <div className="icons">
-                                                    <a className="detail-link">
-                                                        <CopyToClipboard
-                                                            text={url.concat(`${match.url}/detail/${club.id}`)
-                                                                .replace(`${match.params.text}/`, "")}>
-                                                            <div className="share">
-                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                            </div>
-                                                        </CopyToClipboard>
-                                                    </a>
-                                                    <div className="heart" onClick={() => addLike(club.id)}>
-                                                        {like(club.id)!==-1 ? (
-                                                            <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
-                                                        ) : (
-                                                            <FavoriteBorderIcon style={{ fontSize:"30px" }} />
-                                                        )}
+                        {searchs &&
+                            searchs.map(club => {
+                                return (
+                                    <Col md={4}>
+                                        <div className="block">
+                                            <Card className={classes.card}>
+                                                <Link to={`/club/detail/${club.id}`}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            className={classes.media}
+                                                            image={club.photo ? club.photo.photo : require("assets/placeholder.png")}
+                                                        />
+                                                        <CardContent>
+                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                                <div className={classes.text_size}>{club.host}</div>
+                                                            </Typography>
+                                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                                <div className={classes.body_size}>{club.title}</div>
+                                                                <div>
+                                                                    {club.start_at.split("T")[0]} ~ {club.end_at.split("T")[0]}
+                                                                </div>
+                                                            </Typography>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Link>
+                                                <CardActions>
+                                                    <div className="icons">
+                                                        <a className="detail-link">
+                                                            <CopyToClipboard
+                                                                text={url
+                                                                    .concat(`${match.url}/detail/${club.id}`)
+                                                                    .replace(`${match.params.text}/`, "")}
+                                                            >
+                                                                <div className="share">
+                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                </div>
+                                                            </CopyToClipboard>
+                                                        </a>
+                                                        <div className="heart" onClick={() => addLike(club.id)}>
+                                                            {like(club.id) !== -1 ? (
+                                                                <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
+                                                            ) : (
+                                                                <FavoriteBorderIcon style={{ fontSize: "30px" }} />
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
-                                </Col>
-                            );
-                        })}
+                                                </CardActions>
+                                            </Card>
+                                        </div>
+                                    </Col>
+                                );
+                            })}
                     </Row>
                 </Container>
             </div>
@@ -173,53 +177,54 @@ const ClubList = ({ match }) => {
                 </div>
                 <Container>
                     <Row>
-                        {clubs && clubs.map(club => {
-                            return (
-                                <Col md={4}>
-                                    <div className="block">
-                                        <Card className={classes.card}>
-                                            <Link to={`/club/detail/${club.id}`}>
-                                                <CardActionArea>
-                                                    <CardMedia
-                                                        className={classes.media}
-                                                        image={club.photo ? club.photo.photo : require("assets/placeholder.png")}
-                                                    />
-                                                    <CardContent>
-                                                        <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
-                                                            <div className={classes.text_size}>{club.host}</div>
-                                                        </Typography>
-                                                        <Typography variant="body2" color="textSecondary" component="p">
-                                                            <div className={classes.body_size}>{club.title}</div>
-                                                            <div>
-                                                                {club.start_at.split("T")[0]} ~ {club.end_at.split("T")[0]}
-                                                            </div>
-                                                        </Typography>
-                                                    </CardContent>
-                                                </CardActionArea>
-                                            </Link>
-                                            <CardActions>
-                                                <div className="icons">
-                                                    <a className="detail-link">
-                                                        <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)}>
-                                                            <div className="share">
-                                                                <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
-                                                            </div>
-                                                        </CopyToClipboard>
-                                                    </a>
-                                                    <div className="heart" onClick={() => addLike(club.id)}>
-                                                        {like(club.id)!==-1 ? (
-                                                            <FavoriteIcon style={{ color: "#e53935", fontSize:"30px" }} />
-                                                        ) : (
-                                                            <FavoriteBorderIcon style={{ fontSize:"30px" }} />
-                                                        )}
+                        {clubs &&
+                            clubs.map(club => {
+                                return (
+                                    <Col md={4}>
+                                        <div className="block">
+                                            <Card className={classes.card}>
+                                                <Link to={`/club/detail/${club.id}`}>
+                                                    <CardActionArea>
+                                                        <CardMedia
+                                                            className={classes.media}
+                                                            image={club.photo ? club.photo.photo : require("assets/placeholder.png")}
+                                                        />
+                                                        <CardContent>
+                                                            <Typography gutterBottom variant="h5" component="h2" className={classes.text}>
+                                                                <div className={classes.text_size}>{club.host}</div>
+                                                            </Typography>
+                                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                                <div className={classes.body_size}>{club.title}</div>
+                                                                <div>
+                                                                    {club.start_at.split("T")[0]} ~ {club.end_at.split("T")[0]}
+                                                                </div>
+                                                            </Typography>
+                                                        </CardContent>
+                                                    </CardActionArea>
+                                                </Link>
+                                                <CardActions>
+                                                    <div className="icons">
+                                                        <a className="detail-link">
+                                                            <CopyToClipboard text={url.concat(`${match.url}/detail/${club.id}`)}>
+                                                                <div className="share">
+                                                                    <img className="ss" src={require("assets/share.png")} onClick={copy}></img>
+                                                                </div>
+                                                            </CopyToClipboard>
+                                                        </a>
+                                                        <div className="heart" onClick={() => addLike(club.id)}>
+                                                            {like(club.id) !== -1 ? (
+                                                                <FavoriteIcon style={{ color: "#e53935", fontSize: "30px" }} />
+                                                            ) : (
+                                                                <FavoriteBorderIcon style={{ fontSize: "30px" }} />
+                                                            )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
-                                </Col>
-                            );
-                        })}
+                                                </CardActions>
+                                            </Card>
+                                        </div>
+                                    </Col>
+                                );
+                            })}
                     </Row>
                 </Container>
             </div>

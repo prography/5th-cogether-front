@@ -23,6 +23,7 @@ const Service = () => {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         dispatch(introRequestAction());
         dispatch(helpRequestAction(json));
     }, []);
