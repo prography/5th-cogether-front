@@ -46,7 +46,7 @@ const MainPT = () => {
         if (size > 1100) {
             window.scrollTo(0, 0);
         } else {
-            window.scrollTo(0, 200);
+            window.scrollTo(0, 300);
         }
         dispatch(requestClub());
         dispatch(requestConference());

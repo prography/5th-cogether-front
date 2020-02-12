@@ -166,9 +166,9 @@ const HeaderContainer = ({ match }) => {
                     <img className="bar" src={bar} />
                     {token && meName ? (
                         <div className="account">
-                            <div className="username">{meName.split('"')[1].split("@")[0]}</div>
                             <Dropdown overlay={menu} trigger={["click"]}>
                                 <a className="ant-dropdown-link" href="#">
+                                    <div className="username">{meName.split('"')[1].split("@")[0]}</div>
                                     <div className="usericon">{mePhoto ? <img className="circle" src={mePhoto} /> : <img src={user} />}</div>
                                 </a>
                             </Dropdown>

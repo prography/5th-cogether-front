@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Calendar, Badge, Menu, Dropdown, Icon } from "antd";
+import { Link } from "react-router-dom";
 
 const Calendars = favors => {
     const getListData = value => {
@@ -21,7 +22,9 @@ const Calendars = favors => {
             <Menu>
                 {listData.map(item => (
                     <Menu.Item>
-                        <Badge status={item.type} text={item.content} />
+                        <Link to={`/${item.category === "circle" ? "club" : item.category}/detail/${item.id}`}>
+                            <Badge status={item.type} text={item.content} />
+                        </Link>
                     </Menu.Item>
                 ))}
             </Menu>
