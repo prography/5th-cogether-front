@@ -55,7 +55,7 @@ const ClubDetail = ({ match }) => {
                     {details.content ? (
                         <>
                             <div className="seperator">About</div>
-                            <div className="box">
+                            <div className="about-box">
                                 {parse(
                                     "".concat(
                                         details.content

@@ -29,6 +29,11 @@
         }
     }
 
+    .about-box {
+        @extend .box;
+        text-align: left;
+    }
+
     .link {
         padding: 0px 0px 60px 0px;
         font-size: 20px;
@@ -52,6 +57,15 @@
                 width: 100%;
                 height: auto;
             }
+        }
+        .about-box {
+            font-size: 12px;
+
+            .image {
+                width: 100%;
+                height: auto;
+            }
+            text-align: left;
         }
         .link {
             font-size: 16px;
